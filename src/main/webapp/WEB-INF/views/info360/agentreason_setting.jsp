@@ -9,7 +9,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-        <title>「人員設定」頁面</title>
+        <title>「值機設定」頁面</title>
+
         <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
         <link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
         <link href="../css/animate.css" rel="stylesheet">
@@ -36,7 +37,7 @@
                                     <li>
                                         <span>
                                             <i class="fa fa-fw fa-folder-open"></i>
-                                            使用者管理
+                                             使用者管理
                                         </span>
                                         <ul style="list-style-type:none;margin-left:20px;">
                                             <li onclick=""><i class="fa fa-fw fa-file-text-o"></i><a href="setting.jsp">人員管理</a></li>
@@ -76,14 +77,14 @@
 
             <div class="col-lg-10 col-sm-9">
                 <div class="panel panel-success" style="height:780px;">
-                    <!-- 人員管理切換頁籤Start -->
+                    <!-- 值機管理切換頁籤Start -->
                     <div id="hrTabControlButton" style="margin:1px 0px 0px 1px;">
-                        <button class="btn-sm btn-primary manage" onclick="showManage()"><i class="fa fa-fw fa-user"></i>人員管理</button>
+                        <button class="btn-sm btn-primary manage" onclick="showManage()"><i class="fa fa-fw fa-user"></i>值機管理</button>
                         <button class="btn-sm btn-success ban" onclick="showBan()"><i class="fa fa-fw fa-user"></i>停用列表</button>
-                        <button class="btn-sm btn-success addMember" style="display:none;"><span onclick="showAddMember()">新增人員</span> <i class="fa fa-times" onclick="closeAddMember()"></i></button>
-                        <button class="btn-sm btn-success editMember" style="display:none;"><span onclick="showEditMember()">更新人員</span> <i class="fa fa-times" onclick="closeEditMember()"></i></button>
+                        <button class="btn-sm btn-success addMember" style="display:none;"><span onclick="showAddMember()">新增值機狀態</span> <i class="fa fa-times" onclick="closeAddMember()"></i></button>
+                        <button class="btn-sm btn-success editMember" style="display:none;"><span onclick="showEditMember()">更新值機狀態</span> <i class="fa fa-times" onclick="closeEditMember()"></i></button>
                     </div>
-                    <!-- 人員管理切換頁籤End -->
+                    <!-- 值機管理切換頁籤End -->
 
                     <!-- 設定頁面內容頁 Start-->
                     <div class="panel-body" id="settingContent">
@@ -115,22 +116,19 @@
 
                             <div class="row ibox">
                                 <div class="col-lg-12 col-md-12" id="manageTable_div">
-                                    <table class="table table-bordered table-hover" id="manageTable"
-            onDblClickRow="abc()"
-                                    >
+                                    <table class="table table-bordered table-hover" id="manageTable">
                                         <thead>
-                                           <tr >
-					 							<th id="user_name" data-sortable="true"></th>		 	
-			 		 							<th id="emailaddress" data-sortable="true"></th>
-			 		 							<th id="state" data-sortable="true"></th>
-			 		 							<th id="account" data-sortable="true"></th>
-			 		 							<th id="employee_id" data-sortable="true"></th>
-			 		 							<th id="dn" data-sortable="true"></th>
-											</tr>
+                                         	<tr >
+		 	 									<th id="statusname" data-sortable="true"></th>
+			 									<th id="statusname_cn" data-sortable="true"></th>
+			 									<th id="statusname_en" data-sortable="true"></th>
+			 									<th id="statusname_tw" data-sortable="true"></th>
+			 									<th id="description" data-sortable="true"></th>
+			 									<th id="alarmduration" data-sortable="true"></th>
+			 									<th id="alarmcolor" data-sortable="true"></th>
+												<th id="flag" data-sortable="true"></th>
+        									</tr>
                                         </thead>
-                                        <tbody>
-                                        
-                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -166,15 +164,14 @@
                                 <div class="col-lg-12 col-md-12" id="banTable_div">
                                     <table class="table table-bordered table-hover" id="banTable">
                                         <thead>
-                                            <tr>
-                                                <th class="no-sort"><input type="checkbox" id="banCheck"></th>
-                                                <th>帳號</th>
-                                                <th>姓名</th>
-                                                <th>員工編號</th>
-                                                <th>分機號碼</th>
-                                                <th>Email</th>
-                                                <th>狀態</th>
-                                            </tr>
+                                            <tr >
+					 							<th id="user_name" data-sortable="true"></th>		 	
+			 		 							<th id="emailaddress" data-sortable="true"></th>
+			 		 							<th id="state" data-sortable="true"></th>
+			 		 							<th id="account" data-sortable="true"></th>
+			 		 							<th id="employee_id" data-sortable="true"></th>
+			 		 							<th id="dn" data-sortable="true"></th>
+											</tr>
                                         </thead>
                                     </table>
                                 </div>
@@ -184,74 +181,67 @@
                          <div id="addMemberContent" style="display:none;">
                             <div class="widget">
                                     <div class="form-group col-sm-6">
-                                        <label for="inputAccount" class="col-sm-2 control-label required">帳號</label>
+                                        <label for="inputAccount" class="col-sm-2 control-label">狀態名:</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="inputAccount" placeholder="">
+                                            <input type="text" class="form-control" id="Insert_statusname" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <label for="inputName" class="col-sm-2 control-label required">姓名</label>
+                                        <label for="inputAccount" class="col-sm-2 control-label">狀態名_CN:</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="inputName" placeholder="">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-sm-6">
-                                        <label for="inputLastName" class="col-sm-2 control-label">姓氏</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="inputLastName" placeholder="">
+                                            <input type="text" class="form-control" id="Insert_statusname_cn" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <label for="inputFirstName" class="col-sm-2 control-label">名字</label>
+                                        <label for="inputAccount" class="col-sm-2 control-label">狀態名_EN:</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="inputFirstName" placeholder="">
+                                            <input type="text" class="form-control" id="Insert_statusname_en" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <label for="inputEmployNumber" class="col-sm-2 control-label">員工編號</label>
+                                        <label for="inputAccount" class="col-sm-2 control-label">狀態名_TW:</label>
                                         <div class="col-sm-8">
-                                            <input type="number" class="form-control" id="inputEmployNumber" placeholder="">
+                                            <input type="text" class="form-control" id="Insert_statusname_tw" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <label for="inputPhoneNumber" class="col-sm-2 control-label">分機號碼</label>
+                                        <label for="inputAccount" class="col-sm-2 control-label">告警顏色:</label>
                                         <div class="col-sm-8">
-                                            <input type="number" class="form-control" id="inputPhoneNumber" placeholder="">
+                                            <input type="text" class="form-control" id="Insert_alarmcolor" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <label for="inputPassword" class="col-sm-2 control-label required">密碼</label>
+                                        <label for="inputAccount" class="col-sm-2 control-label">告警時間:</label>
                                         <div class="col-sm-8">
-                                            <input type="password" class="form-control" id="inputPassword" placeholder="">
+                                            <input type="text" class="form-control" id="Insert_alarmduration" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <label for="inputConfirmPassword" class="col-sm-2 control-label required">確認密碼</label>
+                                        <label for="inputAccount" class="col-sm-2 control-label">註解:</label>
                                         <div class="col-sm-8">
-                                            <input type="password" class="form-control" id="inputConfirmPassword" placeholder="">
+                                            <input type="text" class="form-control" id="Insert_description" placeholder="">
                                         </div>
                                     </div>
-
-
-                                    <div class="form-group col-sm-12">
-                                        <label for="inputEmail" class="col-sm-1 control-label">Email</label>
-                                        <div class="col-sm-9">
-                                            <input type="email" class="form-control" id="inputEmail" placeholder="">
+                                     <div class="form-group col-sm-6">
+                                        <label for="inputAccount" class="col-sm-2 control-label">建立者:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="Insert_createuserid" placeholder="">
                                         </div>
                                     </div>
-                                    
-                                    <div class="form-group col-sm-12">
-                                        <label for="inputDepartment" class="col-sm-1 control-label">部門</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="inputDepartment" placeholder="">
-                                        </div>
-                                    </div>
-                   
+<!--                                      <div class="form-group col-sm-6"> -->
+<!--                                         <label for="inputConfirmPassword" class="col-sm-2 control-label">啟用狀態:</label> -->
+<!--                                         <div class="col-sm-8"> -->
+<!--                                             <select class="form-control" id="Insert_flag"> -->
+<!--       											<option value="0">啟用</option> -->
+<!-- 	  											<option value="1">停用</option> -->
+<!--       										</select> -->
+<!--                                         </div> -->
+<!--                                      </div> -->
+                                      
                                     <div class="form-group">
                                         <div class="col-sm-offset-9 col-sm-3">
                                             <button class="btn btn-primary" onclick="sendAddMember()">儲存</button>
-                                            <button class="btn btn-default" onclick="closeAddMember()">取消</button>
+                                            <button class="btn btn-default" onclick="closeAddMember()" >取消</button>
                                         </div>
                                     </div>
                             </div>
@@ -260,81 +250,65 @@
 			<!-- 更新  -->
                         <div id="editMemberContent" style="display:none;">
                             <div class="widget">
-<!--                                 <form class="form-horizontal"> -->
                                     <div class="form-group col-sm-6">
-                                        <label for="inputAccount" class="col-sm-2 control-label required">帳號</label>
+                                        <label for="inputAccount" class="col-sm-2 control-label required">DBID</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="updateAccount" >
+                                            <input type="number" class="form-control" id="Update_id" >
+                                        </div>
+                                    </div>			
+                                    <div class="form-group col-sm-6">
+                                        <label for="inputAccount" class="col-sm-2 control-label">告警顏色:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="alarmcolor" >
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <label for="inputName" class="col-sm-2 control-label required">姓名</label>
+                                        <label for="inputName" class="col-sm-2 control-label">告警時間:</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="updateName" placeholder="">
+                                            <input type="text" class="form-control" id="alarmduration" placeholder="">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-sm-6">
-                                        <label for="inputLastName" class="col-sm-2 control-label">姓氏</label>
+                                        <label for="inputLastName" class="col-sm-2 control-label">註解:</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="updateLastName" placeholder="">
+                                            <input type="text" class="form-control" id="description" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <label for="inputFirstName" class="col-sm-2 control-label">名字</label>
+                                        <label for="inputFirstName" class="col-sm-2 control-label">狀態名:</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="updateFirstName" placeholder="">
+                                            <input type="text" class="form-control" id="statusname" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <label for="inputEmployNumber" class="col-sm-2 control-label">員工編號</label>
+                                        <label for="inputEmployNumber" class="col-sm-2 control-label">狀態名_CN:</label>
                                         <div class="col-sm-8">
-                                            <input type="number" class="form-control" id="updateEmployNumber" placeholder="">
+                                            <input type="text" class="form-control" id="statusname_cn" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <label for="inputPhoneNumber" class="col-sm-2 control-label">分機號碼</label>
+                                        <label for="inputPhoneNumber" class="col-sm-2 control-label">狀態名_EN:</label>
                                         <div class="col-sm-8">
-                                            <input type="number" class="form-control" id="updatePhoneNumber" placeholder="">
+                                            <input type="text" class="form-control" id="statusname_en" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <label for="inputPassword" class="col-sm-2 control-label required">密碼</label>
+                                        <label for="inputPassword" class="col-sm-2 control-label">狀態名_TW:</label>
                                         <div class="col-sm-8">
-                                            <input type="password" class="form-control" id="updatePassword" placeholder="">
+                                            <input type="text" class="form-control" id="statusname_tw" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <label for="inputConfirmPassword" class="col-sm-2 control-label required">確認密碼</label>
-                                        <div class="col-sm-8">
-                                            <input type="password" class="form-control" id="updateConfirmPassword" placeholder="">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group col-sm-12">
-                                        <label for="inputEmail" class="col-sm-1 control-label">Email</label>
-                                        <div class="col-sm-9">
-                                            <input type="email" class="form-control" id="updateEmail" placeholder="">
-                                        </div>
-                                    </div>
-                                   
-                                    <div class="form-group col-sm-6">
-                                        <label for="inputDepartment" class="col-sm-2 control-label">部門</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="updateDepartment" placeholder="">
-                                        </div>
-                                    </div>
-                                     <div class="form-group col-sm-6">
                                         <label for="inputConfirmPassword" class="col-sm-2 control-label">啟用狀態:</label>
                                         <div class="col-sm-8">
-                                            <select class="form-control" id="updateState">
+                                            <select class="form-control" id="Update_flag">
       											<option value="0">啟用</option>
 	  											<option value="1">停用</option>
       										</select>
                                         </div>
                                     </div>
-                   
+
                                     <div class="form-group">
                                         <div class="col-sm-offset-9 col-sm-3">
                                             <button class="btn btn-primary" onclick="sendEditMember()">更新</button>
@@ -361,17 +335,17 @@
     <div id="confirmBan" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
-              <div class="modal-content">
+         	<div class="modal-content">
                 <div class="modal-body">
                     <h3>是否確定停用帳號？</h3>
                 </div>
-                <div class="modal-footer">
-                			<div class="form-group col-sm-6">
-                                  <label for="inputDepartment" class="col-sm-3 control-label">編號:</label>
-                                       <div class="col-sm-6">
-                                          <input type="text" class="form-control" id="deletedbid" placeholder="">
-                                       </div>
-                            </div>			
+               			<div class="modal-footer">
+               				 <div class="form-group col-sm-6">
+                 				<label for="inputAssignedDepartment" class="col-sm-2 control-label">編號:</label>
+                 			 		<div class="col-sm-4">
+                    					<input type="text" class="form-control" id="D_id" placeholder="">
+                 					</div>
+                 			</div>
                     <button type="button" class="btn btn-success" data-dismiss="modal" onclick="showToastSuccess('刪除成功')">確定</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
                 </div>
@@ -392,23 +366,23 @@
                 <div class="modal-body">
                     <h3>是否解除/鎖定帳號？</h3>
                 </div>
-                <div class="modal-footer">
-                		<div class="form-group col-sm-6">
-                             <label for="inputDepartment" class="col-sm-3 control-label">帳號:</label>
-                                  <div class="col-sm-6">
-                                       <input type="text" class="form-control" id="state_account" placeholder="">
-                                  </div>
-                         </div>
-                          <div class="form-group col-sm-6">
-                              <label for="inputDepartment" class="col-sm-3 control-label">開關:</label>
-                                  <div class="col-sm-6">
-                                      <select id="state_list">
-                                         <option value="0">開啟</option>
-                                         <option value="1">鎖定</option>
-                                       </select>
-                                  </div>
-                          </div>
-                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="showToastError('鎖定/解鎖')">確定</button>
+              <div class="modal-footer">
+                 		<div class="form-group col-sm-6">
+                 			<label for="inputAssignedDepartment" class="col-sm-2 control-label">編號:</label>
+                 				<div class="col-sm-4">
+                    				<input type="text" class="form-control" id="Delete_id" placeholder="">
+                 				</div>
+                 		</div>
+                 		<div class="form-group col-sm-6">
+                			<label for="inputAssignedDepartment" class="col-sm-2 control-label">開關:</label>
+                 				<div class="col-sm-4">
+                    				<select class="form-control" id="Delete_flag">
+      									<option value="0">啟用</option>
+	  									<option value="1">停用</option>
+      								</select>
+                 				</div>
+                		</div>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="showToastError('鎖定/解鎖成功')">確定</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
                 </div>
             </div>
@@ -436,97 +410,109 @@
 	<script src="../js/demo/bootstrap-table-demo.js"></script>
     <script>
     function play(callback) {
-    	
       	 function state(){
-      		  $.ajax({                              
-      	          url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Query_Person_STATE",
-      	          
-      		         data:{
-      		        	state:0
-      		        	 },
-      		         type : "POST",                                                                    
-      		         dataType:'json',
-      		         
-      		         error:function(e){                                                                 
-      		         alert("失敗");
-      		         callback(data);
-      		         },
-      		         success:function(data){
-      		        	 $('#manageTable tr').empty();
-      		        	 $("#manageTable_div").html($('#manageTable').bootstrapTable({
-      		        		 columns: [{
-      		        		        field: 'account',
-      		        		        title: '帳號'
-      		        		    },{
-      		        		        field: 'user_name',
-      		        		        title: '姓名'
-      		        		    },{
-      		        		        field: 'employee_id',
-      		        		        title: '員工編號'
-      		        		    },{
-      		        		        field: 'dn',
-      		        		        title: '分機號碼'
-      		        		    },{
-      		        		        field: 'emailaddress',
-      		        		        title: '信箱'
-      		        		    },{
-      		        		    	field: 'state',
-      		        		        title: '狀態'
-      		        		    }],
-      		        		    
-      		     	data:data.person
-      		     	}));"json"
-      		     	
-      	     		console.log("正常用戶",data);	
-      		     	
-      	     	 $.ajax({                              
-      	          url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Query_Person_STATE",
-      	   
-      		         data:{
-      		        	state:1
-      		        	 },
-      		         type : "POST",                                                                    
-      		         dataType:'json',
-      		         
-      		         error:function(e){                                                                 
-      		         alert("失敗");
-      		         callback(data);
-      		         },
-      		         success:function(data){
-      		        	 $('#banTable tr').empty();
-      		        	 $("#banTable_div").html($('#banTable').bootstrapTable({
-      		        		 columns: [{
-      		        		        field: 'account',
-      		        		        title: '帳號'
-      		        		    },{
-      		        		        field: 'user_name',
-      		        		        title: '姓名'
-      		        		    },{
-      		        		        field: 'employee_id',
-      		        		        title: '員工編號'
-      		        		    },{
-      		        		        field: 'dn',
-      		        		        title: '分機號碼'
-      		        		    },{
-      		        		        field: 'emailaddress',
-      		        		        title: '信箱'
-      		        		    },{
-      		        		    	field: 'state',
-      		        		        title: '狀態'
-      		        		    }],
-      		        		    
-      		     	data:data.person
-      		     	}));"json"
-      		     	
-      	     		console.log("停用用戶",data);	
-      	     	callback();
-      		     }
-      		     });		  
-      	     		
-      		     }
-      		     });	
-      		  
-      	 		}; 
+      			  $.ajax({                              
+      		          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Select_agentreason",
+      			         data:{
+      			        	 flag:0
+      			        	 },
+      			         type : "POST",                                                                    
+      			         dataType:'json',
+      			         error:function(e){                                                                 
+      			         alert("失敗");
+      			         callback(data);
+      			         },
+      			         success:function(data){
+      			        	 $('#manageTable tr').empty();
+      	   		        	 $("#manageTable_div").html($('#manageTable').bootstrapTable({
+      			         columns: [{
+      			           
+      			             field: 'statusname',
+      			             title: '狀態名'
+      			         }, {
+      			             field: 'statusname_cn',
+      			             title: '狀態名_CN'
+      			         },{
+      			             field: 'statusname_en',
+      			             title: '狀態名_EN'
+      			         },
+      			         {
+      			             field: 'statusname_tw',
+      			             title: '狀態名_TW'
+      			         },
+      			         {
+      			             field: 'description',
+      			             title: '註解'
+      			         },
+      			         {
+      			             field: 'alarmduration',
+      			             title: '告警時間'
+      			         }, {
+      			             field: 'alarmcolor',
+      			             title: '告警顏色'
+      			         }, {
+      			             field: 'flag',
+      			             title: 'flag'
+      			         }],
+      			     	data:data.agentreason
+      			     	}));"json"
+      		     		console.log("啟用",data);
+
+      		   $.ajax({                              
+      	   		    url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Select_agentreason",
+      	   			   data:{
+      	   			     flag:1
+      	   			        },
+      	   			            
+      	   			      type : "POST",                                                                    
+      	   			      dataType:'json',
+      	   			      error:function(e)
+      	   			      {                                                                 
+      	   			      alert("失敗");
+      	   			      callback(data);
+      	   			      },
+      	   			      success:function(data){
+      	   			       $('#banTable tr').empty();
+        		        	$("#banTable_div").html($('#banTable').bootstrapTable({
+      	   			       columns: [{
+      	   			           
+      	   			             field: 'statusname',
+      	   			             title: '狀態名'
+      	   			         }, {
+      	   			             field: 'statusname_cn',
+      	   			             title: '狀態名_CN'
+      	   			         },{
+      	   			             field: 'statusname_en',
+      	   			             title: '狀態名_EN'
+      	   			         },
+      	   			         {
+      	   			             field: 'statusname_tw',
+      	   			             title: '狀態名_TW'
+      	   			         },
+      	   			         {
+      	   			             field: 'description',
+      	   			             title: '註解'
+      	   			         },
+      	   			         {
+      	   			             field: 'alarmduration',
+      	   			             title: '告警時間'
+      	   			         }, {
+      	   			             field: 'alarmcolor',
+      	   			             title: '告警顏色'
+      	   			         }, {
+      	   			             field: 'flag',
+      	   			             title: 'flag'
+      	   			         }],
+      	   			     	data:data.agentreason
+      	   			     	}));"json"
+      	   		     		console.log("停用",data);
+      	   		     		callback();
+      	   			     }    
+      	   		}); 
+      		}	        
+      	}); 
+
+    };
       	 	state();
        	}
        	function play2() {
@@ -576,13 +562,13 @@
             });
         });
 
-//         $("#manageTable tbody tr td,#banTable tbody tr td").on("click",function(){
-//             var text = $(this).text();
-// 			alert("abc");
-//             if (text && text != "") {
-//                 showEditMember();
-//             }
-//         });
+        $("#manageTable tbody tr td,#banTable tbody tr td").on("click",function(){
+            var text = $(this).text();
+
+            if (text && text != "") {
+                showEditMember();
+            }
+        });
 
         function showManage() {
             closeAllHrContent();
@@ -619,94 +605,89 @@
         }
 
         function sendAddMember() {
-            if (!validateAddMember()) {
-                return;
-            }
-
+//             if (!validateAddMember()) {
+//                 return;
+//             }
             closeAddMember();
-            var in_first_name = document.getElementById('inputFirstName').value;
-    		var in_last_name = document.getElementById('inputLastName').value;
-    		var in_user_name = document.getElementById('inputName').value;
-    		var in_emailaddress = document.getElementById('inputEmail').value;
-    		var in_password = document.getElementById('inputPassword').value;
-    		var in_employee_id = document.getElementById('inputEmployNumber').value;
-    		var in_group_dbid = document.getElementById('inputDepartment').value;
-    		var in_account = document.getElementById('inputAccount').value;
-    		var in_dn = document.getElementById('inputPhoneNumber').value;
-
-    		$.ajax({                              
-    	          url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Insert_PersonInfo",
-    		         data:{
-    		        	 first_name:in_first_name,
-    		        	 last_name:in_last_name,
-    		        	 user_name:in_user_name,
-    		        	 emailaddress:in_emailaddress,
-    		        	 password:in_password,
-    		        	 employee_id:in_employee_id,
-    		        	 group_dbid:in_group_dbid,
-    		        	 account:in_account,
-    		        	 state:0,
-    		        	 dn:in_dn
-
-    		        	 },
-    		         type : "POST",                                                                    
-    		         dataType:'json',
-    		         
-    		         error:function(e){                                                                 
-    		         alert("失敗");
-    		         callback(data);
-    		         },
-    		         success:function(data){
-    		        	 play(play2);
-    		     }
-    		     });	
+             //var flag = document.getElementById('Insert_flag').value;
+			 var alarmcolor = document.getElementById('Insert_alarmcolor').value;
+			 var alarmduration = document.getElementById('Insert_alarmduration').value;
+			 var description = document.getElementById('Insert_description').value;
+			 var statusname = document.getElementById('Insert_statusname').value;
+			 var statusname_cn = document.getElementById('Insert_statusname_cn').value;
+			 var statusname_en = document.getElementById('Insert_statusname_en').value;
+			 var statusname_tw = document.getElementById('Insert_statusname_tw').value;
+			 var createuserid = document.getElementById('Insert_createuserid').value;
+			
+			 $.ajax({                              
+		          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Insert_agentreason",
+			         data:{
+			        	 flag:0,
+			        	 alarmcolor:alarmcolor,
+			        	 alarmduration:alarmduration,
+			        	 description:description,
+			        	 statusname:statusname,
+			        	 statusname_cn:statusname_cn,
+			        	 statusname_en:statusname_en,
+			        	 statusname_tw:statusname_tw,
+			        	 createuserid:createuserid
+			        	 },
+			         type : "POST",                                                                    
+			         dataType:'json',
+			         
+			         error:function(e){                                                                 
+			         alert("失敗");
+			         callback(data);
+			         },
+			         success:function(data){
+			        	 play(play2);
+			   		     }
+			   		        
+			   		 });
             showToastSuccess("新增成功");
         }
 
         function sendEditMember() {
-            if (!validateEditMember()) {
-                return;
-            }
-
+//             if (!validateEditMember()) {
+//                 return;
+//             }
             closeEditMember();
-            var up_first_name = document.getElementById('updateFirstName').value;
-        	var up_last_name = document.getElementById('updateLastName').value;
-        	var up_user_name = document.getElementById('updateName').value;
-        	var up_emailaddress = document.getElementById('updateEmail').value;
-        	var up_password = document.getElementById('updatePassword').value;
-        	var up_employee_id = document.getElementById('updateEmployNumber').value;
-        	var up_group_dbid = document.getElementById('updateDepartment').value;
-        	var up_account = document.getElementById('updateAccount').value;
-        	var up_state = document.getElementById('updateState').value;
-        	var up_dn = document.getElementById('updatePhoneNumber').value;
-
-
-        	$.ajax({                              
-                url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Update_PersonInfo",
-      	         data:{
-      	        	 first_name:up_first_name,
-      	        	 last_name:up_last_name,
-      	        	 user_name:up_user_name,
-      	        	 emailaddress:up_emailaddress,
-      	        	 password:up_password,
-      	        	 employee_id:up_employee_id,
-      	        	 group_dbid:up_group_dbid,
-      	        	 account:up_account,
-      	        	 state:up_state,
-      	        	 dn:up_dn
-
-      	        	 },
-      	         type : "POST",                                                                    
-      	         dataType:'json',
-      	         
-      	         error:function(e){                                                                 
-      	         alert("失敗");
-      	         callback(data);
-      	         },
-      	         success:function(data){
-      	        	play(play2);
-      	     }
-      	     });		  
+             var flag = document.getElementById('Update_flag').value;
+			 var dbid = document.getElementById('Update_id').value;;
+			 var alarmcolor = document.getElementById('alarmcolor').value;
+			 var alarmduration = document.getElementById('alarmduration').value;
+			 var description = document.getElementById('description').value;
+			 var statusname = document.getElementById('statusname').value;
+			 var statusname_cn = document.getElementById('statusname_cn').value;
+			 var statusname_en = document.getElementById('statusname_en').value;
+			 var statusname_tw = document.getElementById('statusname_tw').value;
+		
+			 $.ajax({                              
+		          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Update_agentreason",
+			         data:{
+			        	 flag:flag,
+			        	 dbid:dbid,
+			        	 alarmcolor:alarmcolor,
+			        	 alarmduration:alarmduration,
+			        	 description:description,
+			        	 statusname:statusname,
+			        	 statusname_cn:statusname_cn,
+			        	 statusname_en:statusname_en,
+			        	 statusname_tw:statusname_tw
+			        	 },
+			            
+			         type : "POST",                                                                    
+			         dataType:'json',
+			         
+			         error:function(e){                                                                 
+			         alert("失敗");
+			         callback(data);
+			         },
+			         success:function(data){
+			        	 play(play2);
+			   		     }
+			   		        
+			   		 }); 
             showToastSuccess("修改成功");
         }
 
@@ -765,130 +746,123 @@
         }
 
         function showToastSuccess(message) {
-        	var deletedbid = document.getElementById('deletedbid').value;
-        	
-            $.ajax({                              
-                url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Delete_PersonInfo",
-        	         data:{
-        	        	
-        	        	 dbid:deletedbid
-        	        
-        	        	 },
-        	         type : "POST",                                                                    
-        	         dataType:'json',
-        	         
-        	         error:function(e){                                                                 
-        	         alert("失敗");
-        	         callback(data);
-        	         },
-        	         success:function(data){
-        	        	play(play2);
-        	     }
-        	         
-            });
+        	var dbid = document.getElementById('D_id').value;
+       	 
+			 $.ajax({                              
+		          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Delete_AgentReason",
+			         data:{			        
+			        	 dbid:dbid
+			        	 },
+			         type : "POST",                                                                    
+			         dataType:'json',
+			         error:function(e){                                                                 
+			         alert("失敗");
+			         callback(data);
+			         },
+			         success:function(data){
+			        	 play(play2);
+			     	}  
+			 }); 
             toastr.success(message);
         }
 
         function showToastError(message) {
-        	var state = document.getElementById('state_list').value;
-            var account = document.getElementById('state_account').value;
-            $.ajax({                              
-                url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Person_logicdelete",
-        	         data:{
-        	        	
-        	        	 state:state,
-        	        	 account:account
-        	        
-        	        	 },
-        	         type : "POST",                                                                    
-        	         dataType:'json',
-        	         
-        	         error:function(e){                                                                 
-        	         alert("失敗");
-        	         callback(data);
-        	         },
-        	         success:function(data){
-        	        	play(play2);
-        	     }
-        	         
-            });
+        	 var flag = document.getElementById('Delete_flag').value;
+			 var dbid = document.getElementById('Delete_id').value;
+
+			 $.ajax({                              
+		          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/LogicDelete_agentreason",
+			         data:{
+			        	 flag:flag,
+			        	 dbid:dbid
+			        	 },
+			         type : "POST",                                                                    
+			         dataType:'json',
+			         error:function(e){                                                                 
+			         alert("失敗");
+			         callback(data);
+			         },
+			         success:function(data){
+			        	 play(play2);
+			     	}  
+			 });
             toastr.error(message);
         }
 
-        function validateAddMember() {
-            var account = $("#inputAccount", "#addMemberContent" ).val();
-            var name = $("#inputName", "#addMemberContent").val();
-            var passowrd = $("#inputPassword", "#addMemberContent").val();
-            var confirmPassword = $("#inputConfirmPassword", "#addMemberContent").val();
-            var email = $("#inputEmail", "#addMemberContent").val();
+//         function validateAddMember() {
+//             var account = $("#inputAccount", "#addMemberContent" ).val();
+//             var name = $("#inputName", "#addMemberContent").val();
+//             var passowrd = $("#inputPassword", "#addMemberContent").val();
+//             var confirmPassword = $("#inputConfirmPassword", "#addMemberContent").val();
+//             var email = $("#inputEmail", "#addMemberContent").val();
 
-            if (!account || account == '') {
-                toastr.error("請輸入帳號");
-                return false;
-            }
+//             if (!account || account == '') {
+//                 toastr.error("請輸入帳號");
+//                 return false;
+//             }
 
-            if (!name || name == '') {
-                toastr.error("請輸入姓名");
-                return false;
-            }
+//             if (!name || name == '') {
+//                 toastr.error("請輸入姓名");
+//                 return false;
+//             }
 
-            if (!passowrd || passowrd == '') {
-                toastr.error("請輸入密碼");
-                return false;
-            }
+//             if (!passowrd || passowrd == '') {
+//                 toastr.error("請輸入密碼");
+//                 return false;
+//             }
 
-            if (email != '' && !isValidEmail(email)) {
-                toastr.error("請輸入正確的Email格式");
-                return false;
-            }
+//             if (email != '' && !isValidEmail(email)) {
+//                 toastr.error("請輸入正確的Email格式");
+//                 return false;
+//             }
 
-            if (!confirmPassword || confirmPassword == '') {
-                toastr.error("請輸入確認密碼");
-                return false;
-            }
+//             if (!confirmPassword || confirmPassword == '') {
+//                 toastr.error("請輸入確認密碼");
+//                 return false;
+//             }
 
-            if (passowrd != confirmPassword) {
-                toastr.error("密碼與確認密碼不同，請重新輸入");
-                return false;
-            }
+//             if (passowrd != confirmPassword) {
+//                 toastr.error("密碼與確認密碼不同，請重新輸入");
+//                 return false;
+//             }
 
-            return true;
-        }
+//             return true;
+//         }
 
-        function validateEditMember() {
-            var account = $("#inputAccount", "#editMemberContent" ).val();
-            var name = $("#inputName", "#editMemberContent").val();
-            var passowrd = $("#inputPassword", "#editMemberContent").val();
-            var confirmPassword = $("#inputConfirmPassword", "#editMemberContent").val();
-            var email = $("#inputEmail", "#editMemberContent").val();
+//         function validateEditMember() {
+//             var account = $("#inputAccount", "#editMemberContent" ).val();
+//             var name = $("#inputName", "#editMemberContent").val();
+//             var passowrd = $("#inputPassword", "#editMemberContent").val();
+//             var confirmPassword = $("#inputConfirmPassword", "#editMemberContent").val();
+//             var email = $("#inputEmail", "#editMemberContent").val();
 
-            if (!name || name == '') {
-                toastr.error("請輸入姓名");
-                return false;
-            }
+//             if (!name || name == '') {
+//                 toastr.error("請輸入姓名");
+//                 return false;
+//             }
 
-            if (!passowrd || passowrd == '') {
-                toastr.error("請輸入密碼");
-                return false;
-            }
+//             if (!passowrd || passowrd == '') {
+//                 toastr.error("請輸入密碼");
+//                 return false;
+//             }
 
-            if (!confirmPassword || confirmPassword == '') {
-                toastr.error("請輸入確認密碼");
-                return false;
-            }
+//             if (!confirmPassword || confirmPassword == '') {
+//                 toastr.error("請輸入確認密碼");
+//                 return false;
+//             }
 
-            if (email != '' && !isValidEmail(email)) {
-                toastr.error("請輸入正確的Email格式");
-                return false;
-            }
+//             if (email != '' && !isValidEmail(email)) {
+//                 toastr.error("請輸入正確的Email格式");
+//                 return false;
+//             }
 
-            if (passowrd != confirmPassword) {
-                toastr.error("密碼與確認密碼不同，請重新輸入");
-                return false;
-            }
+//             if (passowrd != confirmPassword) {
+//                 toastr.error("密碼與確認密碼不同，請重新輸入");
+//                 return false;
+//             }
 
-            return true;
-        }
+//             return true;
+//         }
 
         function isValidEmail(email) {
             var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -918,6 +892,5 @@
         });
 
     </script>
-   
 </html>
 
