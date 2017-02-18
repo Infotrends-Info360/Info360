@@ -37,7 +37,7 @@ public class BasicController {
 	 */
 	@RequestMapping("/console") // 作用等同<url-pattern>
 	public String console() {
-		return "/console"; // 頁面導向 /WEB-INF/views/ 搜索檔案類型.jsp
+		return "console"; // 頁面導向 /WEB-INF/views/ 搜索檔案類型.jsp
 	}
 
 	/**
