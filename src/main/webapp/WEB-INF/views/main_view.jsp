@@ -289,13 +289,13 @@
 					// 取得狀態
 					if ("getUserStatus" == obj.Event) {
 						// 結果為就緒
-						if ("ready" == obj.Status) {
+						if ("3" == obj.Status) {
 							$("#statusButton button.status-ready").css(
 									"display", "inline-block");
 							$("#statusButton button.status-notready").css(
 									"display", "none");
 							// 結果為未就緒
-						} else if ("not ready" == obj.Status) {
+						} else if ("4" == obj.Status) {
 							$("#statusButton button.status-ready").css(
 									"display", "none");
 							$("#statusButton button.status-notready").css(
@@ -413,7 +413,7 @@
 		function agentReady() {
 			// 向websocket送出變更狀態至準備就緒指令
 			var myUpdateStatusJson = new updateStatusJson("Agent", UserID_g,
-					userName, "ready", "ready");
+					userName, "3", "ready");
 			ws.send(JSON.stringify(myUpdateStatusJson));
 
 			// 取得狀態
@@ -423,7 +423,7 @@
 		// Agent尚未準備就緒
 		function agentNotReady() {
 			// 更新狀態
-			updateStatus("not ready", "no reason");
+			updateStatus("4", "no reason");
 			// 取得狀態
 			getStatus();
 
