@@ -238,6 +238,8 @@
 
 		var userName = '${userName}';
 		var password = '${password}';
+		
+		var waittingClientIDList_g = []; //20170220 Lin
 
 		// Step-0 載入時連線ws
 		doConnect();
@@ -309,6 +311,12 @@
 						//document.getElementById("clientID").innerHTML = obj.clientID;
 						//  obj.clientID // **************
 						// 接收到Agent or Client加入列表的訊息
+						
+						//20170220 Lin
+						waittingClientIDList_g.push( new function(){
+						      this.clientID = obj.userdata.id
+						     });
+						//20170220 Lin
 					}
 
 					// 接受成功加入Layim清單
@@ -381,6 +389,7 @@
 			var msg = {
 				type : "login",
 				UserName : userName,
+				MaxCount: '3', //需從驗證登入頁面取得個人的max count並塞入
 				ACtype : "Agent",
 				channel : "chat",
 				date : now.getHours() + ":" + now.getMinutes() + ":"
@@ -401,12 +410,16 @@
 				id : UserID_g,
 				UserName : userName,
 				channel : "chat",
+				waittingClientIDList : waittingClientIDList_g, //20170220 Lin
 				date : now.getHours() + ":" + now.getMinutes() + ":"
 						+ now.getSeconds()
 			};
 
 			// 發送消息
 			ws.send(JSON.stringify(msg));
+			
+			// 清空waittingClientIDList_g 20170220 Lin
+			waittingClientIDList_g = [];
 		}
 
 		//Agent準備就緒
@@ -475,6 +488,20 @@
 			memberListToJoin.push(mem1);
 			memberListToJoin.push(mem2);
 			addRoomForMany("none", memberListToJoin); // "none"是一個keyword, 會影響websocket server的邏輯判斷處理
+		
+			//20170220 Lin
+			// 將此clientID從waittingClientIDList_g中去除
+			  var index_remove;
+			  for (var index in waittingClientIDList_g) {
+			   clientIDJson = waittingClientIDList_g[index];
+			   var clientID = clientIDJson.clientID;
+			   if (currentClientID == clientID){
+			    index_remove = index;
+			   }
+			//   console.log("clietIDJson.clientID: " + clientIDJson.clientID);
+			  }
+			  waittingClientIDList_g.splice(index_remove,1);
+			//20170220 Lin
 		}
 
 		function rejectEvent() {
@@ -494,6 +521,20 @@
 			};
 			// 發送消息
 			ws.send(JSON.stringify(msg));
+			
+			//20170220 Lin
+			// 將此clientID從waittingClientIDList_g中去除
+			  var index_remove;
+			  for (var index in waittingClientIDList_g) {
+			   clientIDJson = waittingClientIDList_g[index];
+			   var clientID = clientIDJson.clientID;
+			   if (ClientID_g == clientID){
+			    index_remove = index;
+			   }
+			//   console.log("clietIDJson.clientID: " + clientIDJson.clientID);
+			  }
+			  waittingClientIDList_g.splice(index_remove,1);
+			//20170220 Lin
 
 			document.getElementById("AcceptEvent").disabled = true;
 			document.getElementById("RejectEvent").disabled = true;
