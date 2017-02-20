@@ -34,7 +34,7 @@
 				<ul class="nav nav-pills default" id="rightTab">
 					<li class="active"><a href="#leftTab_1_1" data-toggle="tab">基本資料</a></li>
 					<li><a href="#leftTab_1_2" data-toggle="tab">常用連結 </a></li>
-					<li><a href="#leftTab_1_3" data-toggle="tab">案件資訊 </a></li>
+					<li><a href="#leftTab_1_3" data-toggle="tab" id="finishChat">案件資訊 </a></li>
 				</ul>
 
 				<div class="tab-content rightTab">
@@ -45,7 +45,7 @@
 									<h4>INFORMATION</h4>
 								</a> <a href="#" class="list-group-item">
 									<h4>姓名</h4>
-									<h4>${fromName}</h4>
+									<h4 id="fromName">${fromName}</h4>
 								</a> <a href="#" class="list-group-item">
 									<h4>住址</h4>
 									<h4>新北市</h4>
@@ -909,6 +909,10 @@
 				"margin-left" : '5px'
 			});
 		}
+	}
+	
+	function finishChat() {
+		$("#finishChat").trigger("click");
 	}
 </script>
 
