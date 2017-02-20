@@ -80,7 +80,9 @@ public class BasicController {
 
 	/*--------- Chat 分頁導頁控制區 ----------*/
 	@RequestMapping(value = "chat1")
-	public String showChatV1() {
+	public String showChatV1(@RequestParam(value = "fromName", required = false) String fromName, Model model) {
+
+		model.addAttribute("fromName", fromName);
 		return "info360/chat/chat_v1";
 	}
 

@@ -45,7 +45,7 @@
 									<h4>INFORMATION</h4>
 								</a> <a href="#" class="list-group-item">
 									<h4>姓名</h4>
-									<h4>林智凱</h4>
+									<h4>${fromName}</h4>
 								</a> <a href="#" class="list-group-item">
 									<h4>住址</h4>
 									<h4>新北市</h4>

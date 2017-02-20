@@ -86,9 +86,9 @@
 						style="line-height: 30px;" id="menuButton"><span
 							id="navNickName">未登入</span> <span class="caret"></span>
 							<ul role="menu" class="dropdown-menu" id="menuList">
-<!-- 								<li><a onclick="doLogin()">登入</a></li> -->
-<!-- 								<li><a onclick="doTest()">test</a></li> -->
-<!-- 								<hr> -->
+								<!-- 								<li><a onclick="doLogin()">登入</a></li> -->
+								<!-- 								<li><a onclick="doTest()">test</a></li> -->
+								<!-- 								<hr> -->
 								<li><a onclick="openTab(0)">儀表板</a></li>
 								<li><a onclick="openTab(1)">案件搜尋</a></li>
 								<li><a onclick="openTab(2)">設定</a></li>
@@ -239,9 +239,60 @@
 		var userName = '${userName}';
 		var password = '${password}';
 
+		var chatList = [];
+		
 		// Step-0 載入時連線ws
 		doConnect();
+		//loginValidate();
 		
+		function loginValidate() {
+			var account = userName;
+
+			$.ajax({
+				url : "http://ws.crm.com.tw:8080/Info360/RESTful/Login",
+				data : {
+					account : account,
+					password : password
+				},
+				type : "POST",
+				dataType : 'json',
+				error : function(e) {
+					alert("請重新整理");
+					callback(data);
+				},
+				success : function(data) {
+					console.log("login", data)
+// 					document.getElementById("demo").value = JSON
+// 							.stringify(data.Function);
+
+					if (account == "" || password == "") {
+
+						alert(data.error)
+
+					} else if (data.error != null) {
+						//alert("第2層error")
+						alert(data.error);
+
+					} else {
+						//alert(JSON.stringify(data));
+						var Today = new Date();
+
+						alert(JSON.stringify(data));
+
+// 						$('#myForm').submit();
+					}
+
+				},
+				beforeSend : function() {
+// 					$('#loading').show();
+				},
+				complete : function() {
+// 					$('#loading').hide();
+
+				}
+			});
+		}
+
 		function doTest() {
 
 		}
@@ -289,13 +340,13 @@
 					// 取得狀態
 					if ("getUserStatus" == obj.Event) {
 						// 結果為就緒
-						if ("ready" == obj.Status) {
+						if ("3" == obj.Status) {
 							$("#statusButton button.status-ready").css(
 									"display", "inline-block");
 							$("#statusButton button.status-notready").css(
 									"display", "none");
 							// 結果為未就緒
-						} else if ("not ready" == obj.Status) {
+						} else if ("4" == obj.Status) {
 							$("#statusButton button.status-ready").css(
 									"display", "none");
 							$("#statusButton button.status-notready").css(
@@ -316,12 +367,23 @@
 						// 拿取資料 + 為之後建立roomList做準備
 						RoomID_g = obj.roomID; // 之後要改成local variable
 						var myRoomID = obj.roomID;
+						var UserName = obj.fromName
 						roomId = RoomID_g;
 
 						// 建立Layim名單
 						console.log("acceptEvent");
-						addLayimList(ClientName_g, roomId);
+						console.log(e);
+						addLayimList(ClientName_g, UserName, roomId);
 
+						// 更新開啟頁籤
+						var newTab = {};
+						newTab.id = RoomID_g;
+						chatList.push(newTab);
+						
+						$("#chat1").html(ClientName_g);
+						var newHref = "chat1?fromName=" + obj.fromName;
+						$("#chat1").prop("href", newHref);
+						
 						// 更新狀態
 						var myUpdateStatusJson = new updateStatusJson("Agent",
 								UserID_g, UserName_g, "Established",
@@ -348,14 +410,14 @@
 						var roomID = obj.roomID
 
 						layim.removeList({
-							type : 'friend',
+							type : 'group',
 							id : roomID
 						//好友或者群组ID
 						});
 					}
 				} else if ("{" != e.data.substring(0, 1)) {
 					console.log(e);
-					
+
 					// 非指令訊息
 					if (e.data.indexOf("Offline") > 0
 							&& e.data.indexOf(userName) > 0) {
@@ -365,7 +427,7 @@
 								"display", "inline-block");
 
 						$("#navNickName").html("已登出");
-						
+
 						window.location.href = 'console';
 					}
 				}
@@ -374,7 +436,7 @@
 
 		// 登入
 		function doLogin() {
-			
+
 			/** 登入 **/
 			var now = new Date();
 			// 向websocket送出登入指令
@@ -413,7 +475,7 @@
 		function agentReady() {
 			// 向websocket送出變更狀態至準備就緒指令
 			var myUpdateStatusJson = new updateStatusJson("Agent", UserID_g,
-					userName, "ready", "ready");
+					userName, "3", "ready");
 			ws.send(JSON.stringify(myUpdateStatusJson));
 
 			// 取得狀態
@@ -423,7 +485,7 @@
 		// Agent尚未準備就緒
 		function agentNotReady() {
 			// 更新狀態
-			updateStatus("not ready", "no reason");
+			updateStatus("4", "no reason");
 			// 取得狀態
 			getStatus();
 
@@ -526,30 +588,34 @@
 		}
 
 		// 進線時新增此人物至好友清單
-		function addLayimList(UserName, roomId) {
+		function addLayimList(ClientName, UserName, roomId) {
 			layui.use('layim', function(layim) {
 				layim.addList({
-					type : 'friend',
-					username : UserName,
+					type : 'group',
+					username : ClientName + "," + UserName,
 					avatar : 'resources/layui/css/pc/layim/skin/new_logo.jpg' // 消息來源使用者頭像
 					,
 					groupid : 1,
 					id : roomId
 				});
 			});
+			
+			$("#layim-group" + roomId).trigger("click");
 		}
 
 		// layim取得訊息
 		function getclientmessagelayim(text, roomId, UserName) {
 			// 組成傳送群組訊息至layim視窗上的JSON指令
 			obj = {
+
 				username : UserName // 消息來源用戶名
 				,
+				name : "adjakdjakld",
 				avatar : 'resources/layui/css/pc/layim/skin/new_logo.jpg' // 消息來源使用者頭像
 				,
 				id : roomId // 聊天視窗來源ID（如果是私聊，則是用戶id，如果是群聊，則是群組id）
 				,
-				type : "friend" // 聊天視窗來源類型，從發送消息傳遞的to裡面獲取
+				type : "group" // 聊天視窗來源類型，從發送消息傳遞的to裡面獲取
 				,
 				content : text // 消息內容
 				// ,cid: 0 //消息id，可不傳。除非你要對消息進行一些操作（如撤回）
@@ -674,14 +740,12 @@
 
 				,
 				uploadImage : {
-					url : '' //（返回的数据格式见下文）
-					,
-					type : '' //默认post
+					url : 'http://ws.crm.tw:8080/JAXRS-FileUpload/rest/upload/images' //（返回的数据格式见下文）
+					//,type : '' //默认post
 				},
 				uploadFile : {
-					url : '' //（返回的数据格式见下文）
-					,
-					type : '' //默认post
+					url : 'http://ws.crm.tw:8080/JAXRS-FileUpload/rest/upload/files' //（返回的数据格式见下文）
+					//,type : '' //默认post
 				}
 
 				//扩展工具栏
@@ -746,6 +810,7 @@
 				var To = data.to;
 				console.log('sendMessage log');
 				console.log(data);
+
 				// 傳送群組訊息至layim視窗上
 				sendtoRoomonlay(data.mine.content);
 
@@ -793,13 +858,21 @@
 
 			//监听查看群员
 			layim.on('members', function(data) {
-				//console.log(data);
+				console.log(data);
 			});
 
 			//监听聊天窗口的切换
 			layim.on('chatChange', function(res) {
 				var type = res.data.type;
-
+				console.log(res);
+				
+				
+				chatList.forEach(function(entry) {
+					if (res.data.id == entry.id) {
+						$("#chat1").trigger("click");
+					}    
+                });
+				
 				if (res.data.id == 100001) {
 					$("#chat1").trigger("click");
 				} else if (res.data.id == 100002) {

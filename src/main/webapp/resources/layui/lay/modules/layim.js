@@ -253,7 +253,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
   var elemChatTpl = ['<div class="layim-chat layim-chat-{{d.data.type}}{{d.first ? " layui-show" : ""}}">'
     ,'<div class="layui-unselect layim-chat-title">'
       ,'<div class="layim-chat-other">'
-        ,'<img src="{{ d.data.avatar }}"><span class="layim-chat-username" layim-event="{{ d.data.type==="group" ? \"groupMembers\" : \"\" }}">{{ d.data.name||"佚名" }} {{d.data.temporary ? "<cite>對話欄</cite>" : ""}} {{# if(d.data.type==="group"){ }} <em class="layim-chat-members"></em><i class="layui-icon">&#xe61a;</i> {{# } }}</span>'
+        ,'<img src="{{ d.data.avatar }}"><span class="layim-chat-username" layim-event="{{ d.data.type==="group" ? \"groupMembers\" : \"\" }}">{{ d.data.name||"匿名" }} {{d.data.temporary ? "<cite>對話欄</cite>" : ""}} {{# if(d.data.type==="group"){ }} <em class="layim-chat-members"></em><i class="layui-icon">&#xe61a;</i> {{# } }}</span>'
         ,'<p class="layim-chat-status"></p>'
       ,'</div>'
     ,'</div>'
@@ -377,7 +377,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     ,'<div class="layim-chat-text">{{ layui.data.content(d.content||"&nbsp") }}</div>'
   ,'</li>'].join('');
   
-  var elemChatList = '<li class="layim-chatlist-{{ d.data.type }}{{ d.data.id }} layim-this" layim-event="tabChat"><img src="{{ d.data.avatar }}"><span>{{ d.data.name||"佚名" }}</span>{{# if(!d.base.brief){ }}<i class="layui-icon" layim-event="closeChat">&#x1007;</i>{{# } }}</li>';
+  var elemChatList = '<li class="layim-chatlist-{{ d.data.type }}{{ d.data.id }} layim-this" layim-event="tabChat"><img src="{{ d.data.avatar }}"><span>{{ d.data.name||"佚名x" }}</span>{{# if(!d.base.brief){ }}<i class="layui-icon" layim-event="closeChat">&#x1007;</i>{{# } }}</li>';
   
   //Ajax
   var post = function(options, callback, tips){
