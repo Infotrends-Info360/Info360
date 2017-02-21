@@ -757,9 +757,13 @@
                             <div class="col-lg-3 col-md-3">                          
 								<div id="tree" ></div>
 								</div>
+                            <div class="col-lg-8 col-md-8" id="comm"  style="display:none;"
+                            	 >
+                            	 <h2>請選擇節點</h2>
+                            	 </div>
                             
-                                <div class="col-lg-8 col-md-8" id="manageTable_div" style="display:none;">
-                                
+                                <div class="col-lg-8 col-md-8" id="commTB" style="display:none;"
+                                >
       	 							<table class="table table-bordered table-hover" id="manageTablecomm">
                   						<thead>
                        						<tr>
@@ -2007,6 +2011,8 @@
             
             $("#CommonlinkContent").hide();
             $("#0Commonlink").hide();
+            $("#comm").hide();
+            $("#commTB").hide();
             $("#manageTable_div").hide();
             $("#addMemberContentcomm").hide();
             $("#editMemberContentcomm").hide();

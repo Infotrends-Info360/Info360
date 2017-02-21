@@ -2,7 +2,10 @@ function showCommonlink() {
 	
             closeAllHrContent();
             $("#CommonlinkContent").show();
+            
             $("#0Commonlink").show();
+            $("#comm").show();
+           
             $("button.Commonlink").removeClass("btn-success");
             $("button.Commonlink").addClass("btn-primary");
                   selectcomm();
@@ -63,6 +66,8 @@ function selectcomm(){
  				         		 $('#pass').text(data.node.original.id);
  				        		 $('#type').text(data.node.original.parent);
  				        		 $('#children').text(data.node.children_d);
+ 				        		$("#comm").hide();
+ 				        		$("#commTB").show();
 		 				     }); 
 	        	
 	        	 	$('#tree').on("select_node.jstree", function(e, data) {
@@ -146,6 +151,8 @@ function closeAddMembercomm() {
     
     $("#CommonlinkContent").show();
     $("#0Commonlink").show();
+    $("#commTB").show();
+
     
     $("button.manage").removeClass("btn-success");
     $("button.manage").addClass("btn-primary");
@@ -232,6 +239,7 @@ function showEditMembercomm() {
     closeAllHrContent();
     $("#CommonlinkContent").show();
     $("#editMemberContentcomm").show();
+    
 
     $("button.editMember").show();
     $("button.editMember").removeClass("btn-success");
