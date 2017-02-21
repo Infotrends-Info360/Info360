@@ -86,9 +86,9 @@
 						style="line-height: 30px;" id="menuButton"><span
 							id="navNickName">未登入</span> <span class="caret"></span>
 							<ul role="menu" class="dropdown-menu" id="menuList">
-								<!-- 								<li><a onclick="doLogin()">登入</a></li> -->
-																<li><a onclick="doTest()">test</a></li>
-								<!-- 								<hr> -->
+								<!-- 																<li><a onclick="doLogin()">登入</a></li> -->
+								<!-- 																<li><a onclick="doTest()">test</a></li> -->
+								<!-- 																<hr> -->
 								<li><a onclick="openTab(0)">儀表板</a></li>
 								<li><a onclick="openTab(1)">案件搜尋</a></li>
 								<li><a onclick="openTab(2)">設定</a></li>
@@ -192,7 +192,7 @@
 
 		</div>
 	</div>
-	
+
 	<!-- Trigger the modal with a button -->
 	<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
 		data-target="#loginDialog" style="display: none;"
@@ -267,66 +267,68 @@
 
 		var waittingClientIDList_g = []; //20170220 Lin
 
-		var chatTab = ["chat1","chat2","chat3","chat4","chat5"];
+		var chatTab = [ "chat1", "chat2", "chat3", "chat4", "chat5" ];
 		var chatList = []; // 20170220 Billy 聊天頁籤控制清單
 
 		var maxCount = 0;
-		
+		var currentUserData = "";
+
 		// Step-0 
 		loginValidate();
 
 		// 帳號密碼驗證
 		function loginValidate() {
-			$.ajax({
-				url : "http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Login",
-				data : {
-					account : userName,
-					password : password
-				},
-				type : "POST",
-				dataType : 'json',
-				error : function(e) {
-					console.log("請重新整理");
-				},
-				success : function(data) {
-					console.log("login", data)
-	
-					// 測試用必驗證過
-					doConnect();
-					
-					if (userName == "" || password == "") {
-						// 未輸入帳號與密碼
-						console.log(data.error)
-						//$("#loginDialogButton").trigger("click");
-					} else if (data.error != null) {
-						// 其他可能錯誤
-						console.log(data.error);
-						//$("#loginDialogButton").trigger("click");
-					} else {
-						// 驗證通過
-						console.log(JSON.stringify(data));
-						maxCount = data.person[0].max_count;
-						console.log(data.person[0].max_count);
-						// Step-1 載入時連線ws
-						//doConnect();
-					}
-	
-				},
-				beforeSend : function() {
-					// 					$('#loading').show();
-				},
-				complete : function() {
-					// 					$('#loading').hide();
-	
-				}
-			});
+			$
+					.ajax({
+						url : "http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Login",
+						data : {
+							account : userName,
+							password : password
+						},
+						type : "POST",
+						dataType : 'json',
+						error : function(e) {
+							console.log("請重新整理");
+						},
+						success : function(data) {
+							console.log("login", data)
+
+							// 測試用必驗證過
+// 							doConnect();
+
+							if (userName == "" || password == "") {
+								// 未輸入帳號與密碼
+								console.log(data.error)
+								$("#loginDialogButton").trigger("click");
+							} else if (data.error != null) {
+								// 其他可能錯誤
+								console.log(data.error);
+								$("#loginDialogButton").trigger("click");
+							} else {
+								// 驗證通過
+								//console.log(JSON.stringify(data));
+								maxCount = data.person[0].max_count;
+								//console.log(data.person[0].max_count);
+								
+								// Step-1 載入時連線ws
+								doConnect();
+							}
+
+						},
+						beforeSend : function() {
+							// 					$('#loading').show();
+						},
+						complete : function() {
+							// 					$('#loading').hide();
+
+						}
+					});
 		}
 
 		function doTest() {
 			//var $f = $("#myIFrame");
 			//$f[0].contentWindow.MyFunction();
-			console.log($('[name=iframe4]').contents().find('#fromName').html());
-			$('[name=iframe4]')[0].contentWindow.finishChat();
+			closeCurrentTab();
 		}
 
 		// 連線&&登入
@@ -388,10 +390,9 @@
 
 					if ("senduserdata" == obj.Event) {
 						console.log("onMessage - senduserdata event");
-						//document.getElementById("userdata").innerHTML = JSON.stringify(obj.userdata);
-						//document.getElementById("clientID").innerHTML = obj.clientID;
-						//  obj.clientID // **************
+
 						// 接收到Agent or Client加入列表的訊息
+						currentUserData = obj.userdata;
 
 						//20170220 Lin
 						waittingClientIDList_g.push(new function() {
@@ -411,20 +412,33 @@
 						// 建立Layim名單
 						console.log("acceptEvent");
 						console.log(e);
+
 						addLayimList(ClientName_g, UserName, roomId);
 
-						// 更新開啟頁籤
+						// 更新開啟頁籤  & 組合客戶資料參數至後端
 						var newTab = {};
-						newTab.id = RoomID_g;
-						newTab.chatTab = chatTab[0];
+						var currentChatTab = chatTab[0]; // 指派目前可用Tab
 						chatTab.slice(1);
+
+						newTab.id = RoomID_g;
+						newTab.chatTab = currentChatTab;
 						chatList.push(newTab);
 
-						$("#chat1").html(ClientName_g);
-						var newHref = "chat1?fromName=" + ClientName_g;
-						$("#chat1").prop("href", newHref);
-						$("#chat1").trigger("click");
-						
+						console.log("currentUserData");
+						console.log(currentUserData);
+
+						var id = currentUserData.CustomerData[0].id;
+						var name = currentUserData.CustomerData[0].name;
+						var address = currentUserData.CustomerData[0].CUSTNAM;
+
+						$("#" + currentChatTab).html(id);
+						var newHref = "chat1?id=" + id;
+						newHref += "&name=" + name;
+						newHref += "&address=" + address;
+
+						$("#" + currentChatTab).prop("href", newHref);
+						$("#" + currentChatTab).trigger("click");
+
 						// 更新狀態
 						var myUpdateStatusJson = new updateStatusJson("Agent",
 								UserID_g, UserName_g, "Established",
@@ -759,10 +773,25 @@
 			// 發送消息
 			ws.send(JSON.stringify(msg));
 
-			// 			document.getElementById("groupstatus").innerHTML = "離開" + RoomID_g + "群組";
-			// 			document.getElementById("leaveRoom").disabled = true;
-			// 			document.getElementById("roomonline").disabled = true;
+			// 清除layim群聊
+			layim.removeList({
+				type : 'group',
+				id : aRoomID
+			});
+
+			// 切換至該客戶資訊頁面
+			chatList.forEach(function(entry) {
+				if (aRoomID == entry.id) {
+					$("#" + entry.chatTab).trigger("click");
+					$('[name=iframe4]')[0].contentWindow.showCaseInfoTab();
+				}
+			});
 		}
+
+		function closeCurrentTab() {
+			$(".page-tabs-content > .active > i").trigger("click");
+		}
+
 		/*-------------------------------------------------------*/
 		$("#statusButton").on(
 				"click",
@@ -790,7 +819,9 @@
 	</script>
 
 	<script>
-		layui.use('layim',
+		layui
+				.use(
+						'layim',
 						function() {
 							layim = layui.layim;
 
@@ -799,15 +830,13 @@
 									.config({
 										//初始化接口
 										init : {
-											url : ''
-											,
+											url : '',
 											data : {}
 										}
 										//查看群员接口
 										,
 										members : {
-											url : ''
-											,
+											url : '',
 											data : {}
 										}
 
@@ -888,7 +917,6 @@
 									//layim.setChatStatus('<span style="color:#FF5722;">对方正在输入。。。</span>');
 								}
 
-								
 							});
 
 							//监听查看群员
@@ -901,16 +929,18 @@
 								var type = res.data.type;
 								console.log(res);
 
-								chatList.forEach(function(entry) {
-									if (res.data.id == entry.id) {
-										$("#" + entry.chatTab).trigger("click");
-									}
-								});
+								chatList
+										.forEach(function(entry) {
+											if (res.data.id == entry.id) {
+												$("#" + entry.chatTab).trigger(
+														"click");
+											}
+										});
 
 								if (type === 'friend') {
-									
+
 								} else if (type === 'group') {
-																	
+
 								}
 							});
 

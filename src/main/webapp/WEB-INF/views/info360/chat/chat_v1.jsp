@@ -34,7 +34,8 @@
 				<ul class="nav nav-pills default" id="rightTab">
 					<li class="active"><a href="#leftTab_1_1" data-toggle="tab">基本資料</a></li>
 					<li><a href="#leftTab_1_2" data-toggle="tab">常用連結 </a></li>
-					<li><a href="#leftTab_1_3" data-toggle="tab" id="finishChat">案件資訊 </a></li>
+					<li><a href="#leftTab_1_3" data-toggle="tab" id="caseInfoTab">案件資訊
+					</a></li>
 				</ul>
 
 				<div class="tab-content rightTab">
@@ -45,10 +46,10 @@
 									<h4>INFORMATION</h4>
 								</a> <a href="#" class="list-group-item">
 									<h4>姓名</h4>
-									<h4 id="fromName">${fromName}</h4>
+									<h4 id="fromName">${name}</h4>
 								</a> <a href="#" class="list-group-item">
 									<h4>住址</h4>
-									<h4>新北市</h4>
+									<h4>${address}</h4>
 								</a> <a href="#" class="list-group-item">
 									<h4>專屬人員</h4>
 									<h4>Alex</h4>
@@ -60,7 +61,7 @@
 									<h4>啟用</h4>
 								</a> <a href="#" class="list-group-item">
 									<h4>身份證字號</h4>
-									<h4>A123456789</h4>
+									<h4>${id}</h4>
 								</a> <a href="#" class="list-group-item">
 									<h4>性別</h4>
 									<h4>男</h4>
@@ -702,7 +703,7 @@
 							</span> <span style="margin: 0px 10px 0px 10px;"> <input
 								type="checkbox"> 黑名單
 							</span> <span style="margin: 0px 10px 0px 10px;">
-								<button class="btn btn-sm btn-success" onclick="closeCaseInfo()">服務完成</button>
+								<button class="btn btn-sm btn-success" onclick="finishChat()">服務完成</button>
 							</span>
 						</div>
 					</div>
@@ -739,6 +740,28 @@
 		$("#queryTable").DataTable();
 		$("#queryTable").css("width", "100%");
 	});
+
+	function queryActivityMenu() {
+		$
+				.ajax({
+					url : "http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Query_ActivityMenu",
+					data : {
+						dbid : 0
+					},
+					type : "POST",
+					dataType : 'json',
+					error : function(e) {
+						console.log(e);
+					},
+					success : function(data) {
+						console.log(data)
+
+						for ( var index in data.activitymenu) {
+							console.log(data.activitymenu[index].menuname);
+						}
+					}
+				});
+	}
 
 	function clickLink1() {
 		$("#linkButton1").show();
@@ -910,9 +933,13 @@
 			});
 		}
 	}
-	
+
+	function showCaseInfoTab() {
+		$("#caseInfoTab").trigger("click");
+	}
+
 	function finishChat() {
-		$("#finishChat").trigger("click");
+		parent.closeCurrentTab();
 	}
 </script>
 

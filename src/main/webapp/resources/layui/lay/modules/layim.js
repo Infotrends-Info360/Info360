@@ -1206,7 +1206,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
             cache.group.splice(index, 1); //从cache的group里面也删除掉数据
             //如果一个群组都没了
             if(cache.group.length === 0){
-              listElem.html('<li class="layim-null">暂无群组</li>');
+              listElem.html('<li class="layim-null">暫無群組</li>');
             }
             return true;
           }
