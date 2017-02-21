@@ -86,9 +86,9 @@
 						style="line-height: 30px;" id="menuButton"><span
 							id="navNickName">未登入</span> <span class="caret"></span>
 							<ul role="menu" class="dropdown-menu" id="menuList">
-<!-- 								<li><a onclick="doLogin()">登入</a></li> -->
-<!-- 								<li><a onclick="doTest()">test</a></li> -->
-<!-- 								<hr> -->
+								<!-- 								<li><a onclick="doLogin()">登入</a></li> -->
+																<li><a onclick="doTest()">test</a></li>
+								<!-- 								<hr> -->
 								<li><a onclick="openTab(0)">儀表板</a></li>
 								<li><a onclick="openTab(1)">案件搜尋</a></li>
 								<li><a onclick="openTab(2)">設定</a></li>
@@ -192,6 +192,32 @@
 
 		</div>
 	</div>
+	
+	<!-- Trigger the modal with a button -->
+	<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+		data-target="#loginDialog" style="display: none;"
+		id="loginDialogButton">Open Modal</button>
+
+	<div id="loginDialog" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">登入失敗</h3>
+				</div>
+				<div class="modal-body">
+					<h3>帳號或密碼錯誤，請點選確定重新登入</h3>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal"
+						onclick="javascript:window.location.href='console'">確定</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
 
 	<!-- 全局js -->
 	<script src="resources/js/jquery.min.js?v=2.1.4"></script>
@@ -231,7 +257,7 @@
 		var ClientID_g; // 現在準備要服務的Client的ID 
 		var ClientName_g; // 現在準備要服務的Client的名稱
 
-		var currentClientID = "";
+		var currentClientID = ""; // 當前客戶ID
 		var isonline = false; // 判斷是否上線的開關
 
 		var layim; // Layim
@@ -239,11 +265,68 @@
 		var userName = '${userName}';
 		var password = '${password}';
 
-		// Step-0 載入時連線ws
-		doConnect();
-		
-		function doTest() {
+		var waittingClientIDList_g = []; //20170220 Lin
 
+		var chatTab = ["chat1","chat2","chat3","chat4","chat5"];
+		var chatList = []; // 20170220 Billy 聊天頁籤控制清單
+
+		var maxCount = 0;
+		
+		// Step-0 
+		loginValidate();
+
+		// 帳號密碼驗證
+		function loginValidate() {
+			$.ajax({
+				url : "http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Login",
+				data : {
+					account : userName,
+					password : password
+				},
+				type : "POST",
+				dataType : 'json',
+				error : function(e) {
+					console.log("請重新整理");
+				},
+				success : function(data) {
+					console.log("login", data)
+	
+					// 測試用必驗證過
+					doConnect();
+					
+					if (userName == "" || password == "") {
+						// 未輸入帳號與密碼
+						console.log(data.error)
+						//$("#loginDialogButton").trigger("click");
+					} else if (data.error != null) {
+						// 其他可能錯誤
+						console.log(data.error);
+						//$("#loginDialogButton").trigger("click");
+					} else {
+						// 驗證通過
+						console.log(JSON.stringify(data));
+						maxCount = data.person[0].max_count;
+						console.log(data.person[0].max_count);
+						// Step-1 載入時連線ws
+						//doConnect();
+					}
+	
+				},
+				beforeSend : function() {
+					// 					$('#loading').show();
+				},
+				complete : function() {
+					// 					$('#loading').hide();
+	
+				}
+			});
+		}
+
+		function doTest() {
+			//var $f = $("#myIFrame");
+			//$f[0].contentWindow.MyFunction();
+			console.log($('[name=iframe4]').contents().find('#fromName').html());
+			$('[name=iframe4]')[0].contentWindow.finishChat();
 		}
 
 		// 連線&&登入
@@ -254,7 +337,7 @@
 			ws.onopen = function() {
 				console.log('websocket 打開成功');
 
-				// Step-1 連線後登入
+				// Step-2 連線後登入
 				doLogin();
 			};
 
@@ -309,6 +392,12 @@
 						//document.getElementById("clientID").innerHTML = obj.clientID;
 						//  obj.clientID // **************
 						// 接收到Agent or Client加入列表的訊息
+
+						//20170220 Lin
+						waittingClientIDList_g.push(new function() {
+							this.clientID = obj.userdata.id
+						});
+						//20170220 Lin
 					}
 
 					// 接受成功加入Layim清單
@@ -316,12 +405,26 @@
 						// 拿取資料 + 為之後建立roomList做準備
 						RoomID_g = obj.roomID; // 之後要改成local variable
 						var myRoomID = obj.roomID;
+						var UserName = obj.fromName
 						roomId = RoomID_g;
 
 						// 建立Layim名單
 						console.log("acceptEvent");
-						addLayimList(ClientName_g, roomId);
+						console.log(e);
+						addLayimList(ClientName_g, UserName, roomId);
 
+						// 更新開啟頁籤
+						var newTab = {};
+						newTab.id = RoomID_g;
+						newTab.chatTab = chatTab[0];
+						chatTab.slice(1);
+						chatList.push(newTab);
+
+						$("#chat1").html(ClientName_g);
+						var newHref = "chat1?fromName=" + ClientName_g;
+						$("#chat1").prop("href", newHref);
+						$("#chat1").trigger("click");
+						
 						// 更新狀態
 						var myUpdateStatusJson = new updateStatusJson("Agent",
 								UserID_g, UserName_g, "Established",
@@ -348,14 +451,14 @@
 						var roomID = obj.roomID
 
 						layim.removeList({
-							type : 'friend',
+							type : 'group',
 							id : roomID
 						//好友或者群组ID
 						});
 					}
 				} else if ("{" != e.data.substring(0, 1)) {
 					console.log(e);
-					
+
 					// 非指令訊息
 					if (e.data.indexOf("Offline") > 0
 							&& e.data.indexOf(userName) > 0) {
@@ -365,7 +468,7 @@
 								"display", "inline-block");
 
 						$("#navNickName").html("已登出");
-						
+
 						window.location.href = 'console';
 					}
 				}
@@ -374,13 +477,13 @@
 
 		// 登入
 		function doLogin() {
-			
-			/** 登入 **/
 			var now = new Date();
+
 			// 向websocket送出登入指令
 			var msg = {
 				type : "login",
 				UserName : userName,
+				MaxCount : '3', //需從驗證登入頁面取得個人的max count並塞入
 				ACtype : "Agent",
 				channel : "chat",
 				date : now.getHours() + ":" + now.getMinutes() + ":"
@@ -401,12 +504,16 @@
 				id : UserID_g,
 				UserName : userName,
 				channel : "chat",
+				waittingClientIDList : waittingClientIDList_g, //20170220 Lin
 				date : now.getHours() + ":" + now.getMinutes() + ":"
 						+ now.getSeconds()
 			};
 
 			// 發送消息
 			ws.send(JSON.stringify(msg));
+
+			// 清空waittingClientIDList_g 20170220 Lin
+			waittingClientIDList_g = [];
 		}
 
 		//Agent準備就緒
@@ -475,6 +582,20 @@
 			memberListToJoin.push(mem1);
 			memberListToJoin.push(mem2);
 			addRoomForMany("none", memberListToJoin); // "none"是一個keyword, 會影響websocket server的邏輯判斷處理
+
+			//20170220 Lin
+			// 將此clientID從waittingClientIDList_g中去除
+			var index_remove;
+			for ( var index in waittingClientIDList_g) {
+				clientIDJson = waittingClientIDList_g[index];
+				var clientID = clientIDJson.clientID;
+				if (currentClientID == clientID) {
+					index_remove = index;
+				}
+				//   console.log("clietIDJson.clientID: " + clientIDJson.clientID);
+			}
+			waittingClientIDList_g.splice(index_remove, 1);
+			//20170220 Lin
 		}
 
 		function rejectEvent() {
@@ -494,6 +615,20 @@
 			};
 			// 發送消息
 			ws.send(JSON.stringify(msg));
+
+			//20170220 Lin
+			// 將此clientID從waittingClientIDList_g中去除
+			var index_remove;
+			for ( var index in waittingClientIDList_g) {
+				clientIDJson = waittingClientIDList_g[index];
+				var clientID = clientIDJson.clientID;
+				if (ClientID_g == clientID) {
+					index_remove = index;
+				}
+				//   console.log("clietIDJson.clientID: " + clientIDJson.clientID);
+			}
+			waittingClientIDList_g.splice(index_remove, 1);
+			//20170220 Lin
 
 			document.getElementById("AcceptEvent").disabled = true;
 			document.getElementById("RejectEvent").disabled = true;
@@ -526,30 +661,34 @@
 		}
 
 		// 進線時新增此人物至好友清單
-		function addLayimList(UserName, roomId) {
+		function addLayimList(ClientName, UserName, roomId) {
 			layui.use('layim', function(layim) {
 				layim.addList({
-					type : 'friend',
-					username : UserName,
+					type : 'group',
+					username : ClientName + "," + UserName,
 					avatar : 'resources/layui/css/pc/layim/skin/new_logo.jpg' // 消息來源使用者頭像
 					,
 					groupid : 1,
 					id : roomId
 				});
 			});
+
+			$("#layim-group" + roomId).trigger("click");
 		}
 
 		// layim取得訊息
 		function getclientmessagelayim(text, roomId, UserName) {
 			// 組成傳送群組訊息至layim視窗上的JSON指令
 			obj = {
+
 				username : UserName // 消息來源用戶名
 				,
+				name : "adjakdjakld",
 				avatar : 'resources/layui/css/pc/layim/skin/new_logo.jpg' // 消息來源使用者頭像
 				,
 				id : roomId // 聊天視窗來源ID（如果是私聊，則是用戶id，如果是群聊，則是群組id）
 				,
-				type : "friend" // 聊天視窗來源類型，從發送消息傳遞的to裡面獲取
+				type : "group" // 聊天視窗來源類型，從發送消息傳遞的to裡面獲取
 				,
 				content : text // 消息內容
 				// ,cid: 0 //消息id，可不傳。除非你要對消息進行一些操作（如撤回）
@@ -651,187 +790,140 @@
 	</script>
 
 	<script>
-		layui.use('layim', function() {
-			layim = layui.layim;
-
-			//基础配置
-			layim.config({
-				//初始化接口
-				init : {
-					url : ''
-					//url: 'layui/json/getList.json'
-					,
-					data : {}
-				}
-				//查看群员接口
-				,
-				members : {
-					url : ''
-					//url: 'layui/json/getMembers.json'
-					,
-					data : {}
-				}
-
-				,
-				uploadImage : {
-					url : '' //（返回的数据格式见下文）
-					,
-					type : '' //默认post
-				},
-				uploadFile : {
-					url : '' //（返回的数据格式见下文）
-					,
-					type : '' //默认post
-				}
-
-				//扩展工具栏
-				,
-				tool : [ {
-					alias : 'code',
-					title : '代碼',
-					icon : '&#xe64e;'
-				} ]
-
-				//,brief: true //是否简约模式（若开启则不显示主面板）
-
-				//,title: 'WebIM' //自定义主面板最小化时的标题
-				//,right: '100px' //主面板相对浏览器右侧距离
-				//,minRight: '90px' //聊天面板最小化时相对浏览器右侧距离
-				//,initSkin: '3.jpg' //1-5 设置初始背景
-				//,skin: ['aaa.jpg'] //新增皮肤
-				//,isfriend: false //是否开启好友
-				//,isgroup: false //是否开启群组
-				,
-				min : true //是否始终最小化主面板，默认false
-				//,notice: true //是否开启桌面消息提醒，默认false
-				//,voice: false //声音提醒，默认开启，声音文件为：default.wav
-
-				,
-				msgbox : 'layui/demo/msgbox.html' //消息盒子页面地址，若不开启，剔除该项即可
-				,
-				find : 'layui/demo/find.html' //发现页面地址，若不开启，剔除该项即可
-				,
-				chatLog : 'layui/demo/chatLog.html' //聊天记录页面地址，若不开启，剔除该项即可
-
-			});
-			//监听在线状态的切换事件
-			layim.on('online', function(status) {
-				layer.msg(status);
-			});
-
-			//监听签名修改
-			layim.on('sign', function(value) {
-				layer.msg(value);
-			});
-			//监听自定义工具栏点击，以添加代码为例
-			layim.on('tool(code)', function(insert) {
-				layer.prompt({
-					title : '插入代碼',
-					formType : 2,
-					shade : 0
-				}, function(text, index) {
-					layer.close(index);
-					insert('[pre class=layui-code]' + text + '[/pre]'); //将内容插入到编辑器
-				});
-			});
-
-			//监听layim建立就绪
-			layim.on('ready', function(res) {
-				layim.msgbox(5); //模拟消息盒子有新消息，实际使用时，一般是动态获得
-
-			});
-
-			//監聽發送消息
-			layim.on('sendMessage', function(data) {
-				var To = data.to;
-				console.log('sendMessage log');
-				console.log(data);
-				// 傳送群組訊息至layim視窗上
-				sendtoRoomonlay(data.mine.content);
-
-				if (To.type === 'friend') {
-					//layim.setChatStatus('<span style="color:#FF5722;">对方正在输入。。。</span>');
-				}
-
-				//演示自动回复
-				/** 
-				setTimeout(
+		layui.use('layim',
 						function() {
-							var obj = {};
-							if (To.type === 'group') {
-								obj = {
-									username : '模拟群员'
-											+ (Math
-													.random() * 100 | 0),
-									avatar : layui.cache.dir
-											+ 'images/face/'
-											+ (Math
-													.random() * 72 | 0)
-											+ '.gif',
-									id : To.id,
-									type : To.type,
-									content : autoReplay[Math
-											.random() * 9 | 0]
-								}
-							} else {
-								obj = {
-									username : To.name,
-									avatar : To.avatar,
-									id : To.id,
-									type : To.type,
-									content : autoReplay[Math
-											.random() * 9 | 0]
-								}
-								layim
-										.setChatStatus('<span style="color:#FF5722;">在线</span>');
-							}
+							layim = layui.layim;
+
+							//基础配置
 							layim
-									.getMessage(obj);
-						}, 1000);
-				 */
-			});
+									.config({
+										//初始化接口
+										init : {
+											url : ''
+											,
+											data : {}
+										}
+										//查看群员接口
+										,
+										members : {
+											url : ''
+											,
+											data : {}
+										}
 
-			//监听查看群员
-			layim.on('members', function(data) {
-				//console.log(data);
-			});
+										,
+										uploadImage : {
+											url : 'http://ws.crm.tw:8080/JAXRS-FileUpload/rest/upload/images' //（返回的数据格式见下文）
+										//,type : '' //默认post
+										},
+										uploadFile : {
+											url : 'http://ws.crm.tw:8080/JAXRS-FileUpload/rest/upload/files' //（返回的数据格式见下文）
+										//,type : '' //默认post
+										}
 
-			//监听聊天窗口的切换
-			layim.on('chatChange', function(res) {
-				var type = res.data.type;
+										//扩展工具栏
+										,
+										tool : [ {
+											alias : 'code',
+											title : '代碼',
+											icon : '&#xe64e;'
+										} ]
 
-				if (res.data.id == 100001) {
-					$("#chat1").trigger("click");
-				} else if (res.data.id == 100002) {
-					$("#chat2").trigger("click");
-				}
+										//,brief: true //是否简约模式（若开启则不显示主面板）
 
-				if (type === 'friend') {
-					//模拟标注好友状态
-					//layim.setChatStatus('<span style="color:#FF5722;">在线</span>');
-				} else if (type === 'group') {
-					//模拟系统消息
-					// 									layim.getMessage({
-					// 										system : true,
-					// 										id : res.data.id,
-					// 										type : "group",
-					// 										content : '模拟群员'
-					// 												+ (Math.random() * 100 | 0)
-					// 												+ '加入群聊'
-					// 									});
-				}
-			});
+										//,title: 'WebIM' //自定义主面板最小化时的标题
+										//,right: '100px' //主面板相对浏览器右侧距离
+										//,minRight: '90px' //聊天面板最小化时相对浏览器右侧距离
+										//,initSkin: '3.jpg' //1-5 设置初始背景
+										//,skin: ['aaa.jpg'] //新增皮肤
+										//,isfriend: false //是否开启好友
+										//,isgroup: false //是否开启群组
+										,
+										min : true //是否始终最小化主面板，默认false
+										//,notice: true //是否开启桌面消息提醒，默认false
+										//,voice: false //声音提醒，默认开启，声音文件为：default.wav
+										,
+										msgbox : 'layui/demo/msgbox.html' //消息盒子页面地址，若不开启，剔除该项即可
+										,
+										find : 'layui/demo/find.html' //发现页面地址，若不开启，剔除该项即可
+										,
+										chatLog : 'layui/demo/chatLog.html' //聊天记录页面地址，若不开启，剔除该项即可
 
-			$('.site-demo-layim').on('click', function() {
-				var type = $(this).data('type');
-				active[type] ? active[type].call(this) : '';
-			});
+									});
+							//监听在线状态的切换事件
+							layim.on('online', function(status) {
+								layer.msg(status);
+							});
+							//监听签名修改
+							layim.on('sign', function(value) {
+								layer.msg(value);
+							});
+							//监听自定义工具栏点击，以添加代码为例
+							layim.on('tool(code)', function(insert) {
+								layer.prompt({
+									title : '插入代碼',
+									formType : 2,
+									shade : 0
+								}, function(text, index) {
+									layer.close(index);
+									insert('[pre class=layui-code]' + text
+											+ '[/pre]'); //将内容插入到编辑器
+								});
+							});
+							//监听layim建立就绪
+							layim.on('ready', function(res) {
+								//layim.msgbox(5);
+							});
 
-			$("#userNickName").html(userName);
+							//監聽發送消息
+							layim.on('sendMessage', function(data) {
+								var To = data.to;
+								console.log('sendMessage log');
+								console.log(data);
 
-			// 開啟傳送layim參數
-			layimswitch = true;
-		});
+								// 傳送群組訊息至layim視窗上
+								sendtoRoomonlay(data.mine.content);
+
+								if (To.type === 'friend') {
+									//layim.setChatStatus('<span style="color:#FF5722;">对方正在输入。。。</span>');
+								}
+
+								
+							});
+
+							//监听查看群员
+							layim.on('members', function(data) {
+								console.log(data);
+							});
+
+							//监听聊天窗口的切换
+							layim.on('chatChange', function(res) {
+								var type = res.data.type;
+								console.log(res);
+
+								chatList.forEach(function(entry) {
+									if (res.data.id == entry.id) {
+										$("#" + entry.chatTab).trigger("click");
+									}
+								});
+
+								if (type === 'friend') {
+									
+								} else if (type === 'group') {
+																	
+								}
+							});
+
+							$('.site-demo-layim').on('click', function() {
+								var type = $(this).data('type');
+								active[type] ? active[type].call(this) : '';
+							});
+
+							$("#userNickName").html(userName);
+
+							// 開啟傳送layim參數
+							layimswitch = true;
+						});
 	</script>
 
 </body>

@@ -80,13 +80,33 @@ public class BasicController {
 
 	/*--------- Chat 分頁導頁控制區 ----------*/
 	@RequestMapping(value = "chat1")
-	public String showChatV1() {
+	public String showChatV1(@RequestParam(value = "fromName", required = false) String fromName, Model model) {
+		model.addAttribute("fromName", fromName);
 		return "info360/chat/chat_v1";
 	}
 
 	@RequestMapping(value = "chat2")
-	public String showChatV2() {
+	public String showChatV2(@RequestParam(value = "fromName", required = false) String fromName, Model model) {
+		model.addAttribute("fromName", fromName);
 		return "info360/chat/chat_v2";
+	}
+	
+	@RequestMapping(value = "chat3")
+	public String showChatV3(@RequestParam(value = "fromName", required = false) String fromName, Model model) {
+		model.addAttribute("fromName", fromName);
+		return "info360/chat/chat_v3";
+	}
+	
+	@RequestMapping(value = "chat4")
+	public String showChatV4(@RequestParam(value = "fromName", required = false) String fromName, Model model) {
+		model.addAttribute("fromName", fromName);
+		return "info360/chat/chat_v4";
+	}
+	
+	@RequestMapping(value = "chat5")
+	public String showChatV5(@RequestParam(value = "fromName", required = false) String fromName, Model model) {
+		model.addAttribute("fromName", fromName);
+		return "info360/chat/chat_v5";
 	}
 
 }
