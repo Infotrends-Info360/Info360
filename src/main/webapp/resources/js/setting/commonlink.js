@@ -3,7 +3,6 @@ function showCommonlink() {
             closeAllHrContent();
             $("#CommonlinkContent").show();
             $("#0Commonlink").show();
-           
             $("button.Commonlink").removeClass("btn-success");
             $("button.Commonlink").addClass("btn-primary");
                   selectcomm();
