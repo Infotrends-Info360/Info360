@@ -259,6 +259,7 @@
 
 		var currentClientID = ""; // 當前客戶ID
 		var isonline = false; // 判斷是否上線的開關
+		var autoSelectCaseInfo = false; // 判斷是否自動開啟案件資訊
 
 		var layim; // Layim
 
@@ -294,7 +295,7 @@
 							console.log("login", data)
 
 							// 測試用必驗證過
-// 							doConnect();
+							// 							doConnect();
 
 							if (userName == "" || password == "") {
 								// 未輸入帳號與密碼
@@ -309,7 +310,7 @@
 								//console.log(JSON.stringify(data));
 								maxCount = data.person[0].max_count;
 								//console.log(data.person[0].max_count);
-								
+
 								// Step-1 載入時連線ws
 								doConnect();
 							}
@@ -360,7 +361,7 @@
 
 						// 變更線上狀態變數
 						isonline = true;
-						
+
 						// 更新狀態
 						var myUpdateStatusJson = new updateStatusJson("Agent",
 								UserID_g, UserName_g, "1", "no reason", "start");

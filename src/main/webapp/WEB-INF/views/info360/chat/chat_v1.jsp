@@ -129,11 +129,9 @@
 								<div class="input-group">
 									<div class="col-xs-12">案件類別</div>
 									<div class="col-xs-12">
-										<select class="selectpicker"
+										<select class="selectpicker" id="caseSelection"
 											style="width: 127px; padding: 2px 0px 2px 0px;">
-											<option>帳務問題</option>
-											<option>選項二</option>
-											<option>選項三</option>
+
 										</select>
 
 										<button class="btn-success" onclick="showCaseInfo()">註記</button>
@@ -339,230 +337,57 @@
 				<div class="panel-body panel-success" id="caseInfo"
 					style="display: none;">
 					<div id="exTab1" class="tab-container">
-						<ul class="nav nav-tabs">
-							<li class="active"><a href="#caseInfo1" data-toggle="tab">CKTDH（一）</a>
-							</li>
-							<li><a href="#caseInfo2" data-toggle="tab">BEFRLP（二）</a></li>
-							<li><a href="#caseInfo3" data-toggle="tab">其它類（三）</a></li>
-							<li><a href="#caseInfo4" data-toggle="tab">伴隨行銷（四）</a></li>
-							<li><a href="#caseInfo5" data-toggle="tab">通話紀錄（五）</a></li>
+						<ul class="nav nav-tabs" id="caseInfoLevel1">
+
 						</ul>
 
-						<div class="tab-content clearfix">
-							<div class="tab-pane active" id="caseInfo1">
+						<div class="tab-content clearfix" id="caseInfoLevel1TabContent">
+							<div class="tab-pane active" id="caseInfo0">
 								<div style="height: 600px; overflow-y: scroll;">
 									<table class="table table-striped table-bordered table-hover">
 										<thead>
 											<tr>
-												<td colspan="5"><b class="text-success">權益贏家策略王</b></td>
+												<td colspan="5"><b class="text-success">activitydata</b>
+												</td>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td><input type="checkbox">C1.無法登入</td>
-												<td><input type="checkbox">C2.無法登入</td>
-												<td><input type="checkbox">C3.無法登入</td>
-												<td><input type="checkbox">C4.無法登入</td>
-												<td><input type="checkbox">C5.無法登入</td>
-											</tr>
-											<tr>
-												<td><input type="checkbox">C6.無法登入</td>
-												<td><input type="checkbox">C7.無法登入</td>
-												<td><input type="checkbox">C8.無法登入</td>
-												<td><input type="checkbox">C9.無法登入</td>
-												<td><input type="checkbox">C10.無法登入</td>
-											</tr>
+
 										</tbody>
 									</table>
-									<table class="table table-striped table-bordered table-hover">
-										<thead>
-											<tr>
-												<td colspan="5"><b class="text-success">權益贏家策略王</b></td>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><input type="checkbox">C1.無法登入</td>
-												<td><input type="checkbox">C2.無法登入</td>
-												<td><input type="checkbox">C3.無法登入</td>
-												<td><input type="checkbox">C4.無法登入</td>
-												<td><input type="checkbox">C5.無法登入</td>
-											</tr>
-											<tr>
-												<td><input type="checkbox">C6.無法登入</td>
-												<td><input type="checkbox">C7.無法登入</td>
-												<td><input type="checkbox">C8.無法登入</td>
-												<td><input type="checkbox">C9.無法登入</td>
-												<td><input type="checkbox">C10.無法登入</td>
-											</tr>
-										</tbody>
-									</table>
-									<table class="table table-striped table-bordered table-hover">
-										<thead>
-											<tr>
-												<td colspan="5"><b class="text-success">權益贏家策略王</b></td>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><input type="checkbox">C1.無法登入</td>
-												<td><input type="checkbox">C2.無法登入</td>
-												<td><input type="checkbox">C3.無法登入</td>
-												<td><input type="checkbox">C4.無法登入</td>
-												<td><input type="checkbox">C5.無法登入</td>
-											</tr>
-											<tr>
-												<td><input type="checkbox">C6.無法登入</td>
-												<td><input type="checkbox">C7.無法登入</td>
-												<td><input type="checkbox">C8.無法登入</td>
-												<td><input type="checkbox">C9.無法登入</td>
-												<td><input type="checkbox">C10.無法登入</td>
-											</tr>
-										</tbody>
-									</table>
-									<table class="table table-striped table-bordered table-hover">
-										<thead>
-											<tr>
-												<td colspan="5"><b class="text-success">權益贏家策略王</b></td>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><input type="checkbox">C1.無法登入</td>
-												<td><input type="checkbox">C2.無法登入</td>
-												<td><input type="checkbox">C3.無法登入</td>
-												<td><input type="checkbox">C4.無法登入</td>
-												<td><input type="checkbox">C5.無法登入</td>
-											</tr>
-											<tr>
-												<td><input type="checkbox">C6.無法登入</td>
-												<td><input type="checkbox">C7.無法登入</td>
-												<td><input type="checkbox">C8.無法登入</td>
-												<td><input type="checkbox">C9.無法登入</td>
-												<td><input type="checkbox">C10.無法登入</td>
-											</tr>
-										</tbody>
-									</table>
-									<table class="table table-striped table-bordered table-hover">
-										<thead>
-											<tr>
-												<td colspan="5"><b class="text-success">權益贏家策略王</b></td>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><input type="checkbox">C1.無法登入</td>
-												<td><input type="checkbox">C2.無法登入</td>
-												<td><input type="checkbox">C3.無法登入</td>
-												<td><input type="checkbox">C4.無法登入</td>
-												<td><input type="checkbox">C5.無法登入</td>
-											</tr>
-											<tr>
-												<td><input type="checkbox">C6.無法登入</td>
-												<td><input type="checkbox">C7.無法登入</td>
-												<td><input type="checkbox">C8.無法登入</td>
-												<td><input type="checkbox">C9.無法登入</td>
-												<td><input type="checkbox">C10.無法登入</td>
-											</tr>
-										</tbody>
-									</table>
-									<table class="table table-striped table-bordered table-hover">
-										<thead>
-											<tr>
-												<td colspan="5"><b class="text-success">權益贏家策略王</b></td>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><input type="checkbox">C1.無法登入</td>
-												<td><input type="checkbox">C2.無法登入</td>
-												<td><input type="checkbox">C3.無法登入</td>
-												<td><input type="checkbox">C4.無法登入</td>
-												<td><input type="checkbox">C5.無法登入</td>
-											</tr>
-											<tr>
-												<td><input type="checkbox">C6.無法登入</td>
-												<td><input type="checkbox">C7.無法登入</td>
-												<td><input type="checkbox">C8.無法登入</td>
-												<td><input type="checkbox">C9.無法登入</td>
-												<td><input type="checkbox">C10.無法登入</td>
-											</tr>
-										</tbody>
-									</table>
-									<table class="table table-striped table-bordered table-hover">
-										<thead>
-											<tr>
-												<td colspan="5"><b class="text-success">權益贏家策略王</b></td>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><input type="checkbox">C1.無法登入</td>
-												<td><input type="checkbox">C2.無法登入</td>
-												<td><input type="checkbox">C3.無法登入</td>
-												<td><input type="checkbox">C4.無法登入</td>
-												<td><input type="checkbox">C5.無法登入</td>
-											</tr>
-											<tr>
-												<td><input type="checkbox">C6.無法登入</td>
-												<td><input type="checkbox">C7.無法登入</td>
-												<td><input type="checkbox">C8.無法登入</td>
-												<td><input type="checkbox">C9.無法登入</td>
-												<td><input type="checkbox">C10.無法登入</td>
-											</tr>
-										</tbody>
-									</table>
+
 								</div>
 							</div>
+							<div class="tab-pane" id="caseInfo1">
+								<div style="height: 600px; overflow-y: scroll;">
+									<table class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<td colspan="5"><b class="text-success">activitydata</b>
+												</td>
+											</tr>
+										</thead>
+										<tbody>
 
+										</tbody>
+									</table>
+
+								</div>
+							</div>
 							<div class="tab-pane" id="caseInfo2">
 								<div style="height: 600px; overflow-y: scroll;">
 									<table class="table table-striped table-bordered table-hover">
 										<thead>
 											<tr>
-												<td colspan="5"><b class="text-success">權益贏家策略王</b></td>
+												<td colspan="5"><b class="text-success">activitydata</b>
+												</td>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td><input type="checkbox">C1.無法登入</td>
-												<td><input type="checkbox">C2.無法登入</td>
-												<td><input type="checkbox">C3.無法登入</td>
-												<td><input type="checkbox">C4.無法登入</td>
-												<td><input type="checkbox">C5.無法登入</td>
-											</tr>
-											<tr>
-												<td><input type="checkbox">C6.無法登入</td>
-												<td><input type="checkbox">C7.無法登入</td>
-												<td><input type="checkbox">C8.無法登入</td>
-												<td><input type="checkbox">C9.無法登入</td>
-												<td><input type="checkbox">C10.無法登入</td>
-											</tr>
+
 										</tbody>
 									</table>
-									<table class="table table-striped table-bordered table-hover">
-										<thead>
-											<tr>
-												<td colspan="5"><b class="text-success">權益贏家策略王</b></td>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><input type="checkbox">C1.無法登入</td>
-												<td><input type="checkbox">C2.無法登入</td>
-												<td><input type="checkbox">C3.無法登入</td>
-												<td><input type="checkbox">C4.無法登入</td>
-												<td><input type="checkbox">C5.無法登入</td>
-											</tr>
-											<tr>
-												<td><input type="checkbox">C6.無法登入</td>
-												<td><input type="checkbox">C7.無法登入</td>
-												<td><input type="checkbox">C8.無法登入</td>
-												<td><input type="checkbox">C9.無法登入</td>
-												<td><input type="checkbox">C10.無法登入</td>
-											</tr>
-										</tbody>
-									</table>
+
 								</div>
 							</div>
 							<div class="tab-pane" id="caseInfo3">
@@ -570,49 +395,15 @@
 									<table class="table table-striped table-bordered table-hover">
 										<thead>
 											<tr>
-												<td colspan="5"><b class="text-success">權益贏家策略王</b></td>
+												<td colspan="5"><b class="text-success">activitydata</b>
+												</td>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td><input type="checkbox">C1.無法登入</td>
-												<td><input type="checkbox">C2.無法登入</td>
-												<td><input type="checkbox">C3.無法登入</td>
-												<td><input type="checkbox">C4.無法登入</td>
-												<td><input type="checkbox">C5.無法登入</td>
-											</tr>
-											<tr>
-												<td><input type="checkbox">C6.無法登入</td>
-												<td><input type="checkbox">C7.無法登入</td>
-												<td><input type="checkbox">C8.無法登入</td>
-												<td><input type="checkbox">C9.無法登入</td>
-												<td><input type="checkbox">C10.無法登入</td>
-											</tr>
+
 										</tbody>
 									</table>
-									<table class="table table-striped table-bordered table-hover">
-										<thead>
-											<tr>
-												<td colspan="5"><b class="text-success">權益贏家策略王</b></td>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><input type="checkbox">C1.無法登入</td>
-												<td><input type="checkbox">C2.無法登入</td>
-												<td><input type="checkbox">C3.無法登入</td>
-												<td><input type="checkbox">C4.無法登入</td>
-												<td><input type="checkbox">C5.無法登入</td>
-											</tr>
-											<tr>
-												<td><input type="checkbox">C6.無法登入</td>
-												<td><input type="checkbox">C7.無法登入</td>
-												<td><input type="checkbox">C8.無法登入</td>
-												<td><input type="checkbox">C9.無法登入</td>
-												<td><input type="checkbox">C10.無法登入</td>
-											</tr>
-										</tbody>
-									</table>
+
 								</div>
 							</div>
 							<div class="tab-pane" id="caseInfo4">
@@ -620,52 +411,116 @@
 									<table class="table table-striped table-bordered table-hover">
 										<thead>
 											<tr>
-												<td colspan="5"><b class="text-success">權益贏家策略王</b></td>
+												<td colspan="5"><b class="text-success">activitydata</b>
+												</td>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td><input type="checkbox">C1.無法登入</td>
-												<td><input type="checkbox">C2.無法登入</td>
-												<td><input type="checkbox">C3.無法登入</td>
-												<td><input type="checkbox">C4.無法登入</td>
-												<td><input type="checkbox">C5.無法登入</td>
-											</tr>
-											<tr>
-												<td><input type="checkbox">C6.無法登入</td>
-												<td><input type="checkbox">C7.無法登入</td>
-												<td><input type="checkbox">C8.無法登入</td>
-												<td><input type="checkbox">C9.無法登入</td>
-												<td><input type="checkbox">C10.無法登入</td>
-											</tr>
+
 										</tbody>
 									</table>
-									<table class="table table-striped table-bordered table-hover">
-										<thead>
-											<tr>
-												<td colspan="5"><b class="text-success">權益贏家策略王</b></td>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><input type="checkbox">C1.無法登入</td>
-												<td><input type="checkbox">C2.無法登入</td>
-												<td><input type="checkbox">C3.無法登入</td>
-												<td><input type="checkbox">C4.無法登入</td>
-												<td><input type="checkbox">C5.無法登入</td>
-											</tr>
-											<tr>
-												<td><input type="checkbox">C6.無法登入</td>
-												<td><input type="checkbox">C7.無法登入</td>
-												<td><input type="checkbox">C8.無法登入</td>
-												<td><input type="checkbox">C9.無法登入</td>
-												<td><input type="checkbox">C10.無法登入</td>
-											</tr>
-										</tbody>
-									</table>
+
 								</div>
 							</div>
 							<div class="tab-pane" id="caseInfo5">
+								<div style="height: 600px; overflow-y: scroll;">
+									<table class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<td colspan="5"><b class="text-success">activitydata</b>
+												</td>
+											</tr>
+										</thead>
+										<tbody>
+
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+							<div class="tab-pane" id="caseInfo6">
+								<div style="height: 600px; overflow-y: scroll;">
+									<table class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<td colspan="5"><b class="text-success">activitydata</b>
+												</td>
+											</tr>
+										</thead>
+										<tbody>
+
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+							<div class="tab-pane" id="caseInfo7">
+								<div style="height: 600px; overflow-y: scroll;">
+									<table class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<td colspan="5"><b class="text-success">activitydata</b>
+												</td>
+											</tr>
+										</thead>
+										<tbody>
+
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+							<div class="tab-pane" id="caseInfo8">
+								<div style="height: 600px; overflow-y: scroll;">
+									<table class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<td colspan="5"><b class="text-success">activitydata</b>
+												</td>
+											</tr>
+										</thead>
+										<tbody>
+
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+							<div class="tab-pane" id="caseInfo9">
+								<div style="height: 600px; overflow-y: scroll;">
+									<table class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<td colspan="5"><b class="text-success">activitydata</b>
+												</td>
+											</tr>
+										</thead>
+										<tbody>
+
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+							<div class="tab-pane" id="caseInfo10">
+								<div style="height: 600px; overflow-y: scroll;">
+									<table class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<td colspan="5"><b class="text-success">activitydata</b>
+												</td>
+											</tr>
+										</thead>
+										<tbody>
+
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+
+
+							<div class="tab-pane" id="caseInfo99">
 								<div id="chatRecord" class="widget"
 									style="height: 600px; overflow-y: scroll;">
 									<div class="row">
@@ -739,6 +594,9 @@
 		// init datatable
 		$("#queryTable").DataTable();
 		$("#queryTable").css("width", "100%");
+
+		// 搜尋案件類別
+		Query_ActivityMenu(0, 0);
 	});
 
 	function queryActivityMenu() {
@@ -801,6 +659,7 @@
 	}
 
 	function showCaseInfo() {
+		// 畫面控制
 		hideAll();
 		$("#caseInfoButton").show();
 		$("#caseInfo").show();
@@ -808,6 +667,11 @@
 		clearLinkStyle();
 		$("#caseInfoButton").removeClass("btn-success");
 		$("#caseInfoButton").addClass("btn-primary");
+
+		// 搜尋案件資訊選單
+		var level1DbId = $("#caseSelection option:selected").val();
+		console.log(level1DbId);
+		Query_ActivityMenu(1, level1DbId);
 	}
 
 	function clearLinkStyle() {
@@ -934,8 +798,124 @@
 		}
 	}
 
+	// 搜尋案件資訊
+	function Query_ActivityMenu(level, dbId) {
+		$
+				.ajax({
+					url : "http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Query_ActivityMenu",
+					data : {
+						dbid : dbId
+					},
+					type : "POST",
+					dataType : 'json',
+					error : function(e) {
+						console.log("請重新整理");
+					},
+					success : function(data) {
+						console.log(data);
+						console.log(data.activitymenu)
+
+						// 搜尋第零階原始案件類別選項
+						if (0 == level) {
+							var $caseSelection = $("#caseSelection");
+							$caseSelection.html("");
+
+							for ( var index in data.activitymenu) {
+								var menuName = data.activitymenu[index].menuname;
+								var dbid = data.activitymenu[index].dbid;
+
+								console.log("[" + index + "]" + menuName + ";"
+										+ dbid);
+								$caseSelection
+										.append("<option value='" + dbid +"'>"
+												+ menuName + "</option");
+							}
+						} else if (1 == level) {
+							var $ul = $("#caseInfoLevel1");
+							$ul.html("");
+
+							for ( var index in data.activitygroups) {
+								var groupname = data.activitygroups[index].groupname;
+								var dbid = data.activitygroups[index].dbid;
+
+								console.log("[" + index + "]" + groupname + ";"
+										+ dbid);
+
+								if (0 == index) {
+									var $li = "<li class='active'><a href='#caseInfo" + index + "'";
+                            $li += " data-toggle='tab'>"
+											+ groupname + "</a></li>";
+								} else {
+									var $li = "<li><a href='#caseInfo" + index + "'";
+                            $li += " data-toggle='tab'>"
+											+ groupname + "</a></li>";
+								}
+
+								$ul.append($li);
+
+								Flag_Data(dbid, index);
+							}
+
+							$ul
+									.append('<li><a href="#caseInfo99" data-toggle="tab">通話紀錄</a></li>')
+
+						}
+
+					}
+				});
+	}
+
+	// 搜尋特定案件資訊
+	function Flag_Data(dbId, tabIndex) {
+		$
+				.ajax({
+					url : "http://ws.crm.com.tw:8080/IMWebSocket/RESTful/FLAGDATA",
+					data : {
+						dbid : dbId
+					},
+					type : "POST",
+					dataType : 'json',
+					error : function(e) {
+						console.log("請重新整理");
+					},
+					success : function(data) {
+						console.log(data)
+
+						var targetTable = $("#caseInfo" + tabIndex);
+						targetTable.find("tbody").html("");
+
+						var $tbody = "";
+
+						for ( var index in data.activitydata) {
+							if (index % 5 == 0) {
+								$tbody += "<tr>";
+							}
+
+							var codename = data.activitydata[index].codename;
+
+							$tbody += '<td><input type="checkbox">' + codename
+									+ '</td>';
+
+							if (index % 5 == 4
+									|| index == data.activitydata.length - 1) {
+								$tbody += "</tr>";
+							}
+						}
+
+						targetTable.find("tbody").append($tbody);
+
+					}
+				});
+
+	}
+
 	function showCaseInfoTab() {
 		$("#caseInfoTab").trigger("click");
+
+		console.log(parent.autoSelectCaseInfo);
+		if (parent.autoSelectCaseInfo) {
+			showCaseInfo();
+		}
 	}
 
 	function finishChat() {
