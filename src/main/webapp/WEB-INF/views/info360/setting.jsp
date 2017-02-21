@@ -757,9 +757,13 @@
                             <div class="col-lg-3 col-md-3">                          
 								<div id="tree" ></div>
 								</div>
+                            <div class="col-lg-8 col-md-8" id="comm"  style="display:none;"
+                            	 >
+                            	 <h2>請選擇節點</h2>
+                            	 </div>
                             
-                                <div class="col-lg-8 col-md-8" id="manageTable_div">
-                                
+                                <div class="col-lg-8 col-md-8" id="commTB" style="display:none;"
+                                >
       	 							<table class="table table-bordered table-hover" id="manageTablecomm">
                   						<thead>
                        						<tr>
@@ -1011,7 +1015,7 @@
 <!-- ============================================================================================== -->
 <!-- ActivityGroup  -->
 
- <div class="col-lg-10 col-sm-9" id="AGContent">
+ <div class="col-lg-10 col-sm-9" id="AGContent" style="display:none;">
                 <div class="panel panel-success" style="height:780px;">
                     <!-- 服務代碼清單管理切換頁籤Start -->
                     <div id="hrTabControlButton" style="margin:1px 0px 0px 1px;">
@@ -2007,6 +2011,9 @@
             
             $("#CommonlinkContent").hide();
             $("#0Commonlink").hide();
+            $("#comm").hide();
+            $("#commTB").hide();
+            $("#manageTable_div").hide();
             $("#addMemberContentcomm").hide();
             $("#editMemberContentcomm").hide();
             
