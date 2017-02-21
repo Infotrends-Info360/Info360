@@ -294,23 +294,24 @@
 							console.log("login", data)
 
 							// 測試用必驗證過
-							doConnect();
+// 							doConnect();
 
 							if (userName == "" || password == "") {
 								// 未輸入帳號與密碼
 								console.log(data.error)
-								//$("#loginDialogButton").trigger("click");
+								$("#loginDialogButton").trigger("click");
 							} else if (data.error != null) {
 								// 其他可能錯誤
 								console.log(data.error);
-								//$("#loginDialogButton").trigger("click");
+								$("#loginDialogButton").trigger("click");
 							} else {
 								// 驗證通過
-								console.log(JSON.stringify(data));
+								//console.log(JSON.stringify(data));
 								maxCount = data.person[0].max_count;
-								console.log(data.person[0].max_count);
+								//console.log(data.person[0].max_count);
+								
 								// Step-1 載入時連線ws
-								//doConnect();
+								doConnect();
 							}
 
 						},
@@ -772,11 +773,17 @@
 			// 發送消息
 			ws.send(JSON.stringify(msg));
 
+			// 清除layim群聊
+			layim.removeList({
+				type : 'group',
+				id : aRoomID
+			});
+
 			// 切換至該客戶資訊頁面
 			chatList.forEach(function(entry) {
 				if (aRoomID == entry.id) {
 					$("#" + entry.chatTab).trigger("click");
-					$('[name=iframe4]')[0].contentWindow.finishChat();
+					$('[name=iframe4]')[0].contentWindow.showCaseInfoTab();
 				}
 			});
 		}

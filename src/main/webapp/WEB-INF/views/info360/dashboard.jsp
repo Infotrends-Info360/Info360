@@ -3,155 +3,171 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
-    <head>
+<head>
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>「儀表板」頁面</title>
 
-        <title>「儀表板」頁面</title>
+<link href="resources/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+<link href="resources/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+<link href="resources/css/animate.css" rel="stylesheet">
+<link href="resources/css/style.css?v=4.1.0" rel="stylesheet">
+<link href="resources/css/plugins/datapicker/datepicker3.css"
+	rel="stylesheet">
 
-        <link rel="shortcut icon" href="favicon.ico"> <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-        <link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
-        <link href="../css/animate.css" rel="stylesheet">
-        <link href="../css/style.css?v=4.1.0" rel="stylesheet">
+</head>
+<body class="gray-bg">
+	<div class="widget">
+		<!-- 佇列活動 Start-->
+		<div class="col-lg-6 col-md-6">
+			<div class="panel panel-success" style="height: 780px;">
+				<div class="panel-heading">
+					<h3>群組資訊</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-lg-6 col-md-6">
+							<div class="ibox">
+								<div class="ibox-title">
+									<h3>在線資訊</h3>
+								</div>
+								<div class="ibox-content">
+									<small>在線人員</small>
+									<h1>
+										<span id="usercount"> </span>
+									</h1>
+									<small>在線客服人員</small>
+									<h1>
+										<span id="agentcount"> </span>
+									</h1>
+									<small>在線客戶</small>
+									<h1>
+										<span id="clientcount"> </span>
+									</h1>
+									<small>總交談中通數</small>
+									<h1>
+										<span id="roomcount"> </span>
+									</h1>
+								</div>
 
-    </head>
-    <body class="gray-bg">
-        <div class="widget">
-            <!-- 佇列活動 Start-->
-            <div class="col-lg-6 col-md-6">
-                <div class="panel panel-success" style="height:780px;">
-                    <div class="panel-heading">
-                        <h3>群組資訊</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                <div class="ibox">
-                                    <div class="ibox-title">
-                                        <h3>在線資訊</h3>
-                                    </div>
-                                    <div class="ibox-content">
-										<small>在線人員</small>
-                                        <h1><span id="usercount"> </span></h1>
-                                        <small>在線客服人員</small>
-                                        <h1><span id="agentcount"> </span></h1>
-                                        <small>在線客戶</small>
-                                        <h1><span id="clientcount"> </span></h1>
-                                        <small>總交談中通數</small>
-                                        <h1><span id="roomcount"> </span></h1>
-                                    </div>
-									
-                                </div>    
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="row">
-                                     <div class="ibox-title">
-                                        <h3>等待時間</h3>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="ibox">
-                                            <div class="ibox-content">
-                                                <h3>最長</h3>
-                                                <h1>00:15</h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="ibox">
-                                            <div class="ibox-content">
-                                                <h3>平均</h3>
-                                                <h1>00:15</h1>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="ibox">
-                                            <div class="ibox-content">
-                                                <h3>未接交談</h3>
-                                                <h1><span id="leaveclientcount"> </span></h1>
-                                            </div>
-                                        </div>
-                                    </div>
-									 <div class="col-lg-12 col-md-12">
-                                        <div class="ibox">
-                                            <div class="ibox-content">
-                                                <h3>線上客服答應率</h3> <!--(接聽/掛斷(Not未接)) -->
-                                                <h1>0%</h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6">
+							<div class="row">
+								<div class="ibox-title">
+									<h3>等待時間</h3>
+								</div>
+								<div class="col-lg-6 col-md-6">
+									<div class="ibox">
+										<div class="ibox-content">
+											<h3>最長</h3>
+											<h1>00:15</h1>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-6">
+									<div class="ibox">
+										<div class="ibox-content">
+											<h3>平均</h3>
+											<h1>00:15</h1>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-12 col-md-12">
+									<div class="ibox">
+										<div class="ibox-content">
+											<h3>未接交談</h3>
+											<h1>
+												<span id="leaveclientcount"> </span>
+											</h1>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-12 col-md-12">
+									<div class="ibox">
+										<div class="ibox-content">
+											<h3>線上客服答應率</h3>
+											<!--(接聽/掛斷(Not未接)) -->
+											<h1>0%</h1>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 佇列活動 End-->
-			
-			<div class="col-lg-6 col-md-6">
-                <div class="panel panel-success" style="height:780px;">
-                    <div class="panel-heading">
-                        <h3>個人資訊</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                <div class="ibox">
-                                    <div class="ibox-title">
-                                        <h3>個人在線資訊</h3>
-                                    </div>
-                                    <div class="ibox-content">
-										<small>接通數</small>
-                                        <h1>0</h1>
-                                        <small>未接數(reject)</small>
-                                        <h1>0</h1>
-                                        <small>個人交談中通數</small>
-                                        <h1><span id="userroomcount"> </span></h1>
-                                    </div>
-									
-                                </div>    
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="row">
-                                     <div class="ibox-title">
-                                        <h3>服務時間</h3>
-                                    </div>
-									 <div class="col-lg-6 col-md-6">
-                                        <div class="ibox">
-                                            <div class="ibox-content">
-                                                <h3>離席時間</h3>
-                                                <h1>00:15</h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="ibox">
-                                            <div class="ibox-content">
-                                                <h3>準備就緒時間</h3>
-                                                <h1>00:15</h1>
-                                            </div>
-                                        </div>
-                                    </div> 
-									 <div class="col-lg-6 col-md-6">
-                                        <div class="ibox">
-                                            <div class="ibox-content">
-                                                <h3>通話時間</h3> <!--(總) -->
-                                                <h1>00:15</h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="ibox">
-                                            <div class="ibox-content">
-                                                <h3>平均通話</h3> <!--(通話時間/接通數) -->
-                                                <h1>00:15</h1>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                    <!--<div class="col-lg-12 col-md-12">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 佇列活動 End-->
+
+		<div class="col-lg-6 col-md-6">
+			<div class="panel panel-success" style="height: 780px;">
+				<div class="panel-heading">
+					<h3>個人資訊</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-lg-6 col-md-6">
+							<div class="ibox">
+								<div class="ibox-title">
+									<h3>個人在線資訊</h3>
+								</div>
+								<div class="ibox-content">
+									<small>接通數</small>
+									<h1>0</h1>
+									<small>未接數(reject)</small>
+									<h1>0</h1>
+									<small>個人交談中通數</small>
+									<h1>
+										<span id="userroomcount"> </span>
+									</h1>
+								</div>
+
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6">
+							<div class="row">
+								<div class="ibox-title">
+									<h3>服務時間</h3>
+								</div>
+								<div class="col-lg-6 col-md-6">
+									<div class="ibox">
+										<div class="ibox-content">
+											<h3>離席時間</h3>
+											<h1>00:15</h1>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-6">
+									<div class="ibox">
+										<div class="ibox-content">
+											<h3>準備就緒時間</h3>
+											<h1>00:15</h1>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-6">
+									<div class="ibox">
+										<div class="ibox-content">
+											<h3>通話時間</h3>
+											<!--(總) -->
+											<h1>00:15</h1>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-6">
+									<div class="ibox">
+										<div class="ibox-content">
+											<h3>平均通話</h3>
+											<!--(通話時間/接通數) -->
+											<h1>00:15</h1>
+										</div>
+									</div>
+								</div>
+								<!--<div class="col-lg-12 col-md-12">
                                         <div class="ibox">
                                             <div class="ibox-content">
                                                 <h3>離席時間</h3>
@@ -183,18 +199,18 @@
                                             </div>
                                         </div>
                                     </div>-->
-                                </div>
-                            </div>
+							</div>
+						</div>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-			
-			
+					</div>
+				</div>
+			</div>
+		</div>
 
-            <!-- 代理活動 Start-->
-            <!-- <div class="col-lg-3 col-md-3">
+
+
+		<!-- 代理活動 Start-->
+		<!-- <div class="col-lg-3 col-md-3">
                 <div class="panel panel-success" style="height:780px;">
                     <div class="panel-heading">
                         <h3>代理活動</h3>
@@ -241,10 +257,10 @@
                     </div>
                 </div>
             </div> -->
-            <!-- 代理活動 End-->
+		<!-- 代理活動 End-->
 
-            <!-- 滿意度 Start-->
-            <!-- <div class="col-lg-3 col-md-3">
+		<!-- 滿意度 Start-->
+		<!-- <div class="col-lg-3 col-md-3">
                 <div class="panel panel-success" style="height:780px;">
                     <div class="panel-heading">
                         <h3>滿意度</h3>
@@ -285,66 +301,53 @@
                     </div>
                 </div>
             </div> -->
-            <!-- 滿意度 End-->
-        </div>
+		<!-- 滿意度 End-->
+	</div>
 
 
 
-        <!-- 全局js -->
-        <script src="../js/jquery.min.js?v=2.1.4"></script>
-        <script src="../js/bootstrap.min.js?v=3.3.6"></script>
+	<!-- 全局js -->
+	<script src="resources/js/jquery.min.js?v=2.1.4"></script>
+	<script src="resources/js/bootstrap.min.js?v=3.3.6"></script>
 
-        <!-- Flot -->
-        <script src="../js/plugins/flot/jquery.flot.js"></script>
-        <script src="../js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-        <script src="../js/plugins/flot/jquery.flot.resize.js"></script>
-
-        <!-- ChartJS-->
-        <script src="../js/plugins/chartJs/Chart.min.js"></script>
-
-        <!-- Peity -->
-        <script src="../js/plugins/peity/jquery.peity.min.js"></script>
-
-        <!-- Peity demo -->
-        <script src="../js/demo/peity-demo.js"></script>
-		
-		<script>
-        function kpiview(){
+	<script>
+		function kpiview() {
 			var user = '';
-			var data = 'user='+user;
-            var me = this;
-            $.ajax({                              
-                url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/GetKPI",
-        	         type : "POST",
-        	         dataType:'json',
-					 data: data,
-        	         error:function(e){
-        	         	console.log("error");
-        	         },
-        	         success:function(data){
-        	        	 document.getElementById("usercount").innerHTML = data.usercount;
-        	        	 document.getElementById("agentcount").innerHTML = data.agentcount;
-        	        	 document.getElementById("clientcount").innerHTML = data.clientcount;
-        	        	 document.getElementById("roomcount").innerHTML = data.roomcount;
-        	        	 document.getElementById("leaveclientcount").innerHTML = data.leaveclientcount;
-						 if(user!=null && ""!=user){
-							//document.getElementById("username").innerHTML = data.username;
-							document.getElementById("userroomcount").innerHTML = data.userroomcount;
-						 }else{
-							//document.getElementById("username").innerHTML = 'null';
-							document.getElementById("userroomcount").innerHTML = 0;
-						 }
-        	         },
-        	     });
-            setTimeout(function () { me.kpiview(); }, 1000);
-        }
-        kpiview();
+			var data = 'user=' + user;
+			var me = this;
+			$
+					.ajax({
+						url : "http://ws.crm.com.tw:8080/IMWebSocket/RESTful/GetKPI",
+						type : "POST",
+						dataType : 'json',
+						data : data,
+						error : function(e) {
+							console.log("error");
+						},
+						success : function(data) {
+							document.getElementById("usercount").innerHTML = data.usercount;
+							document.getElementById("agentcount").innerHTML = data.agentcount;
+							document.getElementById("clientcount").innerHTML = data.clientcount;
+							document.getElementById("roomcount").innerHTML = data.roomcount;
+							document.getElementById("leaveclientcount").innerHTML = data.leaveclientcount;
+							if (user != null && "" != user) {
+								//document.getElementById("username").innerHTML = data.username;
+								document.getElementById("userroomcount").innerHTML = data.userroomcount;
+							} else {
+								//document.getElementById("username").innerHTML = 'null';
+								document.getElementById("userroomcount").innerHTML = 0;
+							}
+						},
+					});
+			setTimeout(function() {
+				me.kpiview();
+			}, 1000);
+		}
+		kpiview();
 		//Get User ID
 		//Get Talk Time
 		//Get User Group Count
-		
-		
-		</script>
-        
-    </body>
+	</script>
+
+</body>
 </html>
