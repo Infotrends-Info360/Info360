@@ -360,6 +360,11 @@
 
 						// 變更線上狀態變數
 						isonline = true;
+						
+						// 更新狀態
+						var myUpdateStatusJson = new updateStatusJson("Agent",
+								UserID_g, UserName_g, "1", "no reason", "start");
+						ws.send(JSON.stringify(myUpdateStatusJson));
 					}
 
 					// 接收到Client邀請chat的event

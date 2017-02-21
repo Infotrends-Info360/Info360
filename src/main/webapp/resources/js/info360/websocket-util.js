@@ -53,11 +53,13 @@ function messagetoRoomJson(aType, aACtype, aText, aId, aUserName, aRoomID, aChan
 	this.date = aDate;
 }			
 
-function updateStatusJson(aACType, aID, aUserName, aStatus, aReason){
+function updateStatusJson(aACType, aID, aUserName, aStatus, aReason, aStartORend, aDbid){
 	this.type = "updateStatus";
 	this.ACtype = aACType;
 	this.id = aID;
 	this.UserName = aUserName;
+	this.startORend = aStartORend,
+	this.dbid = aDbid,
 	this.status = aStatus;
 	this.reason = aReason;
 	this.channel = "chat";
