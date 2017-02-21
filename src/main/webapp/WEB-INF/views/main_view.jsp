@@ -86,9 +86,9 @@
 						style="line-height: 30px;" id="menuButton"><span
 							id="navNickName">未登入</span> <span class="caret"></span>
 							<ul role="menu" class="dropdown-menu" id="menuList">
-								<!-- 								<li><a onclick="doLogin()">登入</a></li> -->
-																<li><a onclick="doTest()">test</a></li>
-								<!-- 								<hr> -->
+<!-- 																<li><a onclick="doLogin()">登入</a></li> -->
+<!-- 																<li><a onclick="doTest()">test</a></li> -->
+<!-- 																<hr> -->
 								<li><a onclick="openTab(0)">儀表板</a></li>
 								<li><a onclick="openTab(1)">案件搜尋</a></li>
 								<li><a onclick="openTab(2)">設定</a></li>
@@ -415,15 +415,17 @@
 
 						// 更新開啟頁籤
 						var newTab = {};
-						newTab.id = RoomID_g;
-						newTab.chatTab = chatTab[0];
+						var currentChatTab = chatTab[0]; // 指派目前可用Tab
 						chatTab.slice(1);
+						
+						newTab.id = RoomID_g;
+						newTab.chatTab =currentChatTab; 
 						chatList.push(newTab);
 
-						$("#chat1").html(ClientName_g);
+						$("#" + currentChatTab).html(ClientName_g);
 						var newHref = "chat1?fromName=" + ClientName_g;
-						$("#chat1").prop("href", newHref);
-						$("#chat1").trigger("click");
+						$("#" + currentChatTab).prop("href", newHref);
+						$("#" + currentChatTab).trigger("click");
 						
 						// 更新狀態
 						var myUpdateStatusJson = new updateStatusJson("Agent",
@@ -759,9 +761,13 @@
 			// 發送消息
 			ws.send(JSON.stringify(msg));
 
-			// 			document.getElementById("groupstatus").innerHTML = "離開" + RoomID_g + "群組";
-			// 			document.getElementById("leaveRoom").disabled = true;
-			// 			document.getElementById("roomonline").disabled = true;
+			// 切換至該客戶資訊頁面
+			chatList.forEach(function(entry) {
+				if (aRoomID == entry.id) {
+					$("#" + entry.chatTab).trigger("click");
+					$('[name=iframe4]')[0].contentWindow.finishChat();
+				}
+			});
 		}
 		/*-------------------------------------------------------*/
 		$("#statusButton").on(
