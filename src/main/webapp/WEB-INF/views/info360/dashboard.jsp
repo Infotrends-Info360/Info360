@@ -11,10 +11,11 @@
 
         <title>「儀表板」頁面</title>
 
-        <link rel="shortcut icon" href="favicon.ico"> <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-        <link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
-        <link href="../css/animate.css" rel="stylesheet">
-        <link href="../css/style.css?v=4.1.0" rel="stylesheet">
+        <link rel="shortcut icon" href="favicon.ico"> 
+        <link href="resources/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+        <link href="resources/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+        <link href="resources/css/animate.css" rel="stylesheet">
+        <link href="resources/css/style.css?v=4.1.0" rel="stylesheet">
 
     </head>
     <body class="gray-bg">
@@ -291,22 +292,22 @@
 
 
         <!-- 全局js -->
-        <script src="../js/jquery.min.js?v=2.1.4"></script>
-        <script src="../js/bootstrap.min.js?v=3.3.6"></script>
+        <script src="resources/js/jquery.min.js?v=2.1.4"></script>
+        <script src="resources/js/bootstrap.min.js?v=3.3.6"></script>
 
         <!-- Flot -->
-        <script src="../js/plugins/flot/jquery.flot.js"></script>
-        <script src="../js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-        <script src="../js/plugins/flot/jquery.flot.resize.js"></script>
+<!--         <script src="../js/plugins/flot/jquery.flot.js"></script> -->
+<!--         <script src="../js/plugins/flot/jquery.flot.tooltip.min.js"></script> -->
+<!--         <script src="../js/plugins/flot/jquery.flot.resize.js"></script> -->
 
         <!-- ChartJS-->
-        <script src="../js/plugins/chartJs/Chart.min.js"></script>
+<!--         <script src="../js/plugins/chartJs/Chart.min.js"></script> -->
 
         <!-- Peity -->
-        <script src="../js/plugins/peity/jquery.peity.min.js"></script>
+<!--         <script src="../js/plugins/peity/jquery.peity.min.js"></script> -->
 
         <!-- Peity demo -->
-        <script src="../js/demo/peity-demo.js"></script>
+<!--         <script src="../js/demo/peity-demo.js"></script> -->
 		
 		<script>
         function kpiview(){
