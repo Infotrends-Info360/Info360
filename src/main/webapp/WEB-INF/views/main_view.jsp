@@ -259,7 +259,7 @@
 
 		var currentClientID = ""; // 當前客戶ID
 		var isonline = false; // 判斷是否上線的開關
-		var autoSelectCaseInfo = false; // 判斷是否自動開啟案件資訊
+		var autoSelectCaseInfo = true; // 判斷是否自動開啟案件資訊
 
 		var layim; // Layim
 
