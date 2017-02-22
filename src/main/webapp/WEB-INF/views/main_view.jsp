@@ -307,9 +307,11 @@
 								$("#loginDialogButton").trigger("click");
 							} else {
 								// 驗證通過
-								//console.log(JSON.stringify(data));
+// 								console.log(JSON.stringify(data));
 								maxCount = data.person[0].max_count;
-								//console.log(data.person[0].max_count);
+// 								console.log(data.person[0].max_count);
+								UserID_g = data.person[0].dbid;
+								UserName_g = data.person[0].user_name;
 
 								// Step-1 載入時連線ws
 								doConnect();
@@ -502,8 +504,10 @@
 			// 向websocket送出登入指令
 			var msg = {
 				type : "login",
-				UserName : userName,
-				MaxCount : '3', //需從驗證登入頁面取得個人的max count並塞入
+				id : UserID_g,
+				UserName : UserName_g,
+// 				MaxCount : '3', //需從驗證登入頁面取得個人的max count並塞入
+				MaxCount : ""+maxCount,
 				ACtype : "Agent",
 				channel : "chat",
 				date : now.getHours() + ":" + now.getMinutes() + ":"
@@ -522,7 +526,7 @@
 				type : "Exit",
 				// text: message,
 				id : UserID_g,
-				UserName : userName,
+				UserName : UserName_g,
 				channel : "chat",
 				waittingClientIDList : waittingClientIDList_g, //20170220 Lin
 				date : now.getHours() + ":" + now.getMinutes() + ":"
@@ -565,7 +569,7 @@
 				type : "getUserStatus",
 				ACtype : "Agent",
 				id : UserID_g,
-				UserName : userName,
+				UserName : UserName_g,
 				channel : 'chat',
 				date : now.getHours() + ":" + now.getMinutes() + ":"
 						+ now.getSeconds()
@@ -582,7 +586,7 @@
 				type : "updateStatus",
 				ACtype : "Agent",
 				id : UserID_g,
-				UserName : userName,
+				UserName : UserName_g,
 				status : aStatus,
 				reason : aReason,
 				channel : "chat",
