@@ -125,7 +125,7 @@ function selectcomm(){
   	 		
   	 		
   	 		function comm2() {
-  	 	 	  $("#manageTablecomm tbody tr").on("click",function(){
+  	 	 	  $("#manageTablecomm tbody tr td").on("click",function(){
   	 	           var text = $(this).text();
   	 	           if (text && text != "") {
   	 	               showEditMembercomm();

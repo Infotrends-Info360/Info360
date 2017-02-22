@@ -11,149 +11,122 @@ function showAgentreason() {
 
 
 function select2(){
-	 $.ajax({                              
-	          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Select_agentreason",
-		         data:{
-		        	 flag:0
+	$("#manageAgentreasonTable tbody tr").empty();
+ 	$("#banAgentreasonTable tboby tr").empty();
+    $.ajax({                              
+        url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Select_agentreason",
+		        data:{
+		        	flag:0
 		        	 },
 		         type : "POST",                                                                    
 		         dataType:'json',
+		         
 		         error:function(e){                                                                 
 		         alert("失敗");
 		         callback(data);
 		         },
-		         success:function(data){
-		        	 $('#agentreason0').remove();
-		        	 
-		        	 var agentreason00 = "<div class='row ibox' id='agentreason0'></div>"
-		        		 document.getElementById("agentreason00").insertAdjacentHTML("BeforeEnd",agentreason00);
-		        	 
-		        	 var agentreason0 = "<table class='table table-bordered table-hover' id='manageAgentreasonTable' data-pagination='true' data-page-list='[5, 10, 20, 50, 100, 200]'data-search='true' data-url='x'></table>"
-		        		 document.getElementById("agentreason0").insertAdjacentHTML("BeforeEnd",agentreason0);
-		        	
-		        	 $('#manageAgentreasonTable').bootstrapTable({
-		         columns: [{
-		           
-		             field: 'statusname',
-		             title: '狀態名'
-		         }, {
-		             field: 'statusname_cn',
-		             title: '狀態名_CN'
-		         },{
-		             field: 'statusname_en',
-		             title: '狀態名_EN'
-		         },
-		         {
-		             field: 'statusname_tw',
-		             title: '狀態名_TW'
-		         },
-		         {
-		             field: 'description',
-		             title: '註解'
-		         },
-		         {
-		             field: 'alarmduration',
-		             title: '告警時間'
-		         }, {
-		             field: 'alarmcolor',
-		             title: '告警顏色'
-		         }, {
-		             field: 'flag',
-		             title: 'flag'
-		         }],
-		     	data:data.agentreason,
-		     	onClickRow : function(row, $element) {
-					//alert(JSON.stringify(row));
-					document.getElementById("statusname_cn").value=row.statusname_cn;
-					document.getElementById("statusname").value=row.statusname;
-					document.getElementById("statusname_tw").value=row.statusname_tw;
-					document.getElementById("statusname_en").value=row.statusname_en;
-					document.getElementById("description").value=row.description;
-					document.getElementById("statusname").value=row.statusname;
-					document.getElementById("Update_id").value=row.dbid;
-					document.getElementById("alarmduration").value=row.alarmduration;
-				},
-		     	});"json"
-	     		console.log("啟用",data);
-	     		agentreason2();
-		      }	        
-	 	}); 
+		         success:function(data){ 
+		      		console.log("啟用值機",data);
+	 
+//		        	alert(JSON.stringify(data.person));
+		        	$('#manageAgentreasonTable').DataTable( {
+		        		destroy: true,
+		        		aaData: data.agentreason,
+		        		aoColumns: [
+					{ data:   "dbid",
+		                render: function ( data, type, row ) {
+		                    if ( type === 'display' ) {
+		                        return '<input type="checkbox" class="editor-active" value='+data+'>';
+		                    }
+		                    return data;
+		                },
+		            className: "dt-body-center" },
+	                    { "data": "statusname" },
+	                    { "data": "statusname_cn" },
+	                    { "data": "statusname_en" },
+	                    { "data": "statusname_tw" },
+	                    { "data": "description" },
+	                    { "data": "alarmduration" },
+	                    { "data": "alarmcolor" },
+	                    { "data": "flag" }
+	                ],
+	              lengthChange: false
+	            } ); 
+		        	agentreason2()
+		    }  
+	     });
+		         
+    
+    $("#manageAgentreasonTable").css("width","100%");
+    $("#manageAgentreasonTable_filter").prop("style","float:right;");
+    $("#manageAgentreasonTable_wrapper > div:nth-child(1)").hide();
 
-	   $.ajax({                              
-		    url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Select_agentreason",
-			   data:{
-			     flag:1
-			        },
-			            
-			      type : "POST",                                                                    
-			      dataType:'json',
-			      error:function(e)
-			      {                                                                 
-			      alert("失敗");
-			      callback(data);
-			      },
-			      success:function(data){
-			    	  
-			    	  $('#agentreason1').remove();
-			        	 
-			        	 var agentreason11 = "<div class='row ibox' id='agentreason1'></div>"
-			        		 document.getElementById("agentreason11").insertAdjacentHTML("BeforeEnd",agentreason11);
-			        	 
-			        	 var agentreason1 = "<table class='table table-bordered table-hover' id='banAgentreasonTable' data-pagination='true' data-page-list='[5, 10, 20, 50, 100, 200]'data-search='true' data-url='x'></table>"
-			        		 document.getElementById("agentreason1").insertAdjacentHTML("BeforeEnd",agentreason1);	  
-			    	  
-			    	  
-			    $('#banAgentreasonTable').bootstrapTable({
-			       columns: [{
-			           
-			             field: 'statusname',
-			             title: '狀態名'
-			         }, {
-			             field: 'statusname_cn',
-			             title: '狀態名_CN'
-			         },{
-			             field: 'statusname_en',
-			             title: '狀態名_EN'
-			         },
-			         {
-			             field: 'statusname_tw',
-			             title: '狀態名_TW'
-			         },
-			         {
-			             field: 'description',
-			             title: '註解'
-			         },
-			         {
-			             field: 'alarmduration',
-			             title: '告警時間'
-			         }, {
-			             field: 'alarmcolor',
-			             title: '告警顏色'
-			         }, {
-			             field: 'flag',
-			             title: '狀態'
-			         }],
-			     	data:data.agentreason,
-			     	onClickRow : function(row, $element) {
-						//alert(JSON.stringify(row));
-						document.getElementById("statusname_cn").value=row.statusname_cn;
-						document.getElementById("statusname").value=row.statusname;
-						document.getElementById("statusname_tw").value=row.statusname_tw;
-						document.getElementById("statusname_en").value=row.statusname_en;
-						document.getElementById("description").value=row.description;
-						document.getElementById("statusname").value=row.statusname;
-						document.getElementById("Update_id").value=row.dbid;
-						document.getElementById("alarmduration").value=row.alarmduration;
-					},
-			     	});"json"
-		     		console.log("停用",data);
-		     		agentreason2();
-			     }    
-			}); 
-		};
+    $("#manageAgentreasonTableSearch").keyup(function(){
+        var searchText = $("#manageAgentreasonTableSearch").val();
+
+        $("input[aria-controls='manageAgentreasonTable']").val(searchText);
+        $("input[aria-controls='manageAgentreasonTable']").trigger("keyup");
+    });
+
+    $.ajax({                              
+        url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Select_agentreason",
+	        data:{
+	        	flag:1
+	        	 },
+	         type : "POST",                                                                    
+	         dataType:'json',
+	         
+	         error:function(e){                                                                 
+	         alert("失敗");
+	         callback(data);
+	         },
+	         success:function(data){
+		      		console.log("停用值機",data);
+
+//		        	alert(JSON.stringify(data.person));
+	        	$('#banAgentreasonTable').DataTable( {
+	        		destroy: true,
+	        		aaData: data.agentreason,
+	        		aoColumns: [
+					{ data:   "dbid",
+		                render: function ( data, type, row ) {
+		                    if ( type === 'display' ) {
+		                        return '<input type="checkbox" class="editor-active" value='+data+'>';
+		                    }
+		                    return data;
+		                },
+		                className: "dt-body-center" },
+		                { "data": "statusname" },
+	                    { "data": "statusname_cn" },
+	                    { "data": "statusname_en" },
+	                    { "data": "statusname_tw" },
+	                    { "data": "description" },
+	                    { "data": "alarmduration" },
+	                    { "data": "alarmcolor" },
+	                    { "data": "flag" }
+                ],
+              lengthChange: false
+            } ); 
+	        	agentreason2()
+	    }  
+     });
+     
+    $("#banAgentreasonTable").css("width","100%");
+    $("#banAgentreasonTable_filter").prop("style","float:right;");
+    $("#banAgentreasonTable_wrapper > div:nth-child(1)").hide();
+
+    $("#banAgentreasonTableSearch").keyup(function(){
+
+        var searchText = $("#banAgentreasonTableSearch").val();
+
+        $("input[aria-controls='banAgentreasonTable']").val(searchText);
+        $("input[aria-controls='banAgentreasonTable']").trigger("keyup");
+    });
+} 
+
 
 function agentreason2() {
- 	  $("#manageAgentreasonTable tbody tr,#banAgentreasonTable tbody tr").on("click",function(){
+ 	  $("#manageAgentreasonTable tbody tr td,#banAgentreasonTable tbody tr td").on("click",function(){
            var text = $(this).text();
            if (text && text != "") {
                showEditMemberAgentreason();
