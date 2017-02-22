@@ -312,7 +312,7 @@
 // 								console.log(data.person[0].max_count);
 								UserID_g = data.person[0].dbid;
 								UserName_g = data.person[0].user_name;
-
+								$('.J_iframe').attr('src', '/info360/dashboard?userid='+UserID_g); // 20170222 Lin 刷新dashboard，為了取的UserID
 								// Step-1 載入時連線ws
 								doConnect();
 							}

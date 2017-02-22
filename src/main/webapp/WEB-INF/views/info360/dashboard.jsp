@@ -331,10 +331,12 @@
 
         <!-- Peity demo -->
 <!--         <script src="../js/demo/peity-demo.js"></script> -->
-		
+		<%
+		String userid =  request.getParameter("userid");
+		%>
 		<script>
 		function kpiview() {
-			var user = '';
+			var user = <%= userid%>;
 			var data = 'user=' + user;
 			var me = this;
 			$
