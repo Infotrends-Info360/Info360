@@ -7,7 +7,120 @@ function showActivityGroup() {
             $("button.Agentreason").removeClass("btn-success");
             $("button.Agentreason").addClass("btn-primary");
                   AG();
+              	$("#manageTableAG tbody tr").empty();
+             	$("#banTableAG tboby tr").empty();
 	}
+
+function group(){
+	$("#manageTableAG tbody tr").empty();
+ 	$("#banTableAG tboby tr").empty();
+ 	var dbid = document.getElementById("menu").value
+$.ajax({                              
+     url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Query_ActivityMenu",
+	        data:{
+	        	dbid:dbid
+	        	 },
+	         type : "POST",                                                                    
+	         dataType:'json',
+	         
+	         error:function(e){                                                                 
+	         alert("失敗");
+	         callback(data);
+	         },
+	         success:function(data){ 
+		     		console.log("啟用服務代碼群組",data);
+
+//	        	alert(JSON.stringify(data.person));
+	        	$('#manageTableAG').DataTable( {
+	        		destroy: true,
+	        		aaData: data.flag0_group,
+	        		aoColumns: [
+				{ data:   "dbid",
+	                render: function ( data, type, row ) {
+	                    if ( type === 'display' ) {
+	                        return '<input type="checkbox" class="editor-active" value='+data+'>';
+	                    }
+	                    return data;
+	                },
+	            className: "dt-body-center" },
+                    { "data": "dbid" },
+                    { "data": "groupname" },
+                    { "data": "sort" },
+                    { "data": "deleteflag" },
+                    { "data": "createdatetime" },
+
+                ],
+              lengthChange: false
+            } ); 
+	     AG2();
+	    }  
+     });
+	         
+
+$("#manageTableAG").css("width","100%");
+$("#manageTableAG_filter").prop("style","float:right;");
+$("#manageTableAG_wrapper > div:nth-child(1)").hide();
+
+$("#manageTableAGSearch").keyup(function(){
+    var searchText = $("#manageTableAGSearch").val();
+
+    $("input[aria-controls='manageTableAG']").val(searchText);
+    $("input[aria-controls='manageTableAG']").trigger("keyup");
+});
+
+$.ajax({                              
+     url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Query_ActivityMenu",
+        data:{
+        	dbid:dbid
+        	 },
+         type : "POST",                                                                    
+         dataType:'json',
+         
+         error:function(e){                                                                 
+         alert("失敗");
+         callback(data);
+         },
+         success:function(data){ 
+	     		console.log("停用服務代碼群組",data);
+
+//	        	alert(JSON.stringify(data.person));
+        	$('#banTableAG').DataTable( {
+        		destroy: true,
+        		aaData: data.flag1_group,
+        		aoColumns: [
+				{ data:   "dbid",
+	                render: function ( data, type, row ) {
+	                    if ( type === 'display' ) {
+	                        return '<input type="checkbox" class="editor-active" value='+data+'>';
+	                    }
+	                    return data;
+	                },
+	                className: "dt-body-center" },
+	                { "data": "dbid" },
+                    { "data": "groupname" },
+                    { "data": "sort" },
+                    { "data": "createdatetime" },
+                    { "data": "deleteflag" }
+            ],
+          lengthChange: false
+        } ); 
+     AG2();
+    }  
+ });
+ 
+$("#banTableAG").css("width","100%");
+$("#banTableAG_filter").prop("style","float:right;");
+$("#banTableAG_wrapper > div:nth-child(1)").hide();
+
+$("#banTableAGSearch").keyup(function(){
+
+    var searchText = $("#banTableAGSearch").val();
+
+    $("input[aria-controls='banTableAG']").val(searchText);
+    $("input[aria-controls='banTableAG']").trigger("keyup");
+});
+} 
+
 
 
 function AG(){
@@ -34,119 +147,14 @@ function AG(){
              	 document.getElementById("menu").insertAdjacentHTML("BeforeEnd",menu);
 		        	 }
 
-	     		console.log("activitymenu",data);
+	     		console.log("服務代碼清單",data);
 		     }
 		        
 		 });  
 		};
-		function group(){
-	  		var dbid = document.getElementById("menu").value
-	 		  $.ajax({                              
-	 	          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Query_ActivityMenu",
-	 		         data:{
-	 		        	 dbid:dbid
-	 		        	 },
-	 		            
-	 		         type : "POST",                                                                    
-	 		         dataType:'json',
-	 		         error:function(e){                                                                 
-	 		         alert("失敗");
-	 		         callback(data);
-	 		         },
-	 		         success:function(data){
-	 		        	 
-	 		        	$('#AG0').remove();
-			        	 
-			        	 var AG00 = "<div class='row ibox' id='AG0'></div>"
-			        		 document.getElementById("AG00").insertAdjacentHTML("BeforeEnd",AG00);
-			        	 
-			        	 var AG0 = "<table class='table table-bordered table-hover' id='manageTableAG' data-pagination='true' data-page-list='[5, 10, 20, 50, 100, 200]'data-search='true' data-url='x'></table>"
-			        		 document.getElementById("AG0").insertAdjacentHTML("BeforeEnd",AG0);
-	 		        $('#manageTableAG').bootstrapTable({
-	 		         columns: [{
-	 		           
-	 		             field: 'dbid',
-	 		             title: '編號'
-	 		         }, {
-	 		             field: 'createdatetime',
-	 		             title: '建立時間'
-	 		         },
-	 		         {
-	 		             field: 'deleteflag',
-	 		             title: '開關'
-	 		         },
-	 		         {
-	 		             field: 'groupname',
-	 		             title: '群組名稱'
-	 		         },
-	 		         {
-	 		             field: 'sort',
-	 		             title: '排序'
-	 		         }],
-	 		     	data:data.flag0_group,
-	 		     	onClickRow : function(row, $element) {
-			     		alert(JSON.stringify(row));
-
-						document.getElementById("up_dbidAG").value=row.dbid;
-						document.getElementById("up_groupnameAG").value=row.groupname;
-						document.getElementById("up_sortAG").value=row.sort;
-					},
-	 		     	});"json"
-	 		       AG2();
-	 		        
-	 		       
-	 		      $('#AG1').remove();
-		        	 
-		        	 var AG11 = "<div class='row ibox' id='AG1'></div>"
-		        		 document.getElementById("AG11").insertAdjacentHTML("BeforeEnd",AG11);
-		        	 
-		        	 var AG1 = "<table class='table table-bordered table-hover' id='banTableAG' data-pagination='true' data-page-list='[5, 10, 20, 50, 100, 200]'data-search='true' data-url='x'></table>"
-		        		 document.getElementById("AG1").insertAdjacentHTML("BeforeEnd",AG1);
-
-		        	 $('#banTableAG').bootstrapTable({
-			         columns: [{
-			           
-			             field: 'dbid',
-			             title: '編號'
-			         }, {
-			             field: 'createdatetime',
-			             title: '建立時間'
-			         },{
-			             field: 'deletedatetime',
-			             title: '刪除時間'
-			         },
-			         {
-			             field: 'deleteflag',
-			             title: '開關'
-			         },
-			         {
-			             field: 'groupname',
-			             title: '群組名稱'
-			         },
-			         {
-			             field: 'sort',
-			             title: '開關'
-			         }],
-			     	data:data.flag1_group,
-			     	onClickRow : function(row, $element) {
-						document.getElementById("up_dbidAG").value=row.dbid;
-						document.getElementById("up_groupnameAG").value=row.groupname;
-						document.getElementById("up_sortAG").value=row.sort;
-					},
-			     	});"json"
-		     		console.log("群組",data);
-		     		AG2();
-	 		         }
-	 		         });
-	  		
-	  		
-	 	 	}
-		
-		
-		
-
+	
 function AG2() {
- 	  $("#manageTableAG tbody tr,#banTableAG tbody tr").on("click",function(){
+ 	  $("#manageTableAG tbody tr td,#banTableAG tbody tr td").on("click",function(){
            var text = $(this).text();
            if (text && text != "") {
                showEditMemberAG();

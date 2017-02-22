@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-        <title>「人員設定」頁面</title>
+        <title>「設定」頁面</title>
          <script src="resources/jstree/jquery.min.js"></script>
         <link href="resources/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
         <link href="resources/css/font-awesome.css?v=4.4.0" rel="stylesheet">
@@ -28,6 +28,8 @@
        		.yellow { color:#FFBB00 !important; }
        		.blue { color:#0000CC !important; }
        		.black { color:#666666 !important; }
+       		.dataTables_filter { display: none; }
+       		
         </style>
     </head>
     <body class="gray-bg">
@@ -95,8 +97,7 @@
 
                     <!-- 設定頁面內容頁 Start-->
                     <div class="panel-body" id="settingContent">
-                     
-                        <div id="manageContent" >
+                        <div id="manageContent">
                             <div>
                                 <ul class="pagination">
                                     <li onclick="showAddMember()"><a href="#"><i class="fa fa-fw fa-plus"></i></a></li>
@@ -104,45 +105,39 @@
                                     <li onclick="confirmBan()"><a href="#"><i class="fa fa-fw fa-ban"></i></a></li>
                                 </ul>
 
-<!--                                 <ul class="pagination" style="float:right;" > -->
-<!--                                     <li> -->
-<!--                                         <input type="text" id="manageSearch" placeholder="搜索" -->
-<!--                                                style="background-color: #FFFFFF; -->
-<!-- /*                                                       border: 1px solid #DDDDDD; */ -->
-<!-- /*                                                       color: inherit; */ -->
-<!-- /*                                                       float: left; */ -->
-<!-- /*                                                       line-height: 1.42857; */ -->
-<!-- /*                                                       margin-left: -1px; */ -->
-<!-- /*                                                       padding: 4px 10px; */ -->
-<!-- /*                                                       position: relative; */ -->
-<!--                                                       text-decoration: none;"> -->
-<!--                                     </li> -->
+                                <ul class="pagination" style="float:right;" >
+                                    <li>
+                                        <input type="text" id="person0Search" placeholder="搜索"
+                                               style="background-color: #FFFFFF;
+                                                      border: 1px solid #DDDDDD;
+                                                      color: inherit;
+                                                      float: left;
+                                                      line-height: 1.42857;
+                                                      margin-left: -1px;
+                                                      padding: 4px 10px;
+                                                      position: relative;
+                                                      text-decoration: none;">
+                                    </li>
 
-<!--                                     <li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li> -->
-<!--                                 </ul> -->
+                                    <li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+                                </ul>
                             </div>
 
-                            <div class="row ibox" id="person00">
-                                <div class="col-lg-12 col-md-12" id="person0">
-                                    <table class="table table-bordered table-hover" id="manageTable_person"
-                                   	data-pagination="true"
-									data-page-list="[5, 10, 20, 50, 100, 200]"
-									data-search="true"
-									data-url="x" >
+                            <div class="row ibox">
+                                <div class="col-lg-12 col-md-12" type="">
+                                    <table class="table table-bordered table-hover" id="person0Table">
                                         <thead>
-                                           <tr >
-					 							<th id="user_name" data-sortable="true"></th>		 	
-			 		 							<th id="emailaddress" data-sortable="true"></th>
-			 		 							<th id="state" data-sortable="true"></th>
-			 		 							<th id="account" data-sortable="true"></th>
-			 		 							<th id="employee_id" data-sortable="true"></th>
-			 		 							<th id="dn" data-sortable="true"></th>
-			 		 							<th id="dbid" data-sortable="true"></th>
-											</tr>
+                                            <tr>
+                                                <th class="no-sort"><input type="checkbox" id="manageCheck" ischecked=false></th>
+                                                <th>帳號</th>
+                                                <th>姓名</th>
+                                                <th>員工編號</th>
+                                                <th>分機號碼</th>
+                                                <th>Email</th>
+                                                <th>狀態</th>
+                                                <th>最大接通數</th>
+                                            </tr>
                                         </thead>
-                                        <tbody>
-                                        
-                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -156,44 +151,40 @@
                                     <li onclick="confirmBan()"><a href="#"><i class="fa fa-fw fa-ban"></i></a></li>
                                 </ul>
 
-<!--                                 <ul class="pagination" style="float:right;" > -->
-<!--                                     <li> -->
-<!--                                         <input type="text" id="banSearch" placeholder="搜索" -->
-<!--                                                style="background-color: #FFFFFF; -->
-<!-- /*                                                       border: 1px solid #DDDDDD; */ -->
-<!-- /*                                                       color: inherit; */ -->
-<!-- /*                                                       float: left; */ -->
-<!-- /*                                                       line-height: 1.42857; */ -->
-<!-- /*                                                       margin-left: -1px; */ -->
-<!-- /*                                                       padding: 4px 10px; */ -->
-<!-- /*                                                       position: relative; */ -->
-<!--                                                       text-decoration: none;"> -->
-<!--                                     </li> -->
+                                <ul class="pagination" style="float:right;" >
+                                    <li>
+                                        <input type="text" id="person1Search" placeholder="搜索"
+                                               style="background-color: #FFFFFF;
+                                                      border: 1px solid #DDDDDD;
+                                                      color: inherit;
+                                                      float: left;
+                                                      line-height: 1.42857;
+                                                      margin-left: -1px;
+                                                      padding: 4px 10px;
+                                                      position: relative;
+                                                      text-decoration: none;">
+                                    </li>
 
-<!--                                     <li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li> -->
-<!--                                 </ul> -->
+                                    <li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+                                </ul>
                             </div>
 
-                            <div class="row ibox" id="person11">
-                                <div class="col-lg-12 col-md-12" id="person1">
-                                    <table class="table table-bordered table-hover" id="banTable_person"
-                                    data-pagination="true"
-                                    data-search="true"
-									data-page-list="[5, 10, 20, 50, 100, 200]" 
-									data-url="x"
-                                    >
+                            <div class="row ibox">
+                                <div class="col-lg-12 col-md-12">
+                                    <table class="table table-bordered table-hover" id="person1Table">
                                         <thead>
                                             <tr>
-                                                <th class="no-sort"><input type="checkbox" id="banCheck"></th>
+                                               <th class="no-sort"><input type="checkbox" id="manageCheck" ischecked=false></th>
                                                 <th>帳號</th>
                                                 <th>姓名</th>
                                                 <th>員工編號</th>
                                                 <th>分機號碼</th>
                                                 <th>Email</th>
                                                 <th>狀態</th>
-                                                <th>編號</th>
+                                                <th>最大接通數</th>
                                             </tr>
                                         </thead>
+                                       
                                     </table>
                                 </div>
                             </div>
@@ -260,6 +251,13 @@
                                         </div>
                                     </div>
                                     
+                                     <div class="form-group col-sm-12">
+                                        <label for="inputDepartment" class="col-sm-1 control-label">最大接通數</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="inputMaxcount" placeholder="">
+                                        </div>
+                                    </div>
+                                    
                                     <div class="form-group col-sm-12">
                                         <label for="inputDepartment" class="col-sm-1 control-label">部門</label>
                                         <div class="col-sm-4">
@@ -283,7 +281,7 @@
                                     <div class="form-group col-sm-6">
                                         <label for="inputAccount" class="col-sm-2 control-label  ">帳號</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="updateAccount"  disabled>
+                                            <input type="text" class="form-control" id="updateAccount" disabled >
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-6">
@@ -308,7 +306,7 @@
                                     <div class="form-group col-sm-6">
                                         <label for="inputEmployNumber" class="col-sm-2 control-label">員工編號</label>
                                         <div class="col-sm-8">
-                                            <input type="number" class="form-control" id="updateEmployNumber" placeholder="">
+                                            <input type="" class="form-control" id="updateEmployNumber" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-6">
@@ -335,6 +333,13 @@
                                         <label for="inputEmail" class="col-sm-1 control-label">Email</label>
                                         <div class="col-sm-9">
                                             <input type="email" class="form-control" id="updateEmail" placeholder="">
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="form-group col-sm-6">
+                                        <label for="inputDepartment" class="col-sm-2 control-label">最大接通數</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="updateMaxcount" placeholder="">
                                         </div>
                                     </div>
                                    
@@ -391,23 +396,22 @@
                                     <li onclick="unlockAccountgroup()"><a href="#"><i class="fa fa-fw fa-unlock-alt"></i></a></li>
                                     <li onclick="confirmBangroup()"><a href="#"><i class="fa fa-fw fa-ban"></i></a></li>
                                 </ul>
+								<ul class="pagination" style="float:right;" >
+                                    <li>
+                                        <input type="text" id="managegroupTableSearch" placeholder="搜索"
+                                               style="background-color: #FFFFFF;
+                                                      border: 1px solid #DDDDDD;
+                                                      color: inherit;
+                                                      float: left;
+                                                      line-height: 1.42857;
+                                                      margin-left: -1px;
+                                                      padding: 4px 10px;
+                                                      position: relative;
+                                                      text-decoration: none;">
+                                    </li>
 
-<!--                                 <ul class="pagination" style="float:right;" > -->
-<!--                                     <li> -->
-<!--                                         <input type="text" id="manageSearch" placeholder="搜索" -->
-<!--                                                style="background-color: #FFFFFF; -->
-<!-- /*                                                       border: 1px solid #DDDDDD; */ -->
-<!-- /*                                                       color: inherit; */ -->
-<!-- /*                                                       float: left; */ -->
-<!-- /*                                                       line-height: 1.42857; */ -->
-<!-- /*                                                       margin-left: -1px; */ -->
-<!-- /*                                                       padding: 4px 10px; */ -->
-<!-- /*                                                       position: relative; */ -->
-<!--                                                       text-decoration: none;"> -->
-<!--                                     </li> -->
-
-<!--                                     <li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li> -->
-<!--                                 </ul> -->
+                                    <li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+                                </ul>
                             </div>
 
                             <div class="row ibox" id="group00">
@@ -415,9 +419,10 @@
                                     <table class="table table-bordered table-hover" id="managegroupTable">
                                         <thead>
                                          	<tr >
-												<th id="name" data-sortable="true"></th>
-												<th id="state" data-sortable="true"></th>
-												<th id="dbid" data-sortable="true"></th>
+											 	<th class="no-sort"><input type="checkbox" id="manageCheck" ischecked=false></th>
+                                                <th>部門名稱</th>
+                                                <th>狀態</th>
+                                                <th>編號</th>
 											</tr>
                                         </thead>
                                     </table>
@@ -432,23 +437,22 @@
                                     <li onclick="unlockAccountgroup()"><a href="#"><i class="fa fa-fw fa-unlock-alt"></i></a></li>
                                     <li onclick="confirmBangroup()"><a href="#"><i class="fa fa-fw fa-ban"></i></a></li>
                                 </ul>
+									<ul class="pagination" style="float:right;" >
+                                    <li>
+                                        <input type="text" id="bangroupTableSearch" placeholder="搜索"
+                                               style="background-color: #FFFFFF;
+                                                      border: 1px solid #DDDDDD;
+                                                      color: inherit;
+                                                      float: left;
+                                                      line-height: 1.42857;
+                                                      margin-left: -1px;
+                                                      padding: 4px 10px;
+                                                      position: relative;
+                                                      text-decoration: none;">
+                                    </li>
 
-<!--                                 <ul class="pagination" style="float:right;" > -->
-<!--                                     <li> -->
-<!--                                         <input type="text" id="banSearch" placeholder="搜索" -->
-<!--                                                style="background-color: #FFFFFF; -->
-<!-- /*                                                       border: 1px solid #DDDDDD; */ -->
-<!-- /*                                                       color: inherit; */ -->
-<!-- /*                                                       float: left; */ -->
-<!-- /*                                                       line-height: 1.42857; */ -->
-<!-- /*                                                       margin-left: -1px; */ -->
-<!-- /*                                                       padding: 4px 10px; */ -->
-<!-- /*                                                       position: relative; */ -->
-<!--                                                       text-decoration: none;"> -->
-<!--                                     </li> -->
-
-<!--                                     <li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li> -->
-<!--                                 </ul> -->
+                                    <li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+                                </ul>
                             </div>
 
                             <div class="row ibox" id="group11">
@@ -456,9 +460,10 @@
                                     <table class="table table-bordered table-hover" id="bangroupTable">
                                         <thead>
                                             <tr >
-												<th id="name" data-sortable="true"></th>
-												<th id="state" data-sortable="true"></th>
-												<th id="dbid" data-sortable="true"></th>
+												<th class="no-sort"><input type="checkbox" id="manageCheck" ischecked=false></th>
+                                                <th>部門名稱</th>
+                                                <th>狀態</th>
+                                                <th>編號</th>
 											</tr>
                                         </thead>
                                     </table>
@@ -560,13 +565,40 @@
                                     <li onclick="unlockAccountAgentreason()"><a href="#"><i class="fa fa-fw fa-unlock-alt"></i></a></li>
                                     <li onclick="confirmBanAgentreason()"><a href="#"><i class="fa fa-fw fa-ban"></i></a></li>
                                 </ul>
+								<ul class="pagination" style="float:right;" >
+                                    <li>
+                                        <input type="text" id="manageAgentreasonTableSearch" placeholder="搜索"
+                                               style="background-color: #FFFFFF;
+                                                      border: 1px solid #DDDDDD;
+                                                      color: inherit;
+                                                      float: left;
+                                                      line-height: 1.42857;
+                                                      margin-left: -1px;
+                                                      padding: 4px 10px;
+                                                      position: relative;
+                                                      text-decoration: none;">
+                                    </li>
 
+                                    <li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+                                </ul>
                             </div>
 
                             <div class="row ibox" id="agentreason00">
                                 <div class="col-lg-12 col-md-12" id="agentreason0">
                                     <table class="table table-bordered table-hover" id="manageAgentreasonTable">
-                                       
+                                       <thead>
+                                       		<tr>
+                                       			<th class="no-sort"><input type="checkbox" id="manageCheck" ischecked=false></th>
+                                                <th>狀態名</th>
+                                                <th>狀態名_CE</th>
+                                                <th>狀態名_EN</th>
+                                                <th>狀態名_TW</th>
+                                                <th>註解</th>
+                                                <th>告警時間</th>
+                                                <th>告警顏色</th>
+                                                <th>開關</th>
+                                           </tr>
+                                       </thead>       
                                     </table>
                                 </div>
                             </div>
@@ -579,13 +611,40 @@
                                     <li onclick="unlockAccount()"><a href="#"><i class="fa fa-fw fa-unlock-alt"></i></a></li>
                                     <li onclick="confirmBan()"><a href="#"><i class="fa fa-fw fa-ban"></i></a></li>
                                 </ul>
+								<ul class="pagination" style="float:right;" >
+                                    <li>
+                                        <input type="text" id="banAgentreasonTableSearch" placeholder="搜索"
+                                               style="background-color: #FFFFFF;
+                                                      border: 1px solid #DDDDDD;
+                                                      color: inherit;
+                                                      float: left;
+                                                      line-height: 1.42857;
+                                                      margin-left: -1px;
+                                                      padding: 4px 10px;
+                                                      position: relative;
+                                                      text-decoration: none;">
+                                    </li>
 
+                                    <li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+                                </ul>
                             </div>
 
                             <div class="row ibox" id="agentreason11">
                                 <div class="col-lg-12 col-md-12" id="agentreason1">
                                     <table class="table table-bordered table-hover" id="banAgentreasonTable">
-                                      
+                                       <thead>
+                                       		<tr>
+                                       			<th class="no-sort"><input type="checkbox" id="manageCheck" ischecked=false></th>
+                                                <th>狀態名</th>
+                                                <th>狀態名_CE</th>
+                                                <th>狀態名_EN</th>
+                                                <th>狀態名_TW</th>
+                                                <th>註解</th>
+                                                <th>告警時間</th>
+                                                <th>告警顏色</th>
+                                                <th>開關</th>
+                                           </tr>
+                                       </thead>          
                                     </table>
                                 </div>
                             </div>
@@ -757,13 +816,15 @@
                             <div class="col-lg-3 col-md-3">                          
 								<div id="tree" ></div>
 								</div>
-                            <div class="col-lg-8 col-md-8" id="comm"  style="display:none;"
+                            	
+                            	 <div class="col-lg-8 col-md-8" id="comm"  style="display:none;"
                             	 >
                             	 <h2>請選擇節點</h2>
                             	 </div>
                             
                                 <div class="col-lg-8 col-md-8" id="commTB" style="display:none;"
                                 >
+                                
       	 							<table class="table table-bordered table-hover" id="manageTablecomm">
                   						<thead>
                        						<tr>
@@ -912,13 +973,37 @@
                                     <li onclick="showAddMemberAM()"><a href="#"><i class="fa fa-fw fa-plus"></i></a></li>
                                     <li onclick="unlockAccountAM()"><a href="#"><i class="fa fa-fw fa-unlock-alt"></i></a></li>
                                 </ul>
-                              
+                              	<ul class="pagination" style="float:right;" >
+                                    <li>
+                                        <input type="text" id="manageTableAMSearch" placeholder="搜索"
+                                               style="background-color: #FFFFFF;
+                                                      border: 1px solid #DDDDDD;
+                                                      color: inherit;
+                                                      float: left;
+                                                      line-height: 1.42857;
+                                                      margin-left: -1px;
+                                                      padding: 4px 10px;
+                                                      position: relative;
+                                                      text-decoration: none;">
+                                    </li>
+
+                                    <li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+                                </ul>
                             </div>
 
                             <div class="row ibox" id="AM00">
                                 <div class="col-lg-12 col-md-12" id="AM0">
                                     <table class="table table-bordered table-hover" id="manageTableAM">
-                                      
+                                      <thead>
+                                            <tr>
+                                                <th class="no-sort"><input type="checkbox" id="manageCheck" ischecked=false></th>
+                                                <th>編號</th>
+                                                <th>清單名稱</th>
+                                                <th>排序</th>
+                                                <th>建立時間</th>
+                                                <th>狀態</th>
+                                            </tr>
+                                        </thead>
                                     </table>
                                 </div>
                             </div>
@@ -930,13 +1015,37 @@
                                     <li onclick="showAddMemberAM()"><a href="#"><i class="fa fa-fw fa-plus"></i></a></li>
                                     <li onclick="unlockAccountAM()"><a href="#"><i class="fa fa-fw fa-unlock-alt"></i></a></li>
                                 </ul>
+								<ul class="pagination" style="float:right;" >
+                                    <li>
+                                        <input type="text" id="banTableAMSearch" placeholder="搜索"
+                                               style="background-color: #FFFFFF;
+                                                      border: 1px solid #DDDDDD;
+                                                      color: inherit;
+                                                      float: left;
+                                                      line-height: 1.42857;
+                                                      margin-left: -1px;
+                                                      padding: 4px 10px;
+                                                      position: relative;
+                                                      text-decoration: none;">
+                                    </li>
 
+                                    <li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+                                </ul>
                             </div>
 
                             <div class="row ibox" id="AM11">
                                 <div class="col-lg-12 col-md-12" id="AM1">
                                     <table class="table table-bordered table-hover" id="banTableAM">
-                                   
+                                   		<thead>
+                                            <tr>
+                                                <th class="no-sort"><input type="checkbox" id="manageCheck" ischecked=false></th>
+                                                <th>編號</th>
+                                                <th>清單名稱</th>
+                                                <th>排序</th>
+                                                <th>建立時間</th>
+                                                <th>狀態</th>
+                                            </tr>
+                                        </thead>
                                     </table>
                                 </div>
                             </div>
@@ -1037,12 +1146,37 @@
                                     <li onclick="showAddMemberAG()"><a href="#"><i class="fa fa-fw fa-plus"></i></a></li>
                                     <li onclick="unlockAccountAG()"><a href="#"><i class="fa fa-fw fa-unlock-alt"></i></a></li>
                                 </ul>
+                                <ul class="pagination" style="float:right;" >
+                                    <li>
+                                        <input type="text" id="manageTableAGSearch" placeholder="搜索"
+                                               style="background-color: #FFFFFF;
+                                                      border: 1px solid #DDDDDD;
+                                                      color: inherit;
+                                                      float: left;
+                                                      line-height: 1.42857;
+                                                      margin-left: -1px;
+                                                      padding: 4px 10px;
+                                                      position: relative;
+                                                      text-decoration: none;">
+                                    </li>
+
+                                    <li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+                                </ul>
                             </div>
 
                             <div class="row ibox" id="AG00">
                                 <div class="col-lg-12 col-md-12" id="AG0">
                                     <table class="table table-bordered table-hover" id="manageTableAG">
-                                       
+                                       <thead>
+                                            <tr>
+                                                <th class="no-sort"><input type="checkbox" id="manageCheck" ischecked=false></th>
+                                                <th>編號</th>
+                                                <th>群組名稱</th>
+                                                <th>排序</th>
+                                                <th>建立時間</th>
+                                                <th>狀態</th>
+                                            </tr>
+                                        </thead>
                                     </table>
                                 </div>
                             </div>
@@ -1054,12 +1188,37 @@
                                     <li onclick="showAddMemberAG()"><a href="#"><i class="fa fa-fw fa-plus"></i></a></li>
                                     <li onclick="unlockAccountAG()"><a href="#"><i class="fa fa-fw fa-unlock-alt"></i></a></li>
                                 </ul>
+                                <ul class="pagination" style="float:right;" >
+                                    <li>
+                                        <input type="text" id="banTableAGSearch" placeholder="搜索"
+                                               style="background-color: #FFFFFF;
+                                                      border: 1px solid #DDDDDD;
+                                                      color: inherit;
+                                                      float: left;
+                                                      line-height: 1.42857;
+                                                      margin-left: -1px;
+                                                      padding: 4px 10px;
+                                                      position: relative;
+                                                      text-decoration: none;">
+                                    </li>
+
+                                    <li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+                                </ul>
                             </div>
 
                             <div class="row ibox" id="AG11">
                                 <div class="col-lg-12 col-md-12" id="AG1">
                                     <table class="table table-bordered table-hover" id="banTableAG">
-                                       
+                                       <thead>
+                                            <tr>
+                                                <th class="no-sort"><input type="checkbox" id="manageCheck" ischecked=false></th>
+                                                <th>編號</th>
+                                                <th>群組名稱</th>
+                                                <th>排序</th>
+                                                <th>狀態</th>
+                                                <th>建立時間</th>
+                                            </tr>
+                                        </thead>
                                     </table>
                                 </div>
                             </div>
@@ -1149,12 +1308,40 @@
                                     <li onclick="showAddMemberAD()"><a href="#"><i class="fa fa-fw fa-plus"></i></a></li>
                                     <li onclick="unlockAccountAD()"><a href="#"><i class="fa fa-fw fa-unlock-alt"></i></a></li>
                                 </ul>
+								<ul class="pagination" style="float:right;" >
+                                    <li>
+                                        <input type="text" id="manageTableADSearch" placeholder="搜索"
+                                               style="background-color: #FFFFFF;
+                                                      border: 1px solid #DDDDDD;
+                                                      color: inherit;
+                                                      float: left;
+                                                      line-height: 1.42857;
+                                                      margin-left: -1px;
+                                                      padding: 4px 10px;
+                                                      position: relative;
+                                                      text-decoration: none;">
+                                    </li>
 
+                                    <li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+                                </ul>
                             </div>
 
                             <div class="row ibox" id="AD00">
                                 <div class="col-lg-12 col-md-12" id="AD0">
                                     <table class="table table-bordered table-hover" id="manageTableAD">
+                                    <thead>
+                                            <tr>
+                                                <th class="no-sort"><input type="checkbox" id="manageCheck" ischecked=false></th>
+                                                <th>編號</th>
+                                                <th>建立時間</th>
+                                                <th>名稱</th>
+                                                <th>顏色</th>
+                                                <th>狀態</th>
+                                                <th>titlegroup</th>
+                                                <th>titleflag</th>
+                                                <th>排序</th>
+                                            </tr>
+                                        </thead>
                                     </table>
                                 </div>
                             </div>
@@ -1166,13 +1353,40 @@
                                     <li onclick="showAddMember()"><a href="#"><i class="fa fa-fw fa-plus"></i></a></li>
                                     <li onclick="unlockAccount()"><a href="#"><i class="fa fa-fw fa-unlock-alt"></i></a></li>
                                 </ul>
+								<ul class="pagination" style="float:right;" >
+                                    <li>
+                                        <input type="text" id="banTableADSearch" placeholder="搜索"
+                                               style="background-color: #FFFFFF;
+                                                      border: 1px solid #DDDDDD;
+                                                      color: inherit;
+                                                      float: left;
+                                                      line-height: 1.42857;
+                                                      margin-left: -1px;
+                                                      padding: 4px 10px;
+                                                      position: relative;
+                                                      text-decoration: none;">
+                                    </li>
 
+                                    <li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+                                </ul>
                             </div>
 
                             <div class="row ibox" id=AD11>
                                 <div class="col-lg-12 col-md-12" id="AD1">
                                     <table class="table table-bordered table-hover" id="banTableAD">
-                                       
+                                       <thead>
+                                            <tr>
+                                                <th class="no-sort"><input type="checkbox" id="manageCheck" ischecked=false></th>
+                                                <th>編號</th>
+                                                <th>建立時間</th>
+                                                <th>名稱</th>
+                                                <th>顏色</th>
+                                                <th>狀態</th>
+                                                <th>titlegroup</th>
+                                                <th>titleflag</th>
+                                                <th>排序</th>
+                                            </tr>
+                                        </thead>
                                     </table>
                                 </div>
                             </div>
@@ -1652,194 +1866,159 @@
 	<script src="resources/js/setting/person.js"></script>
     <script>
    
-    function play(callback) {
-    	
-      	 function state(){
-      		  $.ajax({                              
-      	          url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Query_Person_STATE",
-      	          
-      		         data:{
-      		        	state:0
-      		        	 },
-      		         type : "POST",                                                                    
-      		         dataType:'json',
-      		         
-      		         error:function(e){                                                                 
-      		         alert("失敗");
-      		         callback(data);
-      		         },
-      		         success:function(data){
-      		        	 $('#person0').remove();
-//  							var str= "<option value='"+data.Tree[i].id+"'>"+data.Tree[i].text+"</option>"; 
-// 		        	 		document.getElementById("nodeLINKlist").insertAdjacentHTML("BeforeEnd",str);
-					var person00 = "<div class='col-lg-12 col-md-12' id='person0'></div>"
-						document.getElementById("person00").insertAdjacentHTML("BeforeEnd",person00);
-					
-					var person0 =  "<table class='table table-bordered table-hover' id='manageTable_person' data-pagination='true' data-page-list='[5, 10, 20, 50, 100, 200]'data-search='true' data-url='x'><thead><tr><th id='user_name' data-sortable='true'></th><th id='emailaddress'data-sortable='true'></th><th id='state' data-sortable='true'></th><th id='account' data-sortable='true'></th><th id='employee_id' data-sortable='true'></th><th id='dn' data-sortable='true'></th><th id='dbid' data-sortable='true'></th></tr></thead><tbody></tbody></table>"
-						document.getElementById("person0").insertAdjacentHTML("BeforeEnd",person0);
+    function person(){
+    	$("#person0Table tbody tr").empty();
+   	 	$("#person1Table tboby tr").empty();
+        $.ajax({                              
+    	          url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Query_Person_STATE",
+    		        data:{
+    		        	state:0
+    		        	 },
+    		         type : "POST",                                                                    
+    		         dataType:'json',
+    		         
+    		         error:function(e){                                                                 
+    		         alert("失敗");
+    		         callback(data);
+    		         },
+    		         success:function(data){ 
+    		      		console.log("啟用人員",data);
 
-      		        	$('#manageTable_person').bootstrapTable({
-      		        		 columns: [{
-      		        		        field: 'account',
-      		        		        title: '帳號'
-      		        		    },{
-      		        		        field: 'user_name',
-      		        		        title: '姓名'
-      		        		    },{
-      		        		        field: 'employee_id',
-      		        		        title: '員工編號'
-      		        		    },{
-      		        		        field: 'dn',
-      		        		        title: '分機號碼'
-      		        		    },{
-      		        		        field: 'emailaddress',
-      		        		        title: '信箱'
-      		        		    },{
-      		        		    	field: 'state',
-      		        		        title: '狀態'
-      		        		    },{
-      		        		    	field: 'dbid',
-      		        		        title: '編號'
-      		        		    }],
-      		        		    
-      		     	data:data.person,
-      		     	onClickRow : function(row, $element) {
-						//alert(JSON.stringify(row));
-						document.getElementById("updateAccount").value=row.account;
-						document.getElementById("updateEmail").value=row.emailaddress;
-						document.getElementById("updatePhoneNumber").value=row.dn;
-						document.getElementById("updateName").value=row.user_name;
-						document.getElementById("updateEmployNumber").value=row.employee_id;
-						 
-					},
-      		     	});"json"
-      		     	
-      	     		console.log("正常用戶",data);	
-      		     	
-      	     	 $.ajax({                              
-      	          url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Query_Person_STATE",
-      	   
-      		         data:{
-      		        	state:1
-      		        	 },
-      		         type : "POST",                                                                    
-      		         dataType:'json',
-      		         
-      		         error:function(e){                                                                 
-      		         alert("失敗");
-      		         callback(data);
-      		         },
-      		         success:function(data){
-      		        	 $('#person1').empty();
+//    		        	alert(JSON.stringify(data.person));
+    		        	$('#person0Table').DataTable( {
+    		        		destroy: true,
+    		        		aaData: data.person,
+    		        		aoColumns: [
+    					{ data:   "dbid",
+    		                render: function ( data, type, row ) {
+    		                    if ( type === 'display' ) {
+    		                        return '<input type="checkbox" class="editor-active" value='+data+'>';
+    		                    }
+    		                    return data;
+    		                },
+    		            className: "dt-body-center" },
+    	                    { "data": "account" },
+    	                    { "data": "user_name" },
+    	                    { "data": "employee_id" },
+    	                    { "data": "dn" },
+    	                    { "data": "emailaddress" },
+    	                    { "data": "state" },
+    	                    { "data": "max_count" }
+    	                ],
+    	              lengthChange: false
+    	            } ); 
+    		     aa();
+    		     var table = $('#person0Table').DataTable();
 
-					var person11 = "<div class='col-lg-12 col-md-12' id='person0'></div>"
-						document.getElementById("person11").insertAdjacentHTML("BeforeEnd",person11);
-					
-					var person1 =  "<table class='table table-bordered table-hover' id='banTable_person' data-pagination='true' data-page-list='[5, 10, 20, 50, 100, 200]'data-search='true' data-url='x'><thead><tr><th id='user_name' data-sortable='true'></th><th id='emailaddress'data-sortable='true'></th><th id='state' data-sortable='true'></th><th id='account' data-sortable='true'></th><th id='employee_id' data-sortable='true'></th><th id='dn' data-sortable='true'></th><th id='dbid' data-sortable='true'></th></tr></thead><tbody></tbody></table>"
-						document.getElementById("person1").insertAdjacentHTML("BeforeEnd",person1);
-      		        	$('#banTable_person').bootstrapTable({
-      		        		 columns: [{
-      		        		        field: 'account',
-      		        		        title: '帳號'
-      		        		    },{
-      		        		        field: 'user_name',
-      		        		        title: '姓名'
-      		        		    },{
-      		        		        field: 'employee_id',
-      		        		        title: '員工編號'
-      		        		    },{
-      		        		        field: 'dn',
-      		        		        title: '分機號碼'
-      		        		    },{
-      		        		        field: 'emailaddress',
-      		        		        title: '信箱'
-      		        		    },{
-      		        		    	field: 'state',
-      		        		        title: '狀態'
-      		        		    },{
-      		        		    	field: 'dbid',
-      		        		        title: '編號'
-      		        		    }],
-      		        		    
-      		     	data:data.person,
-      		     	onClickRow : function(row, $element) {
-						//alert(JSON.stringify(row));
-						document.getElementById("updateAccount").value=row.account;
-						document.getElementById("updateEmail").value=row.emailaddress;
-						document.getElementById("updatePhoneNumber").value=row.dn;
-						document.getElementById("updateName").value=row.user_name;
-						document.getElementById("updateEmployNumber").value=row.employee_id;
-						 
-					},
-      		     	});"json"
-      		     	
-      	     		console.log("停用用戶",data);	
-      	     	callback();
-      		     }
-      		     });		  
-      	     		
-      		     }
-      		     });	
-      		  
-      	 		}; 
-      	 	state();
-       	}
-       	function play2() {
-       	  $("#manageTable_person tbody tr,#banTable_person tbody tr").on("click",function(){
-                 var text = $(this).text();
-                 if (text && text != "") {
-                     showEditMember();
-                 }
-             });
-       	}
-       	play(play2);
-        $(document).ready(function(){
-            //init datatable
-            $("#manageTable").DataTable({
-                "columnDefs": [ {
-                    "targets": 'no-sort',
-                    "orderable": false,
-                }]});
+    		        $('#person0Table tbody').on( 'click', 'tr', function () {
+    		  		    console.log( "person0",table.row( this ).data() );
+    		  		document.getElementById('updateAccount').value = table.row( this ).data().account;
+    		  		document.getElementById('updateEmail').value = table.row( this ).data().emailaddress;
+    		  		document.getElementById('updatePhoneNumber').value = table.row( this ).data().dn;
+    		  		document.getElementById('updateName').value = table.row( this ).data().user_name;
+    		  		document.getElementById('updateEmployNumber').value = table.row( this ).data().employee_id;
 
-            $("#manageTable").css("width","100%");
-            $("#manageTable_filter").prop("style","float:right;");
-            $("#manageTable_wrapper > div:nth-child(1)").hide();
+    		  		
+    		        
+    		        } );
+    		    }  
+    	     });
+    		         
+        
+        $("#person0Table").css("width","100%");
+        $("#person0Table_filter").prop("style","float:right;");
+        $("#person0Table_wrapper > div:nth-child(1)").hide();
 
-            $("#manageSearch").keyup(function(){
-                var searchText = $("#manageSearch").val();
+        $("#person0Search").keyup(function(){
+            var searchText = $("#person0Search").val();
 
-                $("input[aria-controls='manageTable']").val(searchText);
-                $("input[aria-controls='manageTable']").trigger("keyup");
-            });
-
-
-            $("#banTable").DataTable({
-                "columnDefs": [ {
-                    "targets": 'no-sort',
-                    "orderable": false,
-                }]});
-            $("#banTable").css("width","100%");
-            $("#banTable_filter").prop("style","float:right;");
-            $("#banTable_wrapper > div:nth-child(1)").hide();
-
-            $("#banSearch").keyup(function(){
-
-                var searchText = $("#banSearch").val();
-
-                $("input[aria-controls='banTable']").val(searchText);
-                $("input[aria-controls='banTable']").trigger("keyup");
-            });
+            $("input[aria-controls='person0Table']").val(searchText);
+            $("input[aria-controls='person0Table']").trigger("keyup");
         });
 
-//         $("#manageTable tbody tr td,#banTable tbody tr td").on("click",function(){
-//             var text = $(this).text();
-// 			alert("abc");
-//             if (text && text != "") {
-//                 showEditMember();
-//             }
-//         });
+        $.ajax({                              
+              url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Query_Person_STATE",
+    	        data:{
+    	        	state:1
+    	        	 },
+    	         type : "POST",                                                                    
+    	         dataType:'json',
+    	         
+    	         error:function(e){                                                                 
+    	         alert("失敗");
+    	         callback(data);
+    	         },
+    	         success:function(data){ 
+    	      		console.log("停用人員",data);
+    	      		
+//    		        	alert(JSON.stringify(data.person));
+    	        	$('#person1Table').DataTable( {
+    	        		destroy: true,
+    	        		aaData: data.person,
+    	        		aoColumns: [
+    					{ data:   "dbid",
+    		                render: function ( data, type, row ) {
+    		             	
+    		                	
+    		                    if ( type === 'display' ) {
+    		                        return '<input type="checkbox" class="editor-active" value='+data+'>';
+    		                    }
+    		                    return data;
+    		                },
+    		                className: "dt-body-center" },
+    		                { "data": "account" },
+    	                    { "data": "user_name" },
+    	                    { "data": "employee_id" },
+    	                    { "data": "dn" },
+    	                    { "data": "emailaddress" },
+    	                    { "data": "state" },
+    	                    { "data": "max_count" }
+                    ],
+                  lengthChange: false
+                } ); 
+    	     aa();
+    	     var table = $('#person1Table').DataTable();
 
+    	        $('#person1Table tbody').on( 'click', 'tr', function () {
+    	  		document.getElementById('updateAccount').value = table.row( this ).data().account;
+  		  		document.getElementById('updateEmail').value = table.row( this ).data().emailaddress;
+  		  		document.getElementById('updatePhoneNumber').value = table.row( this ).data().dn;
+  		  		document.getElementById('updateName').value = table.row( this ).data().user_name;
+		  		document.getElementById('updateEmployNumber').value = table.row( this ).data().employee_id;
+		  		
+    	  		} );
+    	    }  
+         });
+	    
+        
+        $("#person1Table").css("width","100%");
+        $("#person1Table_filter").prop("style","float:right;");
+        $("#person1Table_wrapper > div:nth-child(1)").hide();
 
+        $("#person1Search").keyup(function(){
+
+            var searchText = $("#person1Search").val();
+
+            $("input[aria-controls='person1Table']").val(searchText);
+            $("input[aria-controls='person1Table']").trigger("keyup");
+        });
+    } 
+    
+    $(document).ready(function(){
+        
+    	person();
+    	
+
+    	        });
+    	        function aa(){
+    	        $("#person0Table tbody tr td,#person1Table tbody tr td").on("click",function(){
+    	            var text = $(this).text();
+
+    	            if (text && text != "") {
+    	                showEditMember();
+    	            }
+    	        });
+    	        }
         function showManage() {
             closeAllHrContent();
             $("#person").show();
@@ -1893,7 +2072,7 @@
     		var in_group_dbid = document.getElementById('inputDepartment').value;
     		var in_account = document.getElementById('inputAccount').value;
     		var in_dn = document.getElementById('inputPhoneNumber').value;
-
+			var in_maxcount = document.getElementById('inputMaxcount').value;
     		$.ajax({                              
     	          url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Insert_PersonInfo",
     		         data:{
@@ -1906,7 +2085,8 @@
     		        	 group_dbid:in_group_dbid,
     		        	 account:in_account,
     		        	 state:0,
-    		        	 dn:in_dn
+    		        	 dn:in_dn,
+    		        	 max_count:in_maxcount
 
     		        	 },
     		         type : "POST",                                                                    
@@ -1917,7 +2097,7 @@
     		         callback(data);
     		         },
     		         success:function(data){
-    		        	 play(play2);
+    		        	 person();
     		     }
     		     });	
             showToastSuccess("新增成功");
@@ -1939,8 +2119,9 @@
         	var up_account = document.getElementById('updateAccount').value;
         	var up_state = document.getElementById('updateState').value;
         	var up_dn = document.getElementById('updatePhoneNumber').value;
+        	var up_updateMaxcount = document.getElementById('updateMaxcount').value;
 
-
+        	
         	$.ajax({                              
                 url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Update_PersonInfo",
       	         data:{
@@ -1953,7 +2134,8 @@
       	        	 group_dbid:up_group_dbid,
       	        	 account:up_account,
       	        	 state:up_state,
-      	        	 dn:up_dn
+      	        	 dn:up_dn,
+      	        	 max_count:updateMaxcount
 
       	        	 },
       	         type : "POST",                                                                    
@@ -1964,7 +2146,7 @@
       	         callback(data);
       	         },
       	         success:function(data){
-      	        	play(play2);
+      	        	person();
       	     }
       	     });		  
             showToastSuccess("修改成功");
@@ -2013,7 +2195,6 @@
             $("#0Commonlink").hide();
             $("#comm").hide();
             $("#commTB").hide();
-            $("#manageTable_div").hide();
             $("#addMemberContentcomm").hide();
             $("#editMemberContentcomm").hide();
             
@@ -2090,7 +2271,7 @@
         	         callback(data);
         	         },
         	         success:function(data){
-        	        	play(play2);
+        	        	 person();
         	     }
         	         
             });
@@ -2116,7 +2297,7 @@
         	         callback(data);
         	         },
         	         success:function(data){
-        	        	play(play2);
+        	        	 person();
         	     }
         	         
             });

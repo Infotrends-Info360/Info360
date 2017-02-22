@@ -11,12 +11,13 @@ function showActivityMenu() {
 
 
 function AM(){
-	$.ajax({                              
-         url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Flag_ActivityMenu",
-	         data:{
-	        	 deleteflag:0
+	$("#manageTableAM tbody tr").empty();
+ 	$("#banTableAM tboby tr").empty();
+$.ajax({                              
+    url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Flag_ActivityMenu",
+	        data:{
+	        	deleteflag:0
 	        	 },
-	            
 	         type : "POST",                                                                    
 	         dataType:'json',
 	         
@@ -24,108 +25,102 @@ function AM(){
 	         alert("失敗");
 	         callback(data);
 	         },
-	         success:function(data){
-	        	 
-	        	 $('#AM0').remove();
-	        	 
-	        	 var AM00 = "<div class='row ibox' id='AM0'></div>"
-	        		 document.getElementById("AM00").insertAdjacentHTML("BeforeEnd",AM00);
-	        	 
-	        	 var AM0 = "<table class='table table-bordered table-hover' id='manageTableAM' data-pagination='true' data-page-list='[5, 10, 20, 50, 100, 200]'data-search='true' data-url='x'></table>"
-	        		 document.getElementById("AM0").insertAdjacentHTML("BeforeEnd",AM0);
-	        	
-	        	$('#manageTableAM').bootstrapTable({
-	         columns: [{
-	           
-	             field: 'dbid',
-	             title: 'dbid'
-	         }, {
-	             field: 'createdatetime',
-	             title: 'createdatetime'
-	         },
-	         {
-	             field: 'deleteflag',
-	             title: 'deleteflag'
-	         },
-	         {
-	             field: 'menuname',
-	             title: 'menuname'
-	         },
-	         {
-	             field: 'sort',
-	             title: 'sort'
-	         }],
-	     	data:data.activitymenu,
-	     	onClickRow : function(row, $element) {
-				document.getElementById("up_menunameam").value=row.menuname;
-				document.getElementById("up_dbidam").value=row.dbid;
-			},
-	     	});"json"
-    		console.log("啟用清單",data);
-    		AM2(); }
-	 }); 
-    		
-    	 $.ajax({                              
-	          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Flag_ActivityMenu",
-		         data:{
-		        	deleteflag:1
-		        	 },
-		            
-		         type : "POST",                                                                    
-		         dataType:'json',
-		         
-		         error:function(e){                                                                 
-		         alert("失敗");
-		         callback(data);
-		         },
-		         success:function(data){
-		        	 
-		        	 $('#AM1').remove();
-		        	 
-		        	 var AM11 = "<div class='row ibox' id='AM1'></div>"
-		        		 document.getElementById("AM11").insertAdjacentHTML("BeforeEnd",AM11);
-		        	 
-		        	 var AM1 = "<table class='table table-bordered table-hover' id='banTableAM' data-pagination='true' data-page-list='[5, 10, 20, 50, 100, 200]'data-search='true' data-url='x'></table>"
-		        		 document.getElementById("AM1").insertAdjacentHTML("BeforeEnd",AM1);
-		        $('#banTableAM').bootstrapTable({
-		         columns: [{
-		           
-		             field: 'dbid',
-		             title: 'dbid'
-		         }, {
-		             field: 'createdatetime',
-		             title: 'createdatetime'
-		         },{
-		             field: 'deletedatetime',
-		             title: 'deletedatetime'
-		         },
-		         {
-		             field: 'deleteflag',
-		             title: 'deleteflag'
-		         },
-		         {
-		             field: 'menuname',
-		             title: 'menuname'
-		         },
-		         {
-		             field: 'sort',
-		             title: 'sort'
-		         }],
-		     	data:data.activitymenu,
-		     	onClickRow : function(row, $element) {
-					document.getElementById("up_menunameam").value=row.menuname;
-					document.getElementById("up_dbidam").value=row.dbid;
-				},
-		     	});"json"
-		     	
-	     		console.log("停用清單",data);
-	     		AM2();
-		         }
-     		}); 
-		};
+	         success:function(data){ 
+		      		console.log("啟用清單",data);
+ 	 
+//	        	alert(JSON.stringify(data.person));
+	        	$('#manageTableAM').DataTable( {
+	        		destroy: true,
+	        		aaData: data.activitymenu,
+	        		aoColumns: [
+				{ data:   "dbid",
+	                render: function ( data, type, row ) {
+	                    if ( type === 'display' ) {
+	                        return '<input type="checkbox" class="editor-active" value='+data+'>';
+	                    }
+	                    return data;
+	                },
+	            className: "dt-body-center" },
+                    { "data": "dbid" },
+                    { "data": "menuname" },
+                    { "data": "sort" },
+                    { "data": "createdatetime" },
+                    { "data": "deleteflag" }
+
+                ],
+              lengthChange: false
+            } ); 
+	        	AM2();
+	    }  
+     });
+	         
+
+$("#manageTableAM").css("width","100%");
+$("#manageTableAM_filter").prop("style","float:right;");
+$("#manageTableAM_wrapper > div:nth-child(1)").hide();
+
+$("#manageTableAMSearch").keyup(function(){
+    var searchText = $("#manageTableAMSearch").val();
+
+    $("input[aria-controls='manageTableAM']").val(searchText);
+    $("input[aria-controls='manageTableAM']").trigger("keyup");
+});
+
+$.ajax({                              
+    url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Flag_ActivityMenu",
+        data:{
+        	deleteflag:1
+        	 },
+         type : "POST",                                                                    
+         dataType:'json',
+         
+         error:function(e){                                                                 
+         alert("失敗");
+         callback(data);
+         },
+         success:function(data){ 
+	      		console.log("停用清單",data);
+
+//	        	alert(JSON.stringify(data.person));
+        	$('#banTableAM').DataTable( {
+        		destroy: true,
+        		aaData: data.activitymenu,
+        		aoColumns: [
+				{ data:   "dbid",
+	                render: function ( data, type, row ) {
+	                    if ( type === 'display' ) {
+	                        return '<input type="checkbox" class="editor-active" value='+data+'>';
+	                    }
+	                    return data;
+	                },
+	                className: "dt-body-center" },
+	                { "data": "dbid" },
+                    { "data": "menuname" },
+                    { "data": "sort" },
+                    { "data": "createdatetime" },
+                    { "data": "deleteflag" }
+            ],
+          lengthChange: false
+        } ); 
+        	AM2();
+    }  
+ });
+ 
+$("#banTableAM").css("width","100%");
+$("#banTableAM_filter").prop("style","float:right;");
+$("#banTableAM_wrapper > div:nth-child(1)").hide();
+
+$("#banTableAMSearch").keyup(function(){
+
+    var searchText = $("#banTableAMSearch").val();
+
+    $("input[aria-controls='banTableAM']").val(searchText);
+    $("input[aria-controls='banTableAM']").trigger("keyup");
+});
+} 
 
 function AM2() {
- 	  $("#manageTableAM tbody tr,#banTableAM tbody tr").on("click",function(){
+ 	  $("#manageTableAM tbody tr td,#banTableAM tbody tr td").on("click",function(){
            var text = $(this).text();
            if (text && text != "") {
                showEditMemberAM();

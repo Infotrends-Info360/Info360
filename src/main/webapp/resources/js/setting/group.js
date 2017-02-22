@@ -11,58 +11,63 @@ function showGroup() {
 	}
 
 
-
 function select(){
-	 $.ajax({                              
-         url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Query_Group_STATE",
-	         data:{
-	        	state:0
-	        	 },
-	         type : "POST",                                                                    
-	         dataType:'json',
-	         
-	         error:function(e){                                                                 
-	         alert("失敗");
-	         callback(data);
-	         },
-	         success:function(data){
-	        	 $('#group0').remove();
-	        	 
-	        	 var group00 = "<div class='row ibox' id='group0'></div>"
-	        		 document.getElementById("group00").insertAdjacentHTML("BeforeEnd",group00);
-	        	 
-	        	 var group0 = "<table class='table table-bordered table-hover' id='managegroupTable' data-pagination='true' data-page-list='[5, 10, 20, 50, 100, 200]'data-search='true' data-url='x'><thead><tr><th id='name' data-sortable='true'></th><th id='state' data-sortable='true'></th><th id='dbid' data-sortable='true'></th></tr></thead></table>"
-	        		 document.getElementById("group0").insertAdjacentHTML("BeforeEnd",group0);
-//	        	 
-	        	$('#managegroupTable').bootstrapTable({
-	        		 columns: [{
-        		        field: 'name',
-        		        title: '部門名稱'
-        		    },{
-        		        field: 'state',
-        		        title: '狀態'
-        		    }, {
-        		        field: 'dbid',
-        		        title: '編號'
-        		    }],
-	        		    
-	     	data:data.group,
-	     	onClickRow : function(row, $element) {
-				//alert(JSON.stringify(row));
-				document.getElementById("up_dbid").value=row.dbid;
-				document.getElementById("up_name").value=row.name;
-				
-				 
-			},
-	     	});"json"
-    		console.log("啟用部門",data);	
-    		 group2();     }
-     }) ;
-    		
-    		
-    	 $.ajax({                              
-         url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Query_Group_STATE",
-	         data:{
+		$("#managegroupTable tbody tr").empty();
+	 	$("#bangroupTable tboby tr").empty();
+    $.ajax({                              
+        url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Query_Group_STATE",
+		        data:{
+		        	state:0
+		        	 },
+		         type : "POST",                                                                    
+		         dataType:'json',
+		         
+		         error:function(e){                                                                 
+		         alert("失敗");
+		         callback(data);
+		         },
+		         success:function(data){ 
+		      		console.log("啟用部門",data);
+
+//		        	alert(JSON.stringify(data.person));
+		        	$('#managegroupTable').DataTable( {
+		        		destroy: true,
+		        		aaData: data.group,
+		        		aoColumns: [
+					{ data:   "dbid",
+		                render: function ( data, type, row ) {
+		                    if ( type === 'display' ) {
+		                        return '<input type="checkbox" class="editor-active" value='+data+'>';
+		                    }
+		                    return data;
+		                },
+		            className: "dt-body-center" },
+	                    { "data": "name" },
+	                    { "data": "state" },
+	                    { "data": "dbid" }
+	                   
+	                ],
+	              lengthChange: false
+	            } ); 
+		     group2();
+		    }  
+	     });
+		         
+    
+    $("#managegroupTable").css("width","100%");
+    $("#managegroupTable_filter").prop("style","float:right;");
+    $("#managegroupTable_wrapper > div:nth-child(1)").hide();
+
+    $("#managegroupTableSearch").keyup(function(){
+        var searchText = $("#managegroupTableSearch").val();
+
+        $("input[aria-controls='managegroupTable']").val(searchText);
+        $("input[aria-controls='managegroupTable']").trigger("keyup");
+    });
+
+    $.ajax({                              
+        url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Query_Group_STATE",
+	        data:{
 	        	state:1
 	        	 },
 	         type : "POST",                                                                    
@@ -72,51 +77,48 @@ function select(){
 	         alert("失敗");
 	         callback(data);
 	         },
-	         success:function(data){
-	        	 $('#group1').remove();
-	        	 
-	        	 var group11 = "<div class='row ibox' id='group1'></div>"
-	        		 document.getElementById("group11").insertAdjacentHTML("BeforeEnd",group11);
-	        	 
-	        	 var group1 = "<table class='table table-bordered table-hover' id='bangroupTable' data-pagination='true' data-page-list='[5, 10, 20, 50, 100, 200]'data-search='true' data-url='x'><thead><tr><th id='name' data-sortable='true'></th><th id='state' data-sortable='true'></th><th id='dbid' data-sortable='true'></th></tr></thead></table>"
-	        		 document.getElementById("group1").insertAdjacentHTML("BeforeEnd",group1);
-	        	$('#bangroupTable').bootstrapTable({
-	        		 columns: [{
-        		        field: 'name',
-        		        title: '部門名稱'
-        		    },{
-        		        field: 'state',
-        		        title: '狀態'
-        		    }, {
-        		        field: 'dbid',
-        		        title: '編號'
-        		    }],
-	        		    
-	     	data:data.group,
-	     	
-	     	onClickRow : function(row, $element) {
-				//alert(JSON.stringify(row));
-				document.getElementById("up_dbid").value=row.dbid;
-				document.getElementById("up_name").value=row.name;
-				
-				 
-			},
-	     	
-	     	});"json"
-	     	
-    		console.log("停用部門",data);	
-    		
-    		group2();}
-	     });		  
-    		
-    	
-	
-	 
-	 
-}
+	         success:function(data){ 
+	      		console.log("停用部門",data);
+
+//		        	alert(JSON.stringify(data.person));
+	        	$('#bangroupTable').DataTable( {
+	        		destroy: true,
+	        		aaData: data.group,
+	        		aoColumns: [
+					{ data:   "dbid",
+		                render: function ( data, type, row ) {
+		                    if ( type === 'display' ) {
+		                        return '<input type="checkbox" class="editor-active" value='+data+'>';
+		                    }
+		                    return data;
+		                },
+		                className: "dt-body-center" },
+		                { "data": "name" },
+	                    { "data": "state" },
+	                    { "data": "dbid" }
+                ],
+              lengthChange: false
+            } ); 
+	     group2();
+	    }  
+     });
+     
+    $("#bangroupTable").css("width","100%");
+    $("#bangroupTable_filter").prop("style","float:right;");
+    $("#bangroupTable_wrapper > div:nth-child(1)").hide();
+
+    $("#bangroupTableSearch").keyup(function(){
+
+        var searchText = $("#bangroupTableSearch").val();
+
+        $("input[aria-controls='bangroupTable']").val(searchText);
+        $("input[aria-controls='bangroupTable']").trigger("keyup");
+    });
+} 
+
         
 function group2() {
- 	  $("#managegroupTable tbody tr,#bangroupTable tbody tr").on("click",function(){
+ 	  $("#managegroupTable tbody tr td,#bangroupTable tbody tr td").on("click",function(){
            var text = $(this).text();
            if (text && text != "") {
                showEditMembergroup();

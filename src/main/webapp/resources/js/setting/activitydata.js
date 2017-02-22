@@ -7,7 +7,128 @@ function showActivityData() {
             $("button.Agentreason").removeClass("btn-success");
             $("button.Agentreason").addClass("btn-primary");
                   AD();
+                  $("#manageTableAD tbody tr").empty();
+               	$("#banTableAD tboby tr").empty();
 	}
+
+
+function groupAD(){
+	$("#manageTableAD tbody tr").empty();
+ 	$("#banTableAD tboby tr").empty();
+ 	
+	var dbid = document.getElementById("menuAD").value
+$.ajax({                              
+    url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/FLAGDATA",
+	        data:{
+	        	dbid:dbid
+	        	 },
+	         type : "POST",                                                                    
+	         dataType:'json',
+	         
+	         error:function(e){                                                                 
+	         alert("失敗");
+	         callback(data);
+	         },
+	         success:function(data){ 
+		      		console.log("啟用服務代碼",data);
+	 
+//	        	alert(JSON.stringify(data.person));
+	        	$('#manageTableAD').DataTable( {
+	        		destroy: true,
+	        		aaData: data.activitydata,
+	        		aoColumns: [
+				{ data:   "dbid",
+	                render: function ( data, type, row ) {
+	                    if ( type === 'display' ) {
+	                        return '<input type="checkbox" class="editor-active" value='+data+'>';
+	                    }
+	                    return data;
+	                },
+	            className: "dt-body-center" },
+                    { "data": "dbid" },
+                    { "data": "createdatetime" },
+                    { "data": "codename" },
+                    { "data": "color" },
+                    { "data": "deleteflag" },
+                    { "data": "titlegroup" },
+                    { "data": "titleflag" },
+                    { "data": "sort" }
+                
+                ],
+              lengthChange: false
+            } ); 
+	     AD2();
+	    }  
+     });
+	         
+
+$("#manageTableAD").css("width","100%");
+$("#manageTableAD_filter").prop("style","float:right;");
+$("#manageTableAD_wrapper > div:nth-child(1)").hide();
+
+$("#manageTableADSearch").keyup(function(){
+    var searchText = $("#manageTableADSearch").val();
+
+    $("input[aria-controls='manageTableAD']").val(searchText);
+    $("input[aria-controls='manageTableAD']").trigger("keyup");
+});
+
+$.ajax({                              
+    url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/FLAGDATA",
+        data:{
+        	dbid:dbid
+        	 },
+         type : "POST",                                                                    
+         dataType:'json',
+         
+         error:function(e){                                                                 
+         alert("失敗");
+         callback(data);
+         },
+         success:function(data){ 
+	      		console.log("停用服務代碼",data);
+
+//	        	alert(JSON.stringify(data.person));
+        	$('#banTableAD').DataTable( {
+        		destroy: true,
+        		aaData: data.Flag,
+        		aoColumns: [
+				{ data:   "dbid",
+	                render: function ( data, type, row ) {
+	                    if ( type === 'display' ) {
+	                        return '<input type="checkbox" class="editor-active" value='+data+'>';
+	                    }
+	                    return data;
+	                },
+	                className: "dt-body-center" },
+	                { "data": "dbid" },
+                    { "data": "createdatetime" },
+                    { "data": "codename" },
+                    { "data": "color" },
+                    { "data": "deleteflag" },
+                    { "data": "titlegroup" },
+                    { "data": "titleflag" },
+                    { "data": "sort" }
+            ],
+          lengthChange: false
+        } ); 
+     AD2();
+    }  
+ });
+ 
+$("#banTableAD").css("width","100%");
+$("#banTableAD_filter").prop("style","float:right;");
+$("#banTableAD_wrapper > div:nth-child(1)").hide();
+
+$("#banTableADSearch").keyup(function(){
+
+    var searchText = $("#banTableADSearch").val();
+
+    $("input[aria-controls='banTableAD']").val(searchText);
+    $("input[aria-controls='banTableAD']").trigger("keyup");
+});
+} 
+
 
 
 function AD(){
@@ -32,160 +153,16 @@ function AD(){
 	        	 var menu = "<option value='"+data.activitygroups[i].dbid+"'>"+data.activitygroups[i].groupname+"</option>"
             	 document.getElementById("menuAD").insertAdjacentHTML("BeforeEnd",menu);
 	        	 }
-     		console.log("activitygroups",data);
+     		console.log("服務代碼群組",data);
 
 	     }
 	 }); 
 	 
 		     }
 		
-		function groupAD(){
-			var dbid = document.getElementById("menuAD").value
-			  $.ajax({                              
-		          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/FLAGDATA",
-			         data:{
-			        	 dbid:dbid
-			        	 },
-			            
-			         type : "POST",                                                                    
-			         dataType:'json',
-			         
-			         error:function(e){                                                                 
-			         alert("失敗");
-			         callback(data);
-			         },
-			         success:function(data){
-			        	 
-			        	 $('#AD0').remove();
-			        	 
-			        	 var AD00 = "<div class='row ibox' id='AD0'></div>"
-			        		 document.getElementById("AD00").insertAdjacentHTML("BeforeEnd",AD00);
-			        	 
-			        	 var AD0 = "<table class='table table-bordered table-hover' id='manageTableAD' data-pagination='true' data-page-list='[5, 10, 20, 50, 100, 200]'data-search='true' data-url='x'></table>"
-			        		 document.getElementById("AD0").insertAdjacentHTML("BeforeEnd",AD0);
-			        	 
-			        	 
-			        $('#manageTableAD').bootstrapTable({
-			         columns: [{
-			           
-			             field: 'dbid',
-			             title: 'dbid'
-			         }, {
-			             field: 'createdatetime',
-			             title: 'createdatetime'
-			         },
-			         {
-			             field: 'activitygroupsid',
-			             title: 'activitygroupsid'
-			         },
-			         {
-			             field: 'codename',
-			             title: 'codename'
-			         },
-			         {
-			             field: 'color',
-			             title: 'color'
-			         },
-			         {
-			             field: 'deleteflag',
-			             title: 'deleteflag'
-			         },
-			         {
-			             field: 'titlegroup',
-			             title: 'titlegroup'
-			         },
-			         {
-			             field: 'titleflag',
-			             title: 'titleflag'
-			         },{
-			             field: 'sort',
-			             title: 'sort'
-			         }],
-			     	data:data.activitydata,
-			     	onClickRow : function(row, $element) {
-//			     		alert(JSON.stringify(row));
-						document.getElementById("up_dbidAD").value=row.dbid;
-						document.getElementById("up_codenameAD").value=row.codename;
-						document.getElementById("up_colorAD").value=row.color;
-						document.getElementById("up_sortAD").value=row.sort;
-					},
-			     	});"json"
-			        AD2();
-			        
-			        
-			        $('#AD1').remove();
-		        	 
-		        	 var AD11 = "<div class='row ibox' id='AD1'></div>"
-		        		 document.getElementById("AD11").insertAdjacentHTML("BeforeEnd",AD11);
-		        	 
-		        	 var AD1 = "<table class='table table-bordered table-hover' id='banTableAD' data-pagination='true' data-page-list='[5, 10, 20, 50, 100, 200]'data-search='true' data-url='x'></table>"
-		        		 document.getElementById("AD1").insertAdjacentHTML("BeforeEnd",AD1);
-			       $('#banTableAD').bootstrapTable({
-		         columns: [{
-		           
-		             field: 'dbid',
-		             title: 'dbid'
-		         }, {
-		             field: 'createdatetime',
-		             title: 'createdatetime'
-		         },{
-		             field: 'deletedatetime',
-		             title: 'deletedatetime'
-		         },
-		         {
-		             field: 'activitygroupsid',
-		             title: 'activitygroupsid'
-		         },
-		         {
-		             field: 'codename',
-		             title: 'codename'
-		         },
-		         {
-		             field: 'color',
-		             title: 'color'
-		         },
-		         {
-		             field: 'deleteflag',
-		             title: 'deleteflag'
-		         },
-		         {
-		             field: 'titlegroup',
-		             title: 'titlegroup'
-		         },
-		         {
-		             field: 'titleflag',
-		             title: 'titleflag'
-		         },{
-		             field: 'sort',
-		             title: 'sort'
-		         }],
-		     	data:data.Flag,
-		     	onClickRow : function(row, $element) {
-//		     		alert(JSON.stringify(row));
-					document.getElementById("up_dbidAD").value=row.dbid;
-					document.getElementById("up_codenameAD").value=row.codename;
-					document.getElementById("up_colorAD").value=row.color;
-					document.getElementById("up_sortAD").value=row.sort;
-				},
-		     	});"json"
-			       AD2();
-		     	console.log("服務代碼",data);
-		     	var a =document.getElementById("menuAD").value;
-		     	var b = document.getElementById("Tfalg").value;
-		     	var c = a+b
-		     	document.getElementById("Tfalg").value = c;
-		     	document.getElementById("Tgroup").value=c;
-		     	
-		         }
-			         });
-			
-	 	 	}
 		
-		
-		
-
 function AD2() {
- 	  $("#manageTableAD tbody tr,#banTableAD tbody tr").on("click",function(){
+ 	  $("#manageTableAD tbody tr td,#banTableAD tbody tr td").on("click",function(){
            var text = $(this).text();
            if (text && text != "") {
                showEditMemberAD();
