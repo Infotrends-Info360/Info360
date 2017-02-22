@@ -363,7 +363,7 @@
 						
 						// 更新狀態
 						var myUpdateStatusJson = new updateStatusJson("Agent",
-								UserID_g, UserName_g, "1", "no reason", "start");
+								UserID_g, userName, "1", "no reason", "start");
 						ws.send(JSON.stringify(myUpdateStatusJson));
 					}
 
@@ -497,7 +497,7 @@
 		// 登入
 		function doLogin() {
 			var now = new Date();
-
+			
 			// 向websocket送出登入指令
 			var msg = {
 				type : "login",
