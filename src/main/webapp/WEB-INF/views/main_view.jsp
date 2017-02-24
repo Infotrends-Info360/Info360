@@ -441,6 +441,8 @@
 								// 								console.log(data.person[0].max_count);
 								UserID_g = data.person[0].dbid;
 								UserName_g = data.person[0].user_name;
+								$("#userNickName").html(UserName_g);
+								
 								$('.J_iframe')
 										.attr(
 												'src',
@@ -492,7 +494,7 @@
 						UserID_g = obj.from;
 
 						// 更新導覽列名稱
-						$("#navNickName").html("Hi " + userName);
+						$("#navNickName").html("Hi " + UserName_g);
 
 						// 變更線上狀態變數
 						isonline = true;
@@ -605,6 +607,7 @@
 						var newHref = "chat1?id=" + id;
 						newHref += "&name=" + name;
 						newHref += "&address=" + address;
+						newHref += "&interactionId=" + RoomID_g;
 
 						$("#" + currentChatTab).prop("href", newHref);
 						$("#" + currentChatTab).trigger("click");
@@ -623,7 +626,7 @@
 						// maxCount機制
 						currRoomCount_g++ // here
 						if (currRoomCount_g == maxCount) {
-							alert("reach max count");
+							console.log("reach max count");
 						}
 
 						//判斷接起對談後的狀態是否要切換為Ready
@@ -668,7 +671,7 @@
 					}
 					//通知響鈴結束
 					if ("ringTimeout" == obj.Event) {
-						alert("ringTimeout");
+						console.log("ringTimeout");
 					}
 					//20170223 Lin
 
@@ -1000,7 +1003,7 @@
 		// 傳送群組訊息至layim視窗上
 		function sendtoRoomonlay(text) {
 			var myMessagetoRoomJson = new messagetoRoomJson("messagetoRoom",
-					"Client", text, UserID_g, userName, RoomID_g, "chat", "");
+					"Client", text, UserID_g, UserName_g, RoomID_g, "chat", "");
 
 			// 發送消息給WebSocket	
 			console.log("sendtoRoomonlay");
@@ -1229,7 +1232,7 @@
 								active[type] ? active[type].call(this) : '';
 							});
 
-							$("#userNickName").html(userName);
+							$("#userNickName").html(UserName_g);
 
 							// 開啟傳送layim參數
 							layimswitch = true;
