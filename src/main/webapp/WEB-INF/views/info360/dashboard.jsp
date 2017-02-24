@@ -142,7 +142,7 @@
 									<div class="ibox">
 										<div class="ibox-content">
 											<h3>離席時間</h3>
-											<h1>00:15</h1>
+											<h1><span id="notready_usetime"> </span></h1>
 										</div>
 									</div>
 								</div>
@@ -150,7 +150,7 @@
 									<div class="ibox">
 										<div class="ibox-content">
 											<h3>準備就緒時間</h3>
-											<h1>00:15</h1>
+											<h1><span id="ready_usetime"> </span></h1>
 										</div>
 									</div>
 								</div>
@@ -159,7 +159,7 @@
 										<div class="ibox-content">
 											<h3>通話時間</h3>
 											<!--(總) -->
-											<h1>00:15</h1>
+											<h1><span id="iestablished_usetime"> </span></h1>
 										</div>
 									</div>
 								</div>
@@ -168,7 +168,7 @@
 										<div class="ibox-content">
 											<h3>平均通話</h3>
 											<!--(通話時間/接通數) -->
-											<h1>00:15</h1>
+											<h1><span id="iestablished_usetime_avg"> </span></h1>
 										</div>
 									</div>
 								</div>
@@ -337,32 +337,38 @@
 		<script>
 		function kpiview() {
 			var user = <%= userid%>;
-			var data = 'user=' + user;
-			var me = this;
-			$
-					.ajax({
-						url : "http://ws.crm.com.tw:8080/IMWebSocket/RESTful/GetKPI",
-						type : "POST",
-						dataType : 'json',
-						data : data,
-						error : function(e) {
-							console.log("error");
-						},
-						success : function(data) {
-							document.getElementById("usercount").innerHTML = data.usercount;
-							document.getElementById("agentcount").innerHTML = data.agentcount;
-							document.getElementById("clientcount").innerHTML = data.clientcount;
-							document.getElementById("roomcount").innerHTML = data.roomcount;
-							document.getElementById("leaveclientcount").innerHTML = data.leaveclientcount;
-							if (user != null && "" != user) {
-								//document.getElementById("username").innerHTML = data.username;
-								document.getElementById("userroomcount").innerHTML = data.userroomcount;
-							} else {
-								//document.getElementById("username").innerHTML = 'null';
-								document.getElementById("userroomcount").innerHTML = 0;
-							}
-						},
-					});
+			if(user!=null && ""!=user){
+				var data = 'user=' + user;
+				var me = this;
+				$
+						.ajax({
+							url : "http://ws.crm.com.tw:8080/IMWebSocket/RESTful/GetKPI",
+							type : "POST",
+							dataType : 'json',
+							data : data,
+							error : function(e) {
+								console.log("error");
+							},
+							success : function(data) {
+								document.getElementById("usercount").innerHTML = data.usercount;
+								document.getElementById("agentcount").innerHTML = data.agentcount;
+								document.getElementById("clientcount").innerHTML = data.clientcount;
+								document.getElementById("roomcount").innerHTML = data.roomcount;
+								document.getElementById("leaveclientcount").innerHTML = data.leaveclientcount;
+								if (user != null && "" != user) {
+									//document.getElementById("username").innerHTML = data.username;
+									document.getElementById("userroomcount").innerHTML = data.userroomcount;
+								} else {
+									//document.getElementById("username").innerHTML = 'null';
+									document.getElementById("userroomcount").innerHTML = 0;
+								}
+								document.getElementById("notready_usetime").innerHTML = data.notready_usetime;
+								document.getElementById("ready_usetime").innerHTML = data.ready_usetime;
+								document.getElementById("iestablished_usetime").innerHTML = data.iestablished_usetime;
+								document.getElementById("iestablished_usetime_avg").innerHTML = data.iestablished_usetime_avg;
+							},
+						});
+			}
 			setTimeout(function() {
 				me.kpiview();
 			}, 1000);
