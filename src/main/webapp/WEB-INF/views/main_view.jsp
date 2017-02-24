@@ -273,6 +273,7 @@
 		var chatList = []; // 20170220 Billy 聊天頁籤控制清單
 
 		var maxCount = 0;
+		var currRoomCount_g = 0; //每個Agent現在已接通話數 20170224 Lin
 		var currentUserData = "";
 
 		// 20170223 Lin
@@ -561,6 +562,7 @@
 						//20170220 Lin
 
 						//20170223 Lin
+						agentNotReady(); //20170224 Lin
 						StatusEnum.ready_dbid = StatusEnum.updateStatus(
 								StatusEnum.READY, "end", StatusEnum.ready_dbid);
 						StatusEnum.updateStatus(StatusEnum.NOTREADY, "start",
@@ -619,13 +621,20 @@
 						StatusEnum.updateStatus(StatusEnum.IESTABLISHED,
 								"start", null, obj.roomID);
 						
+						// maxCount機制
+						currRoomCount_g++ // here
+						if (currRoomCount_g == maxCount) {
+							alert("reach max count");
+						}
+						
 						//判斷接起對談後的狀態是否要切換為Ready
-						alert("obj.EstablishedStatus: "+ obj.EstablishedStatus);
+// 						alert("obj.EstablishedStatus: "+ obj.EstablishedStatus);
 						if (obj.EstablishedStatus == StatusEnum.READY.dbid) {
 							StatusEnum.notready_dbid = StatusEnum.updateStatus(
 									StatusEnum.NOTREADY, "end",
 									StatusEnum.notready_dbid);
 							StatusEnum.updateStatus(StatusEnum.READY, "start");
+							agentReady(); //20170224 Lin
 						}
 						//20170223 Lin
 
@@ -675,11 +684,14 @@
 						});
 
 						// 20170223 Lin
+						
+						currRoomCount_g--;
+						
 						// 						alert("StatusEnum.currStatusEnum: " + StatusEnum.currStatusEnum);
 						// 						alert("StatusEnum.currStatusEnum.description: " + StatusEnum.currStatusEnum.description);
 						// 						alert("obj.AfterCallStatus: " + obj.AfterCallStatus ) ;
 						// 						alert("StatusEnum.notready_dbid: " + StatusEnum.notready_dbid);
-						alert("obj.AfterCallStatus: " + obj.AfterCallStatus);
+// 						alert("obj.AfterCallStatus: " + obj.AfterCallStatus);
 						if (obj.AfterCallStatus == StatusEnum.READY.dbid) { //如果AfterCallStatus == ready
 							if (StatusEnum.ready_dbid == null) {
 								// 								alert("here1");
@@ -688,6 +700,7 @@
 												"end", StatusEnum.notready_dbid);
 								StatusEnum.updateStatus(StatusEnum.READY,
 										"start");
+								agentReady(); //20170224 Lin
 							}
 						} else if (obj.AfterCallStatus == StatusEnum.NOTREADY.dbid) { //如果AfterCallStatus == not ready
 							if (StatusEnum.notready_dbid == null) {
@@ -698,6 +711,7 @@
 								StatusEnum.updateStatus(StatusEnum.NOTREADY,
 										"start", null, null, null,
 										notreadyreason_dbid_g);
+								agentNotReady(); //20170224 Lin
 							}
 						}
 						// 20170223 Lin
@@ -740,6 +754,8 @@
 			};
 			// 發送消息
 			ws.send(JSON.stringify(msg));
+			
+			currRoomCount_g = 0;
 
 		}
 
