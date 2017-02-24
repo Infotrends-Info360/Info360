@@ -300,8 +300,8 @@
 				dbid : '0',
 				description : '中文'
 			},
-			PAPERWORK : {
-				statusname : 'PAPERWORK',
+			AFTERCALLWORK : {
+				statusname : 'AFTERCALLWORK',
 				dbid : '0',
 				description : '中文'
 			},
@@ -343,8 +343,8 @@
 					return StatusEnum.READY;
 				} else if (StatusEnum.NOTREADY.statusname == aStatusname) {
 					return StatusEnum.NOTREADY;
-				} else if (StatusEnum.PAPERWORK.statusname == aStatusname) {
-					return StatusEnum.PAPERWORK;
+				} else if (StatusEnum.AFTERCALLWORK.statusname == aStatusname) {
+					return StatusEnum.AFTERCALLWORK;
 				} else if (StatusEnum.RING.statusname == aStatusname) {
 					return StatusEnum.RING;
 				} else if (StatusEnum.IESTABLISHED.statusname == aStatusname) {
@@ -352,8 +352,7 @@
 				} else if (StatusEnum.OESTABLISHED.statusname == aStatusname) {
 					return StatusEnum.OESTABLISHED;
 				}
-				System.out
-						.println("StatusEnmu - getStatusEnum: " + " no match");
+				
 				return null;
 			},
 
@@ -366,8 +365,8 @@
 					StatusEnum.ready_dbid = aObj.ready_dbid;
 				if (aObj.notready_dbid != null)
 					StatusEnum.notready_dbid = aObj.notready_dbid;
-				if (aObj.paperwork_dbid != null)
-					StatusEnum.paperwork_dbid = aObj.paperwork_dbid;
+				if (aObj.aftercallwork_dbid != null)
+					StatusEnum.aftercallwork_dbid = aObj.aftercallwork_dbid;
 				if (aObj.ring_dbid != null)
 					StatusEnum.ring_dbid = aObj.ring_dbid;
 				if (aObj.iestablished_dbid != null)
@@ -378,6 +377,7 @@
 
 			updateStatus : function(aStatusEnum, aStartORend, aDbid, aRoomID,
 					aClientID, aReason_dbid) {
+				//更新現有狀態
 				StatusEnum.currStatusEnum = aStatusEnum;
 
 				if ('end' == aStartORend && aDbid === undefined) {
@@ -386,19 +386,18 @@
 					return;
 				}
 
-				// 更新狀態資訊
-				// 				parent.document.getElementById("status").value = aStatusEnum.description;  //20170223 Lin 舊前端動作
 				// 去server更新狀態
 				var myUpdateStatusJson = new updateStatusJson("Agent",
-						UserID_g, UserName_g, aStatusEnum.dbid, "no reason",
-						aStartORend, aDbid, aRoomID, aClientID, aReason_dbid);
+						UserID_g, UserName_g, aStatusEnum.dbid,
+						"no reason", aStartORend, aDbid, aRoomID, aClientID,
+						aReason_dbid);
 				ws.send(JSON.stringify(myUpdateStatusJson));
 
 				if ('end' == aStartORend) {
 					return null;
 				}
-				//		// 從server取得狀態
-				//		getStatus();
+				//					// 從server取得狀態
+				//					getStatus();
 			}
 
 		};
@@ -620,15 +619,15 @@
 								StatusEnum.RING, "end", StatusEnum.ring_dbid);
 						StatusEnum.updateStatus(StatusEnum.IESTABLISHED,
 								"start", null, obj.roomID);
-						
+
 						// maxCount機制
 						currRoomCount_g++ // here
 						if (currRoomCount_g == maxCount) {
 							alert("reach max count");
 						}
-						
+
 						//判斷接起對談後的狀態是否要切換為Ready
-// 						alert("obj.EstablishedStatus: "+ obj.EstablishedStatus);
+						// 						alert("obj.EstablishedStatus: "+ obj.EstablishedStatus);
 						if (obj.EstablishedStatus == StatusEnum.READY.dbid) {
 							StatusEnum.notready_dbid = StatusEnum.updateStatus(
 									StatusEnum.NOTREADY, "end",
@@ -684,14 +683,14 @@
 						});
 
 						// 20170223 Lin
-						
+
 						currRoomCount_g--;
-						
+
 						// 						alert("StatusEnum.currStatusEnum: " + StatusEnum.currStatusEnum);
 						// 						alert("StatusEnum.currStatusEnum.description: " + StatusEnum.currStatusEnum.description);
 						// 						alert("obj.AfterCallStatus: " + obj.AfterCallStatus ) ;
 						// 						alert("StatusEnum.notready_dbid: " + StatusEnum.notready_dbid);
-// 						alert("obj.AfterCallStatus: " + obj.AfterCallStatus);
+						// 						alert("obj.AfterCallStatus: " + obj.AfterCallStatus);
 						if (obj.AfterCallStatus == StatusEnum.READY.dbid) { //如果AfterCallStatus == ready
 							if (StatusEnum.ready_dbid == null) {
 								// 								alert("here1");
@@ -754,24 +753,31 @@
 			};
 			// 發送消息
 			ws.send(JSON.stringify(msg));
-			
+
 			currRoomCount_g = 0;
 
 		}
 
 		// 登出
 		function logout() {
-			
+
 			console.log("StatusEnum.login_dbid: " + StatusEnum.login_dbid);
-			console.log("StatusEnum.notready_dbid: " + StatusEnum.notready_dbid);
+			console
+					.log("StatusEnum.notready_dbid: "
+							+ StatusEnum.notready_dbid);
 			console.log("StatusEnum.ready_dbid: " + StatusEnum.ready_dbid);
 			console.log("StatusEnum.ring_dbid: " + StatusEnum.ring_dbid);
-			console.log("StatusEnum.iestablished_dbid: " + StatusEnum.iestablished_dbid);
-			StatusEnum.login_dbid = StatusEnum.updateStatus(StatusEnum.LOGOUT, "end", StatusEnum.login_dbid);
-			StatusEnum.notready_dbid = StatusEnum.updateStatus(StatusEnum.NOTREADY, "end", StatusEnum.notready_dbid);
-			StatusEnum.ready_dbid = StatusEnum.updateStatus(StatusEnum.READY, "end", StatusEnum.ready_dbid);
-			StatusEnum.ring_dbid = StatusEnum.updateStatus(StatusEnum.RING, "end", StatusEnum.ring_dbid);
-		
+			console.log("StatusEnum.iestablished_dbid: "
+					+ StatusEnum.iestablished_dbid);
+			StatusEnum.login_dbid = StatusEnum.updateStatus(StatusEnum.LOGOUT,
+					"end", StatusEnum.login_dbid);
+			StatusEnum.notready_dbid = StatusEnum.updateStatus(
+					StatusEnum.NOTREADY, "end", StatusEnum.notready_dbid);
+			StatusEnum.ready_dbid = StatusEnum.updateStatus(StatusEnum.READY,
+					"end", StatusEnum.ready_dbid);
+			StatusEnum.ring_dbid = StatusEnum.updateStatus(StatusEnum.RING,
+					"end", StatusEnum.ring_dbid);
+
 			// 向websocket送出登出指令
 			var now = new Date();
 			var msg = {
