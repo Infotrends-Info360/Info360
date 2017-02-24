@@ -104,12 +104,16 @@
 					<!-- 實際觸發開啟頁籤區域 -->
 					<div style="display: none;" id="menuItemList">
 						<a class="J_menuItem" href="/info360/dashboard">儀表板</a> <a
+							class="J_menuItem" href="chat1" id="chat1"></a> <a
+							class="J_menuItem" href="chat2" id="chat2"></a> <a
+							class="J_menuItem" href="chat3" id="chat3"></a> <a
+							class="J_menuItem" href="chat4" id="chat4"></a> <a
+							class="J_menuItem" href="chat5" id="chat5"></a> <a
 							class="J_menuItem" href="/info360/query">案件搜尋</a> <a
 							class="J_menuItem" href="/info360/setting">設定</a> <a
 							class="J_menuItem" href="/info360/password">修改密碼</a> <a
-							href="login.html">登出</a> <a class="J_menuItem" href="chat1"
-							id="chat1">0912345678</a> <a class="J_menuItem" href="chat2"
-							id="chat2">0987654321</a>
+							href="login.html">登出</a>
+
 					</div>
 					<!-- 實際觸發開啟頁籤區域 -->
 				</ul>
@@ -352,7 +356,7 @@
 				} else if (StatusEnum.OESTABLISHED.statusname == aStatusname) {
 					return StatusEnum.OESTABLISHED;
 				}
-				
+
 				return null;
 			},
 
@@ -388,9 +392,8 @@
 
 				// 去server更新狀態
 				var myUpdateStatusJson = new updateStatusJson("Agent",
-						UserID_g, UserName_g, aStatusEnum.dbid,
-						"no reason", aStartORend, aDbid, aRoomID, aClientID,
-						aReason_dbid);
+						UserID_g, UserName_g, aStatusEnum.dbid, "no reason",
+						aStartORend, aDbid, aRoomID, aClientID, aReason_dbid);
 				ws.send(JSON.stringify(myUpdateStatusJson));
 
 				if ('end' == aStartORend) {
@@ -442,7 +445,7 @@
 								UserID_g = data.person[0].dbid;
 								UserName_g = data.person[0].user_name;
 								$("#userNickName").html(UserName_g);
-								
+
 								$('.J_iframe')
 										.attr(
 												'src',
@@ -590,7 +593,7 @@
 						// 更新開啟頁籤  & 組合客戶資料參數至後端
 						var newTab = {};
 						var currentChatTab = chatTab[0]; // 指派目前可用Tab
-						chatTab.slice(1);
+						chatTab = chatTab.slice(1);
 
 						newTab.id = RoomID_g;
 						newTab.chatTab = currentChatTab;
@@ -599,12 +602,13 @@
 						console.log("currentUserData");
 						console.log(currentUserData);
 
-						var id = currentUserData.CustomerData[0].id;
-						var name = currentUserData.CustomerData[0].name;
-						var address = currentUserData.CustomerData[0].CUSTNAM;
+						var id = currentUserData.CustomerData[0].id || "";
+						var name = currentUserData.CustomerData[0].name || "";
+						var address = currentUserData.CustomerData[0].CUSTNAM
+								|| "";
 
 						$("#" + currentChatTab).html(id);
-						var newHref = "chat1?id=" + id;
+						var newHref = currentChatTab + "?id=" + id;
 						newHref += "&name=" + name;
 						newHref += "&address=" + address;
 						newHref += "&interactionId=" + RoomID_g;
@@ -1066,13 +1070,24 @@
 			chatList.forEach(function(entry) {
 				if (aRoomID == entry.id) {
 					$("#" + entry.chatTab).trigger("click");
-					$('[name=iframe4]')[0].contentWindow.showCaseInfoTab();
+					var iframeName = entry.chatTab.replace("chat", "iframe"); 
+					$('[name=' + iframeName + ']')[0].contentWindow.showCaseInfoTab();
 				}
 			});
 		}
 
-		function closeCurrentTab() {
-			$(".page-tabs-content > .active > i").trigger("click");
+		function closeCurrentTab(interactionId) {
+			// 刪除目前使用Chat清單
+			chatList.forEach(function(entry) {
+				if (interactionId == entry.id) {
+					// 
+					$("#" + entry.chatTab).trigger("click");
+					$(".page-tabs-content > .active > i").trigger("click");
+
+					chatList.splice($.inArray(entry, chatList), 1);
+					chatTab.push(entry.chatTab)
+				}
+			});
 		}
 
 		/*-------------------------------------------------------*/

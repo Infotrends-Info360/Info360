@@ -854,7 +854,9 @@
 						console.log("Insert_rpt_activitylog success");
 						console.log(data);
 
-						parent.closeCurrentTab();
+						// 關閉目前使用頁籤
+						var interactionId = "${interactionId}";
+						parent.closeCurrentTab(interactionId);
 					}
 				});
 	}
