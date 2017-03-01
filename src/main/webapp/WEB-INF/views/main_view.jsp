@@ -73,15 +73,20 @@
 			<div class="navbar-collapse collapse" id="navbar"
 				aria-expanded="true">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a id="statusButton">
-							<button class="btn btn-xs btn-primary btn-circle status-ready"
-								style="display: none;">
-								<i class="fa fa-check"></i>
-							</button>
-							<button class="btn btn-xs btn-danger btn-circle status-notready">
-								<i class="fa fa-times"></i>
-							</button>
-					</a></li>
+					<li class="dropdown"><a aria-expanded="false" role="button"
+						class="dropdown-toggle" data-toggle="dropdown"
+						style="line-height: 30px;" id="statusButton">
+						<button class="btn btn-sm btn-primary status-ready" style="display:none;">
+								準備就緒
+						</button>
+						<button class="btn btn-sm btn-danger status-notready">
+								未就緒
+						</button>
+						<ul role="menu" class="dropdown-menu" id="statusList">
+							<li><a onclick="agentReady()">準備就緒</a></li>
+							<li><a onclick="agentNotReady()">離席</a></li>
+						</ul> 
+					</li>
 					<li class="dropdown"><a aria-expanded="false" role="button"
 						class="dropdown-toggle" data-toggle="dropdown"
 						style="line-height: 30px;" id="menuButton"><span
@@ -532,7 +537,16 @@
 
 						var statusList = obj.statusList;
 						var reasonList = obj.reasonList;
-						console.log("reasonList: "+JSON.stringify(reasonList));
+
+						// 產生NotReady狀態切換按鈕
+						for (var index in reasonList) {
+							console.log(reasonList[index]);
+							var statusName = reasonList[index].statusname_tw;
+							var dbid = reasonList[index].dbid.trim();
+							
+							var $li = '<li><a dbid="' + dbid + '" onclick="agentNotReady(' + dbid + ')">' + statusName + '</a></li>'
+							$("#statusList").append($li);
+						}
 
 						// 更新statusList - enum
 						// 格式: {Login={description=登入, dbid=1}, Ring={description=響鈴, dbid=6}
@@ -857,13 +871,23 @@
 		}
 
 		// Agent尚未準備就緒
-		function agentNotReady() {
+		function agentNotReady(reason) {
+			var reasonDbId = notreadyreason_dbid_g;
+			var statusName = "未就緒";
+			
+			if (reason && reason > 0) {
+				reasonDbId = reason;
+				statusName = $('a[dbid="' + reason + '"]').html();
+			}
+			
+			$("#statusButton button.status-notready").html(statusName);
+			
 			// 更新狀態
 			// 			updateStatus("4", "no reason");
 			StatusEnum.ready_dbid = StatusEnum.updateStatus(StatusEnum.READY,
 					"end", StatusEnum.ready_dbid);
 			StatusEnum.updateStatus(StatusEnum.NOTREADY, "start", null, null,
-					null, notreadyreason_dbid_g);
+					null, reasonDbId);
 			// 取得狀態
 			getStatus();
 
@@ -1130,18 +1154,18 @@
 		}
 
 		/*-------------------------------------------------------*/
-		$("#statusButton").on(
-				"click",
-				function() {
-					var statusReady = $("#statusButton button.status-ready")
-							.css("display");
+// 		$("#statusButton").on(
+// 				"click",
+// 				function() {
+// 					var statusReady = $("#statusButton button.status-ready")
+// 							.css("display");
 
-					if (statusReady && statusReady == "inline-block") {
-						agentNotReady();
-					} else {
-						agentReady();
-					}
-				});
+// 					if (statusReady && statusReady == "inline-block") {
+// 						agentNotReady();
+// 					} else {
+// 						agentReady();
+// 					}
+// 				});
 
 		function openTab(order) {
 			$("#menuItemList>a:eq(" + order + ")").trigger("click");
