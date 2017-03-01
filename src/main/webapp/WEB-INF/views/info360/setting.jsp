@@ -1870,7 +1870,7 @@
     	$("#person0Table tbody tr").empty();
    	 	$("#person1Table tboby tr").empty();
         $.ajax({                              
-    	          url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Query_Person_STATE",
+    	          url:"${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Person_STATE",
     		        data:{
     		        	state:0
     		        	 },
@@ -1937,7 +1937,7 @@
         });
 
         $.ajax({                              
-              url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Query_Person_STATE",
+              url:"${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Person_STATE",
     	        data:{
     	        	state:1
     	        	 },
@@ -2074,7 +2074,7 @@
     		var in_dn = document.getElementById('inputPhoneNumber').value;
 			var in_maxcount = document.getElementById('inputMaxcount').value;
     		$.ajax({                              
-    	          url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Insert_PersonInfo",
+    	          url:"${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Insert_PersonInfo",
     		         data:{
     		        	 first_name:in_first_name,
     		        	 last_name:in_last_name,
@@ -2123,7 +2123,7 @@
 
         	
         	$.ajax({                              
-                url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Update_PersonInfo",
+                url:"${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Update_PersonInfo",
       	         data:{
       	        	 first_name:up_first_name,
       	        	 last_name:up_last_name,
@@ -2257,7 +2257,7 @@
         	var deletedbid = document.getElementById('deletedbid').value;
         	
             $.ajax({                              
-                url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Delete_PersonInfo",
+                url:"${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Delete_PersonInfo",
         	         data:{
         	        	
         	        	 dbid:deletedbid
@@ -2282,7 +2282,7 @@
         	var state = document.getElementById('state_list').value;
             var account = document.getElementById('state_account').value;
             $.ajax({                              
-                url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Person_logicdelete",
+                url:"${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Person_logicdelete",
         	         data:{
         	        	
         	        	 state:state,

@@ -14,7 +14,7 @@ function select2(){
 	$("#manageAgentreasonTable tbody tr").empty();
  	$("#banAgentreasonTable tboby tr").empty();
     $.ajax({                              
-        url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Select_agentreason",
+        url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Select_agentreason",
 		        data:{
 		        	flag:0
 		        	 },
@@ -69,7 +69,7 @@ function select2(){
     });
 
     $.ajax({                              
-        url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Select_agentreason",
+        url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Select_agentreason",
 	        data:{
 	        	flag:1
 	        	 },
@@ -195,7 +195,7 @@ function sendAddMemberAgentreason() {
 	 var createuserid = document.getElementById('Insert_createuserid').value;
 	
 	 $.ajax({                              
-          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Insert_agentreason",
+          url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_agentreason",
 	         data:{
 	        	 flag:0,
 	        	 alarmcolor:alarmcolor,
@@ -264,7 +264,7 @@ function sendEditMemberAgentreason() {
  var statusname_tw = document.getElementById('statusname_tw').value;
 
  $.ajax({                              
-      url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Update_agentreason",
+      url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Update_agentreason",
          data:{
         	 flag:flag,
         	 dbid:dbid,
@@ -312,7 +312,7 @@ function AgentreasonDelete(message) {
 	var dbid = document.getElementById('D_id').value;
   	 
 	 $.ajax({                              
-         url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Delete_AgentReason",
+         url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Delete_AgentReason",
 	         data:{			        
 	        	 dbid:dbid
 	        	 },
@@ -338,7 +338,7 @@ function AgentreasonLuck(message) {
 	 var dbid = document.getElementById('Delete_id').value;
 
 	 $.ajax({                              
-          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/LogicDelete_agentreason",
+          url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_agentreason",
 	         data:{
 	        	 flag:flag,
 	        	 dbid:dbid

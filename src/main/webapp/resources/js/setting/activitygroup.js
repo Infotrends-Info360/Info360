@@ -16,7 +16,7 @@ function group(){
  	$("#banTableAG tboby tr").empty();
  	var dbid = document.getElementById("menu").value
 $.ajax({                              
-     url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Query_ActivityMenu",
+     url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityMenu",
 	        data:{
 	        	dbid:dbid
 	        	 },
@@ -69,7 +69,7 @@ $("#manageTableAGSearch").keyup(function(){
 });
 
 $.ajax({                              
-     url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Query_ActivityMenu",
+     url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityMenu",
         data:{
         	dbid:dbid
         	 },
@@ -125,7 +125,7 @@ $("#banTableAGSearch").keyup(function(){
 
 function AG(){
 	 $.ajax({                              
-	          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Query_ActivityMenu",
+	          url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityMenu",
 		         data:{
 		        	 dbid:0
 		        	 },
@@ -218,7 +218,7 @@ function sendAddMemberAG() {
 	 var in_sort = document.getElementById('in_sort').value;
 	
 	 $.ajax({                              
-          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Insert_ActivityGroup",
+          url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_ActivityGroup",
 	         data:{
 	        	 activitymenuid:dbid,
 	        	 groupname:in_groupname,
@@ -276,7 +276,7 @@ function sendEditMemberAG() {
  var up_sort = document.getElementById('up_sortAG').value;
  var up_dbid = document.getElementById('up_dbidAG').value;
  $.ajax({                              
-      url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Update_ActivityGroup",
+      url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Update_ActivityGroup",
          data:{
         	 activitymenuid:dbid,
         	 groupname:up_groupname,
@@ -312,7 +312,7 @@ function AGLuck(message) {
 	 var dbid = document.getElementById('Delete_idAG').value;
 
 	 $.ajax({                              
-         url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/LogicDelete_ActivityGroup",
+         url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_ActivityGroup",
 	         data:{
 	        	 deleteflag:flag,
 	        	 groupname:dbid,

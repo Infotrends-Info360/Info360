@@ -122,6 +122,7 @@
 							class="J_menuItem" href="chat4" id="chat4"></a> <a
 							class="J_menuItem" href="chat5" id="chat5"></a>
 
+
 					</div>
 					<!-- 實際觸發開啟頁籤區域 -->
 				</ul>
@@ -416,7 +417,7 @@
 
 		// Step-0 
 		loginValidate();
-
+		
 		// 帳號密碼驗證
 		function loginValidate() {
 			$

@@ -342,7 +342,7 @@
 				var me = this;
 				$
 						.ajax({
-							url : "http://ws.crm.com.tw:8080/IMWebSocket/RESTful/GetKPI",
+							url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/GetKPI",
 							type : "POST",
 							dataType : 'json',
 							data : data,
@@ -370,7 +370,7 @@
 						});
 			}
 			setTimeout(function() {
-				me.kpiview();
+				kpiview();
 			}, 1000);
 		}
 		kpiview();
