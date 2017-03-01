@@ -409,15 +409,11 @@
 		// Step-0 
 		loginValidate();
 		
-		console.log("window.location.protocol: "+window.location.protocol);
-		console.log("window.location.hostname: "+window.location.hostname);
-		console.log("window.location.host: "+window.location.host);
-		
 		// 帳號密碼驗證
 		function loginValidate() {
 			$
 					.ajax({
-						url : window.location.protocol+"//"+window.location.host+"/Info360_Setting/RESTful/Login",
+						url : "http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Login",
 						data : {
 							account : userName,
 							password : password
@@ -478,7 +474,7 @@
 
 		// 連線&&登入
 		function doConnect() {
-			var hostname = window.location.hostname;
+			var hostname = "ws.crm.com.tw";
 			ws = new WebSocket('ws://' + hostname + ':8888');
 
 			ws.onopen = function() {
