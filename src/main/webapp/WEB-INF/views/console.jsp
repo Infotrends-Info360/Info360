@@ -35,11 +35,11 @@
 			<form class="" role="form" method="POST" action="main">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="用户名"
-						name="userName" required="" value="Holylin">
+						name="userName" required="" value="">
 				</div>
 				<div class="form-group">
 					<input type="password" class="form-control" placeholder="密码"
-						name="password" required="" value="info@1111">
+						name="password" required="" value="">
 				</div>
 
 				<button class="btn btn-primary block full-width" id="loginButton">登入</button>

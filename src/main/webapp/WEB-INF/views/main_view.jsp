@@ -97,30 +97,31 @@
 								<li><a onclick="logout()">登出</a></li>
 								<hr>
 
-								<li style="display: none;"><a onclick="openTab(1)"
-									id="chat1Tab">chat1</a></li>
-								<li style="display: none;"><a onclick="openTab(2)"
-									id="chat2Tab">chat2</a></li>
-								<li style="display: none;"><a onclick="openTab(3)"
-									id="chat3Tab">chat3</a></li>
-								<li style="display: none;"><a onclick="openTab(4)"
-									id="chat4Tab">chat4</a></li>
-								<li style="display: none;"><a onclick="openTab(5)"
-									id="chat5Tab">chat5</a></li>
+								<li id="chat1Tab" style="display: none;"><a
+									onclick="openTab(1)">chat1</a></li>
+								<li id="chat2Tab" style="display: none;"><a
+									onclick="openTab(2)">chat2</a></li>
+								<li id="chat3Tab" style="display: none;"><a
+									onclick="openTab(3)">chat3</a></li>
+								<li id="chat4Tab" style="display: none;"><a
+									onclick="openTab(4)">chat4</a></li>
+								<li id="chat5Tab" style="display: none;"><a
+									onclick="openTab(5)">chat5</a></li>
 
 							</ul> </a></li>
 
 					<!-- 實際觸發開啟頁籤區域 -->
 					<div style="display: none;" id="menuItemList">
 						<a class="J_menuItem" href="/info360/dashboard">儀表板</a> <a
+							class="J_menuItem" href="chat1" id="chat1"></a> <a
+							class="J_menuItem" href="chat2" id="chat2"></a> <a
+							class="J_menuItem" href="chat3" id="chat3"></a> <a
+							class="J_menuItem" href="chat4" id="chat4"></a> <a
+							class="J_menuItem" href="chat5" id="chat5"></a> <a
 							class="J_menuItem" href="/info360/query">案件搜尋</a> <a
 							class="J_menuItem" href="/info360/setting">設定</a> <a
 							class="J_menuItem" href="/info360/password">修改密碼</a> <a
-							href="login.html">登出</a> <a class="J_menuItem" href="chat1"
-							id="chat1"></a> <a class="J_menuItem" href="chat2" id="chat2"></a>
-						<a class="J_menuItem" href="chat3" id="chat3"></a> <a
-							class="J_menuItem" href="chat4" id="chat4"></a> <a
-							class="J_menuItem" href="chat5" id="chat5"></a>
+							href="login.html">登出</a>
 
 
 					</div>
@@ -417,74 +418,76 @@
 
 		// Step-0 
 		loginValidate();
-		
+
 		// 帳號密碼驗證
 		function loginValidate() {
-			$
-					.ajax({
-						url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Login",
-						data : {
-							account : userName,
-							password : password
-						},
-						type : "POST",
-						dataType : 'json',
-						error : function(e) {
-							console.log("請重新整理");
-						},
-						success : function(data) {
-							console.log("login", data)
+			var Info360_Setting_protocol = "${Info360_Setting_protocol}"
+					|| "http:";
+			var Info360_Setting_hostname = "${Info360_Setting_hostname}"
+					|| "ws.crm.com.tw";
+			var Info360_Setting_port = "${Info360_Setting_port}" || "8080";
 
-							// 測試用必驗證過
-							// 							doConnect();
-							$('#loginDialog').off('hidden.bs.modal');
+			$.ajax({
+				url : Info360_Setting_protocol + "//"
+						+ Info360_Setting_hostname + ":" + Info360_Setting_port
+						+ "/Info360_Setting/RESTful/Login",
+				data : {
+					account : userName,
+					password : password
+				},
+				type : "POST",
+				dataType : 'json',
+				error : function(e) {
+					console.log("請重新整理");
+				},
+				success : function(data) {
+					console.log("login", data)
 
-							if (userName == "" || password == "") {
-								// 未輸入帳號與密碼
-								console.log(data.error)
-								$('#loginDialog').on('hidden.bs.modal',
-										function() {
-											window.location.href = 'console';
-										})
+					// 測試用必驗證過
+					// 							doConnect();
+					$('#loginDialog').off('hidden.bs.modal');
 
-								$("#loginDialogButton").trigger("click");
-							} else if (data.error != null) {
-								// 其他可能錯誤
-								console.log(data.error);
-								$('#loginDialog').on('hidden.bs.modal',
-										function() {
-											window.location.href = 'console';
-										})
-								$("#loginDialogButton").trigger("click");
-							} else {
-								// 驗證通過
-								// 								console.log(JSON.stringify(data));
-								maxCount = data.person[0].max_count;
-								UserID_g = data.person[0].dbid;
-								UserName_g = data.person[0].user_name;
+					if (userName == "" || password == "") {
+						// 未輸入帳號與密碼
+						console.log(data.error)
+						$('#loginDialog').on('hidden.bs.modal', function() {
+							window.location.href = 'console';
+						})
 
-								$("#dashboardTab").show();
-								$('iframe[name="iframe0"]').show();
-								$("#userNickName").html(UserName_g);
+						$("#loginDialogButton").trigger("click");
+					} else if (data.error != null) {
+						// 其他可能錯誤
+						console.log(data.error);
+						$('#loginDialog').on('hidden.bs.modal', function() {
+							window.location.href = 'console';
+						})
+						$("#loginDialogButton").trigger("click");
+					} else {
+						// 驗證通過
+						// 								console.log(JSON.stringify(data));
+						maxCount = data.person[0].max_count;
+						UserID_g = data.person[0].dbid;
+						UserName_g = data.person[0].user_name;
 
-								$('.J_iframe')
-										.attr(
-												'src',
-												'/info360/dashboard?userid='
-														+ UserID_g); // 20170222 Lin 刷新dashboard，為了取的UserID
-								// Step-1 載入時連線ws
-								doConnect();
-							}
+						$("#dashboardTab").show();
+						$('iframe[name="iframe0"]').show();
+						$("#userNickName").html(UserName_g);
 
-						},
-						beforeSend : function() {
-							// 					$('#loading').show();
-						},
-						complete : function() {
-							// 					$('#loading').hide();
+						$('.J_iframe').attr('src',
+								'/info360/dashboard?userid=' + UserID_g); // 20170222 Lin 刷新dashboard，為了取的UserID
+						// Step-1 載入時連線ws
+						doConnect();
+					}
 
-						}
-					});
+				},
+				beforeSend : function() {
+					// 					$('#loading').show();
+				},
+				complete : function() {
+					// 					$('#loading').hide();
+
+				}
+			});
 		}
 
 		function doTest() {
@@ -495,9 +498,10 @@
 
 		// 連線&&登入
 		function doConnect() {
-			var hostname = "${websocket_hostname}";
-			ws = new WebSocket('${websocket_protocol}//' + hostname
-					+ ':${websocket_port}');
+			var hostname = "${websocket_hostname}" || "ws.crm.com.tw";
+			var protocol = "${websocket_protocol}" || "ws:";
+			var port = "${websocket_port}" || "8888";
+			ws = new WebSocket(protocol + '//' + hostname + ':' + port);
 
 			ws.onopen = function() {
 				console.log('websocket 打開成功');
@@ -639,8 +643,8 @@
 						$("#" + currentChatTab).prop("href", newHref);
 						$("#" + currentChatTab).trigger("click");
 
-						$("#" + chatTab + "Tab").html(name);
-						$("#" + chatTab + "Tab").parent().show();
+						$("#" + currentChatTab + "Tab > a").html(ClientName_g);
+						$("#" + currentChatTab + "Tab").show();
 
 						//20170223 Lin
 						// 更新狀態
@@ -1118,8 +1122,8 @@
 					chatTab.push(entry.chatTab)
 
 					// 右上清單動作
-					$("#" + entry.chatTab + "Tab").html("");
-					$("#" + entry.chatTab + "Tab").parent().hide();
+					$("#" + entry.chatTab + "Tab > a").html("");
+					$("#" + entry.chatTab + "Tab").hide();
 				}
 			});
 		}

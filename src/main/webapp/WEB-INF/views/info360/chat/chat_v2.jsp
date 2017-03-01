@@ -393,17 +393,21 @@
 					</div>
 					<div class="panel gray-bg">
 						<div style="font-size: 14px; padding: 5px; text-align: right;">
-							<span style="margin: 0px 10px 0px 10px;"> <input
-								type="checkbox"> 離席外撥
-							</span> <span style="margin: 0px 10px 0px 10px;"> <input
-								type="checkbox"> 來電提示
-							</span> <span style="margin: 0px 10px 0px 10px;"> <input
-								type="checkbox"> 抱怨
-							</span> <span style="margin: 0px 10px 0px 10px;"> <input
-								type="checkbox"> 離席
-							</span> <span style="margin: 0px 10px 0px 10px;"> <input
-								type="checkbox"> 黑名單
-							</span> <span style="margin: 0px 10px 0px 10px;">
+							<span style="display:none;"> 
+								<span style="margin: 0px 10px 0px 10px;"> <input
+										type="checkbox"> 外撥
+								</span> <span style="margin: 0px 10px 0px 10px;"> <input
+										type="checkbox"> 來電提示
+								</span> <span style="margin: 0px 10px 0px 10px;"> <input
+										type="checkbox"> 抱怨
+								</span> <span style="margin: 0px 10px 0px 10px;"> <input
+										type="checkbox"> 離席
+								</span> <span style="margin: 0px 10px 0px 10px;"> <input
+										type="checkbox"> 黑名單
+								</span>
+							</span> 
+							
+							<span style="margin: 0px 10px 0px 10px;">
 								<button class="btn btn-sm btn-success" onclick="finishChat()">服務完成</button>
 							</span>
 						</div>
@@ -442,8 +446,9 @@
 		$("#queryTable").css("width", "100%");
 
 		// 案件資訊處理人
+		console.log(parent.UserName_g);
 		$("#caseUserName").val(parent.UserName_g);
-		
+
 		// 搜尋案件類別
 		Query_ActivityMenu(0, 0);
 	});
@@ -682,9 +687,12 @@
 							$("#caseInfo" + index).html("");
 
 							if (0 == data.activitygroups.length) {
-								$("#caseInfoLevel1TabContent > .tab-pane.active").removeClass("active");
+								$(
+										"#caseInfoLevel1TabContent > .tab-pane.active")
+										.removeClass("active");
 								$("#caseInfo99").addClass("active");
-								$ul.append('<li><a href="#caseInfo99" data-toggle="tab">通話紀錄</a></li>');
+								$ul
+										.append('<li><a href="#caseInfo99" data-toggle="tab">通話紀錄</a></li>');
 							} else {
 								$("#caseInfo99").removeClass("active");
 								$("#caseInfo0").addClass("active");
