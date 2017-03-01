@@ -532,6 +532,7 @@
 
 						var statusList = obj.statusList;
 						var reasonList = obj.reasonList;
+						console.log("reasonList: "+JSON.stringify(reasonList));
 
 						// 更新statusList - enum
 						// 格式: {Login={description=登入, dbid=1}, Ring={description=響鈴, dbid=6}
