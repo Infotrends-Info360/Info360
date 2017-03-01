@@ -59,9 +59,11 @@ public class BasicController {
 		model.addAttribute("userName", userName);
 		model.addAttribute("password", password);
 		
+		System.out.println("user.dir: "+System.getProperty("user.dir"));
 		Properties prop = new Properties();
 		try {
-			prop.load(new FileInputStream("config.properties"));
+			//prop.load(new FileInputStream("config.properties"));
+			prop.load(new FileInputStream(System.getProperty("user.dir")+"/webapps/config.properties"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,6 +79,8 @@ public class BasicController {
 		String Info360_Setting_protocol = prop.getProperty("Info360_Setting.protocol");
 		String Info360_Setting_hostname = prop.getProperty("Info360_Setting.hostname");
 		String Info360_Setting_port = prop.getProperty("Info360_Setting.port");
+		
+		System.out.println("websocket_protocol: "+websocket_protocol);
 		
 		model.addAttribute("websocket_protocol", websocket_protocol);
 		model.addAttribute("websocket_hostname", websocket_hostname);
@@ -94,7 +98,8 @@ public class BasicController {
 		
 		Properties prop = new Properties();
 		try {
-			prop.load(new FileInputStream("config.properties"));
+			//prop.load(new FileInputStream("config.properties"));
+			prop.load(new FileInputStream(System.getProperty("user.dir")+"/webapps/config.properties"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -106,6 +111,8 @@ public class BasicController {
 		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
 		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
 		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
+		
+		System.out.println("IMWebSocket_protocol: "+IMWebSocket_protocol);
 		
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
@@ -124,7 +131,8 @@ public class BasicController {
 		
 		Properties prop = new Properties();
 		try {
-			prop.load(new FileInputStream("config.properties"));
+			//prop.load(new FileInputStream("config.properties"));
+			prop.load(new FileInputStream(System.getProperty("user.dir")+"/webapps/config.properties"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
