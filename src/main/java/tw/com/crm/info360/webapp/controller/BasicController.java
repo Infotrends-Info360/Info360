@@ -1,5 +1,10 @@
 package tw.com.crm.info360.webapp.controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,13 +58,62 @@ public class BasicController {
 			@RequestParam(value = "password", required = false) String password, Model model) {
 		model.addAttribute("userName", userName);
 		model.addAttribute("password", password);
+		
+		Properties prop = new Properties();
+		try {
+			//prop.load(new FileInputStream("config.properties"));
+			prop.load(new FileInputStream(System.getProperty("user.dir")+"/webapps/config.properties"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String websocket_hostname = prop.getProperty("websocket.hostname");
+		String websocket_protocol = prop.getProperty("websocket.protocol");
+		String websocket_port = prop.getProperty("websocket.port");
+		
+		String Info360_Setting_protocol = prop.getProperty("Info360_Setting.protocol");
+		String Info360_Setting_hostname = prop.getProperty("Info360_Setting.hostname");
+		String Info360_Setting_port = prop.getProperty("Info360_Setting.port");
+		
+		model.addAttribute("websocket_hostname", websocket_hostname);
+		model.addAttribute("websocket_protocol", websocket_protocol);
+		model.addAttribute("websocket_port", websocket_port);
+		
+		model.addAttribute("Info360_Setting_protocol", Info360_Setting_protocol);
+		model.addAttribute("Info360_Setting_hostname", Info360_Setting_hostname);
+		model.addAttribute("Info360_Setting_port", Info360_Setting_port);
 
 		return "main_view"; // 頁面導向 /WEB-INF/views/ 搜索檔案類型.jsp
 	}
 
 	/*--------- Tab 分頁導頁控制區 ----------*/
 	@RequestMapping(value = "dashboard")
-	public String showDashBoard() {
+	public String showDashBoard(Model model) {
+		
+		Properties prop = new Properties();
+		try {
+			//prop.load(new FileInputStream("config.properties"));
+			prop.load(new FileInputStream(System.getProperty("user.dir")+"/webapps/config.properties"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
+		
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
+		
 		return "info360/dashboard";
 	}
 
@@ -69,7 +123,36 @@ public class BasicController {
 	}
 
 	@RequestMapping(value = "setting")
-	public String showSetting() {
+	public String showSetting(Model model) {
+		
+		Properties prop = new Properties();
+		try {
+			//prop.load(new FileInputStream("config.properties"));
+			prop.load(new FileInputStream(System.getProperty("user.dir")+"/webapps/config.properties"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
+		
+		String Info360_Setting_protocol = prop.getProperty("Info360_Setting.protocol");
+		String Info360_Setting_hostname = prop.getProperty("Info360_Setting.hostname");
+		String Info360_Setting_port = prop.getProperty("Info360_Setting.port");
+		
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
+		
+		model.addAttribute("Info360_Setting_protocol", Info360_Setting_protocol);
+		model.addAttribute("Info360_Setting_hostname", Info360_Setting_hostname);
+		model.addAttribute("Info360_Setting_port", Info360_Setting_port);
+		
 		return "info360/setting";
 	}
 
