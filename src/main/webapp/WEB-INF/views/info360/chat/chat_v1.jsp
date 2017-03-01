@@ -120,13 +120,13 @@
 								<div class="input-group">
 									<div class="col-xs-12">案件編號</div>
 									<div class="col-xs-12">
-										<input type="text" value="C_201506041009">
+										<input type="text" value="${interactionId}">
 									</div>
 								</div>
 								<div class="input-group">
 									<div class="col-xs-12">處理人</div>
 									<div class="col-xs-12">
-										<input type="text" value="HolyLin">
+										<input type="text" id="caseUserName" value="">
 									</div>
 								</div>
 								<div class="input-group">
@@ -441,6 +441,9 @@
 		$("#queryTable").DataTable();
 		$("#queryTable").css("width", "100%");
 
+		// 案件資訊處理人
+		$("#caseUserName").val(parent.UserName_g);
+		
 		// 搜尋案件類別
 		Query_ActivityMenu(0, 0);
 	});
@@ -676,36 +679,47 @@
 						} else if (1 == level) {
 							var $ul = $("#caseInfoLevel1");
 							$ul.html("");
+							$("#caseInfo" + index).html("");
 
-							for ( var index in data.activitygroups) {
-								var groupname = data.activitygroups[index].groupname;
-								var dbid = data.activitygroups[index].dbid;
+							if (0 == data.activitygroups.length) {
+								$("#caseInfoLevel1TabContent > .tab-pane.active").removeClass("active");
+								$("#caseInfo99").addClass("active");
+								$ul.append('<li><a href="#caseInfo99" data-toggle="tab">通話紀錄</a></li>');
+							} else {
+								$("#caseInfo99").removeClass("active");
+								$("#caseInfo0").addClass("active");
 
-								if (0 == index) {
-									var $li = "<li class='active'><a href='#caseInfo" + index + "'";
-                             $li += " data-toggle='tab'>"
-											+ groupname + "</a></li>";
-								} else {
-									var $li = "<li><a href='#caseInfo" + index + "'";
-                             $li += " data-toggle='tab'>"
-											+ groupname + "</a></li>";
+								for ( var index in data.activitygroups) {
+									var groupname = data.activitygroups[index].groupname;
+									var dbid = data.activitygroups[index].dbid;
+
+									if (0 == index) {
+										var $li = "<li class='active'><a href='#caseInfo" + index + "'";
+                                        $li += " data-toggle='tab'>"
+												+ groupname + "</a></li>";
+									} else {
+										var $li = "<li><a href='#caseInfo" + index + "'";
+                                        $li += " data-toggle='tab'>"
+												+ groupname + "</a></li>";
+									}
+
+									$ul.append($li);
+
+									//console.log($("#caseInfo" + index));
+									if (0 == $("#caseInfo" + index).length) {
+										var caseInfoDiv = '<div class="tab-pane" id="caseInfo' + index + '"><div style="height: 600px; overflow-y: scroll;"></div></div>'
+
+										$("#caseInfoLevel1TabContent").append(
+												caseInfoDiv);
+									}
+
+									Flag_Data(dbid, index);
 								}
 
-								$ul.append($li);
-
-								console.log($("#caseInfo" + index));
-								if (0 == $("#caseInfo" + index).length) {
-									var caseInfoDiv = '<div class="tab-pane" id="caseInfo' + index + '"><div style="height: 600px; overflow-y: scroll;"></div></div>'
-
-									$("#caseInfoLevel1TabContent").append(
-											caseInfoDiv);
-								}
-
-								Flag_Data(dbid, index);
+								$ul
+										.append('<li><a href="#caseInfo99" data-toggle="tab">通話紀錄</a></li>');
 							}
 
-							$ul
-									.append('<li><a href="#caseInfo99" data-toggle="tab">通話紀錄</a></li>');
 						}
 					}
 				});
@@ -752,7 +766,7 @@
 						//console.log(titleList);
 						// 根據巢狀結構建立對應的表格
 						for ( var index in titleList) {
-							var $table = '<table class="table table-striped table-bordered table-hover" style="width:80%">';
+							var $table = '<table class="table table-striped table-bordered table-hover" style="width:100%">';
 
 							// 加入標題
 							$table += '<thead><tr><td colspan="5"><b class="text-success">'
@@ -832,10 +846,10 @@
 				activitydataids += "," + dbid[i];
 			}
 		});
-		
-// 		console.log("insertRptActivityLog");
-// 		console.log("activitydataids : " + activitydataids);
-// 		console.log("interactionId : " + interactionId);
+
+		// 		console.log("insertRptActivityLog");
+		// 		console.log("activitydataids : " + activitydataids);
+		// 		console.log("interactionId : " + interactionId);
 
 		$
 				.ajax({

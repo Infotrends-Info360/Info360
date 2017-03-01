@@ -32,7 +32,7 @@
 			<h3>歡迎使用Info360</h3>
 		</div>
 		<div>
-			<form class="" role="form" action="main">
+			<form class="" role="form" method="POST" action="main">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="用户名"
 						name="userName" required="" value="Holylin">
@@ -44,7 +44,7 @@
 
 				<button class="btn btn-primary block full-width" id="loginButton">登入</button>
 			</form>
-			<div>
+			<div style="display:none;">
 				<p class="text-muted text-center">
 					<a href="#"><small>忘記密碼</small></a>
 				</p>
@@ -58,7 +58,7 @@
 
 	<script>
 		$("#loginButton").on("click", function() {
-			//setTimeout(function(){ $("body").html("") }, 1000);
+			
 		});
 	</script>
 </body>

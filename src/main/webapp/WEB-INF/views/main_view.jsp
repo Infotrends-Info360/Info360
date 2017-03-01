@@ -44,7 +44,8 @@
 							<nav class="page-tabs J_menuTabs">
 							<div class="page-tabs-content">
 								<a href="#" class="active J_menuTab"
-									data-id="/info360/dashboard">儀表板</a>
+									data-id="/info360/dashboard" style="display: none;"
+									id="dashboardTab">儀表板</a>
 							</div>
 							</nav>
 							<button class="roll-nav roll-right J_tabRight">
@@ -90,29 +91,36 @@
 								<!-- 																<li><a onclick="doTest()">test</a></li> -->
 								<!-- 																<hr> -->
 								<li><a onclick="openTab(0)">儀表板</a></li>
-								<li><a onclick="openTab(1)">案件搜尋</a></li>
-								<li><a onclick="openTab(2)">設定</a></li>
-								<!-- 								<li><a onclick="openTab(3)">修改密碼</a></li> -->
+								<li><a onclick="openTab(6)">案件搜尋</a></li>
+								<li><a onclick="openTab(7)">設定</a></li>
+								<!-- 								<li><a onclick="openTab(8)">修改密碼</a></li> -->
 								<li><a onclick="logout()">登出</a></li>
 								<hr>
 
-								<!-- <li><a onclick="openTab(5)">0912345678</a> <a
-									onclick="openTab(6)">0987654321</a></li>
-									 -->
+								<li style="display: none;"><a onclick="openTab(1)"
+									id="chat1Tab">chat1</a></li>
+								<li style="display: none;"><a onclick="openTab(2)"
+									id="chat2Tab">chat2</a></li>
+								<li style="display: none;"><a onclick="openTab(3)"
+									id="chat3Tab">chat3</a></li>
+								<li style="display: none;"><a onclick="openTab(4)"
+									id="chat4Tab">chat4</a></li>
+								<li style="display: none;"><a onclick="openTab(5)"
+									id="chat5Tab">chat5</a></li>
+
 							</ul> </a></li>
 
 					<!-- 實際觸發開啟頁籤區域 -->
 					<div style="display: none;" id="menuItemList">
 						<a class="J_menuItem" href="/info360/dashboard">儀表板</a> <a
-							class="J_menuItem" href="chat1" id="chat1"></a> <a
-							class="J_menuItem" href="chat2" id="chat2"></a> <a
-							class="J_menuItem" href="chat3" id="chat3"></a> <a
-							class="J_menuItem" href="chat4" id="chat4"></a> <a
-							class="J_menuItem" href="chat5" id="chat5"></a> <a
 							class="J_menuItem" href="/info360/query">案件搜尋</a> <a
 							class="J_menuItem" href="/info360/setting">設定</a> <a
 							class="J_menuItem" href="/info360/password">修改密碼</a> <a
-							href="login.html">登出</a>
+							href="login.html">登出</a> <a class="J_menuItem" href="chat1"
+							id="chat1"></a> <a class="J_menuItem" href="chat2" id="chat2"></a>
+						<a class="J_menuItem" href="chat3" id="chat3"></a> <a
+							class="J_menuItem" href="chat4" id="chat4"></a> <a
+							class="J_menuItem" href="chat5" id="chat5"></a>
 
 					</div>
 					<!-- 實際觸發開啟頁籤區域 -->
@@ -126,7 +134,7 @@
 -->
 		<div class="row J_mainContent" id="content-main">
 			<iframe class="J_iframe" name="iframe0" width="100%" height="100%"
-				src="/info360/dashboard" frameborder="0"
+				src="/info360/dashboard" frameborder="0" style="display: none;"
 				data-id="/info360/dashboard" seamless></iframe>
 		</div>
 
@@ -413,7 +421,7 @@
 		function loginValidate() {
 			$
 					.ajax({
-						url : "http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Login",
+						url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Login",
 						data : {
 							account : userName,
 							password : password
@@ -428,22 +436,34 @@
 
 							// 測試用必驗證過
 							// 							doConnect();
+							$('#loginDialog').off('hidden.bs.modal');
 
 							if (userName == "" || password == "") {
 								// 未輸入帳號與密碼
 								console.log(data.error)
+								$('#loginDialog').on('hidden.bs.modal',
+										function() {
+											window.location.href = 'console';
+										})
+
 								$("#loginDialogButton").trigger("click");
 							} else if (data.error != null) {
 								// 其他可能錯誤
 								console.log(data.error);
+								$('#loginDialog').on('hidden.bs.modal',
+										function() {
+											window.location.href = 'console';
+										})
 								$("#loginDialogButton").trigger("click");
 							} else {
 								// 驗證通過
 								// 								console.log(JSON.stringify(data));
 								maxCount = data.person[0].max_count;
-								// 								console.log(data.person[0].max_count);
 								UserID_g = data.person[0].dbid;
 								UserName_g = data.person[0].user_name;
+
+								$("#dashboardTab").show();
+								$('iframe[name="iframe0"]').show();
 								$("#userNickName").html(UserName_g);
 
 								$('.J_iframe')
@@ -474,8 +494,9 @@
 
 		// 連線&&登入
 		function doConnect() {
-			var hostname = "ws.crm.com.tw";
-			ws = new WebSocket('ws://' + hostname + ':8888');
+			var hostname = "${websocket_hostname}";
+			ws = new WebSocket('${websocket_protocol}//' + hostname
+					+ ':${websocket_port}');
 
 			ws.onopen = function() {
 				console.log('websocket 打開成功');
@@ -599,6 +620,7 @@
 						newTab.chatTab = currentChatTab;
 						chatList.push(newTab);
 
+						console.log(chatList);
 						console.log("currentUserData");
 						console.log(currentUserData);
 
@@ -615,6 +637,9 @@
 
 						$("#" + currentChatTab).prop("href", newHref);
 						$("#" + currentChatTab).trigger("click");
+
+						$("#" + chatTab + "Tab").html(name);
+						$("#" + chatTab + "Tab").parent().show();
 
 						//20170223 Lin
 						// 更新狀態
@@ -683,6 +708,7 @@
 						var fromUserId = obj.fromUserID;
 						var roomID = obj.roomID
 
+						// 清除layim群聊清單
 						layim.removeList({
 							type : 'group',
 							id : roomID
@@ -1002,6 +1028,8 @@
 
 			// 發送消息給layim
 			layim.getMessage(obj);
+
+			$("#layim-group" + roomId).trigger("click");
 		}
 
 		// 傳送群組訊息至layim視窗上
@@ -1070,8 +1098,9 @@
 			chatList.forEach(function(entry) {
 				if (aRoomID == entry.id) {
 					$("#" + entry.chatTab).trigger("click");
-					var iframeName = entry.chatTab.replace("chat", "iframe"); 
-					$('[name=' + iframeName + ']')[0].contentWindow.showCaseInfoTab();
+					var iframeName = entry.chatTab.replace("chat", "iframe");
+					$('[name=' + iframeName + ']')[0].contentWindow
+							.showCaseInfoTab();
 				}
 			});
 		}
@@ -1086,6 +1115,10 @@
 
 					chatList.splice($.inArray(entry, chatList), 1);
 					chatTab.push(entry.chatTab)
+
+					// 右上清單動作
+					$("#" + entry.chatTab + "Tab").html("");
+					$("#" + entry.chatTab + "Tab").parent().hide();
 				}
 			});
 		}
@@ -1109,6 +1142,7 @@
 		}
 
 		function showCloseDialog() {
+			console.log(RoomID_g);
 			$("#closeRoomId").html(RoomID_g);
 			$("#closeDialogButton").trigger("click");
 		}
@@ -1226,6 +1260,7 @@
 							layim.on('chatChange', function(res) {
 								var type = res.data.type;
 								console.log(res);
+								RoomID_g = res.data.id;
 
 								chatList
 										.forEach(function(entry) {
