@@ -18,7 +18,7 @@ function groupAD(){
  	
 	var dbid = document.getElementById("menuAD").value
 $.ajax({                              
-    url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/FLAGDATA",
+    url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/FLAGDATA",
 	        data:{
 	        	dbid:dbid
 	        	 },
@@ -74,7 +74,7 @@ $("#manageTableADSearch").keyup(function(){
 });
 
 $.ajax({                              
-    url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/FLAGDATA",
+    url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/FLAGDATA",
         data:{
         	dbid:dbid
         	 },
@@ -134,7 +134,7 @@ $("#banTableADSearch").keyup(function(){
 function AD(){
 	
 	 $.ajax({                              
-          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Query_ActivityGroup",
+          url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityGroup",
 	         data:{
 	        	 dbid:0
 	        	 },
@@ -230,7 +230,7 @@ function sendAddMemberAD() {
 		var in_sort = document.getElementById("in_sort").value;
 			
 		 $.ajax({                              
-	          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Insert_ActivityData",
+	          url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_ActivityData",
 		         data:{
 		        	 activitygroupsid:in_activitygroupsid,
 		        	 codename:in_codename,
@@ -294,7 +294,7 @@ function sendEditMemberAD() {
  var up_sort = document.getElementById("up_sortAD").value;
 
 	 $.ajax({                              
-       url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Update_ActivityData",
+       url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Update_ActivityData",
 	         data:{
 	        	 codename:up_codename,
 	        	 color:up_color,
@@ -333,7 +333,7 @@ function ADLuck(message) {
 	 var dbid = document.getElementById('Delete_idAD').value;
 
 	 $.ajax({                              
-          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/LogicDelete_ActivityData",
+          url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_ActivityData",
 	         data:{
 	        	 deleteflag:flag,
 	        	 codename:dbid

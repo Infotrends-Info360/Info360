@@ -104,15 +104,15 @@
 					<!-- 實際觸發開啟頁籤區域 -->
 					<div style="display: none;" id="menuItemList">
 						<a class="J_menuItem" href="/info360/dashboard">儀表板</a> <a
+							class="J_menuItem" href="/info360/query">案件搜尋</a> <a
+							class="J_menuItem" href="/info360/setting">設定</a> <a
+							class="J_menuItem" href="/info360/password">修改密碼</a> <a
+							href="login.html">登出</a> <a
 							class="J_menuItem" href="chat1" id="chat1"></a> <a
 							class="J_menuItem" href="chat2" id="chat2"></a> <a
 							class="J_menuItem" href="chat3" id="chat3"></a> <a
 							class="J_menuItem" href="chat4" id="chat4"></a> <a
-							class="J_menuItem" href="chat5" id="chat5"></a> <a
-							class="J_menuItem" href="/info360/query">案件搜尋</a> <a
-							class="J_menuItem" href="/info360/setting">設定</a> <a
-							class="J_menuItem" href="/info360/password">修改密碼</a> <a
-							href="login.html">登出</a>
+							class="J_menuItem" href="chat5" id="chat5"></a>
 
 					</div>
 					<!-- 實際觸發開啟頁籤區域 -->
@@ -413,7 +413,7 @@
 		function loginValidate() {
 			$
 					.ajax({
-						url : "http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Login",
+						url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Login",
 						data : {
 							account : userName,
 							password : password
@@ -474,8 +474,8 @@
 
 		// 連線&&登入
 		function doConnect() {
-			var hostname = "ws.crm.com.tw";
-			ws = new WebSocket('ws://' + hostname + ':8888');
+			var hostname = "${websocket_hostname}";
+			ws = new WebSocket('${websocket_protocol}//' + hostname + ':${websocket_port}');
 
 			ws.onopen = function() {
 				console.log('websocket 打開成功');
