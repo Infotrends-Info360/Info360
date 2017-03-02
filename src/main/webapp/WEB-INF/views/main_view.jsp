@@ -97,7 +97,7 @@
 								<!-- 																<hr> -->
 								<li><a onclick="openTab(0)">儀表板</a></li>
 								<li><a onclick="openTab(6)">案件搜尋</a></li>
-								<li><a onclick="openTab(7)">設定</a></li>
+<!-- 								<li><a onclick="openTab(7)">設定</a></li> -->
 								<!-- 								<li><a onclick="openTab(8)">修改密碼</a></li> -->
 								<li><a onclick="logout()">登出</a></li>
 								<hr>
