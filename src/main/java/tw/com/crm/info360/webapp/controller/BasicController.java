@@ -188,10 +188,26 @@ public class BasicController {
 	public String showChatV1(@RequestParam(value = "id", required = false) String id,
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "address", required = false) String address,
+			@RequestParam(value = "bhno", required = false) String bhno,
+			@RequestParam(value = "bhnotype", required = false) String bhnotype,
+			@RequestParam(value = "custfno", required = false) String custfno,
+			@RequestParam(value = "custlevel", required = false) String custlevel,
+			@RequestParam(value = "birth", required = false) String birth,
+			@RequestParam(value = "mobtel", required = false) String mobtel,
+			@RequestParam(value = "cattel", required = false) String cattel,
+			@RequestParam(value = "email", required = false) String email,
 			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) throws IOException {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 		model.addAttribute("address", address);
+		model.addAttribute("bhno", bhno);
+		model.addAttribute("bhnotype", bhnotype);
+		model.addAttribute("custfno", custfno);
+		model.addAttribute("custlevel", custlevel);
+		model.addAttribute("birth", birth);
+		model.addAttribute("mobtel", mobtel);
+		model.addAttribute("cattel", cattel);
+		model.addAttribute("email", email);
 		model.addAttribute("interactionId", interactionId);
 		
 		Properties prop = new Properties();
@@ -221,10 +237,26 @@ public class BasicController {
 	public String showChatV2(@RequestParam(value = "id", required = false) String id,
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "address", required = false) String address,
+			@RequestParam(value = "bhno", required = false) String bhno,
+			@RequestParam(value = "bhnotype", required = false) String bhnotype,
+			@RequestParam(value = "custfno", required = false) String custfno,
+			@RequestParam(value = "custlevel", required = false) String custlevel,
+			@RequestParam(value = "birth", required = false) String birth,
+			@RequestParam(value = "mobtel", required = false) String mobtel,
+			@RequestParam(value = "cattel", required = false) String cattel,
+			@RequestParam(value = "email", required = false) String email,
 			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) throws IOException {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 		model.addAttribute("address", address);
+		model.addAttribute("bhno", bhno);
+		model.addAttribute("bhnotype", bhnotype);
+		model.addAttribute("custfno", custfno);
+		model.addAttribute("custlevel", custlevel);
+		model.addAttribute("birth", birth);
+		model.addAttribute("mobtel", mobtel);
+		model.addAttribute("cattel", cattel);
+		model.addAttribute("email", email);
 		model.addAttribute("interactionId", interactionId);
 		
 		Properties prop = new Properties();
@@ -254,10 +286,26 @@ public class BasicController {
 	public String showChatV3(@RequestParam(value = "id", required = false) String id,
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "address", required = false) String address,
+			@RequestParam(value = "bhno", required = false) String bhno,
+			@RequestParam(value = "bhnotype", required = false) String bhnotype,
+			@RequestParam(value = "custfno", required = false) String custfno,
+			@RequestParam(value = "custlevel", required = false) String custlevel,
+			@RequestParam(value = "birth", required = false) String birth,
+			@RequestParam(value = "mobtel", required = false) String mobtel,
+			@RequestParam(value = "cattel", required = false) String cattel,
+			@RequestParam(value = "email", required = false) String email,
 			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) throws IOException {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 		model.addAttribute("address", address);
+		model.addAttribute("bhno", bhno);
+		model.addAttribute("bhnotype", bhnotype);
+		model.addAttribute("custfno", custfno);
+		model.addAttribute("custlevel", custlevel);
+		model.addAttribute("birth", birth);
+		model.addAttribute("mobtel", mobtel);
+		model.addAttribute("cattel", cattel);
+		model.addAttribute("email", email);
 		model.addAttribute("interactionId", interactionId);
 		
 		Properties prop = new Properties();
@@ -287,10 +335,26 @@ public class BasicController {
 	public String showChatV4(@RequestParam(value = "id", required = false) String id,
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "address", required = false) String address,
+			@RequestParam(value = "bhno", required = false) String bhno,
+			@RequestParam(value = "bhnotype", required = false) String bhnotype,
+			@RequestParam(value = "custfno", required = false) String custfno,
+			@RequestParam(value = "custlevel", required = false) String custlevel,
+			@RequestParam(value = "birth", required = false) String birth,
+			@RequestParam(value = "mobtel", required = false) String mobtel,
+			@RequestParam(value = "cattel", required = false) String cattel,
+			@RequestParam(value = "email", required = false) String email,
 			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) throws IOException {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 		model.addAttribute("address", address);
+		model.addAttribute("bhno", bhno);
+		model.addAttribute("bhnotype", bhnotype);
+		model.addAttribute("custfno", custfno);
+		model.addAttribute("custlevel", custlevel);
+		model.addAttribute("birth", birth);
+		model.addAttribute("mobtel", mobtel);
+		model.addAttribute("cattel", cattel);
+		model.addAttribute("email", email);
 		model.addAttribute("interactionId", interactionId);
 		
 		Properties prop = new Properties();
@@ -320,10 +384,26 @@ public class BasicController {
 	public String showChatV5(@RequestParam(value = "id", required = false) String id,
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "address", required = false) String address,
+			@RequestParam(value = "bhno", required = false) String bhno,
+			@RequestParam(value = "bhnotype", required = false) String bhnotype,
+			@RequestParam(value = "custfno", required = false) String custfno,
+			@RequestParam(value = "custlevel", required = false) String custlevel,
+			@RequestParam(value = "birth", required = false) String birth,
+			@RequestParam(value = "mobtel", required = false) String mobtel,
+			@RequestParam(value = "cattel", required = false) String cattel,
+			@RequestParam(value = "email", required = false) String email,
 			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) throws IOException {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 		model.addAttribute("address", address);
+		model.addAttribute("bhno", bhno);
+		model.addAttribute("bhnotype", bhnotype);
+		model.addAttribute("custfno", custfno);
+		model.addAttribute("custlevel", custlevel);
+		model.addAttribute("birth", birth);
+		model.addAttribute("mobtel", mobtel);
+		model.addAttribute("cattel", cattel);
+		model.addAttribute("email", email);
 		model.addAttribute("interactionId", interactionId);
 		
 		Properties prop = new Properties();
