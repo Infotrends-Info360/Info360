@@ -48,26 +48,48 @@
 									<h4>interactionId</h4>
 									<h4 id="interactionId">${interactionId}</h4>
 								</a> <a href="#" class="list-group-item">
-									<h4>姓名</h4>
-									<h4 id="fromName">${name}</h4>
-								</a> <a href="#" class="list-group-item">
-									<h4>住址</h4>
-									<h4>${address}</h4>
-								</a> <a href="#" class="list-group-item">
-									<h4>專屬人員</h4>
-									<h4>Alex</h4>
-								</a> <a href="#" class="list-group-item">
-									<h4>註冊地</h4>
-									<h4>台北分公司</h4>
-								</a> <a href="#" class="list-group-item">
-									<h4>帳號狀態</h4>
-									<h4>啟用</h4>
+									<h4>來電號碼</h4>
+									<h4>${IVR1}</h4>
 								</a> <a href="#" class="list-group-item">
 									<h4>身份證字號</h4>
-									<h4>${id}</h4>
+<%-- 									<h4>${id}</h4> --%>
+									<h4>${IDNO_}</h4>
 								</a> <a href="#" class="list-group-item">
-									<h4>性別</h4>
-									<h4>男</h4>
+<!-- 									<h4>住址</h4> -->
+<%-- 									<h4>${address}</h4> --%>
+									<h4>姓名</h4>
+<%-- 									<h4 id="fromName">${name}</h4> --%>
+									<h4 id="fromName">${CUSTNAME_}</h4>
+								</a> <a href="#" class="list-group-item">
+<!-- 									<h4>專屬人員</h4> -->
+<!-- 									<h4>Alex</h4> -->
+									<h4>分行碼</h4>
+									<h4>${BHNO_}</h4>
+								</a> <a href="#" class="list-group-item">
+<!-- 									<h4>註冊地</h4> -->
+<!-- 									<h4>台北分公司</h4> -->
+									<h4>分行狀態</h4>
+									<h4>${BHNOTYPE_}</h4>
+								</a> <a href="#" class="list-group-item">
+<!-- 									<h4>帳號狀態</h4> -->
+<!-- 									<h4>啟用</h4> -->
+									<h4>帳號</h4>
+									<h4>${CUSTFNO_}</h4>
+								</a> <a href="#" class="list-group-item">
+									<h4>客戶等級</h4>
+									<h4>${CUSTLEVEL_}</h4>
+								</a> <a href="#" class="list-group-item">
+									<h4>生日</h4>
+									<h4>${BIRTH_}</h4>
+								</a> <a href="#" class="list-group-item">
+									<h4>行動電話</h4>
+									<h4>${MOBTEL_}</h4>
+								</a> <a href="#" class="list-group-item">
+									<h4>通訊電話</h4>
+									<h4>${CATTEL_}</h4>
+								</a> <a href="#" class="list-group-item">
+									<h4>EMAIL</h4>
+									<h4>${EMAIL_}</h4>
 								</a>
 							</div>
 						</div>
@@ -408,7 +430,7 @@
 	function queryActivityMenu() {
 		$
 				.ajax({
-					url : "http://10.5.0.132:8080/IMWebSocket/RESTful/Query_ActivityMenu",
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityMenu",
 					data : {
 						dbid : 0
 					},
@@ -433,7 +455,7 @@
 	function selectCommonLink() {
 		$
 				.ajax({
-					url : "http://10.5.0.132:8080/IMWebSocket/RESTful/Select_commonlink",
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Select_commonlink",
 					data : {
 
 					},
@@ -744,7 +766,7 @@
 	function Query_ActivityMenu(level, dbId) {
 		$
 				.ajax({
-					url : "http://10.5.0.132:8080/IMWebSocket/RESTful/Query_ActivityMenu",
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityMenu",
 					data : {
 						dbid : dbId
 					},
@@ -823,7 +845,7 @@
 	function Flag_Data(dbId, tabIndex) {
 		$
 				.ajax({
-					url : "http://10.5.0.132:8080/IMWebSocket/RESTful/FLAGDATA",
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/FLAGDATA",
 					data : {
 						dbid : dbId
 					},
@@ -948,7 +970,7 @@
 
 		$
 				.ajax({
-					url : "http://10.5.0.132:8080/IMWebSocket/RESTful/Insert_rpt_activitylog",
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_rpt_activitylog",
 					data : {
 						interactionid : interactionId,
 						activitydataids : activitydataids,
