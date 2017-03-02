@@ -408,7 +408,7 @@
 	function queryActivityMenu() {
 		$
 				.ajax({
-					url : "http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Query_ActivityMenu",
+					url : "http://10.5.0.132:8080/IMWebSocket/RESTful/Query_ActivityMenu",
 					data : {
 						dbid : 0
 					},
@@ -433,7 +433,7 @@
 	function selectCommonLink() {
 		$
 				.ajax({
-					url : "http://60.248.156.164:8080/IMWebSocket/RESTful/Select_commonlink",
+					url : "http://10.5.0.132:8080/IMWebSocket/RESTful/Select_commonlink",
 					data : {
 
 					},
@@ -744,7 +744,7 @@
 	function Query_ActivityMenu(level, dbId) {
 		$
 				.ajax({
-					url : "http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Query_ActivityMenu",
+					url : "http://10.5.0.132:8080/IMWebSocket/RESTful/Query_ActivityMenu",
 					data : {
 						dbid : dbId
 					},
@@ -823,7 +823,7 @@
 	function Flag_Data(dbId, tabIndex) {
 		$
 				.ajax({
-					url : "http://ws.crm.com.tw:8080/IMWebSocket/RESTful/FLAGDATA",
+					url : "http://10.5.0.132:8080/IMWebSocket/RESTful/FLAGDATA",
 					data : {
 						dbid : dbId
 					},
@@ -948,7 +948,7 @@
 
 		$
 				.ajax({
-					url : "http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Insert_rpt_activitylog",
+					url : "http://10.5.0.132:8080/IMWebSocket/RESTful/Insert_rpt_activitylog",
 					data : {
 						interactionid : interactionId,
 						activitydataids : activitydataids,

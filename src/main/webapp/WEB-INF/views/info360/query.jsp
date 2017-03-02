@@ -189,48 +189,48 @@ document.getElementById("week").value=(Today.getFullYear()+"-"+(Today.getMonth()
 $("#queryTable123 tbody tr ").empty();
 function search(){
 	
-	var ss = $('#startdate').val();
-	var ee = $('#enddate').val();
-	var aa = $('#agentid').val();
-	var pp = $('#page').val();
+// 	var ss = $('#startdate').val();
+// 	var ee = $('#enddate').val();
+// 	var aa = $('#agentid').val();
+// 	var pp = $('#page').val();
 
-	$.ajax({                              
-	    url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/QueryAll_Interaction",
-	       data:{
-	      	 startdate:ss,
-	      	 enddate:ee,
-	      	 agentid:aa
-	      	 },
+// 	$.ajax({                              
+// 	    url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/QueryAll_Interaction",
+// 	       data:{
+// 	      	 startdate:ss,
+// 	      	 enddate:ee,
+// 	      	 agentid:aa
+// 	      	 },
 	      	 
-	       type : "POST",                                                                    
-	       dataType:'json', 
-	       error:function(e){                                                                 
-	    	alert("請重新整理");
+// 	       type : "POST",                                                                    
+// 	       dataType:'json', 
+// 	       error:function(e){                                                                 
+// 	    	alert("請重新整理");
 	    	
-	       },
-	       success:function(all){                                                           
-	      	 console.log("ALL",all)
-	           var Totalcount="<h4>總共筆數:"+all.Interaction+"筆     共"+Math.ceil(all.Interaction/10)+"頁</h4><br>";
-	             	document.getElementById("form1").insertAdjacentHTML("BeforeEnd",Totalcount);
+// 	       },
+// 	       success:function(all){                                                           
+// 	      	 console.log("ALL",all)
+// 	           var Totalcount="<h4>總共筆數:"+all.Interaction+"筆     共"+Math.ceil(all.Interaction/10)+"頁</h4><br>";
+// 	             	document.getElementById("form1").insertAdjacentHTML("BeforeEnd",Totalcount);
 	            	
-	          var left="<button type='button' class='btn btn-white' id='Pageleft'"+
-	      	"onclick='Pageleft()'>"+"<i class='fa fa-chevron-left'></i></button>"
-	      	document.getElementById("form1").insertAdjacentHTML("BeforeEnd",left); 
+// 	          var left="<button type='button' class='btn btn-white' id='Pageleft'"+
+// 	      	"onclick='Pageleft()'>"+"<i class='fa fa-chevron-left'></i></button>"
+// 	      	document.getElementById("form1").insertAdjacentHTML("BeforeEnd",left); 
 	      	        			
-	      	for(var i=1; i<=Math.ceil(all.Interaction/10); i++){
+// 	      	for(var i=1; i<=Math.ceil(all.Interaction/10); i++){
 	      		
-	      		    var str= "<button id='bu"+i+"' class='btn btn-white' onclick='page("+i+")' value='"+i+"'>"+i+"</button>"; 
-	      		    document.getElementById("form1").insertAdjacentHTML("BeforeEnd",str); 
-	      	}
+// 	      		    var str= "<button id='bu"+i+"' class='btn btn-white' onclick='page("+i+")' value='"+i+"'>"+i+"</button>"; 
+// 	      		    document.getElementById("form1").insertAdjacentHTML("BeforeEnd",str); 
+// 	      	}
 	      	
-	      		var right="<button type='button' class='btn btn-white' id='Pageright'"+
-				"onclick='Pageright()'>"+"<i class='fa fa-chevron-right'></i></button>"
-				document.getElementById("form1").insertAdjacentHTML("BeforeEnd",right);
-	       },
-	   }); 
+// 	      		var right="<button type='button' class='btn btn-white' id='Pageright'"+
+// 				"onclick='Pageright()'>"+"<i class='fa fa-chevron-right'></i></button>"
+// 				document.getElementById("form1").insertAdjacentHTML("BeforeEnd",right);
+// 	       },
+// 	   }); 
 	
 $.ajax({                              
-          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Query_Interaction",
+          url:"http://10.5.0.132:8080/IMWebSocket/RESTful/Query_Interaction",
 	        data:{
 	        	 startdate:ss,
 		    	 enddate:ee,
@@ -294,74 +294,74 @@ $.ajax({
 
 <script type="text/javascript">
 $("#queryTable123 tbody tr ").empty();
-function page(i){
+// function page(i){
 		
-		var r = (i-1)*10;	
-		var ss = $('#startdate').val();
-		var ee = $('#enddate').val();
-		var aa = $('#agentid').val();
-		var pp = r;
+// 		var r = (i-1)*10;	
+// 		var ss = $('#startdate').val();
+// 		var ee = $('#enddate').val();
+// 		var aa = $('#agentid').val();
+// 		var pp = r;
 		
-		$.ajax({                              
-	          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Query_Interaction",
-		        data:{
-		        	 startdate:ss,
-			    	 enddate:ee,
-			    	 agentid:aa,
-			    	 page:pp
-		        	 },
-		         type : "POST",                                                                    
-		         dataType:'json',
+// 		$.ajax({                              
+// 	          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Query_Interaction",
+// 		        data:{
+// 		        	 startdate:ss,
+// 			    	 enddate:ee,
+// 			    	 agentid:aa,
+// 			    	 page:pp
+// 		        	 },
+// 		         type : "POST",                                                                    
+// 		         dataType:'json',
 		         
-		         error:function(e){                                                                 
-		         alert("請重新整理");
+// 		         error:function(e){                                                                 
+// 		         alert("請重新整理");
 		         
-		         },
-		         success:function(data){ 
-		      		console.log(data);
-//		        	alert(JSON.stringify(data.person));
-		        	$('#queryTable123').DataTable({
-		        		autoWidth: false,
-		        		destroy: true,
-		        		aaData: data.Interaction,
-		        		aoColumns: [
-					{ data:   "dbid",
-		                render: function ( data, type, row ) {
-		                    if ( type === 'display' ) {
-		                        return '<input type="checkbox" class="editor-active" value='+data+'>';
-		                    }
-		                    return data;
-		                },
-		            className: "dt-body-center" },
-	                    { "data": "contactid" },
-	                    { "data": "activitycode" },
-	                    { "data": "subject" },
-	                    { "data": "startdate" },
-	                    { "data": "structuredmimetype" },
-	                    { "data": "enddate" },
-	                    { "data": "structuredtext" },
-	                    { "data": "entitytypeid" },
-	                    { "data": "text" },
-	                    { "data": "status" },
-	                    { "data": "typeid" },
-	                    { "data": "ixnid" },
-	                    { "data": "stoppedreason" },
-	                    { "data": "thecomment" }
+// 		         },
+// 		         success:function(data){ 
+// 		      		console.log(data);
+// //		        	alert(JSON.stringify(data.person));
+// 		        	$('#queryTable123').DataTable({
+// 		        		autoWidth: false,
+// 		        		destroy: true,
+// 		        		aaData: data.Interaction,
+// 		        		aoColumns: [
+// 					{ data:   "dbid",
+// 		                render: function ( data, type, row ) {
+// 		                    if ( type === 'display' ) {
+// 		                        return '<input type="checkbox" class="editor-active" value='+data+'>';
+// 		                    }
+// 		                    return data;
+// 		                },
+// 		            className: "dt-body-center" },
+// 	                    { "data": "contactid" },
+// 	                    { "data": "activitycode" },
+// 	                    { "data": "subject" },
+// 	                    { "data": "startdate" },
+// 	                    { "data": "structuredmimetype" },
+// 	                    { "data": "enddate" },
+// 	                    { "data": "structuredtext" },
+// 	                    { "data": "entitytypeid" },
+// 	                    { "data": "text" },
+// 	                    { "data": "status" },
+// 	                    { "data": "typeid" },
+// 	                    { "data": "ixnid" },
+// 	                    { "data": "stoppedreason" },
+// 	                    { "data": "thecomment" }
 	                    
-	                ],'columnDefs': [{
+// 	                ],'columnDefs': [{
 	               
-	                    'targets': 0,
-	                    'searchable':false,
-	                    'orderable':false,
-	                    'className': 'dt-body-center',
+// 	                    'targets': 0,
+// 	                    'searchable':false,
+// 	                    'orderable':false,
+// 	                    'className': 'dt-body-center',
 	                    
-	                 }],
-	              lengthChange: false
-	            });	
-		    }  
-	     });
+// 	                 }],
+// 	              lengthChange: false
+// 	            });	
+// 		    }  
+// 	     });
 
-	}
+// 	}
 	</script>
 	
 	
@@ -378,7 +378,7 @@ function today(){
 	var aa = $('#agentid').val();
 	var pp = $('#page').val();
 $.ajax({                              
-          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Query_Interaction",
+          url:"http://10.5.0.132:8080/IMWebSocket/RESTful/Query_Interaction",
 	        data:{
 	        	 startdate:today,
 		    	 enddate:today,

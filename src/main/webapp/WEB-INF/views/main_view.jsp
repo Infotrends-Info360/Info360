@@ -1204,11 +1204,11 @@
 
 										,
 										uploadImage : {
-											url : 'http://ws.crm.tw:8080/JAXRS-FileUpload/rest/upload/images' //（返回的数据格式见下文）
+											url : 'http://10.5.0.132:8080/JAXRS-FileUpload/rest/upload/images' //（返回的数据格式见下文）
 										//,type : '' //默认post
 										},
 										uploadFile : {
-											url : 'http://ws.crm.tw:8080/JAXRS-FileUpload/rest/upload/files' //（返回的数据格式见下文）
+											url : 'http://10.5.0.132:8080/JAXRS-FileUpload/rest/upload/files' //（返回的数据格式见下文）
 										//,type : '' //默认post
 										}
 
