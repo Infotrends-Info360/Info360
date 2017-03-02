@@ -230,7 +230,7 @@ function search(){
 // 	   }); 
 	
 $.ajax({                              
-          url:"http://10.5.0.132:8080/IMWebSocket/RESTful/Query_Interaction",
+          url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_Interaction",
 	        data:{
 	        	 startdate:ss,
 		    	 enddate:ee,
@@ -378,7 +378,7 @@ function today(){
 	var aa = $('#agentid').val();
 	var pp = $('#page').val();
 $.ajax({                              
-          url:"http://10.5.0.132:8080/IMWebSocket/RESTful/Query_Interaction",
+          url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_Interaction",
 	        data:{
 	        	 startdate:today,
 		    	 enddate:today,

@@ -119,7 +119,28 @@ public class BasicController {
 	}
 
 	@RequestMapping(value = "query")
-	public String showQuery() {
+	public String showQuery(Model model) throws IOException {
+		
+		Properties prop = new Properties();
+
+		String propFileName = "config.properties";
+
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+
+		if (inputStream != null) {
+			prop.load(inputStream);
+		} else {
+			throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+		}
+
+		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
+
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
+		
 		return "info360/query";
 	}
 
