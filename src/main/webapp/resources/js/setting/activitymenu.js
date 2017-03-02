@@ -14,7 +14,7 @@ function AM(){
 	$("#manageTableAM tbody tr").empty();
  	$("#banTableAM tboby tr").empty();
 $.ajax({                              
-    url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Flag_ActivityMenu",
+    url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Flag_ActivityMenu",
 	        data:{
 	        	deleteflag:0
 	        	 },
@@ -67,7 +67,7 @@ $("#manageTableAMSearch").keyup(function(){
 });
 
 $.ajax({                              
-    url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Flag_ActivityMenu",
+    url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Flag_ActivityMenu",
         data:{
         	deleteflag:1
         	 },
@@ -183,7 +183,7 @@ function sendAddMemberAM() {
      //var deleteflag = document.getElementById('insert_deleteflag').value;
       var sort = document.getElementById('insert_sort').value;
 		 $.ajax({                              
-	          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Insert_ActivityMenu",
+	          url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_ActivityMenu",
 		         data:{
 		        	 menuname:menuname,
 		        	 deleteflag:0,
@@ -241,7 +241,7 @@ function sendEditMemberAM() {
  var sort = document.getElementById('up_sortam').value;
  
  $.ajax({                              
-      url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Update_ActivityMenu",
+      url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Update_ActivityMenu",
          data:{
         	 dbid:dbid,
         	 menuname:menuname,
@@ -279,7 +279,7 @@ function AMLuck(message) {
 	 var menuname = document.getElementById('Delete_idAM').value;
 
 	 $.ajax({                              
-         url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/LogicDelete_activitymenu",
+         url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_activitymenu",
 	         data:{
 	        	 menuname:menuname,
 	        	 deleteflag:deleteflag

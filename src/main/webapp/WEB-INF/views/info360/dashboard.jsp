@@ -47,6 +47,32 @@
 									<h1>
 										<span id="agentcount"> </span>
 									</h1>
+<!-- 									<small>在線客戶</small> -->
+<!-- 									<h1> -->
+<!-- 										<span id="clientcount"> </span> -->
+<!-- 									</h1> -->
+<!-- 									<small>總交談中通數</small> -->
+<!-- 									<h1> -->
+<!-- 										<span id="roomcount"> </span> -->
+<!-- 									</h1> -->
+								</div>
+
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6">
+							<div class="row">
+							<div class="ibox-title">
+									<h3>在線客戶資訊</h3>
+								</div>
+							<div class="ibox-content">
+<!-- 									<small>在線人員</small> -->
+<!-- 									<h1> -->
+<!-- 										<span id="usercount"> </span> -->
+<!-- 									</h1> -->
+<!-- 									<small>在線客服人員</small> -->
+<!-- 									<h1> -->
+<!-- 										<span id="agentcount"> </span> -->
+<!-- 									</h1> -->
 									<small>在線客戶</small>
 									<h1>
 										<span id="clientcount"> </span>
@@ -56,49 +82,44 @@
 										<span id="roomcount"> </span>
 									</h1>
 								</div>
-
-							</div>
-						</div>
-						<div class="col-lg-6 col-md-6">
-							<div class="row">
-								<div class="ibox-title">
-									<h3>等待時間</h3>
-								</div>
-								<div class="col-lg-6 col-md-6">
-									<div class="ibox">
-										<div class="ibox-content">
-											<h3>最長</h3>
-											<h1>00:15</h1>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-6 col-md-6">
-									<div class="ibox">
-										<div class="ibox-content">
-											<h3>平均</h3>
-											<h1>00:15</h1>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-12 col-md-12">
-									<div class="ibox">
-										<div class="ibox-content">
-											<h3>未接交談</h3>
-											<h1>
-												<span id="leaveclientcount"> </span>
-											</h1>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-12 col-md-12">
-									<div class="ibox">
-										<div class="ibox-content">
-											<h3>線上客服答應率</h3>
-											<!--(接聽/掛斷(Not未接)) -->
-											<h1>0%</h1>
-										</div>
-									</div>
-								</div>
+<!-- 								<div class="ibox-title"> -->
+<!-- 									<h3>等待時間</h3> -->
+<!-- 								</div> -->
+<!-- 								<div class="col-lg-6 col-md-6"> -->
+<!-- 									<div class="ibox"> -->
+<!-- 										<div class="ibox-content"> -->
+<!-- 											<h3>最長</h3> -->
+<!-- 											<h1>00:15</h1> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 								<div class="col-lg-6 col-md-6"> -->
+<!-- 									<div class="ibox"> -->
+<!-- 										<div class="ibox-content"> -->
+<!-- 											<h3>平均</h3> -->
+<!-- 											<h1>00:15</h1> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 								<div class="col-lg-12 col-md-12"> -->
+<!-- 									<div class="ibox"> -->
+<!-- 										<div class="ibox-content"> -->
+<!-- 											<h3>未接交談</h3> -->
+<!-- 											<h1> -->
+<!-- 												<span id="leaveclientcount"> </span> -->
+<!-- 											</h1> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 								<div class="col-lg-12 col-md-12"> -->
+<!-- 									<div class="ibox"> -->
+<!-- 										<div class="ibox-content"> -->
+<!-- 											<h3>線上客服答應率</h3> -->
+<!-- 											(接聽/掛斷(Not未接)) -->
+<!-- 											<h1>0%</h1> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
 							</div>
 						</div>
 
@@ -121,10 +142,10 @@
 									<h3>個人在線資訊</h3>
 								</div>
 								<div class="ibox-content">
-									<small>接通數</small>
-									<h1>0</h1>
-									<small>未接數(reject)</small>
-									<h1>0</h1>
+<!-- 									<small>接通數</small> -->
+<!-- 									<h1>0</h1> -->
+<!-- 									<small>未接數(reject)</small> -->
+<!-- 									<h1>0</h1> -->
 									<small>個人交談中通數</small>
 									<h1>
 										<span id="userroomcount"> </span>
@@ -142,7 +163,7 @@
 									<div class="ibox">
 										<div class="ibox-content">
 											<h3>離席時間</h3>
-											<h1>00:15</h1>
+											<h1><span id="notready_usetime"> </span></h1>
 										</div>
 									</div>
 								</div>
@@ -150,7 +171,7 @@
 									<div class="ibox">
 										<div class="ibox-content">
 											<h3>準備就緒時間</h3>
-											<h1>00:15</h1>
+											<h1><span id="ready_usetime"> </span></h1>
 										</div>
 									</div>
 								</div>
@@ -159,7 +180,7 @@
 										<div class="ibox-content">
 											<h3>通話時間</h3>
 											<!--(總) -->
-											<h1>00:15</h1>
+											<h1><span id="iestablished_usetime"> </span></h1>
 										</div>
 									</div>
 								</div>
@@ -168,7 +189,7 @@
 										<div class="ibox-content">
 											<h3>平均通話</h3>
 											<!--(通話時間/接通數) -->
-											<h1>00:15</h1>
+											<h1><span id="iestablished_usetime_avg"> </span></h1>
 										</div>
 									</div>
 								</div>
@@ -331,39 +352,47 @@
 
         <!-- Peity demo -->
 <!--         <script src="../js/demo/peity-demo.js"></script> -->
-		
+		<%
+		String userid =  request.getParameter("userid");
+		%>
 		<script>
 		function kpiview() {
-			var user = '';
-			var data = 'user=' + user;
-			var me = this;
-			$
-					.ajax({
-						url : "http://ws.crm.com.tw:8080/IMWebSocket/RESTful/GetKPI",
-						type : "POST",
-						dataType : 'json',
-						data : data,
-						error : function(e) {
-							console.log("error");
-						},
-						success : function(data) {
-							document.getElementById("usercount").innerHTML = data.usercount;
-							document.getElementById("agentcount").innerHTML = data.agentcount;
-							document.getElementById("clientcount").innerHTML = data.clientcount;
-							document.getElementById("roomcount").innerHTML = data.roomcount;
-							document.getElementById("leaveclientcount").innerHTML = data.leaveclientcount;
-							if (user != null && "" != user) {
-								//document.getElementById("username").innerHTML = data.username;
-								document.getElementById("userroomcount").innerHTML = data.userroomcount;
-							} else {
-								//document.getElementById("username").innerHTML = 'null';
-								document.getElementById("userroomcount").innerHTML = 0;
-							}
-						},
-					});
+			var user = <%= userid%>;
+			if(user!=null && ""!=user){
+				var data = 'user=' + user;
+				var me = this;
+				$
+						.ajax({
+							url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/GetKPI",
+							type : "POST",
+							dataType : 'json',
+							data : data,
+							error : function(e) {
+								console.log("error");
+							},
+							success : function(data) {
+								document.getElementById("usercount").innerHTML = data.usercount;
+								document.getElementById("agentcount").innerHTML = data.agentcount;
+								document.getElementById("clientcount").innerHTML = data.clientcount;
+								document.getElementById("roomcount").innerHTML = data.roomcount;
+// 								document.getElementById("leaveclientcount").innerHTML = data.leaveclientcount;
+								if (user != null && "" != user) {
+									//document.getElementById("username").innerHTML = data.username;
+									document.getElementById("userroomcount").innerHTML = data.userroomcount;
+								} else {
+									//document.getElementById("username").innerHTML = 'null';
+									document.getElementById("userroomcount").innerHTML = 0;
+								}
+								document.getElementById("notready_usetime").innerHTML = data.notready_usetime;
+								document.getElementById("ready_usetime").innerHTML = data.ready_usetime;
+								document.getElementById("iestablished_usetime").innerHTML = data.iestablished_usetime;
+								document.getElementById("iestablished_usetime_avg").innerHTML = data.iestablished_usetime_avg;
+							},
+						});
+			}
 			setTimeout(function() {
-				me.kpiview();
-			}, 1000);
+				kpiview();
+			}, 3000);
 		}
 		kpiview();
 		//Get User ID

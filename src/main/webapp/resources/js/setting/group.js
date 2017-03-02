@@ -15,7 +15,7 @@ function select(){
 		$("#managegroupTable tbody tr").empty();
 	 	$("#bangroupTable tboby tr").empty();
     $.ajax({                              
-        url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Query_Group_STATE",
+        url:"${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Group_STATE",
 		        data:{
 		        	state:0
 		        	 },
@@ -66,7 +66,7 @@ function select(){
     });
 
     $.ajax({                              
-        url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Query_Group_STATE",
+        url:"${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Group_STATE",
 	        data:{
 	        	state:1
 	        	 },
@@ -170,7 +170,7 @@ function sendAddMembergroup() {
      var in_name = document.getElementById('in_name').value;
 	//	var in_state = document.getElementById('inputState').value;
 		$.ajax({                              
-	          url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Insert_GroupInfo",
+	          url:"${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Insert_GroupInfo",
 		         data:{
 		        	 	state:0,
 			        	name:in_name,
@@ -235,7 +235,7 @@ function sendEditMembergroup() {
 	var up_name = document.getElementById('up_name').value;	
 	var up_state =  document.getElementById('up_state').value;
 	$.ajax({                              
-     url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Update_GroupInfo",
+     url:"${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Update_GroupInfo",
         data:{
        	state:up_state,
      	name:up_name,
@@ -278,7 +278,7 @@ function confirmBangroup() {
 function GroupDelete(message) {
 	var deletedbid = document.getElementById('deletedbid_GroupDelete').value;
     $.ajax({                              
-        url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Delete_GroupInfo",
+        url:"${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Delete_GroupInfo",
 	         data:{
 	        	 dbid:deletedbid
 	        	 },
@@ -303,7 +303,7 @@ function GroupLuck(message) {
 	var state = document.getElementById('state_list_Groupluck').value;
     var name = document.getElementById('state_account_Groupluck').value;
     $.ajax({                              
-        url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Group_logicdelete",
+        url:"${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Group_logicdelete",
 	         data:{
 	        	 state:state,
 	        	 name:name

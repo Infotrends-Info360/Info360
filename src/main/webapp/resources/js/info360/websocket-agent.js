@@ -925,7 +925,7 @@ function layuiUse01() {
 										}).addList(
 										{
 											type : 'group',
-											avatar : "./layui/images/git.jpg",
+											avatar : "resources/layui/css/pc/layim/skin/new_logo.jpg",
 											groupname : 'Client: ' + ClientName_g
 													+ ', Agent: ' + UserName_g,
 											id : RoomID_g,
@@ -936,7 +936,7 @@ function layuiUse01() {
 													+ ', Agent: ' + UserName_g,
 											type : 'group' // 群组类型
 											,
-											avatar : "./layui/images/git.jpg",
+											avatar : "resources/layui/css/pc/layim/skin/new_logo.jpg",
 											id : RoomID_g // 定义唯一的id方便你处理信息
 											,
 											members : 0

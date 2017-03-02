@@ -189,7 +189,7 @@ Class.pt.config = {
   area: 'auto',
   closeBtn: 1,
   time: 0, //0表示不自动关闭
-  zIndex: 19891014, 
+  zIndex: 1000, // Billy revised z-index too large 
   maxWidth: 360,
   anim: 0,
   icon: -1,
@@ -222,7 +222,8 @@ Class.pt.vessel = function(conType, callback){
       + '</div>'
       + '<span class="layui-layer-setwin">'+ function(){
         var closebtn = ismax ? '<a class="layui-layer-min" href="javascript:;"><cite></cite></a><a class="layui-layer-ico layui-layer-max" href="javascript:;"></a>' : '';
-        config.closeBtn && (closebtn += '<a class="layui-layer-ico '+ doms[7] +' '+ doms[7] + (config.title ? config.closeBtn : (config.type == 4 ? '1' : '2')) +'" href="javascript:;"></a>');
+        //config.closeBtn && (closebtn += '<a class="layui-layer-ico '+ doms[7] +' '+ doms[7] + (config.title ? config.closeBtn : (config.type == 4 ? '1' : '2')) +'" href="javascript:;"></a>');
+        config.closeBtn && (closebtn += '<a class="layui-layer-ico '+ doms[7] +' '+ doms[7] + (config.title ? config.closeBtn : (config.type == 4 ? '1' : '1')) +'" href="javascript:;"></a>');
         return closebtn;
       }() + '</span>'
       + (config.btn ? function(){

@@ -22,7 +22,7 @@ function selectcomm(){
     	$('#update_color').empty();
 	 
 	  $.ajax({                              
-          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Select_commonlink",
+          url:"${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/IMWebSocket/RESTful/Select_commonlink",
           
 	         data:{
 	        	 },
@@ -172,7 +172,7 @@ function sendAddMembercomm() {
 		 	    var myMap = new Map();
 
 		 	   $.ajax({                              
-			          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Insert_commonlink",
+			          url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_commonlink",
 			          
 				         data:{
 		 				    	 "parnetid":nodeLINK,
@@ -201,7 +201,7 @@ function sendAddMembercomm() {
 		 	    var myMap = new Map();
 
 		 	   $.ajax({                              
-			          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Insert_commonlink",
+			          url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_commonlink",
 			          
 				         data:{
 		 				    	 "parnetid":nodeLINK,
@@ -272,7 +272,7 @@ function sendEditMembercomm() {
  	    var myMap = new Map();
 
  		  $.ajax({                              
-	          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Update_commonlink",
+	          url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Update_commonlink",
 	          
 		         data:{
 		        	 "parnetid":nodeLINKu,
@@ -316,7 +316,7 @@ function deletefunctioncomm(message) {
 	    var myMap = new Map();
 	
 		$.ajax({                              
-  	          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Delete_commonlink",
+  	          url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Delete_commonlink",
   	          
   		         data:{
   		        	"nodeid":nodeIDd,
