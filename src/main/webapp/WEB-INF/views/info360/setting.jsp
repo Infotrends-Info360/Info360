@@ -2051,6 +2051,7 @@ label.required:after {
 						$('#person0Table')
 								.DataTable(
 										{
+											"autoWidth": false,
 											destroy : true,
 											aaData : data.person,
 											aoColumns : [
@@ -2142,6 +2143,7 @@ label.required:after {
 						$('#person1Table')
 								.DataTable(
 										{
+											"autoWidth": false,
 											destroy : true,
 											aaData : data.person,
 											aoColumns : [
@@ -2596,6 +2598,7 @@ label.required:after {
 						$('#managegroupTable')
 								.DataTable(
 										{
+											"autoWidth": false,
 											destroy : true,
 											aaData : data.group,
 											aoColumns : [
@@ -2655,6 +2658,7 @@ label.required:after {
 						$('#bangroupTable')
 								.DataTable(
 										{
+											"autoWidth": false,
 											destroy : true,
 											aaData : data.group,
 											aoColumns : [
@@ -3295,6 +3299,7 @@ label.required:after {
 						$('#manageAgentreasonTable')
 								.DataTable(
 										{
+											"autoWidth": false,
 											destroy : true,
 											aaData : data.agentreason,
 											aoColumns : [
@@ -3371,6 +3376,7 @@ label.required:after {
 						$('#banAgentreasonTable')
 								.DataTable(
 										{
+											"autoWidth": false,
 											destroy : true,
 											aaData : data.agentreason,
 											aoColumns : [
@@ -3696,6 +3702,7 @@ label.required:after {
 						$('#manageTableAM')
 								.DataTable(
 										{
+											"autoWidth": false,
 											destroy : true,
 											aaData : data.activitymenu,
 											aoColumns : [
@@ -3763,6 +3770,7 @@ label.required:after {
 						$('#banTableAM')
 								.DataTable(
 										{
+											"autoWidth": false,
 											destroy : true,
 											aaData : data.activitymenu,
 											aoColumns : [
@@ -4029,6 +4037,7 @@ label.required:after {
 						$('#manageTableAG')
 								.DataTable(
 										{
+											"autoWidth": false,
 											destroy : true,
 											aaData : data.flag0_group,
 											aoColumns : [
@@ -4097,6 +4106,7 @@ label.required:after {
 						$('#banTableAG')
 								.DataTable(
 										{
+											"autoWidth": false,
 											destroy : true,
 											aaData : data.flag1_group,
 											aoColumns : [
@@ -4398,6 +4408,7 @@ label.required:after {
 						$('#manageTableAD')
 								.DataTable(
 										{
+											"autoWidth": false,
 											destroy : true,
 											aaData : data.activitydata,
 											aoColumns : [
@@ -4469,6 +4480,7 @@ label.required:after {
 						$('#banTableAD')
 								.DataTable(
 										{
+											"autoWidth": false,
 											destroy : true,
 											aaData : data.Flag,
 											aoColumns : [
