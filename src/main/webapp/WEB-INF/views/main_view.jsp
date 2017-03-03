@@ -648,7 +648,7 @@
 // 						var name = currentUserData.CustomerData[0].name || "";
 // 						var address = currentUserData.CustomerData[0].CUSTNAM
 // 								|| "";
-						var IVR1 = currentUserData.CustomerData[0].IVR1 || "";
+						//var IVR1 = currentUserData.CustomerData[0].IVR1 || "";
 						var IDNO_ = currentUserData.CustomerData[0].IDNO_ || "";
 						var CUSTNAME_ = currentUserData.CustomerData[0].CUSTNAME_ || "";
 						var BHNO_ = currentUserData.CustomerData[0].BHNO_ || "";
@@ -671,17 +671,18 @@
 // 						newHref += "&address=" + address;
 // 						newHref += "&interactionId=" + RoomID_g;
 						
-						var newHref = currentChatTab + "?IDNO_=" + IDNO_;
-						newHref += "&IVR1=" + IVR1;
-						newHref += "&CUSTNAME_=" + CUSTNAME_;
-						newHref += "&BHNO_=" + BHNO_;
-						newHref += "&BHNOTYPE_=" + BHNOTYPE_;
-						newHref += "&CUSTFNO_=" + CUSTFNO_;
-						newHref += "&CUSTLEVEL_=" + CUSTLEVEL_;
-						newHref += "&BIRTH_=" + BIRTH_;
-						newHref += "&MOBTEL_=" + MOBTEL_;
-						newHref += "&CATTEL_=" + CATTEL_;
-						newHref += "&EMAIL_=" + EMAIL_;
+						var newHref = currentChatTab + "?id=" + IDNO_;
+						//newHref += "&IVR1=" + IVR1;
+						newHref += "&name=" + CUSTNAME_;
+						newHref += "&bhno=" + BHNO_;
+						newHref += "&bhnotype=" + BHNOTYPE_;
+						newHref += "&custfno=" + CUSTFNO_;
+						newHref += "&custlevel=" + CUSTLEVEL_;
+						newHref += "&birth=" + BIRTH_;
+						newHref += "&mobtel=" + MOBTEL_;
+						newHref += "&cattel=" + CATTEL_;
+						newHref += "&email=" + EMAIL_;
+						newHref += "&interactionId=" + RoomID_g
 
 						$("#" + currentChatTab).prop("href", newHref);
 						$("#" + currentChatTab).trigger("click");
