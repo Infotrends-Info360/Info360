@@ -119,7 +119,28 @@ public class BasicController {
 	}
 
 	@RequestMapping(value = "query")
-	public String showQuery() {
+	public String showQuery(Model model) throws IOException {
+		
+		Properties prop = new Properties();
+
+		String propFileName = "config.properties";
+
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+
+		if (inputStream != null) {
+			prop.load(inputStream);
+		} else {
+			throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+		}
+
+		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
+
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
+		
 		return "info360/query";
 	}
 
@@ -167,11 +188,47 @@ public class BasicController {
 	public String showChatV1(@RequestParam(value = "id", required = false) String id,
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "address", required = false) String address,
-			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) {
+			@RequestParam(value = "bhno", required = false) String bhno,
+			@RequestParam(value = "bhnotype", required = false) String bhnotype,
+			@RequestParam(value = "custfno", required = false) String custfno,
+			@RequestParam(value = "custlevel", required = false) String custlevel,
+			@RequestParam(value = "birth", required = false) String birth,
+			@RequestParam(value = "mobtel", required = false) String mobtel,
+			@RequestParam(value = "cattel", required = false) String cattel,
+			@RequestParam(value = "email", required = false) String email,
+			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) throws IOException {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 		model.addAttribute("address", address);
+		model.addAttribute("bhno", bhno);
+		model.addAttribute("bhnotype", bhnotype);
+		model.addAttribute("custfno", custfno);
+		model.addAttribute("custlevel", custlevel);
+		model.addAttribute("birth", birth);
+		model.addAttribute("mobtel", mobtel);
+		model.addAttribute("cattel", cattel);
+		model.addAttribute("email", email);
 		model.addAttribute("interactionId", interactionId);
+		
+		Properties prop = new Properties();
+
+		String propFileName = "config.properties";
+
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+
+		if (inputStream != null) {
+			prop.load(inputStream);
+		} else {
+			throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+		}
+
+		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
+
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
 
 		return "info360/chat/chat_v1";
 	}
@@ -180,11 +237,47 @@ public class BasicController {
 	public String showChatV2(@RequestParam(value = "id", required = false) String id,
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "address", required = false) String address,
-			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) {
+			@RequestParam(value = "bhno", required = false) String bhno,
+			@RequestParam(value = "bhnotype", required = false) String bhnotype,
+			@RequestParam(value = "custfno", required = false) String custfno,
+			@RequestParam(value = "custlevel", required = false) String custlevel,
+			@RequestParam(value = "birth", required = false) String birth,
+			@RequestParam(value = "mobtel", required = false) String mobtel,
+			@RequestParam(value = "cattel", required = false) String cattel,
+			@RequestParam(value = "email", required = false) String email,
+			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) throws IOException {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 		model.addAttribute("address", address);
+		model.addAttribute("bhno", bhno);
+		model.addAttribute("bhnotype", bhnotype);
+		model.addAttribute("custfno", custfno);
+		model.addAttribute("custlevel", custlevel);
+		model.addAttribute("birth", birth);
+		model.addAttribute("mobtel", mobtel);
+		model.addAttribute("cattel", cattel);
+		model.addAttribute("email", email);
 		model.addAttribute("interactionId", interactionId);
+		
+		Properties prop = new Properties();
+
+		String propFileName = "config.properties";
+
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+
+		if (inputStream != null) {
+			prop.load(inputStream);
+		} else {
+			throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+		}
+
+		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
+
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
 
 		return "info360/chat/chat_v2";
 	}
@@ -193,11 +286,47 @@ public class BasicController {
 	public String showChatV3(@RequestParam(value = "id", required = false) String id,
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "address", required = false) String address,
-			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) {
+			@RequestParam(value = "bhno", required = false) String bhno,
+			@RequestParam(value = "bhnotype", required = false) String bhnotype,
+			@RequestParam(value = "custfno", required = false) String custfno,
+			@RequestParam(value = "custlevel", required = false) String custlevel,
+			@RequestParam(value = "birth", required = false) String birth,
+			@RequestParam(value = "mobtel", required = false) String mobtel,
+			@RequestParam(value = "cattel", required = false) String cattel,
+			@RequestParam(value = "email", required = false) String email,
+			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) throws IOException {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 		model.addAttribute("address", address);
+		model.addAttribute("bhno", bhno);
+		model.addAttribute("bhnotype", bhnotype);
+		model.addAttribute("custfno", custfno);
+		model.addAttribute("custlevel", custlevel);
+		model.addAttribute("birth", birth);
+		model.addAttribute("mobtel", mobtel);
+		model.addAttribute("cattel", cattel);
+		model.addAttribute("email", email);
 		model.addAttribute("interactionId", interactionId);
+		
+		Properties prop = new Properties();
+
+		String propFileName = "config.properties";
+
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+
+		if (inputStream != null) {
+			prop.load(inputStream);
+		} else {
+			throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+		}
+
+		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
+
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
 
 		return "info360/chat/chat_v3";
 	}
@@ -206,11 +335,47 @@ public class BasicController {
 	public String showChatV4(@RequestParam(value = "id", required = false) String id,
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "address", required = false) String address,
-			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) {
+			@RequestParam(value = "bhno", required = false) String bhno,
+			@RequestParam(value = "bhnotype", required = false) String bhnotype,
+			@RequestParam(value = "custfno", required = false) String custfno,
+			@RequestParam(value = "custlevel", required = false) String custlevel,
+			@RequestParam(value = "birth", required = false) String birth,
+			@RequestParam(value = "mobtel", required = false) String mobtel,
+			@RequestParam(value = "cattel", required = false) String cattel,
+			@RequestParam(value = "email", required = false) String email,
+			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) throws IOException {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 		model.addAttribute("address", address);
+		model.addAttribute("bhno", bhno);
+		model.addAttribute("bhnotype", bhnotype);
+		model.addAttribute("custfno", custfno);
+		model.addAttribute("custlevel", custlevel);
+		model.addAttribute("birth", birth);
+		model.addAttribute("mobtel", mobtel);
+		model.addAttribute("cattel", cattel);
+		model.addAttribute("email", email);
 		model.addAttribute("interactionId", interactionId);
+		
+		Properties prop = new Properties();
+
+		String propFileName = "config.properties";
+
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+
+		if (inputStream != null) {
+			prop.load(inputStream);
+		} else {
+			throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+		}
+
+		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
+
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
 
 		return "info360/chat/chat_v4";
 	}
@@ -219,11 +384,47 @@ public class BasicController {
 	public String showChatV5(@RequestParam(value = "id", required = false) String id,
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "address", required = false) String address,
-			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) {
+			@RequestParam(value = "bhno", required = false) String bhno,
+			@RequestParam(value = "bhnotype", required = false) String bhnotype,
+			@RequestParam(value = "custfno", required = false) String custfno,
+			@RequestParam(value = "custlevel", required = false) String custlevel,
+			@RequestParam(value = "birth", required = false) String birth,
+			@RequestParam(value = "mobtel", required = false) String mobtel,
+			@RequestParam(value = "cattel", required = false) String cattel,
+			@RequestParam(value = "email", required = false) String email,
+			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) throws IOException {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 		model.addAttribute("address", address);
+		model.addAttribute("bhno", bhno);
+		model.addAttribute("bhnotype", bhnotype);
+		model.addAttribute("custfno", custfno);
+		model.addAttribute("custlevel", custlevel);
+		model.addAttribute("birth", birth);
+		model.addAttribute("mobtel", mobtel);
+		model.addAttribute("cattel", cattel);
+		model.addAttribute("email", email);
 		model.addAttribute("interactionId", interactionId);
+		
+		Properties prop = new Properties();
+
+		String propFileName = "config.properties";
+
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+
+		if (inputStream != null) {
+			prop.load(inputStream);
+		} else {
+			throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+		}
+
+		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
+
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
 
 		return "info360/chat/chat_v5";
 	}
