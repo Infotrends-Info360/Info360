@@ -682,7 +682,7 @@
 						newHref += "&mobtel=" + MOBTEL_;
 						newHref += "&cattel=" + CATTEL_;
 						newHref += "&email=" + EMAIL_;
-						newHref += "&interactionId=" + RoomID_g
+						newHref += "&interactionId=" + RoomID_g;
 
 						$("#" + currentChatTab).prop("href", newHref);
 						$("#" + currentChatTab).trigger("click");
