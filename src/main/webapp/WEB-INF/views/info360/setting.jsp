@@ -135,10 +135,12 @@ label.required:after {
 							<ul class="pagination">
 								<li onclick="showAddMember()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
-								<li onclick="unlockAccount()"><a href="#"><i
-										class="fa fa-fw fa-unlock-alt"></i></a></li>
 								<li onclick="confirmBan()"><a href="#"><i
+										class="fa fa-fw fa-unlock-alt"></i></a></li>		
+								<li onclick="unlockAccount()"><a href="#"><i
 										class="fa fa-fw fa-ban"></i></a></li>
+								<li onclick="personTrashBun()"><a href="#"><i
+										class="glyphicon glyphicon-trash"></i></a></li>
 							</ul>
 
 							<ul class="pagination" style="float: right;">
@@ -162,7 +164,7 @@ label.required:after {
 											<th>姓名</th>
 											<th>員工編號</th>
 											<th>分機號碼</th>
-											<th>Email</th>
+											<th>信箱</th>
 											<th>狀態</th>
 											<th>最大接通數</th>
 										</tr>
@@ -177,10 +179,12 @@ label.required:after {
 							<ul class="pagination">
 								<li onclick="showAddMember()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
-								<li onclick="unlockAccount()"><a href="#"><i
-										class="fa fa-fw fa-unlock-alt"></i></a></li>
 								<li onclick="confirmBan()"><a href="#"><i
+										class="fa fa-fw fa-unlock-alt"></i></a></li>		
+								<li onclick="unlockAccount()"><a href="#"><i
 										class="fa fa-fw fa-ban"></i></a></li>
+								<li onclick="personTrashBun()"><a href="#"><i
+										class="glyphicon glyphicon-trash"></i></a></li>
 							</ul>
 
 							<ul class="pagination" style="float: right;">
@@ -204,7 +208,7 @@ label.required:after {
 											<th>姓名</th>
 											<th>員工編號</th>
 											<th>分機號碼</th>
-											<th>Email</th>
+											<th>信箱</th>
 											<th>狀態</th>
 											<th>最大接通數</th>
 										</tr>
@@ -269,17 +273,14 @@ label.required:after {
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
-								<label for="inputConfirmPassword"
-									class="col-sm-2 control-label ">確認密碼</label>
+								<label for="inputDepartment" class="col-sm-2 control-label">最大接通數</label>
 								<div class="col-sm-8">
-									<input type="password" class="form-control"
-										id="inputConfirmPassword" placeholder="">
+									<input type="text" class="form-control" id="inputMaxcount"
+										placeholder="">
 								</div>
 							</div>
-
-
 							<div class="form-group col-sm-12">
-								<label for="inputEmail" class="col-sm-1 control-label">Email</label>
+								<label for="inputEmail" class="col-sm-1 control-label">信箱</label>
 								<div class="col-sm-9">
 									<input type="email" class="form-control" id="inputEmail"
 										placeholder="">
@@ -287,18 +288,10 @@ label.required:after {
 							</div>
 
 							<div class="form-group col-sm-12">
-								<label for="inputDepartment" class="col-sm-1 control-label">最大接通數</label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" id="inputMaxcount"
-										placeholder="">
-								</div>
-							</div>
-
-							<div class="form-group col-sm-12">
 								<label for="inputDepartment" class="col-sm-1 control-label">部門</label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="inputDepartment"
-										placeholder="">
+									<select class="form-control" id="inputDepartment">
+									</select>
 								</div>
 							</div>
 
@@ -366,24 +359,6 @@ label.required:after {
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
-								<label for="inputConfirmPassword"
-									class="col-sm-2 control-label ">確認密碼</label>
-								<div class="col-sm-8">
-									<input type="password" class="form-control"
-										id="updateConfirmPassword" placeholder="">
-								</div>
-							</div>
-
-
-							<div class="form-group col-sm-12">
-								<label for="inputEmail" class="col-sm-1 control-label">Email</label>
-								<div class="col-sm-9">
-									<input type="email" class="form-control" id="updateEmail"
-										placeholder="">
-								</div>
-							</div>
-
-							<div class="form-group col-sm-6">
 								<label for="inputDepartment" class="col-sm-2 control-label">最大接通數</label>
 								<div class="col-sm-6">
 									<input type="text" class="form-control" id="updateMaxcount"
@@ -391,18 +366,31 @@ label.required:after {
 								</div>
 							</div>
 
-							<div class="form-group col-sm-6">
-								<label for="inputDepartment" class="col-sm-2 control-label">部門</label>
-								<div class="col-sm-6">
-									<input type="text" class="form-control" id="updateDepartment"
+							<div class="form-group col-sm-12">
+								<label for="inputEmail" class="col-sm-1 control-label">信箱</label>
+								<div class="col-sm-8">
+									<input type="email" class="form-control" id="updateEmail"
 										placeholder="">
 								</div>
+							</div>
+
+							
+
+							<div class="form-group col-sm-6">
+								<label for="inputDepartment" class="col-sm-2 control-label">部門</label>		
+								<div class="col-sm-6">
+									<select class="form-control" id="updateDepartment">
+									
+									</select>				
+								</div>
+								
 							</div>
 							<div class="form-group col-sm-6">
 								<label for="inputConfirmPassword" class="col-sm-2 control-label">啟用狀態:</label>
 								<div class="col-sm-8">
 									<select class="form-control" id="updateState">
 										<option value="0">啟用</option>
+										<option value="2">鎖定</option>
 										<option value="1">停用</option>
 									</select>
 								</div>
@@ -434,9 +422,7 @@ label.required:after {
 						onclick="showManage_group()">
 						<i class="fa fa-fw fa-user"></i>部門管理
 					</button>
-					<button class="btn-sm btn-success ban" onclick="showBan_group()">
-						<i class="fa fa-fw fa-user"></i>停用列表
-					</button>
+				
 					<button class="btn-sm btn-success addMember" style="display: none;">
 						<span onclick="showAddMembergroup()">新增部門</span> <i
 							class="fa fa-times" onclick="closeAddMembergroup()"></i>
@@ -456,10 +442,10 @@ label.required:after {
 							<ul class="pagination">
 								<li onclick="showAddMembergroup()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
-								<li onclick="unlockAccountgroup()"><a href="#"><i
-										class="fa fa-fw fa-unlock-alt"></i></a></li>
+<!-- 								<li onclick="unlockAccountgroup()"><a href="#"><i -->
+<!-- 										class="fa fa-fw fa-unlock-alt"></i></a></li> -->
 								<li onclick="confirmBangroup()"><a href="#"><i
-										class="fa fa-fw fa-ban"></i></a></li>
+										class="glyphicon glyphicon-trash"></i></a></li>
 							</ul>
 							<ul class="pagination" style="float: right;">
 								<li><input type="text" id="managegroupTableSearch"
@@ -480,8 +466,8 @@ label.required:after {
 											<th class="no-sort"><input type="checkbox"
 												id="manageCheck" ischecked=false></th>
 											<th>部門名稱</th>
-											<th>狀態</th>
-											<th>編號</th>
+<!-- 											<th>狀態</th> -->
+<!-- 											<th>編號</th> -->
 										</tr>
 									</thead>
 								</table>
@@ -489,70 +475,18 @@ label.required:after {
 						</div>
 					</div>
 
-					<div id="bangroupContent" style="display: none;">
-						<div>
-							<ul class="pagination">
-								<li onclick="showAddMembergroup()"><a href="#"><i
-										class="fa fa-fw fa-plus"></i></a></li>
-								<li onclick="unlockAccountgroup()"><a href="#"><i
-										class="fa fa-fw fa-unlock-alt"></i></a></li>
-								<li onclick="confirmBangroup()"><a href="#"><i
-										class="fa fa-fw fa-ban"></i></a></li>
-							</ul>
-							<ul class="pagination" style="float: right;">
-								<li><input type="text" id="bangroupTableSearch"
-									placeholder="搜索"
-									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
-								</li>
-
-								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
-							</ul>
-						</div>
-
-						<div class="row ibox" id="group11">
-							<div class="col-lg-12 col-md-12" id="group1">
-								<table class="table table-bordered table-hover"
-									id="bangroupTable">
-									<thead>
-										<tr>
-											<th class="no-sort"><input type="checkbox"
-												id="manageCheck" ischecked=false></th>
-											<th>部門名稱</th>
-											<th>狀態</th>
-											<th>編號</th>
-										</tr>
-									</thead>
-								</table>
-							</div>
-						</div>
-					</div>
 					<!-- 新增  -->
 					<div id="addMembergroupContent" style="display: none;">
 						<div class="widget">
 							<div class="form-group col-sm-12">
 								<label for="inputAccount"
-									class="col-sm-2 control-label required">部門名稱:</label>
+									class="col-sm-2 control-label">部門名稱:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="in_name"
 										placeholder="">
 								</div>
 							</div>
-							<div class="form-group col-sm-12">
-								<label for="" class="col-sm-2 control-label">相關人員ID:</label>
-								<div class="col-sm-8">
-									<input type="" class="form-control" id="in_person_dbid"
-										placeholder="">
-								</div>
-							</div>
-							<!--                                     <div class="form-group col-sm-6"> -->
-							<!--                                         <label for="inputConfirmPassword" class="col-sm-2 control-label">啟用狀態:</label> -->
-							<!--                                         <div class="col-sm-8"> -->
-							<!--                                             <select class="form-control" id="inputState"> -->
-							<!--       											<option value="0">啟用</option> -->
-							<!-- 	  											<option value="1">停用</option> -->
-							<!--       										</select> -->
-							<!--                                         </div> -->
-							<!--                                     </div> -->
+
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendAddMembergroup()">儲存</button>
@@ -565,12 +499,9 @@ label.required:after {
 					<!-- 更新  -->
 					<div id="editMembergroupContent" style="display: none;">
 						<div class="widget">
-							<div class="form-group col-sm-12">
-								<label for="inputEmail" class="col-sm-1 control-label">編號:</label>
-								<div class="col-sm-9">
-									<input type="email" class="form-control" id="up_dbid" disabled>
-								</div>
-							</div>
+							
+									<input type="hidden" class="form-control" id="up_dbid" disabled>
+						
 
 							<div class="form-group col-sm-6">
 								<label for="inputDepartment" class="col-sm-2 control-label">更新部門名稱:</label>
@@ -579,15 +510,7 @@ label.required:after {
 										placeholder="">
 								</div>
 							</div>
-							<div class="form-group col-sm-6">
-								<label for="inputConfirmPassword" class="col-sm-3 control-label">啟用狀態:</label>
-								<div class="col-sm-8">
-									<select class="form-control" id="up_state">
-										<option value="0">啟用</option>
-										<option value="1">停用</option>
-									</select>
-								</div>
-							</div>
+						
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendEditMembergroup()">更新</button>
@@ -642,6 +565,8 @@ label.required:after {
 										class="fa fa-fw fa-unlock-alt"></i></a></li>
 								<li onclick="confirmBanAgentreason()"><a href="#"><i
 										class="fa fa-fw fa-ban"></i></a></li>
+								<li onclick="AgentReasonB()"><a href="#"><i
+										class="glyphicon glyphicon-trash"></i></a></li>
 							</ul>
 							<ul class="pagination" style="float: right;">
 								<li><input type="text" id="manageAgentreasonTableSearch"
@@ -662,9 +587,9 @@ label.required:after {
 											<th class="no-sort"><input type="checkbox"
 												id="manageCheck" ischecked=false></th>
 											<th>狀態名</th>
-											<th>狀態名_CE</th>
-											<th>狀態名_EN</th>
-											<th>狀態名_TW</th>
+											<th>狀態名_簡體</th>
+											<th>狀態名_英文</th>
+											<th>狀態名_繁體</th>
 											<th>註解</th>
 											<th>告警時間</th>
 											<th>告警顏色</th>
@@ -679,12 +604,14 @@ label.required:after {
 					<div id="banAgentreasonContent" style="display: none;">
 						<div>
 							<ul class="pagination">
-								<li onclick="showAddMember()"><a href="#"><i
+								<li onclick="showAddMemberAGR()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
-								<li onclick="unlockAccount()"><a href="#"><i
+								<li onclick="unlockAccountAgentreason()"><a href="#"><i
 										class="fa fa-fw fa-unlock-alt"></i></a></li>
-								<li onclick="confirmBan()"><a href="#"><i
+								<li onclick="confirmBanAgentreason()"><a href="#"><i
 										class="fa fa-fw fa-ban"></i></a></li>
+								<li onclick="AgentReasonB()"><a href="#"><i
+										class="glyphicon glyphicon-trash"></i></a></li>
 							</ul>
 							<ul class="pagination" style="float: right;">
 								<li><input type="text" id="banAgentreasonTableSearch"
@@ -705,9 +632,9 @@ label.required:after {
 											<th class="no-sort"><input type="checkbox"
 												id="manageCheck" ischecked=false></th>
 											<th>狀態名</th>
-											<th>狀態名_CE</th>
-											<th>狀態名_EN</th>
-											<th>狀態名_TW</th>
+											<th>狀態名_簡體</th>
+											<th>狀態名_英文</th>
+											<th>狀態名_繁體</th>
 											<th>註解</th>
 											<th>告警時間</th>
 											<th>告警顏色</th>
@@ -729,21 +656,21 @@ label.required:after {
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
-								<label for="inputAccount" class="col-sm-2 control-label">狀態名_CN:</label>
+								<label for="inputAccount" class="col-sm-2 control-label">狀態名_簡體:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control"
 										id="Insert_statusname_cn" placeholder="">
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
-								<label for="inputAccount" class="col-sm-2 control-label">狀態名_EN:</label>
+								<label for="inputAccount" class="col-sm-2 control-label">狀態名_英文:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control"
 										id="Insert_statusname_en" placeholder="">
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
-								<label for="inputAccount" class="col-sm-2 control-label">狀態名_TW:</label>
+								<label for="inputAccount" class="col-sm-2 control-label">狀態名_繁體:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control"
 										id="Insert_statusname_tw" placeholder="">
@@ -783,7 +710,7 @@ label.required:after {
 									<button class="btn btn-primary"
 										onclick="sendAddMemberAgentreason()">儲存</button>
 									<button class="btn btn-default"
-										onclick="closeAddMemberAgentreason()">取消</button>
+										onclick="closeAddMemberAGR()">取消</button>
 								</div>
 							</div>
 						</div>
@@ -828,21 +755,21 @@ label.required:after {
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
-								<label for="inputEmployNumber" class="col-sm-2 control-label">狀態名_CN:</label>
+								<label for="inputEmployNumber" class="col-sm-2 control-label">狀態名_簡體:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="statusname_cn"
 										placeholder="">
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
-								<label for="inputPhoneNumber" class="col-sm-2 control-label">狀態名_EN:</label>
+								<label for="inputPhoneNumber" class="col-sm-2 control-label">狀態名_英文:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="statusname_en"
 										placeholder="">
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
-								<label for="inputPassword" class="col-sm-2 control-label">狀態名_TW:</label>
+								<label for="inputPassword" class="col-sm-2 control-label">狀態名_繁體:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="statusname_tw"
 										placeholder="">
@@ -853,6 +780,7 @@ label.required:after {
 								<div class="col-sm-8">
 									<select class="form-control" id="Update_flag">
 										<option value="0">啟用</option>
+										<option value="2">鎖定</option>
 										<option value="1">停用</option>
 									</select>
 								</div>
@@ -907,10 +835,10 @@ label.required:after {
 							<ul class="pagination">
 								<li onclick="showAddMembercomm()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
-								<li onclick="unlockAccountcomm()"><a href="#"><i
-										class="fa fa-fw fa-unlock-alt"></i></a></li>
+<!-- 								<li onclick="unlockAccountcomm()"><a href="#"><i -->
+<!-- 										class="fa fa-fw fa-unlock-alt"></i></a></li> -->
 								<li onclick="confirmBancomm()"><a href="#"><i
-										class="fa fa-fw fa-ban"></i></a></li>
+										class="glyphicon glyphicon-trash"></i></a></li>
 							</ul>
 						</div>
 
@@ -930,10 +858,10 @@ label.required:after {
 									<thead>
 										<tr>
 											<td>名稱</td>
-											<td>編號</td>
+<!-- 											<td>編號</td> -->
 											<td>路徑</td>
-											<td>相關節點</td>
-											<td>狀態</td>
+<!-- 											<td>相關節點</td> -->
+<!-- 											<td>狀態</td> -->
 											<td>URL</td>
 											<td>建立者</td>
 										</tr>
@@ -941,10 +869,10 @@ label.required:after {
 									<tbody>
 										<tr>
 											<td id="commname"></td>
-											<td id="pass"></td>
+<!-- 											<td id="pass"></td> -->
 											<td id="path"></td>
-											<td id="children"></td>
-											<td id="type"></td>
+<!-- 											<td id="children"></td> -->
+<!-- 											<td id="type"></td> -->
 											<td id="url"></td>
 											<td id="createuser"></td>
 										</tr>
@@ -1178,7 +1106,7 @@ label.required:after {
 							</div>
 							<!--                                      <div class="form-group col-sm-6"> -->
 							<!--                                         <label for="inputConfirmPassword" class="col-sm-2 control-label">啟用狀態:</label> -->
-							<!--                                         <div class="col-sm-8"> -->
+							<!--                                         <div class="col-sm-8"> 
 							<!--                                             <select class="form-control" id="insert_deleteflag"> -->
 							<!--       											<option value="0">啟用</option> -->
 							<!-- 	  											<option value="1">停用</option> -->
@@ -1632,33 +1560,39 @@ label.required:after {
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
 	data-target="#confirmBan" style="display: none;" id="confirmBanButton">banDialog</button>
 
-<!-- 禁止符號BUTTON -->
+<!-- 鎖定符號BUTTON -->
 <div id="confirmBan" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-body">
-				<h3>是否確定停用帳號？</h3>
+				<h3>是否確定啟用/鎖定帳號？</h3>
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
-					<label for="inputDepartment" class="col-sm-3 control-label">編號:</label>
+					<label for="inputDepartment" class="col-sm-6 control-label" >帳號:<span id="person1"></span></label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" id="deletedbid"
-							placeholder="">
+						<input type="hidden" class="form-control" id="deletedbid"
+							placeholder="" >
 					</div>
+					
+						<select id="state_list2">
+							<option value="0">開啟</option>
+							<option value="2">鎖定</option>
+						</select>
+					
 				</div>
 				<button type="button" class="btn btn-success" data-dismiss="modal"
-					onclick="showToastSuccess('刪除成功')">確定</button>
+					onclick="showToastSuccess('鎖定成功')">確定</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
 			</div>
 		</div>
 
 	</div>
 </div>
-<!-- 禁止符號BUTTON END -->
+<!-- 鎖定符號BUTTON END -->
 
-<!-- 鎖符號BUTTON -->
+<!-- 停用號BUTTON -->
 <!-- Trigger the modal with a button -->
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
 	data-target="#unlockModal" style="display: none;" id="unlockButton">unlockDialog</button>
@@ -1668,33 +1602,58 @@ label.required:after {
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-body">
-				<h3>是否解除/鎖定帳號？</h3>
+				<h3>是否啟用/停用帳號？</h3>
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
-					<label for="inputDepartment" class="col-sm-3 control-label">帳號:</label>
+					<label for="inputDepartment" class="col-sm-6 control-label">帳號:<span id="person2"></span></label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" id="state_account"
+						<input type="hidden" class="form-control" id="state_account"
 							placeholder="">
 					</div>
-				</div>
-				<div class="form-group col-sm-6">
-					<label for="inputDepartment" class="col-sm-3 control-label">開關:</label>
-					<div class="col-sm-6">
+				
+					<label for="inputDepartment" class="col-sm-3 control-label"></label>
+				
 						<select id="state_list">
 							<option value="0">開啟</option>
-							<option value="1">鎖定</option>
+							<option value="1">停用</option>
 						</select>
 					</div>
-				</div>
+			
 				<button type="button" class="btn btn-success" data-dismiss="modal"
-					onclick="showToastError('鎖定/解鎖')">確定</button>
+					onclick="showToastError('啟用/停用')">確定</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- 鎖符號BUTTON END -->
+<!-- 停用號BUTTON END -->
+
+<!-- PersonTrashBUTTON -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+	data-target="#personTrash" style="display: none;" id="personTrashBun">unlockDialog</button>
+<div id="personTrash" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3>是否刪除帳號？</h3>
+			</div>
+			<div class="modal-footer">
+				<div class="form-group col-sm-6">
+					<label for="inputDepartment" class="col-sm-6 control-label">帳號:<span id="person3"></span></label>
+						<input type="hidden" class="form-control" id="personTrashdbid"
+							placeholder="">
+				</div>
+				<button type="button" class="btn btn-success" data-dismiss="modal"
+					onclick="personTrash('刪除')">確定</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- PersonTrashBUTTON END -->
 
 <!-- ========================================================================================================= -->
 <!-- GROUP 開始-->
@@ -1704,19 +1663,19 @@ label.required:after {
 	data-target="#confirmBangroup" style="display: none;"
 	id="confirmBanButtongroup">banDialog</button>
 
-<!-- 禁止符號BUTTON -->
+<!-- 垃圾桶符號BUTTON -->
 <div id="confirmBangroup" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-body">
-				<h3>是否確定停用帳號？</h3>
+				<h3>是否確定刪除帳號？</h3>
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
-					<label for="inputDepartment" class="col-sm-3 control-label">編號:</label>
-					<div class="col-sm-6">
-						<input type="text" class="form-control"
+					<label for="inputDepartment" class="col-sm-5 control-label">編號:<span id="deletegroup"></span></label>
+					<div class="col-sm-3">
+						<input type="hidden" class="form-control"
 							id="deletedbid_GroupDelete" placeholder="">
 					</div>
 				</div>
@@ -1728,51 +1687,50 @@ label.required:after {
 
 	</div>
 </div>
-<!-- 禁止符號BUTTON END -->
+<!-- 垃圾桶符號BUTTON END -->
 
 <!-- 鎖符號BUTTON -->
 <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-	data-target="#unlockModalgroup" style="display: none;"
-	id="unlockButtongroup">unlockDialog</button>
-<div id="unlockModalgroup" class="modal fade" role="dialog">
-	<div class="modal-dialog">
+<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" -->
+<!-- 	data-target="#unlockModalgroup" style="display: none;" -->
+<!-- 	id="unlockButtongroup">unlockDialog</button> -->
+<!-- <div id="unlockModalgroup" class="modal fade" role="dialog"> -->
+<!-- 	<div class="modal-dialog"> -->
 
-		<!-- Modal content-->
-		<div class="modal-content">
-			<div class="modal-body">
-				<h3>是否解除/鎖定帳號？</h3>
-			</div>
-			<div class="modal-footer">
-				<div class="form-group col-sm-6">
-					<label for="inputDepartment" class="col-sm-3 control-label">帳號:</label>
-					<div class="col-sm-6">
-						<input type="text" class="form-control"
-							id="state_account_Groupluck" placeholder="">
-					</div>
-				</div>
-				<div class="form-group col-sm-6">
-					<label for="inputDepartment" class="col-sm-3 control-label">開關:</label>
-					<div class="col-sm-6">
-						<select id="state_list_Groupluck">
-							<option value="0">開啟</option>
-							<option value="1">鎖定</option>
-						</select>
-					</div>
-				</div>
-				<button type="button" class="btn btn-success" data-dismiss="modal"
-					onclick="GroupLuck('鎖定/解鎖')">確定</button>
-				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
-			</div>
-		</div>
-	</div>
-</div>
+<!-- 		<!-- Modal content--> 
+<!-- 		<div class="modal-content"> -->
+<!-- 			<div class="modal-body"> -->
+<!-- 				<h3>是否解除/鎖定帳號？</h3> -->
+<!-- 			</div> -->
+<!-- 			<div class="modal-footer"> -->
+<!-- 				<div class="form-group col-sm-6"> -->
+<!-- 					<label for="inputDepartment" class="col-sm-3 control-label">帳號:</label> -->
+<!-- 					<div class="col-sm-6"> -->
+<!-- 						<input type="text" class="form-control" -->
+<!-- 							id="state_account_Groupluck" placeholder=""> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="form-group col-sm-6"> -->
+<!-- 					<label for="inputDepartment" class="col-sm-3 control-label">開關:</label> -->
+<!-- 					<div class="col-sm-6"> -->
+<!-- 						<select id="state_list_Groupluck"> -->
+<!-- 							<option value="0">開啟</option> -->
+<!-- 							<option value="1">鎖定</option> -->
+<!-- 						</select> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<button type="button" class="btn btn-success" data-dismiss="modal" -->
+<!-- 					onclick="GroupLuck('鎖定/解鎖')">確定</button> -->
+<!-- 				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- </div> -->
 <!-- 鎖符號BUTTON END -->
 <!-- GROUP 結束-->
 
-<!-- ========================================================================================== -->
+<!-- ====================================================================================================-->
 <!-- Agentreason 開始 -->
-
 <!-- Trigger the modal with a button -->
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
 	data-target="#confirmBanAGR" style="display: none;"
@@ -1788,13 +1746,22 @@ label.required:after {
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
-					<label for="inputAssignedDepartment" class="col-sm-2 control-label">編號:</label>
+					<label for="inputAssignedDepartment" class="col-sm-6 control-label">名稱:<span id="agentreasonluck2"></span></label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="D_id" placeholder="">
+						<input type="hidden" class="form-control" id="D_id" placeholder="">
+					</div>
+				</div>
+					<div class="form-group col-sm-6">
+					<label for="inputAssignedDepartment" class="col-sm-2 control-label">開關:</label>
+					<div class="col-sm-4">
+						<select class="form-control" id="flag2">
+							<option value="0">啟用</option>
+							<option value="1">停用</option>
+						</select>
 					</div>
 				</div>
 				<button type="button" class="btn btn-success" data-dismiss="modal"
-					onclick="AgentreasonDelete('刪除成功')">確定</button>
+					onclick="AgentreasonDelete('啟用/停用成功')">確定</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
 			</div>
 		</div>
@@ -1818,9 +1785,9 @@ label.required:after {
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
-					<label for="inputAssignedDepartment" class="col-sm-2 control-label">編號:</label>
+					<label for="inputAssignedDepartment" class="col-sm-6 control-label">名稱:<span id="agentreasonluck"></span></label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="Delete_id"
+						<input type="hidden" class="form-control" id="Delete_id"
 							placeholder="">
 					</div>
 				</div>
@@ -1829,7 +1796,7 @@ label.required:after {
 					<div class="col-sm-4">
 						<select class="form-control" id="Delete_flag">
 							<option value="0">啟用</option>
-							<option value="1">停用</option>
+							<option value="2">鎖定</option>
 						</select>
 					</div>
 				</div>
@@ -1841,6 +1808,36 @@ label.required:after {
 	</div>
 </div>
 <!-- 鎖符號BUTTON END -->
+
+<!-- AgentTrashBUTTON -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+	data-target="#AgentReason" style="display: none;"
+	id="AgentReasonB">unlockDialog</button>
+	
+<div id="AgentReason" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3>是否確定刪除帳號？</h3>
+			</div>
+			<div class="modal-footer">
+				<div class="form-group col-sm-6">
+					<label for="inputAssignedDepartment" class="col-sm-6 control-label">名稱:<span id="agentreasonluck3"></span></label>
+					<div class="col-sm-4">
+						<input type="hidden" class="form-control" id="AgentReasondbid" placeholder="">
+					</div>
+				</div>
+				<button type="button" class="btn btn-success" data-dismiss="modal"
+					onclick="AgentReasonD('刪除成功')">確定</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+			</div>
+		</div>
+
+	</div>
+</div>
+<!-- AgentTrashBUTTON END -->
+
 <!-- ================================================================================== -->
 <!-- Commonlink 開始-->
 <!-- Trigger the modal with a button -->
@@ -2028,7 +2025,34 @@ label.required:after {
 <!-- <script src="resources/js/setting/activitydata.js"></script> -->
 <!-- <script src="resources/js/setting/person.js"></script> -->
 <script>
+
+function person_groupmenu(){
+	$("#updateDepartment").empty();
+	$("#inputDepartment").empty();
+$.ajax({
+	url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Group_STATE",
+	data : {
+		state : 0
+	},
+	type : "POST",
+	dataType : 'json',
+
+	error : function(e) {
+		alert("失敗");
+		callback(data);
+	},
+	success : function(data) {
+		
+		for(var i=0; i<data.group.length; i++){
+	        var menu = "<option value='"+data.group[i].dbid+"'>"+data.group[i].name+"</option>"
+          	 document.getElementById("updateDepartment").insertAdjacentHTML("BeforeEnd",menu);
+	        document.getElementById("inputDepartment").insertAdjacentHTML("BeforeEnd",menu);
+	        	 }
+	}
+});
+}
 	function person() {
+		person_groupmenu();
 		$("#person0Table tbody tr").empty();
 		$("#person1Table tboby tr").empty();
 		$
@@ -2107,7 +2131,24 @@ label.required:after {
 											document
 													.getElementById('updateEmployNumber').value = table
 													.row(this).data().employee_id;
-
+											document
+													.getElementById('person1').innerHTML = table
+													.row(this).data().account;
+											document
+													.getElementById('deletedbid').value = table
+													.row(this).data().dbid;
+											document
+													.getElementById('person2').innerHTML = table
+													.row(this).data().account;
+											document
+													.getElementById('state_account').value = table
+													.row(this).data().dbid;
+											document
+													.getElementById('personTrashdbid').value = table
+													.row(this).data().dbid;
+											document
+													.getElementById('person3').innerHTML = table
+													.row(this).data().account;
 										});
 					}
 				});
@@ -2198,6 +2239,29 @@ label.required:after {
 											document
 													.getElementById('updateEmployNumber').value = table
 													.row(this).data().employee_id;
+											
+											document
+											.getElementById('person1').innerHTML = table
+											.row(this).data().account;
+											document
+											.getElementById('deletedbid').value = table
+											.row(this).data().dbid;
+											
+											document
+											.getElementById('person2').innerHTML = table
+											.row(this).data().account;
+											
+											document
+											.getElementById('state_account').value = table
+											.row(this).data().dbid;
+											
+											document
+											.getElementById('personTrashdbid').value = table
+											.row(this).data().dbid;
+											
+											document
+											.getElementById('person3').innerHTML = table
+											.row(this).data().account;
 
 										});
 					}
@@ -2443,6 +2507,9 @@ label.required:after {
 	function confirmBan() {
 		$("#confirmBanButton").trigger("click");
 	}
+	function personTrashBun() {
+		$("#personTrashBun").trigger("click");
+	}
 
 	/*show toastStr*/
 	toastr.options = {
@@ -2461,12 +2528,12 @@ label.required:after {
 
 	function showToastSuccess(message) {
 		var deletedbid = document.getElementById('deletedbid').value;
-
+		var state = document.getElementById('state_list2').value;
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Delete_PersonInfo",
+					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Person_logicdelete",
 					data : {
-
+						state : state,
 						dbid : deletedbid
 
 					},
@@ -2494,7 +2561,7 @@ label.required:after {
 					data : {
 
 						state : state,
-						account : account
+						dbid : account
 
 					},
 					type : "POST",
@@ -2511,6 +2578,32 @@ label.required:after {
 				});
 		toastr.error(message);
 	}
+	
+	function personTrash(message) {
+		var dbid = document.getElementById('personTrashdbid').value;
+		$
+				.ajax({
+					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Delete_PersonInfo",
+					data : {
+
+						dbid : dbid
+
+					},
+					type : "POST",
+					dataType : 'json',
+
+					error : function(e) {
+						alert("失敗");
+						callback(data);
+					},
+					success : function(data) {
+						person();
+					}
+
+				});
+		toastr.error(message);
+	}
+	
 
 	function isValidEmail(email) {
 		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -2614,16 +2707,37 @@ label.required:after {
 														className : "dt-body-center"
 													}, {
 														"data" : "name"
-													}, {
-														"data" : "state"
-													}, {
-														"data" : "dbid"
+// 													}, {
+// 														"data" : "state"
+// 													}, {
+// 														"data" : "dbid"
 													}
 
 											],
 											lengthChange : false
 										});
-						group2();
+										group2();
+										
+					var table = $('#managegroupTable').DataTable();
+										$('#managegroupTable tbody')
+												.on(
+														'click',
+														'tr',
+														function() {
+								document
+										.getElementById('deletedbid_GroupDelete').value = table
+										.row(this).data().dbid;
+								document
+										.getElementById('deletegroup').innerHTML = table
+										.row(this).data().name;
+								document
+										.getElementById('up_dbid').value = table
+										.row(this).data().dbid;
+								document
+										.getElementById('up_name').value = table
+										.row(this).data().name;
+
+							});
 					}
 				});
 
@@ -2638,64 +2752,64 @@ label.required:after {
 			$("input[aria-controls='managegroupTable']").trigger("keyup");
 		});
 
-		$
-				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Group_STATE",
-					data : {
-						state : 1
-					},
-					type : "POST",
-					dataType : 'json',
+// 		$
+// 				.ajax({
+// 					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Group_STATE",
+// 					data : {
+// 						state : 1
+// 					},
+// 					type : "POST",
+// 					dataType : 'json',
 
-					error : function(e) {
-						alert("失敗");
-						callback(data);
-					},
-					success : function(data) {
-						console.log("停用部門", data);
+// 					error : function(e) {
+// 						alert("失敗");
+// 						callback(data);
+// 					},
+// 					success : function(data) {
+// 						console.log("停用部門", data);
 
-						//	        	alert(JSON.stringify(data.person));
-						$('#bangroupTable')
-								.DataTable(
-										{
-											"autoWidth": false,
-											destroy : true,
-											aaData : data.group,
-											aoColumns : [
-													{
-														data : "dbid",
-														render : function(data,
-																type, row) {
-															if (type === 'display') {
-																return '<input type="checkbox" class="editor-active" value='+data+'>';
-															}
-															return data;
-														},
-														className : "dt-body-center"
-													}, {
-														"data" : "name"
-													}, {
-														"data" : "state"
-													}, {
-														"data" : "dbid"
-													} ],
-											lengthChange : false
-										});
-						group2();
-					}
-				});
+// 						//	        	alert(JSON.stringify(data.person));
+// 						$('#bangroupTable')
+// 								.DataTable(
+// 										{
+// 											"autoWidth": false,
+// 											destroy : true,
+// 											aaData : data.group,
+// 											aoColumns : [
+// 													{
+// 														data : "dbid",
+// 														render : function(data,
+// 																type, row) {
+// 															if (type === 'display') {
+// 																return '<input type="checkbox" class="editor-active" value='+data+'>';
+// 															}
+// 															return data;
+// 														},
+// 														className : "dt-body-center"
+// 													}, {
+// 														"data" : "name"
+// 													}, {
+// 														"data" : "state"
+// 													}, {
+// 														"data" : "dbid"
+// 													} ],
+// 											lengthChange : false
+// 										});
+// 						group2();
+// 					}
+// 				});
 
-		$("#bangroupTable").css("width", "100%");
-		$("#bangroupTable_filter").prop("style", "float:right;");
-		$("#bangroupTable_wrapper > div:nth-child(1)").hide();
+// 		$("#bangroupTable").css("width", "100%");
+// 		$("#bangroupTable_filter").prop("style", "float:right;");
+// 		$("#bangroupTable_wrapper > div:nth-child(1)").hide();
 
-		$("#bangroupTableSearch").keyup(function() {
+// 		$("#bangroupTableSearch").keyup(function() {
 
-			var searchText = $("#bangroupTableSearch").val();
+// 			var searchText = $("#bangroupTableSearch").val();
 
-			$("input[aria-controls='bangroupTable']").val(searchText);
-			$("input[aria-controls='bangroupTable']").trigger("keyup");
-		});
+// 			$("input[aria-controls='bangroupTable']").val(searchText);
+// 			$("input[aria-controls='bangroupTable']").trigger("keyup");
+// 		});
 	}
 
 	function group2() {
@@ -2745,7 +2859,6 @@ label.required:after {
 	//新增功能
 	function sendAddMembergroup() {
 		closeAddMember();
-		var in_person_dbid = document.getElementById('in_person_dbid').value;
 		var in_name = document.getElementById('in_name').value;
 		//	var in_state = document.getElementById('inputState').value;
 		$
@@ -2754,7 +2867,6 @@ label.required:after {
 					data : {
 						state : 0,
 						name : in_name,
-						person_dbid : in_person_dbid
 
 					},
 					type : "POST",
@@ -2811,12 +2923,11 @@ label.required:after {
 		closeEditMember();
 		var up_dbid = document.getElementById('up_dbid').value;
 		var up_name = document.getElementById('up_name').value;
-		var up_state = document.getElementById('up_state').value;
 		$
 				.ajax({
 					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Update_GroupInfo",
 					data : {
-						state : up_state,
+						state : 0,
 						name : up_name,
 						dbid : up_dbid
 					},
@@ -2872,32 +2983,32 @@ label.required:after {
 		$("#managegroupContent").show();
 	}
 
-	function GroupLuck(message) {
-		var state = document.getElementById('state_list_Groupluck').value;
-		var name = document.getElementById('state_account_Groupluck').value;
-		$
-				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Group_logicdelete",
-					data : {
-						state : state,
-						name : name
-					},
-					type : "POST",
-					dataType : 'json',
+// 	function GroupLuck(message) {
+// 		var state = document.getElementById('state_list_Groupluck').value;
+// 		var name = document.getElementById('state_account_Groupluck').value;
+// 		$
+// 				.ajax({
+// 					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Group_logicdelete",
+// 					data : {
+// 						state : state,
+// 						name : name
+// 					},
+// 					type : "POST",
+// 					dataType : 'json',
 
-					error : function(e) {
-						alert("失敗");
-					},
-					success : function(data) {
-						alert("成功");
-						select();
-					}
-				});
-		toastr.error(message);
-		closeAllHrContent();
-		$("#groupContent").show();
-		$("#managegroupContent").show();
-	}
+// 					error : function(e) {
+// 						alert("失敗");
+// 					},
+// 					success : function(data) {
+// 						alert("成功");
+// 						select();
+// 					}
+// 				});
+// 		toastr.error(message);
+// 		closeAllHrContent();
+// 		$("#groupContent").show();
+// 		$("#managegroupContent").show();
+// 	}
 </script>
 
 <script>
@@ -2979,6 +3090,7 @@ label.required:after {
 									$('#pass').text(data.node.original.id);
 									$('#type').text(data.node.original.parent);
 									$('#children').text(data.node.children_d);
+									
 									$("#comm").hide();
 									$("#commTB").show();
 								});
@@ -3338,7 +3450,35 @@ label.required:after {
 													} ],
 											lengthChange : false
 										});
-						agentreason2()
+						agentreason2();
+						
+						var table = $('#manageAgentreasonTable').DataTable();
+						$('#manageAgentreasonTable tbody')
+								.on(
+										'click',
+										'tr',
+										function() {
+				document
+						.getElementById('agentreasonluck').innerHTML = table
+						.row(this).data().statusname;
+				document
+						.getElementById('Delete_id').value = table
+						.row(this).data().dbid;
+				
+				document
+						.getElementById('agentreasonluck2').innerHTML = table
+						.row(this).data().statusname;
+				document
+						.getElementById('D_id').value = table
+						.row(this).data().dbid;
+				document
+						.getElementById('AgentReasondbid').value = table
+						.row(this).data().dbid;
+				document
+						.getElementById('agentreasonluck3').innerHTML = table
+						.row(this).data().statusname;
+			
+			});
 					}
 				});
 
@@ -3478,6 +3618,7 @@ label.required:after {
 		$("button.addMember").removeClass("btn-success");
 		$("button.addMember").addClass("btn-primary");
 	}
+	
 
 	//關閉新增畫面
 	function closeAddMemberAGR() {
@@ -3606,21 +3747,26 @@ label.required:after {
 	//解鎖對話視窗
 	function unlockAccountAgentreason() {
 		$("#unlockButtonAGR").trigger("click");
-
+		
 	}
 
 	//停用對話視窗
 	function confirmBanAgentreason() {
 		$("#confirmBanButtonAGR").trigger("click");
 	}
+	//停用對話視窗
+	function AgentReasonB() {
+		$("#AgentReasonB").trigger("click");
+	}
 
 	function AgentreasonDelete(message) {
 		var dbid = document.getElementById('D_id').value;
-
+		var flag = document.getElementById('flag2').value;
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Delete_AgentReason",
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_agentreason",
 					data : {
+						flag : flag,
 						dbid : dbid
 					},
 					type : "POST",
@@ -3638,6 +3784,9 @@ label.required:after {
 		$("#AgentreasonContent").show();
 		$("#manageAgentreasonContent").show();
 	}
+	
+	
+	
 
 	function AgentreasonLuck(message) {
 		var flag = document.getElementById('Delete_flag').value;
@@ -3661,6 +3810,31 @@ label.required:after {
 					}
 				});
 		toastr.error(message);
+		closeAllHrContent();
+		$("#AgentreasonContent").show();
+		$("#manageAgentreasonContent").show();
+	}
+	
+	
+	function AgentReasonD(message) {
+		var dbid = document.getElementById('AgentReasondbid').value;
+		$
+				.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Delete_AgentReason",
+					data : {
+						dbid : dbid
+					},
+					type : "POST",
+					dataType : 'json',
+					error : function(e) {
+						alert("失敗");
+						callback(data);
+					},
+					success : function(data) {
+						select2()
+					}
+				});
+		toastr.success(message);
 		closeAllHrContent();
 		$("#AgentreasonContent").show();
 		$("#manageAgentreasonContent").show();
