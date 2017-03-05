@@ -649,7 +649,7 @@
 // 						var address = currentUserData.CustomerData[0].CUSTNAM
 // 								|| "";
 						//var IVR1 = currentUserData.CustomerData[0].IVR1 || "";
-						var IDNO_ = currentUserData.CustomerData[0].IDNO_ || "";
+						var IDNO_ = currentUserData.CustomerData[0].IDNO_ || ClientName_g; // 取不到Id時使用目前客戶Id
 						var CUSTNAME_ = currentUserData.CustomerData[0].CUSTNAME_ || "";
 						var BHNO_ = currentUserData.CustomerData[0].BHNO_ || "";
 						var BHNOTYPE_ = currentUserData.CustomerData[0].BHNOTYPE_ || "";

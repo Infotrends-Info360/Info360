@@ -127,7 +127,7 @@
 					</div>
 
 					<div class="row ibox">
-						<div class="col-lg-12 col-md-12" style="overflow: auto; width: 775px; height: 640px; border: 1px silver solid">
+						<div class="col-lg-12 col-md-12" style="overflow: auto; width: 100%; height: 640px; border: 1px silver solid">
 							<table class="table table-striped table-bordered table-hover "
 								id="queryTable123"  >
 								<thead>
@@ -446,7 +446,7 @@ $.ajax({
 		$("#datepicker").datepicker();
 		//init datatable
 		$("#queryTable").DataTable();
-		$("#queryTable").css("width", "100%");
+		$("#queryTable123").css("width", "100%");
 	});
 </script>
 </html>
