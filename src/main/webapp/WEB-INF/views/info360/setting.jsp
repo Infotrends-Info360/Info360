@@ -154,12 +154,13 @@ label.required:after {
 
 						<div class="row ibox">
 							<div class="col-lg-12 col-md-12" type="">
+							<form id="person0_form">
 								<table class="table table-bordered table-hover"
 									id="person0Table">
 									<thead>
 										<tr>
 											<th class="no-sort"><input type="checkbox"
-												id="manageCheck" ischecked=false></th>
+												 ischecked=false name="person0All" id="person0All"></th>
 											<th>帳號</th>
 											<th>姓名</th>
 											<th>員工編號</th>
@@ -170,7 +171,9 @@ label.required:after {
 										</tr>
 									</thead>
 								</table>
+								</form>
 							</div>
+							
 						</div>
 					</div>
 
@@ -203,7 +206,7 @@ label.required:after {
 									<thead>
 										<tr>
 											<th class="no-sort"><input type="checkbox"
-												id="manageCheck" ischecked=false></th>
+												 name="person1All" id="person1All" ischecked=false></th>
 											<th>帳號</th>
 											<th>姓名</th>
 											<th>員工編號</th>
@@ -340,7 +343,7 @@ label.required:after {
 							<div class="form-group col-sm-6">
 								<label for="inputEmployNumber" class="col-sm-2 control-label">員工編號</label>
 								<div class="col-sm-8">
-									<input type="" class="form-control" id="updateEmployNumber"
+									<input type="number" class="form-control" id="updateEmployNumber"
 										placeholder="">
 								</div>
 							</div>
@@ -361,7 +364,7 @@ label.required:after {
 							<div class="form-group col-sm-6">
 								<label for="inputDepartment" class="col-sm-2 control-label">最大接通數</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" id="updateMaxcount"
+									<input type="" class="form-control" id="updateMaxcount"
 										placeholder="">
 								</div>
 							</div>
@@ -464,7 +467,7 @@ label.required:after {
 									<thead>
 										<tr>
 											<th class="no-sort"><input type="checkbox"
-												id="manageCheck" ischecked=false></th>
+												id="group0All" ischecked=false></th>
 											<th>部門名稱</th>
 <!-- 											<th>狀態</th> -->
 <!-- 											<th>編號</th> -->
@@ -585,7 +588,7 @@ label.required:after {
 									<thead>
 										<tr>
 											<th class="no-sort"><input type="checkbox"
-												id="manageCheck" ischecked=false></th>
+												id="agentreason0All" ischecked=false></th>
 											<th>狀態名</th>
 											<th>狀態名_簡體</th>
 											<th>狀態名_英文</th>
@@ -630,7 +633,7 @@ label.required:after {
 									<thead>
 										<tr>
 											<th class="no-sort"><input type="checkbox"
-												id="manageCheck" ischecked=false></th>
+												id="agentreason1All" ischecked=false></th>
 											<th>狀態名</th>
 											<th>狀態名_簡體</th>
 											<th>狀態名_英文</th>
@@ -721,9 +724,9 @@ label.required:after {
 						<div class="widget">
 							<div class="form-group col-sm-6">
 								<label for="inputAccount"
-									class="col-sm-2 control-label required">編碼:</label>
+									class="col-sm-2 control-label ">編碼:</label>
 								<div class="col-sm-8">
-									<input type="number" class="form-control" id="Update_id">
+									<input type="number" class="form-control" id="Update_id" disabled>
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
@@ -751,7 +754,7 @@ label.required:after {
 								<label for="inputFirstName" class="col-sm-2 control-label">狀態名:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="statusname"
-										placeholder="">
+										placeholder="" disabled>
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
@@ -869,15 +872,17 @@ label.required:after {
 									<tbody>
 										<tr>
 											<td id="commname"></td>
-<!-- 											<td id="pass"></td> -->
+											<td id="pass" style="display: none;"></td>
 											<td id="path"></td>
-<!-- 											<td id="children"></td> -->
+											<td id="children" style="display: none;"></td>
 <!-- 											<td id="type"></td> -->
 											<td id="url"></td>
 											<td id="createuser"></td>
 										</tr>
 									</tbody>
-								</table>
+								  </table>
+
+
 							</div>
 
 						</div>
@@ -1018,7 +1023,7 @@ label.required:after {
 								<li onclick="showAddMemberAM()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
 								<li onclick="unlockAccountAM()"><a href="#"><i
-										class="fa fa-fw fa-unlock-alt"></i></a></li>
+										class="fa fa-fw fa-ban"></i></a></li>
 							</ul>
 							<ul class="pagination" style="float: right;">
 								<li><input type="text" id="manageTableAMSearch"
@@ -1037,12 +1042,12 @@ label.required:after {
 									<thead>
 										<tr>
 											<th class="no-sort"><input type="checkbox"
-												id="manageCheck" ischecked=false></th>
+												id="AM0All" ischecked=false></th>
 											<th>編號</th>
 											<th>清單名稱</th>
 											<th>排序</th>
 											<th>建立時間</th>
-											<th>狀態</th>
+										
 										</tr>
 									</thead>
 								</table>
@@ -1056,7 +1061,7 @@ label.required:after {
 								<li onclick="showAddMemberAM()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
 								<li onclick="unlockAccountAM()"><a href="#"><i
-										class="fa fa-fw fa-unlock-alt"></i></a></li>
+										class="fa fa-fw fa-ban"></i></a></li>
 							</ul>
 							<ul class="pagination" style="float: right;">
 								<li><input type="text" id="banTableAMSearch"
@@ -1074,12 +1079,12 @@ label.required:after {
 									<thead>
 										<tr>
 											<th class="no-sort"><input type="checkbox"
-												id="manageCheck" ischecked=false></th>
+												id="AM1All" ischecked=false></th>
 											<th>編號</th>
 											<th>清單名稱</th>
 											<th>排序</th>
-											<th>建立時間</th>
-											<th>狀態</th>
+											<th>停用時間</th>
+											
 										</tr>
 									</thead>
 								</table>
@@ -1125,28 +1130,29 @@ label.required:after {
 					<!-- 更新  -->
 					<div id="editMemberAMContent" style="display: none;">
 						<div class="widget">
-							<div class="form-group col-sm-6">
-								<label for="inputAccount"
-									class="col-sm-2 control-label required">編號:</label>
-								<div class="col-sm-8">
-									<input type="number" class="form-control" id="up_dbidam"
-										disabled>
-								</div>
-							</div>
-							<div class="form-group col-sm-6">
+						<div class="form-group col-sm-6">
 								<label for="inputAccount" class="col-sm-3 control-label">清單名稱:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="up_menunameam">
 								</div>
 							</div>
-
 							<div class="form-group col-sm-6">
-								<label for="inputName" class="col-sm-2 control-label">sort:</label>
+<!-- 								<label for="inputAccount" -->
+<!-- 									class="col-sm-2 control-label required">編號:</label> -->
 								<div class="col-sm-8">
-									<input type="text" class="form-control" id="up_sortam"
-										placeholder="">
+									<input type="hidden" class="form-control" id="up_dbidam"
+										>
 								</div>
 							</div>
+							
+
+<!-- 							<div class="form-group col-sm-6"> -->
+<!-- 								<label for="inputName" class="col-sm-2 control-label">sort:</label> -->
+<!-- 								<div class="col-sm-8"> -->
+<!-- 									<input type="text" class="form-control" id="up_sortam" -->
+<!-- 										placeholder=""> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendEditMemberAM()">更新</button>
@@ -1218,7 +1224,7 @@ label.required:after {
 									<thead>
 										<tr>
 											<th class="no-sort"><input type="checkbox"
-												id="manageCheck" ischecked=false></th>
+												id="AG0All" ischecked=false></th>
 											<th>編號</th>
 											<th>群組名稱</th>
 											<th>排序</th>
@@ -1255,7 +1261,7 @@ label.required:after {
 									<thead>
 										<tr>
 											<th class="no-sort"><input type="checkbox"
-												id="manageCheck" ischecked=false></th>
+												id="AG1All" ischecked=false></th>
 											<th>編號</th>
 											<th>群組名稱</th>
 											<th>排序</th>
@@ -1302,20 +1308,20 @@ label.required:after {
 									<input type="" class="form-control" id="up_groupnameAG">
 								</div>
 							</div>
-							<div class="form-group col-sm-6">
-								<label for="inputAccount" class="col-sm-3 control-label">編號:</label>
-								<div class="col-sm-8">
-									<input type="number" class="form-control" id="up_dbidAG"
-										disabled>
-								</div>
-							</div>
-							<div class="form-group col-sm-6">
-								<label for="inputName" class="col-sm-3 control-label">sort:</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="up_sortAG"
-										placeholder="">
-								</div>
-							</div>
+<!-- 							<div class="form-group col-sm-6"> -->
+<!-- 								<label for="inputAccount" class="col-sm-3 control-label">編號:</label> -->
+<!-- 								<div class="col-sm-8"> -->
+									<input type="hidden" class="form-control" id="up_dbidAG"
+										>
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 							<div class="form-group col-sm-6"> -->
+<!-- 								<label for="inputName" class="col-sm-3 control-label">sort:</label> -->
+<!-- 								<div class="col-sm-8"> -->
+<!-- 									<input type="text" class="form-control" id="up_sortAG" -->
+<!-- 										placeholder=""> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
@@ -1332,7 +1338,7 @@ label.required:after {
 		</div>
 		<!-- ActivityGroup 結束 -->
 
-		<!-- ActivityData 結束 -->
+		<!-- ActivityData 開始 -->
 		<div class="col-lg-10 col-sm-9" id="ADContent" style="display: none;">
 			<div class="panel panel-success" style="height: 780px;">
 				<!-- 服務代碼管理切換頁籤Start -->
@@ -1385,12 +1391,12 @@ label.required:after {
 									<thead>
 										<tr>
 											<th class="no-sort"><input type="checkbox"
-												id="manageCheck" ischecked=false></th>
+												id="AD0All" ischecked=false></th>
 											<th>編號</th>
 											<th>建立時間</th>
 											<th>名稱</th>
 											<th>顏色</th>
-											<th>狀態</th>
+<!-- 											<th>狀態</th> -->
 											<th>titlegroup</th>
 											<th>titleflag</th>
 											<th>排序</th>
@@ -1404,9 +1410,9 @@ label.required:after {
 					<div id="banADContent" style="display: none;">
 						<div>
 							<ul class="pagination">
-								<li onclick="showAddMember()"><a href="#"><i
+							<li onclick="showAddMemberAD()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
-								<li onclick="unlockAccount()"><a href="#"><i
+								<li onclick="unlockAccountAD()"><a href="#"><i
 										class="fa fa-fw fa-unlock-alt"></i></a></li>
 							</ul>
 							<ul class="pagination" style="float: right;">
@@ -1425,12 +1431,12 @@ label.required:after {
 									<thead>
 										<tr>
 											<th class="no-sort"><input type="checkbox"
-												id="manageCheck" ischecked=false></th>
+												id="AD1All" ischecked=false></th>
 											<th>編號</th>
-											<th>建立時間</th>
+											<th>停用時間</th>
 											<th>名稱</th>
 											<th>顏色</th>
-											<th>狀態</th>
+<!-- 											<th>狀態</th> -->
 											<th>titlegroup</th>
 											<th>titleflag</th>
 											<th>排序</th>
@@ -1516,21 +1522,21 @@ label.required:after {
 										placeholder="">
 								</div>
 							</div>
-							<div class="form-group col-sm-6">
-								<label for="inputPassword" class="col-sm-3 control-label"
-									disabled>編號:</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="up_dbidAD"
+<!-- 							<div class="form-group col-sm-6"> -->
+<!-- 								<label for="inputPassword" class="col-sm-3 control-label" -->
+<!-- 									disabled>編號:</label> -->
+<!-- 								<div class="col-sm-8"> -->
+									<input type="hidden" class="form-control" id="up_dbidAD"
 										placeholder="">
-								</div>
-							</div>
-							<div class="form-group col-sm-6">
-								<label for="inputPassword" class="col-sm-3 control-label">sort:</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="up_sortAD"
-										placeholder="">
-								</div>
-							</div>
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 							<div class="form-group col-sm-6"> -->
+<!-- 								<label for="inputPassword" class="col-sm-3 control-label">sort:</label> -->
+<!-- 								<div class="col-sm-8"> -->
+<!-- 									<input type="text" class="form-control" id="up_sortAD" -->
+<!-- 										placeholder=""> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendEditMemberAD()">更新</button>
@@ -1570,7 +1576,7 @@ label.required:after {
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
-					<label for="inputDepartment" class="col-sm-6 control-label" >帳號:<span id="person1"></span></label>
+<!-- 					<label for="inputDepartment" class="col-sm-6 control-label" >帳號:<span id="person1"></span></label> -->
 					<div class="col-sm-6">
 						<input type="hidden" class="form-control" id="deletedbid"
 							placeholder="" >
@@ -1606,7 +1612,7 @@ label.required:after {
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
-					<label for="inputDepartment" class="col-sm-6 control-label">帳號:<span id="person2"></span></label>
+<!-- 					<label for="inputDepartment" class="col-sm-6 control-label">帳號:<span id="person2"></span></label> -->
 					<div class="col-sm-6">
 						<input type="hidden" class="form-control" id="state_account"
 							placeholder="">
@@ -1642,7 +1648,7 @@ label.required:after {
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
-					<label for="inputDepartment" class="col-sm-6 control-label">帳號:<span id="person3"></span></label>
+<!-- 					<label for="inputDepartment" class="col-sm-6 control-label">帳號:<span id="person3"></span></label> -->
 						<input type="hidden" class="form-control" id="personTrashdbid"
 							placeholder="">
 				</div>
@@ -1673,7 +1679,7 @@ label.required:after {
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
-					<label for="inputDepartment" class="col-sm-5 control-label">編號:<span id="deletegroup"></span></label>
+<!-- 					<label for="inputDepartment" class="col-sm-5 control-label">編號:<span id="deletegroup"></span></label> -->
 					<div class="col-sm-3">
 						<input type="hidden" class="form-control"
 							id="deletedbid_GroupDelete" placeholder="">
@@ -1746,7 +1752,7 @@ label.required:after {
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
-					<label for="inputAssignedDepartment" class="col-sm-6 control-label">名稱:<span id="agentreasonluck2"></span></label>
+<!-- 					<label for="inputAssignedDepartment" class="col-sm-6 control-label">名稱:<span id="agentreasonluck2"></span></label> -->
 					<div class="col-sm-4">
 						<input type="hidden" class="form-control" id="D_id" placeholder="">
 					</div>
@@ -1785,7 +1791,7 @@ label.required:after {
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
-					<label for="inputAssignedDepartment" class="col-sm-6 control-label">名稱:<span id="agentreasonluck"></span></label>
+<!-- 					<label for="inputAssignedDepartment" class="col-sm-6 control-label">名稱:<span id="agentreasonluck"></span></label> -->
 					<div class="col-sm-4">
 						<input type="hidden" class="form-control" id="Delete_id"
 							placeholder="">
@@ -1823,7 +1829,7 @@ label.required:after {
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
-					<label for="inputAssignedDepartment" class="col-sm-6 control-label">名稱:<span id="agentreasonluck3"></span></label>
+<!-- 					<label for="inputAssignedDepartment" class="col-sm-6 control-label">名稱:<span id="agentreasonluck3"></span></label> -->
 					<div class="col-sm-4">
 						<input type="hidden" class="form-control" id="AgentReasondbid" placeholder="">
 					</div>
@@ -1885,7 +1891,7 @@ label.required:after {
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
-					<label for="inputAssignedDepartment" class="col-sm-5 control-label">清單名稱:</label>
+<!-- 					<label for="inputAssignedDepartment" class="col-sm-5 control-label">清單名稱:</label> -->
 					<div class="col-sm-6">
 						<input type="text" class="form-control" id="Delete_idAM"
 							placeholder="">
@@ -1922,16 +1928,16 @@ label.required:after {
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-body">
-				<h3>是否解除鎖定帳號？</h3>
+				<h3>是否啟用/停用？</h3>
 			</div>
 			<div class="modal-footer">
-				<div class="form-group col-sm-6">
-					<label for="inputAssignedDepartment" class="col-sm-2 control-label">群組名稱:</label>
-					<div class="col-sm-4">
-						<input type="text" class="form-control" id="Delete_idAG"
-							placeholder="">
-					</div>
-				</div>
+<!-- 				<div class="form-group col-sm-6"> -->
+<!-- 					<label for="inputAssignedDepartment" class="col-sm-2 control-label">群組名稱:</label> -->
+<!-- 					<div class="col-sm-4"> -->
+<!-- 						<input type="text" class="form-control" id="Delete_idAG" -->
+<!-- 							placeholder=""> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 				<div class="form-group col-sm-6">
 					<label for="inputAssignedDepartment" class="col-sm-2 control-label">開關:</label>
 					<div class="col-sm-4">
@@ -1962,17 +1968,10 @@ label.required:after {
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-body">
-				<h3>是否解除鎖定帳號？</h3>
+				<h3>是否解除/鎖定帳號？</h3>
 			</div>
 			<div class="modal-footer">
-				<div class="form-group col-sm-6">
-					<label for="inputAssignedDepartment" class="col-sm-2 control-label">代碼名稱:</label>
-					<div class="col-sm-4">
-						<input type="text" class="form-control" id="Delete_idAD"
-							placeholder="">
-					</div>
-				</div>
-				<div class="form-group col-sm-6">
+			<div class="form-group col-sm-6">
 					<label for="inputAssignedDepartment" class="col-sm-2 control-label">開關:</label>
 					<div class="col-sm-4">
 						<select class="form-control" id="Delete_flagAD">
@@ -1981,6 +1980,15 @@ label.required:after {
 						</select>
 					</div>
 				</div>
+			
+<!-- 				<div class="form-group col-sm-6"> -->
+<!-- 					<label for="inputAssignedDepartment" class="col-sm-2 control-label">代碼名稱:</label> -->
+<!-- 					<div class="col-sm-4"> -->
+<!-- 						<input type="text" class="form-control" id="Delete_idAD" -->
+<!-- 							placeholder=""> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+				
 				<button type="button" class="btn btn-success" data-dismiss="modal"
 					onclick="ADLuck('鎖定/解鎖成功')">確定</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
@@ -2053,6 +2061,10 @@ $.ajax({
 }
 	function person() {
 		person_groupmenu();
+		
+		$("#person1All").prop("checked", false);
+		$("#person0All").prop("checked", false);
+		
 		$("#person0Table tbody tr").empty();
 		$("#person1Table tboby tr").empty();
 		$
@@ -2078,16 +2090,7 @@ $.ajax({
 											"autoWidth": false,
 											destroy : true,
 											aaData : data.person,
-											aoColumns : [
-													{
-														data : "dbid",
-														render : function(data,
-																type, row) {
-															if (type === 'display') {
-																return '<input type="checkbox" class="editor-active" value='+data+'>';
-															}
-															return data;
-														},
+											aoColumns : [{
 														className : "dt-body-center"
 													}, {
 														"data" : "account"
@@ -2103,7 +2106,16 @@ $.ajax({
 														"data" : "state"
 													}, {
 														"data" : "max_count"
-													} ],
+													} ],'columnDefs': [{
+												         'targets': 0,
+												         'searchable': false,
+												         'orderable': false,
+												         'className': 'dt-body-center',
+												         'render': function (data, type, full, meta){
+// 												        	 alert(JSON.stringify(full));
+												             return '<input type="checkbox" name="person0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+												         }
+												      }],
 											lengthChange : false
 										});
 						aa();
@@ -2131,24 +2143,24 @@ $.ajax({
 											document
 													.getElementById('updateEmployNumber').value = table
 													.row(this).data().employee_id;
-											document
-													.getElementById('person1').innerHTML = table
-													.row(this).data().account;
+// 											document
+// 													.getElementById('person1').innerHTML = table
+// 													.row(this).data().account;
 											document
 													.getElementById('deletedbid').value = table
 													.row(this).data().dbid;
-											document
-													.getElementById('person2').innerHTML = table
-													.row(this).data().account;
+// 											document
+// 													.getElementById('person2').innerHTML = table
+// 													.row(this).data().account;
 											document
 													.getElementById('state_account').value = table
 													.row(this).data().dbid;
 											document
 													.getElementById('personTrashdbid').value = table
 													.row(this).data().dbid;
-											document
-													.getElementById('person3').innerHTML = table
-													.row(this).data().account;
+// 											document
+// 													.getElementById('person3').innerHTML = table
+// 													.row(this).data().account;
 										});
 					}
 				});
@@ -2187,17 +2199,8 @@ $.ajax({
 											"autoWidth": false,
 											destroy : true,
 											aaData : data.person,
-											aoColumns : [
-													{
-														data : "dbid",
-														render : function(data,
-																type, row) {
-
-															if (type === 'display') {
-																return '<input type="checkbox" class="editor-active" value='+data+'>';
-															}
-															return data;
-														},
+											aoColumns : [{
+												
 														className : "dt-body-center"
 													}, {
 														"data" : "account"
@@ -2213,7 +2216,16 @@ $.ajax({
 														"data" : "state"
 													}, {
 														"data" : "max_count"
-													} ],
+													} ],'columnDefs': [{
+												         'targets': 0,
+												         'searchable': false,
+												         'orderable': false,
+												         'className': 'dt-body-center',
+												         'render': function (data, type, full, meta){
+// 												        	 alert(JSON.stringify(full));
+												             return '<input type="checkbox" name="person1" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+												         }
+												      }],
 											lengthChange : false
 										});
 						aa();
@@ -2224,6 +2236,8 @@ $.ajax({
 										'click',
 										'tr',
 										function() {
+											console.log("person1", table.row(
+													this).data());
 											document
 													.getElementById('updateAccount').value = table
 													.row(this).data().account;
@@ -2239,30 +2253,24 @@ $.ajax({
 											document
 													.getElementById('updateEmployNumber').value = table
 													.row(this).data().employee_id;
-											
+// 											document
+// 													.getElementById('person1').innerHTML = table
+// 													.row(this).data().account;
 											document
-											.getElementById('person1').innerHTML = table
-											.row(this).data().account;
+													.getElementById('deletedbid').value = table
+													.row(this).data().dbid;
+// 											document
+// 													.getElementById('person2').innerHTML = table
+// 													.row(this).data().account;
 											document
-											.getElementById('deletedbid').value = table
-											.row(this).data().dbid;
-											
+													.getElementById('state_account').value = table
+													.row(this).data().dbid;
 											document
-											.getElementById('person2').innerHTML = table
-											.row(this).data().account;
-											
-											document
-											.getElementById('state_account').value = table
-											.row(this).data().dbid;
-											
-											document
-											.getElementById('personTrashdbid').value = table
-											.row(this).data().dbid;
-											
-											document
-											.getElementById('person3').innerHTML = table
-											.row(this).data().account;
-
+													.getElementById('personTrashdbid').value = table
+													.row(this).data().dbid;
+// 											document
+// 													.getElementById('person3').innerHTML = table
+// 													.row(this).data().account;
 										});
 					}
 				});
@@ -2294,6 +2302,31 @@ $.ajax({
 						showEditMember();
 					}
 				});
+		
+		
+		$("#person0All").click(function() {
+			   if($("#person0All").prop("checked")) {
+			     $("input[name='person0']").each(function() {
+			         $(this).prop("checked", true);
+			     });
+			   } else {
+			     $("input[name='person0']").each(function() {
+			         $(this).prop("checked", false);
+			     });           
+			   }
+			});
+		$("#person1All").click(function() {
+			   if($("#person1All").prop("checked")) {
+			     $("input[name='person1']").each(function() {
+			         $(this).prop("checked", true);
+			     });
+			   } else {
+			     $("input[name='person1']").each(function() {
+			         $(this).prop("checked", false);
+			     });           
+			   }
+			});
+		
 	}
 	function showManage() {
 		closeAllHrContent();
@@ -2380,54 +2413,7 @@ $.ajax({
 		showToastSuccess("新增成功");
 	}
 
-	function sendEditMember() {
-		//             if (!validateEditMember()) {
-		//                 return;
-		//             }
-
-		closeEditMember();
-		var up_first_name = document.getElementById('updateFirstName').value;
-		var up_last_name = document.getElementById('updateLastName').value;
-		var up_user_name = document.getElementById('updateName').value;
-		var up_emailaddress = document.getElementById('updateEmail').value;
-		var up_password = document.getElementById('updatePassword').value;
-		var up_employee_id = document.getElementById('updateEmployNumber').value;
-		var up_group_dbid = document.getElementById('updateDepartment').value;
-		var up_account = document.getElementById('updateAccount').value;
-		var up_state = document.getElementById('updateState').value;
-		var up_dn = document.getElementById('updatePhoneNumber').value;
-		var up_updateMaxcount = document.getElementById('updateMaxcount').value;
-
-		$
-				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Update_PersonInfo",
-					data : {
-						first_name : up_first_name,
-						last_name : up_last_name,
-						user_name : up_user_name,
-						emailaddress : up_emailaddress,
-						password : up_password,
-						employee_id : up_employee_id,
-						group_dbid : up_group_dbid,
-						account : up_account,
-						state : up_state,
-						dn : up_dn,
-						max_count : updateMaxcount
-
-					},
-					type : "POST",
-					dataType : 'json',
-
-					error : function(e) {
-						alert("失敗");
-						callback(data);
-					},
-					success : function(data) {
-						person();
-					}
-				});
-		showToastSuccess("修改成功");
-	}
+	
 
 	function closeAddMember() {
 		closeAllHrContent();
@@ -2447,6 +2433,57 @@ $.ajax({
 		$("button.manage").addClass("btn-primary");
 	}
 
+	function sendEditMember() {
+		//             if (!validateEditMember()) {
+		//                 return;
+		//             }
+
+		closeEditMember();
+		var up_first_name = $('#updateFirstName').val();
+		var up_last_name = $('#updateLastName').val();
+		var up_user_name = $('#updateName').val();
+		var up_emailaddress = $('#updateEmail').val();
+		var up_password = $('#updatePassword').val();
+		var up_employee_id = $('#updateEmployNumber').val();
+		var up_group_dbid = $('#updateDepartment').val();
+		var up_account = $('#updateAccount').val();
+		var up_state = $('#updateState').val();
+		var up_dn = $('#updatePhoneNumber').val();
+		var up_updateMaxcount = $('#updateMaxcount').val();
+		 
+		$
+			.ajax({
+			url : '${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Update_PersonInfo',
+			data : {
+				max_count :up_updateMaxcount,
+				first_name : up_first_name,
+				last_name : up_last_name,
+				user_name : up_user_name,
+				emailaddress : up_emailaddress,
+				password : up_password,
+				employee_id : up_employee_id,
+				group_dbid : up_group_dbid,
+				account : up_account,
+				state : up_state,
+				dn : up_dn,
+				
+			},
+			type : "POST",
+			dataType : 'json',
+
+			error : function(e) {
+				alert("失敗");
+				callback(data);
+			},
+			success : function(data) {
+				person();
+			}
+
+		});
+		
+		showToastSuccess("修改成功");
+	}
+	
 	function closeAllHrContent() {
 
 		$("#person").hide();
@@ -2500,7 +2537,6 @@ $.ajax({
 	// 解鎖對話視窗
 	function unlockAccount() {
 		$("#unlockButton").trigger("click");
-
 	}
 
 	// 停用對話視窗
@@ -2526,16 +2562,24 @@ $.ajax({
 		"hideMethod" : "fadeOut"
 	}
 
+	
+	
 	function showToastSuccess(message) {
-		var deletedbid = document.getElementById('deletedbid').value;
+		
 		var state = document.getElementById('state_list2').value;
+		var selected=[];
+	    $("[name=person0]:checkbox:checked").each(function(){
+	      selected.push($(this).val());
+	      });
+        var personDBID_list = selected.join();
+     
+        
 		$
-				.ajax({
+	 			.ajax({
 					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Person_logicdelete",
 					data : {
 						state : state,
-						dbid : deletedbid
-
+						personDBID_list : personDBID_list
 					},
 					type : "POST",
 					dataType : 'json',
@@ -2554,14 +2598,24 @@ $.ajax({
 
 	function showToastError(message) {
 		var state = document.getElementById('state_list').value;
-		var account = document.getElementById('state_account').value;
+		
+		var selected=[];
+	    $("[name=person0]:checkbox:checked").each(function(){
+	      selected.push($(this).val());
+	      });
+	    $("[name=person1]:checkbox:checked").each(function(){
+		      selected.push($(this).val());
+		      });
+	    
+        var personDBID_list = selected.join();
+        
 		$
 				.ajax({
 					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Person_logicdelete",
 					data : {
 
 						state : state,
-						dbid : account
+						personDBID_list:personDBID_list
 
 					},
 					type : "POST",
@@ -2580,13 +2634,20 @@ $.ajax({
 	}
 	
 	function personTrash(message) {
-		var dbid = document.getElementById('personTrashdbid').value;
+		var selected=[];
+	    $("[name=person0]:checkbox:checked").each(function(){
+	      selected.push($(this).val());
+	      });
+	    $("[name=person1]:checkbox:checked").each(function(){
+		      selected.push($(this).val());
+		      });
+		var dbid = selected.join();
 		$
 				.ajax({
 					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Delete_PersonInfo",
 					data : {
 
-						dbid : dbid
+						personDBID_list : dbid
 
 					},
 					type : "POST",
@@ -2669,6 +2730,10 @@ $.ajax({
 	}
 
 	function select() {
+		
+		$("#group0All").prop("checked", false);
+
+		
 		$("#managegroupTable tbody tr").empty();
 		$("#bangroupTable tboby tr").empty();
 		$
@@ -2694,26 +2759,21 @@ $.ajax({
 											"autoWidth": false,
 											destroy : true,
 											aaData : data.group,
-											aoColumns : [
-													{
-														data : "dbid",
-														render : function(data,
-																type, row) {
-															if (type === 'display') {
-																return '<input type="checkbox" class="editor-active" value='+data+'>';
-															}
-															return data;
-														},
-														className : "dt-body-center"
-													}, {
-														"data" : "name"
-// 													}, {
-// 														"data" : "state"
-// 													}, {
-// 														"data" : "dbid"
-													}
-
-											],
+											aoColumns : [{
+												
+												className : "dt-body-center"
+											}, {
+												"data" : "name"
+											}
+											],'columnDefs': [{
+										         'targets': 0,
+										         'searchable': false,
+										         'orderable': false,
+										         'className': 'dt-body-center',
+										         'render': function (data, type, full, meta){
+										             return '<input type="checkbox" name="group0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+										         }
+										      }],
 											lengthChange : false
 										});
 										group2();
@@ -2820,6 +2880,20 @@ $.ajax({
 						showEditMembergroup();
 					}
 				});
+		
+		
+		$("#group0All").click(function() {
+			   if($("#group0All").prop("checked")) {
+			     $("input[name='group0']").each(function() {
+			         $(this).prop("checked", true);
+			     });
+			   } else {
+			     $("input[name='group0']").each(function() {
+			         $(this).prop("checked", false);
+			     });           
+			   }
+			});
+		
 	}
 
 	//顯示Group 啟用表格
@@ -2960,12 +3034,18 @@ $.ajax({
 	}
 
 	function GroupDelete(message) {
-		var deletedbid = document.getElementById('deletedbid_GroupDelete').value;
+// 		var deletedbid = document.getElementById('deletedbid_GroupDelete').value;
+		
+		var selected=[];
+	    $("[name=group0]:checkbox:checked").each(function(){
+	      selected.push($(this).val());
+	      });
+		  var groupDBID_list = selected.join();
 		$
 				.ajax({
 					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Delete_GroupInfo",
 					data : {
-						dbid : deletedbid
+						groupDBID_list : groupDBID_list
 					},
 					type : "POST",
 					dataType : 'json',
@@ -3087,9 +3167,18 @@ $.ajax({
 											data.node.original.createuser);
 									$('#delete_number').text(
 											"編號:" + data.node.original.id);
-									$('#pass').text(data.node.original.id);
+									
+									
 									$('#type').text(data.node.original.parent);
+									
+									$('#pass').text(data.node.original.id);
 									$('#children').text(data.node.children_d);
+									
+									
+									
+// 									$('#nodeNAMEu').text(data.node.text);
+// 									$('#children').text(data.node.children_d);
+// 									$('#children').text(data.node.children_d);
 									
 									$("#comm").hide();
 									$("#commTB").show();
@@ -3107,6 +3196,12 @@ $.ajax({
 									Upcot = data.node.children_d.length;
 									console.log("id", data.node.id);
 									console.log("text", data.node.text);
+								
+									document.getElementById('nodeNAMEu').value = data.node.text;
+									document.getElementById('nodeURLu').value = data.node.a_attr.href;
+									document.getElementById('nodeUSERu').value = data.node.original.createuser;
+
+									
 
 									if (cot <= 3) {
 										insertornot = true;
@@ -3389,6 +3484,11 @@ $.ajax({
 	}
 
 	function select2() {
+		
+		$("#agentreason0All").prop("checked", false);
+		$("#agentreason1All").prop("checked", false);
+		
+		
 		$("#manageAgentreasonTable tbody tr").empty();
 		$("#banAgentreasonTable tboby tr").empty();
 		$
@@ -3416,14 +3516,6 @@ $.ajax({
 											aaData : data.agentreason,
 											aoColumns : [
 													{
-														data : "dbid",
-														render : function(data,
-																type, row) {
-															if (type === 'display') {
-																return '<input type="checkbox" class="editor-active" value='+data+'>';
-															}
-															return data;
-														},
 														className : "dt-body-center"
 													},
 													{
@@ -3447,7 +3539,16 @@ $.ajax({
 														"data" : "alarmcolor"
 													}, {
 														"data" : "flag"
-													} ],
+													} ],'columnDefs': [{
+												         'targets': 0,
+												         'searchable': false,
+												         'orderable': false,
+												         'className': 'dt-body-center',
+												         'render': function (data, type, full, meta){
+//													        	 alert(JSON.stringify(full));
+												             return '<input type="checkbox" name="agentreason0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+												         }
+												      }],
 											lengthChange : false
 										});
 						agentreason2();
@@ -3459,24 +3560,30 @@ $.ajax({
 										'tr',
 										function() {
 				document
-						.getElementById('agentreasonluck').innerHTML = table
-						.row(this).data().statusname;
-				document
-						.getElementById('Delete_id').value = table
+						.getElementById('Update_id').value = table
 						.row(this).data().dbid;
+				document
+						.getElementById('statusname').value = table
+						.row(this).data().statusname;
 				
 				document
-						.getElementById('agentreasonluck2').innerHTML = table
-						.row(this).data().statusname;
+						.getElementById('alarmcolor').value = table
+						.row(this).data().alarmcolor;
 				document
-						.getElementById('D_id').value = table
-						.row(this).data().dbid;
+						.getElementById('alarmduration').value = table
+						.row(this).data().alarmduration;
 				document
-						.getElementById('AgentReasondbid').value = table
-						.row(this).data().dbid;
+						.getElementById('description').value = table
+						.row(this).data().description;
 				document
-						.getElementById('agentreasonluck3').innerHTML = table
-						.row(this).data().statusname;
+						.getElementById('statusname_cn').value = table
+						.row(this).data().statusname_cn;
+				document
+						.getElementById('statusname_en').value = table
+						.row(this).data().statusname_en;
+				document
+						.getElementById('statusname_tw').value = table
+						.row(this).data().statusname_tw;
 			
 			});
 					}
@@ -3521,14 +3628,6 @@ $.ajax({
 											aaData : data.agentreason,
 											aoColumns : [
 													{
-														data : "dbid",
-														render : function(data,
-																type, row) {
-															if (type === 'display') {
-																return '<input type="checkbox" class="editor-active" value='+data+'>';
-															}
-															return data;
-														},
 														className : "dt-body-center"
 													},
 													{
@@ -3552,10 +3651,54 @@ $.ajax({
 														"data" : "alarmcolor"
 													}, {
 														"data" : "flag"
-													} ],
+													} ],'columnDefs': [{
+												         'targets': 0,
+												         'searchable': false,
+												         'orderable': false,
+												         'className': 'dt-body-center',
+												         'render': function (data, type, full, meta){
+//													        	 alert(JSON.stringify(full));
+												             return '<input type="checkbox" name="agentreason1" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+												         }
+												      }],
 											lengthChange : false
 										});
-						agentreason2()
+						agentreason2();
+						
+						var table = $('#banAgentreasonTable').DataTable();
+						$('#banAgentreasonTable tbody')
+								.on(
+										'click',
+										'tr',
+										function() {
+				document
+						.getElementById('Update_id').value = table
+						.row(this).data().dbid;
+				document
+						.getElementById('statusname').value = table
+						.row(this).data().statusname;
+				
+				document
+						.getElementById('alarmcolor').value = table
+						.row(this).data().alarmcolor;
+				document
+						.getElementById('alarmduration').value = table
+						.row(this).data().alarmduration;
+				document
+						.getElementById('description').value = table
+						.row(this).data().description;
+				document
+						.getElementById('statusname_cn').value = table
+						.row(this).data().statusname_cn;
+				document
+						.getElementById('statusname_en').value = table
+						.row(this).data().statusname_en;
+				document
+						.getElementById('statusname_tw').value = table
+						.row(this).data().statusname_tw;
+			
+			});
+						
 					}
 				});
 
@@ -3581,6 +3724,30 @@ $.ajax({
 						showEditMemberAgentreason();
 					}
 				});
+		
+		$("#agentreason0All").click(function() {
+			   if($("#agentreason0All").prop("checked")) {
+			     $("input[name='agentreason0']").each(function() {
+			         $(this).prop("checked", true);
+			     });
+			   } else {
+			     $("input[name='agentreason0']").each(function() {
+			         $(this).prop("checked", false);
+			     });           
+			   }
+			});
+		
+		$("#agentreason1All").click(function() {
+			   if($("#agentreason1All").prop("checked")) {
+			     $("input[name='agentreason1']").each(function() {
+			         $(this).prop("checked", true);
+			     });
+			   } else {
+			     $("input[name='agentreason1']").each(function() {
+			         $(this).prop("checked", false);
+			     });           
+			   }
+			});
 	}
 
 	//
@@ -3760,14 +3927,24 @@ $.ajax({
 	}
 
 	function AgentreasonDelete(message) {
-		var dbid = document.getElementById('D_id').value;
+// 		var dbid = document.getElementById('D_id').value;
 		var flag = document.getElementById('flag2').value;
+		
+		var selected=[];
+	    $("[name=agentreason0]:checkbox:checked").each(function(){
+	      selected.push($(this).val());
+	      });
+	    $("[name=agentreason1]:checkbox:checked").each(function(){
+		      selected.push($(this).val());
+		      });
+		  var Agentreason_DBID_list = selected.join();
+		
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_agentreason",
 					data : {
 						flag : flag,
-						dbid : dbid
+						Agentreason_DBID_list : Agentreason_DBID_list
 					},
 					type : "POST",
 					dataType : 'json',
@@ -3789,15 +3966,25 @@ $.ajax({
 	
 
 	function AgentreasonLuck(message) {
+		
+		var selected=[];
+	    $("[name=agentreason0]:checkbox:checked").each(function(){
+	      selected.push($(this).val());
+	      });
+	    $("[name=agentreason1]:checkbox:checked").each(function(){
+		      selected.push($(this).val());
+		      });
+		  var Agentreason_DBID_list = selected.join();
+		
 		var flag = document.getElementById('Delete_flag').value;
-		var dbid = document.getElementById('Delete_id').value;
+// 		var dbid = document.getElementById('Delete_id').value;
 
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_agentreason",
 					data : {
 						flag : flag,
-						dbid : dbid
+						Agentreason_DBID_list : Agentreason_DBID_list
 					},
 					type : "POST",
 					dataType : 'json',
@@ -3817,12 +4004,22 @@ $.ajax({
 	
 	
 	function AgentReasonD(message) {
+		
+		var selected=[];
+	    $("[name=agentreason0]:checkbox:checked").each(function(){
+	      selected.push($(this).val());
+	      });
+	    $("[name=agentreason1]:checkbox:checked").each(function(){
+		      selected.push($(this).val());
+		      });
+		  var Agentreason_DBID_list = selected.join();
+		
 		var dbid = document.getElementById('AgentReasondbid').value;
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Delete_AgentReason",
 					data : {
-						dbid : dbid
+						Agentreason_DBID_list : Agentreason_DBID_list
 					},
 					type : "POST",
 					dataType : 'json',
@@ -3854,6 +4051,10 @@ $.ajax({
 	}
 
 	function AM() {
+		
+		$("#AM1All").prop("checked", false);
+		$("#AM0All").prop("checked", false);
+		
 		$("#manageTableAM tbody tr").empty();
 		$("#banTableAM tboby tr").empty();
 		$
@@ -3867,7 +4068,6 @@ $.ajax({
 
 					error : function(e) {
 						alert("失敗");
-						callback(data);
 					},
 					success : function(data) {
 						console.log("啟用清單", data);
@@ -3881,14 +4081,6 @@ $.ajax({
 											aaData : data.activitymenu,
 											aoColumns : [
 													{
-														data : "dbid",
-														render : function(data,
-																type, row) {
-															if (type === 'display') {
-																return '<input type="checkbox" class="editor-active" value='+data+'>';
-															}
-															return data;
-														},
 														className : "dt-body-center"
 													},
 													{
@@ -3902,14 +4094,38 @@ $.ajax({
 													},
 													{
 														"data" : "createdatetime"
-													}, {
-														"data" : "deleteflag"
 													}
 
-											],
+											],'columnDefs': [{
+										         'targets': 0,
+										         'searchable': false,
+										         'orderable': false,
+										         'className': 'dt-body-center',
+										         'render': function (data, type, full, meta){
+//											        	 alert(JSON.stringify(full));
+										             return '<input type="checkbox" name="AM0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+										         }
+										      }],
 											lengthChange : false
 										});
 						AM2();
+						var table = $('#manageTableAM').DataTable();
+
+						$('#manageTableAM tbody')
+								.on(
+										'click',
+										'tr',
+										function() {
+											console.log("AM", table.row(
+													this).data());
+											document
+													.getElementById('up_menunameam').value = table
+													.row(this).data().menuname;
+											document
+											.getElementById('up_dbidam').value = table
+											.row(this).data().dbid;
+
+					});
 					}
 				});
 
@@ -3949,14 +4165,6 @@ $.ajax({
 											aaData : data.activitymenu,
 											aoColumns : [
 													{
-														data : "dbid",
-														render : function(data,
-																type, row) {
-															if (type === 'display') {
-																return '<input type="checkbox" class="editor-active" value='+data+'>';
-															}
-															return data;
-														},
 														className : "dt-body-center"
 													},
 													{
@@ -3969,10 +4177,17 @@ $.ajax({
 														"data" : "sort"
 													},
 													{
-														"data" : "createdatetime"
-													}, {
-														"data" : "deleteflag"
-													} ],
+														"data" : "deletedatetime"
+													} ],'columnDefs': [{
+												         'targets': 0,
+												         'searchable': false,
+												         'orderable': false,
+												         'className': 'dt-body-center',
+												         'render': function (data, type, full, meta){
+//													        	 alert(JSON.stringify(full));
+												             return '<input type="checkbox" name="AM1" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+												         }
+												      }],
 											lengthChange : false
 										});
 						AM2();
@@ -4000,6 +4215,29 @@ $.ajax({
 						showEditMemberAM();
 					}
 				});
+
+		$("#AM0All").click(function() {
+			   if($("#AM0All").prop("checked")) {
+			     $("input[name='AM0']").each(function() {
+			         $(this).prop("checked", true);
+			     });
+			   } else {
+			     $("input[name='AM0']").each(function() {
+			         $(this).prop("checked", false);
+			     });           
+			   }
+			});
+		$("#AM1All").click(function() {
+			   if($("#AM1All").prop("checked")) {
+			     $("input[name='AM1']").each(function() {
+			         $(this).prop("checked", true);
+			     });
+			   } else {
+			     $("input[name='AM1']").each(function() {
+			         $(this).prop("checked", false);
+			     });           
+			   }
+			});
 	}
 
 	//
@@ -4109,15 +4347,15 @@ $.ajax({
 		closeEditMember();
 		var dbid = document.getElementById('up_dbidam').value;
 		var menuname = document.getElementById('up_menunameam').value;
-		var sort = document.getElementById('up_sortam').value;
+// 		var sort = document.getElementById('up_sortam').value;
 
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Update_ActivityMenu",
 					data : {
 						dbid : dbid,
-						menuname : menuname,
-						sort : sort
+						menuname : menuname
+					
 
 					},
 
@@ -4147,13 +4385,22 @@ $.ajax({
 
 	function AMLuck(message) {
 		var deleteflag = document.getElementById('Delete_flagAM').value;
-		var menuname = document.getElementById('Delete_idAM').value;
-
+// 		var menuname = document.getElementById('Delete_idAM').value;
+var selected=[];
+	    $("[name=AM0]:checkbox:checked").each(function(){
+	      selected.push($(this).val());
+	      });
+	    $("[name=AM1]:checkbox:checked").each(function(){
+		      selected.push($(this).val());
+		      });
+			  
+			  var ActivityMenu_DBID_list = selected.join();
+			  
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_activitymenu",
 					data : {
-						menuname : menuname,
+						ActivityMenu_DBID_list : ActivityMenu_DBID_list,
 						deleteflag : deleteflag
 					},
 					type : "POST",
@@ -4188,6 +4435,10 @@ $.ajax({
 	}
 
 	function group() {
+		
+		$("#AG0All").prop("checked", false);
+		$("#AG1All").prop("checked", false);
+		
 		$("#manageTableAG tbody tr").empty();
 		$("#banTableAG tboby tr").empty();
 		var dbid = document.getElementById("menu").value
@@ -4216,14 +4467,6 @@ $.ajax({
 											aaData : data.flag0_group,
 											aoColumns : [
 													{
-														data : "dbid",
-														render : function(data,
-																type, row) {
-															if (type === 'display') {
-																return '<input type="checkbox" class="editor-active" value='+data+'>';
-															}
-															return data;
-														},
 														className : "dt-body-center"
 													},
 													{
@@ -4242,10 +4485,36 @@ $.ajax({
 														"data" : "createdatetime"
 													},
 
-											],
+											],'columnDefs': [{
+										         'targets': 0,
+										         'searchable': false,
+										         'orderable': false,
+										         'className': 'dt-body-center',
+										         'render': function (data, type, full, meta){
+//											        	 alert(JSON.stringify(full));
+										             return '<input type="checkbox" name="AG0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+										         }
+										      }],
 											lengthChange : false
 										});
 						AG2();
+						var table = $('#manageTableAG').DataTable();
+
+						$('#manageTableAG tbody')
+								.on(
+										'click',
+										'tr',
+										function() {
+											console.log("TableAG", table.row(
+													this).data());
+											document
+													.getElementById('up_groupnameAG').value = table
+													.row(this).data().groupname;
+											document 
+											.getElementById('up_dbidAG').value = table
+											.row(this).data().dbid;
+										});
+						
 					}
 				});
 
@@ -4285,14 +4554,6 @@ $.ajax({
 											aaData : data.flag1_group,
 											aoColumns : [
 													{
-														data : "dbid",
-														render : function(data,
-																type, row) {
-															if (type === 'display') {
-																return '<input type="checkbox" class="editor-active" value='+data+'>';
-															}
-															return data;
-														},
 														className : "dt-body-center"
 													},
 													{
@@ -4308,10 +4569,36 @@ $.ajax({
 														"data" : "createdatetime"
 													}, {
 														"data" : "deleteflag"
-													} ],
+													} ],'columnDefs': [{
+												         'targets': 0,
+												         'searchable': false,
+												         'orderable': false,
+												         'className': 'dt-body-center',
+												         'render': function (data, type, full, meta){
+// 												        	 alert(JSON.stringify(full));
+												             return '<input type="checkbox" name="AG1" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+												         }
+												      }],
 											lengthChange : false
 										});
 						AG2();
+						var table = $('#banTableAG').DataTable();
+
+						$('#banTableAG tbody')
+								.on(
+										'click',
+										'tr',
+										function() {
+											console.log("banTableAG", table.row(
+													this).data());
+											document 
+													.getElementById('up_groupnameAG').value = table
+													.row(this).data().groupname;
+											document 
+											.getElementById('up_dbidAG').value = table
+											.row(this).data().dbid;
+											
+										});
 					}
 				});
 
@@ -4371,6 +4658,29 @@ $.ajax({
 						showEditMemberAG();
 					}
 				});
+		
+		$("#AG1All").click(function() {
+			   if($("#AG1All").prop("checked")) {
+			     $("input[name='AG1']").each(function() {
+			         $(this).prop("checked", true);
+			     });
+			   } else {
+			     $("input[name='AG1']").each(function() {
+			         $(this).prop("checked", false);
+			     });           
+			   }
+			});
+		$("#AG0All").click(function() {
+			   if($("#AG0All").prop("checked")) {
+			     $("input[name='AG0']").each(function() {
+			         $(this).prop("checked", true);
+			     });
+			   } else {
+			     $("input[name='AG0']").each(function() {
+			         $(this).prop("checked", false);
+			     });           
+			   }
+			});
 	}
 
 	//
@@ -4479,17 +4789,15 @@ $.ajax({
 	function sendEditMemberAG() {
 
 		closeEditMember();
-		var dbid = document.getElementById("menu").value
+// 		var dbid = document.getElementById("menu").value
 		var up_groupname = document.getElementById('up_groupnameAG').value;
-		var up_sort = document.getElementById('up_sortAG').value;
+// 		var up_sort = document.getElementById('up_sortAG').value;
 		var up_dbid = document.getElementById('up_dbidAG').value;
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Update_ActivityGroup",
 					data : {
-						activitymenuid : dbid,
 						groupname : up_groupname,
-						sort : up_sort,
 						dbid : up_dbid
 					},
 
@@ -4516,15 +4824,25 @@ $.ajax({
 	}
 
 	function AGLuck(message) {
+		var selected=[];
+	    $("[name=AG0]:checkbox:checked").each(function(){
+	      selected.push($(this).val());
+	      });
+	    $("[name=AG1]:checkbox:checked").each(function(){
+		      selected.push($(this).val());
+		      });
+			  
+			  var ActivityGroup_DBID_list = selected.join();
+			  
 		var flag = document.getElementById('Delete_flagAG').value;
-		var dbid = document.getElementById('Delete_idAG').value;
+// 		var dbid = document.getElementById('Delete_idAG').value;
 
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_ActivityGroup",
 					data : {
 						deleteflag : flag,
-						groupname : dbid,
+						ActivityGroup_DBID_list : ActivityGroup_DBID_list,
 					},
 					type : "POST",
 					dataType : 'json',
@@ -4558,6 +4876,10 @@ $.ajax({
 	}
 
 	function groupAD() {
+		
+		$("#AD1All").prop("checked", false);
+		$("#AD0All").prop("checked", false);
+		
 		$("#manageTableAD tbody tr").empty();
 		$("#banTableAD tboby tr").empty();
 
@@ -4584,17 +4906,9 @@ $.ajax({
 										{
 											"autoWidth": false,
 											destroy : true,
-											aaData : data.activitydata,
+											aaData : data.Flag0,
 											aoColumns : [
 													{
-														data : "dbid",
-														render : function(data,
-																type, row) {
-															if (type === 'display') {
-																return '<input type="checkbox" class="editor-active" value='+data+'>';
-															}
-															return data;
-														},
 														className : "dt-body-center"
 													},
 													{
@@ -4606,9 +4920,7 @@ $.ajax({
 														"data" : "codename"
 													}, {
 														"data" : "color"
-													}, {
-														"data" : "deleteflag"
-													}, {
+													},{
 														"data" : "titlegroup"
 													}, {
 														"data" : "titleflag"
@@ -4616,10 +4928,38 @@ $.ajax({
 														"data" : "sort"
 													}
 
-											],
+											],'columnDefs': [{
+										         'targets': 0,
+										         'searchable': false,
+										         'orderable': false,
+										         'className': 'dt-body-center',
+										         'render': function (data, type, full, meta){
+//											        	 alert(JSON.stringify(full));
+										             return '<input type="checkbox" name="AD0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+										         }
+										      }],
 											lengthChange : false
 										});
 						AD2();
+						var table = $('#manageTableAD').DataTable();
+
+						$('#manageTableAD tbody')
+								.on(
+										'click',
+										'tr',
+										function() {
+											console.log("AD0", table.row(
+													this).data());
+											document
+													.getElementById('up_codenameAD').value = table
+													.row(this).data().codename;
+											document
+													.getElementById('up_colorAD').value = table
+													.row(this).data().color;
+											document
+											.getElementById('up_dbidAD').value = table
+											.row(this).data().dbid;
+										});
 					}
 				});
 
@@ -4656,17 +4996,9 @@ $.ajax({
 										{
 											"autoWidth": false,
 											destroy : true,
-											aaData : data.Flag,
+											aaData : data.Flag1,
 											aoColumns : [
 													{
-														data : "dbid",
-														render : function(data,
-																type, row) {
-															if (type === 'display') {
-																return '<input type="checkbox" class="editor-active" value='+data+'>';
-															}
-															return data;
-														},
 														className : "dt-body-center"
 													},
 													{
@@ -4679,17 +5011,43 @@ $.ajax({
 													}, {
 														"data" : "color"
 													}, {
-														"data" : "deleteflag"
-													}, {
 														"data" : "titlegroup"
 													}, {
 														"data" : "titleflag"
 													}, {
 														"data" : "sort"
-													} ],
+													} ],'columnDefs': [{
+												         'targets': 0,
+												         'searchable': false,
+												         'orderable': false,
+												         'className': 'dt-body-center',
+												         'render': function (data, type, full, meta){
+// 												        	 alert(JSON.stringify(full));
+												             return '<input type="checkbox" name="AD1" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+												         }
+												      }],
 											lengthChange : false
 										});
 						AD2();
+						var table = $('#banTableAD').DataTable();
+
+						$('#banTableAD tbody')
+								.on(
+										'click',
+										'tr',
+										function() {
+											console.log("AD1", table.row(
+													this).data());
+											document
+													.getElementById('up_codenameAD').value = table
+													.row(this).data().codename;
+											document
+													.getElementById('up_colorAD').value = table
+													.row(this).data().color;
+											document
+											.getElementById('up_dbidAD').value = table
+											.row(this).data().dbid;
+										});
 					}
 				});
 
@@ -4748,6 +5106,29 @@ $.ajax({
 						showEditMemberAD();
 					}
 				});
+		
+		$("#AD0All").click(function() {
+			   if($("#AD0All").prop("checked")) {
+			     $("input[name='AD0']").each(function() {
+			         $(this).prop("checked", true);
+			     });
+			   } else {
+			     $("input[name='AD0']").each(function() {
+			         $(this).prop("checked", false);
+			     });           
+			   }
+			});
+		$("#AD1All").click(function() {
+			   if($("#AD1All").prop("checked")) {
+			     $("input[name='AD1']").each(function() {
+			         $(this).prop("checked", true);
+			     });
+			   } else {
+			     $("input[name='AD1']").each(function() {
+			         $(this).prop("checked", false);
+			     });           
+			   }
+			});
 	}
 
 	//
@@ -4868,7 +5249,7 @@ $.ajax({
 		var up_codename = document.getElementById("up_codenameAD").value;
 		var up_color = document.getElementById("up_colorAD").value;
 		var up_dbid = document.getElementById("up_dbidAD").value;
-		var up_sort = document.getElementById("up_sortAD").value;
+// 		var up_sort = document.getElementById("up_sortAD").value;
 
 		$
 				.ajax({
@@ -4876,8 +5257,8 @@ $.ajax({
 					data : {
 						codename : up_codename,
 						color : up_color,
-						dbid : up_dbid,
-						sort : up_sort
+						dbid : up_dbid
+			
 
 					},
 
@@ -4907,14 +5288,24 @@ $.ajax({
 
 	function ADLuck(message) {
 		var flag = document.getElementById('Delete_flagAD').value;
-		var dbid = document.getElementById('Delete_idAD').value;
+// 		var dbid = document.getElementById('Delete_idAD').value;
+		
+		var selected=[];
+	    $("[name=AD0]:checkbox:checked").each(function(){
+	      selected.push($(this).val());
+	      });
+	    $("[name=AD1]:checkbox:checked").each(function(){
+		      selected.push($(this).val());
+		      });
+			  
+			  var ActivityData_DBID_list = selected.join();
 
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_ActivityData",
 					data : {
 						deleteflag : flag,
-						codename : dbid
+						ActivityData_DBID_list : ActivityData_DBID_list
 					},
 					type : "POST",
 					dataType : 'json',
