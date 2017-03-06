@@ -1,6 +1,5 @@
 package tw.com.crm.info360.webapp.controller;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -18,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class BasicController {
 
+	private static Properties properties;
+
 	/**
-	 * 預設「歡迎頁面」
+	 * 預設「歡迎頁面、登入頁」
 	 * 
 	 * @param name
 	 * @param tel
@@ -33,6 +34,7 @@ public class BasicController {
 	}
 
 	/**
+	 * 預設「歡迎頁面、登入頁」
 	 * 
 	 * @param name
 	 * @param tel
@@ -46,6 +48,7 @@ public class BasicController {
 	}
 
 	/**
+	 * 「主要畫面」
 	 * 
 	 * @param userName
 	 * @param password
@@ -60,25 +63,16 @@ public class BasicController {
 		model.addAttribute("userName", userName);
 		model.addAttribute("password", password);
 
-		Properties prop = new Properties();
+		// 取得設定參數
+		getProperties();
 
-		String propFileName = "config.properties";
+		String websocket_hostname = properties.getProperty("websocket.hostname");
+		String websocket_protocol = properties.getProperty("websocket.protocol");
+		String websocket_port = properties.getProperty("websocket.port");
 
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
-
-		if (inputStream != null) {
-			prop.load(inputStream);
-		} else {
-			throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-		}
-
-		String websocket_hostname = prop.getProperty("websocket.hostname");
-		String websocket_protocol = prop.getProperty("websocket.protocol");
-		String websocket_port = prop.getProperty("websocket.port");
-
-		String Info360_Setting_protocol = prop.getProperty("Info360_Setting.protocol");
-		String Info360_Setting_hostname = prop.getProperty("Info360_Setting.hostname");
-		String Info360_Setting_port = prop.getProperty("Info360_Setting.port");
+		String Info360_Setting_protocol = properties.getProperty("Info360_Setting.protocol");
+		String Info360_Setting_hostname = properties.getProperty("Info360_Setting.hostname");
+		String Info360_Setting_port = properties.getProperty("Info360_Setting.port");
 
 		model.addAttribute("websocket_hostname", websocket_hostname);
 		model.addAttribute("websocket_protocol", websocket_protocol);
@@ -92,24 +86,20 @@ public class BasicController {
 	}
 
 	/*--------- Tab 分頁導頁控制區 ----------*/
+	
+	/**
+	 * 「儀表板」頁面
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "dashboard")
-	public String showDashBoard(Model model) throws IOException {
+	public String showDashBoard(Model model) {
+		// 取得設定參數
+		getProperties();
 
-		Properties prop = new Properties();
-
-		String propFileName = "config.properties";
-
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
-
-		if (inputStream != null) {
-			prop.load(inputStream);
-		} else {
-			throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-		}
-
-		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
-		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
-		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
+		String IMWebSocket_protocol = properties.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
 
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
@@ -118,55 +108,46 @@ public class BasicController {
 		return "info360/dashboard";
 	}
 
+	/**
+	 * 「案件搜尋」頁面
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "query")
-	public String showQuery(Model model) throws IOException {
-		
-		Properties prop = new Properties();
+	public String showQuery(Model model) {
+		// 取得設定參數
+		getProperties();
 
-		String propFileName = "config.properties";
-
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
-
-		if (inputStream != null) {
-			prop.load(inputStream);
-		} else {
-			throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-		}
-
-		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
-		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
-		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
+		String IMWebSocket_protocol = properties.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
 
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
 		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
-		
+
 		return "info360/query";
 	}
 
+	/**
+	 * 「設定」頁面
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "setting")
-	public String showSetting(Model model) throws IOException {
+	public String showSetting(Model model) {
+		// 取得設定參數
+		getProperties();
 
-		Properties prop = new Properties();
+		String IMWebSocket_protocol = properties.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
 
-		String propFileName = "config.properties";
+		String Info360_Setting_protocol = properties.getProperty("Info360_Setting.protocol");
+		String Info360_Setting_hostname = properties.getProperty("Info360_Setting.hostname");
+		String Info360_Setting_port = properties.getProperty("Info360_Setting.port");
 
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
-
-		if (inputStream != null) {
-			prop.load(inputStream);
-		} else {
-			throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-		}
-
-		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
-		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
-		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
-
-		String Info360_Setting_protocol = prop.getProperty("Info360_Setting.protocol");
-		String Info360_Setting_hostname = prop.getProperty("Info360_Setting.hostname");
-		String Info360_Setting_port = prop.getProperty("Info360_Setting.port");
-		
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
 		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
@@ -178,6 +159,10 @@ public class BasicController {
 		return "info360/setting";
 	}
 
+	/**
+	 * 「忘記密碼」頁面
+	 * @return
+	 */
 	@RequestMapping(value = "password")
 	public String showPassowrd() {
 		return "info360/password";
@@ -196,7 +181,8 @@ public class BasicController {
 			@RequestParam(value = "mobtel", required = false) String mobtel,
 			@RequestParam(value = "cattel", required = false) String cattel,
 			@RequestParam(value = "email", required = false) String email,
-			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) throws IOException {
+			@RequestParam(value = "interactionId", required = false) String interactionId, Model model)
+					throws IOException {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 		model.addAttribute("address", address);
@@ -209,22 +195,13 @@ public class BasicController {
 		model.addAttribute("cattel", cattel);
 		model.addAttribute("email", email);
 		model.addAttribute("interactionId", interactionId);
-		
-		Properties prop = new Properties();
 
-		String propFileName = "config.properties";
+		// 取得設定參數
+		getProperties();
 
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
-
-		if (inputStream != null) {
-			prop.load(inputStream);
-		} else {
-			throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-		}
-
-		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
-		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
-		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
+		String IMWebSocket_protocol = properties.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
 
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
@@ -245,7 +222,8 @@ public class BasicController {
 			@RequestParam(value = "mobtel", required = false) String mobtel,
 			@RequestParam(value = "cattel", required = false) String cattel,
 			@RequestParam(value = "email", required = false) String email,
-			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) throws IOException {
+			@RequestParam(value = "interactionId", required = false) String interactionId, Model model)
+					throws IOException {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 		model.addAttribute("address", address);
@@ -258,22 +236,13 @@ public class BasicController {
 		model.addAttribute("cattel", cattel);
 		model.addAttribute("email", email);
 		model.addAttribute("interactionId", interactionId);
-		
-		Properties prop = new Properties();
 
-		String propFileName = "config.properties";
+		// 取得設定參數
+		getProperties();
 
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
-
-		if (inputStream != null) {
-			prop.load(inputStream);
-		} else {
-			throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-		}
-
-		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
-		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
-		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
+		String IMWebSocket_protocol = properties.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
 
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
@@ -294,7 +263,8 @@ public class BasicController {
 			@RequestParam(value = "mobtel", required = false) String mobtel,
 			@RequestParam(value = "cattel", required = false) String cattel,
 			@RequestParam(value = "email", required = false) String email,
-			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) throws IOException {
+			@RequestParam(value = "interactionId", required = false) String interactionId, Model model)
+					throws IOException {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 		model.addAttribute("address", address);
@@ -307,22 +277,13 @@ public class BasicController {
 		model.addAttribute("cattel", cattel);
 		model.addAttribute("email", email);
 		model.addAttribute("interactionId", interactionId);
-		
-		Properties prop = new Properties();
 
-		String propFileName = "config.properties";
+		// 取得設定參數
+		getProperties();
 
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
-
-		if (inputStream != null) {
-			prop.load(inputStream);
-		} else {
-			throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-		}
-
-		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
-		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
-		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
+		String IMWebSocket_protocol = properties.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
 
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
@@ -343,7 +304,8 @@ public class BasicController {
 			@RequestParam(value = "mobtel", required = false) String mobtel,
 			@RequestParam(value = "cattel", required = false) String cattel,
 			@RequestParam(value = "email", required = false) String email,
-			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) throws IOException {
+			@RequestParam(value = "interactionId", required = false) String interactionId, Model model)
+					throws IOException {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 		model.addAttribute("address", address);
@@ -356,22 +318,13 @@ public class BasicController {
 		model.addAttribute("cattel", cattel);
 		model.addAttribute("email", email);
 		model.addAttribute("interactionId", interactionId);
-		
-		Properties prop = new Properties();
 
-		String propFileName = "config.properties";
+		// 取得設定參數
+		getProperties();
 
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
-
-		if (inputStream != null) {
-			prop.load(inputStream);
-		} else {
-			throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-		}
-
-		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
-		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
-		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
+		String IMWebSocket_protocol = properties.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
 
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
@@ -392,7 +345,8 @@ public class BasicController {
 			@RequestParam(value = "mobtel", required = false) String mobtel,
 			@RequestParam(value = "cattel", required = false) String cattel,
 			@RequestParam(value = "email", required = false) String email,
-			@RequestParam(value = "interactionId", required = false) String interactionId, Model model) throws IOException {
+			@RequestParam(value = "interactionId", required = false) String interactionId, Model model)
+					throws IOException {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 		model.addAttribute("address", address);
@@ -405,28 +359,42 @@ public class BasicController {
 		model.addAttribute("cattel", cattel);
 		model.addAttribute("email", email);
 		model.addAttribute("interactionId", interactionId);
-		
-		Properties prop = new Properties();
 
-		String propFileName = "config.properties";
+		// 取得設定參數
+		getProperties();
 
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
-
-		if (inputStream != null) {
-			prop.load(inputStream);
-		} else {
-			throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-		}
-
-		String IMWebSocket_protocol = prop.getProperty("IMWebSocket.protocol");
-		String IMWebSocket_hostname = prop.getProperty("IMWebSocket.hostname");
-		String IMWebSocket_port = prop.getProperty("IMWebSocket.port");
+		String IMWebSocket_protocol = properties.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
 
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
 		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
 
 		return "info360/chat/chat_v5";
+	}
+
+	/**
+	 * 取得參數設定
+	 * 
+	 * @return Properties
+	 */
+	private Properties getProperties() {
+		if (properties == null) {
+			String propFileName = "config.properties";
+			InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+
+			try {
+				if (inputStream != null) {
+					properties = new Properties();
+					properties.load(inputStream);
+				}
+			} catch (IOException e) {
+				System.out.println("IOException : " + e.getMessage());
+			}
+		}
+
+		return properties;
 	}
 
 }
