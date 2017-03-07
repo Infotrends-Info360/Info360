@@ -47,49 +47,6 @@
 								</a> <a href="#" class="list-group-item" style="display: none;">
 									<h4>interactionId</h4>
 									<h4 id="interactionId">${interactionId}</h4>
-								</a> <a href="#" class="list-group-item">
-									<h4>來電號碼</h4>
-									<h4>${IVR1}</h4>
-								</a> <a href="#" class="list-group-item">
-									<h4>身份證字號</h4>
-<%-- 									<h4>${id}</h4> --%>
-									<h4>${IDNO_}</h4>
-								</a> <a href="#" class="list-group-item">
-<!-- 									<h4>住址</h4> -->
-<%-- 									<h4>${address}</h4> --%>
-									<h4>姓名</h4>
-<%-- 									<h4 id="fromName">${name}</h4> --%>
-									<h4 id="fromName">${CUSTNAME_}</h4>
-								</a> <a href="#" class="list-group-item">
-<!-- 									<h4>專屬人員</h4> -->
-<!-- 									<h4>Alex</h4> -->
-									<h4>分行碼</h4>
-									<h4>${BHNO_}</h4>
-								</a> <a href="#" class="list-group-item">
-<!-- 									<h4>註冊地</h4> -->
-<!-- 									<h4>台北分公司</h4> -->
-									<h4>分行狀態</h4>
-									<h4>${BHNOTYPE_}</h4>
-								</a> <a href="#" class="list-group-item">
-<!-- 									<h4>帳號狀態</h4> -->
-<!-- 									<h4>啟用</h4> -->
-									<h4>帳號</h4>
-									<h4>${CUSTFNO_}</h4>
-								</a> <a href="#" class="list-group-item">
-									<h4>客戶等級</h4>
-									<h4>${CUSTLEVEL_}</h4>
-								</a> <a href="#" class="list-group-item">
-									<h4>生日</h4>
-									<h4>${BIRTH_}</h4>
-								</a> <a href="#" class="list-group-item">
-									<h4>行動電話</h4>
-									<h4>${MOBTEL_}</h4>
-								</a> <a href="#" class="list-group-item">
-									<h4>通訊電話</h4>
-									<h4>${CATTEL_}</h4>
-								</a> <a href="#" class="list-group-item">
-									<h4>EMAIL</h4>
-									<h4>${EMAIL_}</h4>
 								</a>
 							</div>
 						</div>
@@ -98,8 +55,7 @@
 						<div class="portlet">
 							<div class="portlet-body">
 								<div class="widget">
-									<div class="fa-tree-list" id="commonLinkRoot">
-									</div>
+									<div class="fa-tree-list" id="commonLinkRoot"></div>
 								</div>
 
 							</div>
@@ -422,31 +378,73 @@
 
 		// 載入常用連結
 		selectCommonLink();
-		
+
 		// 搜尋案件類別
 		Query_ActivityMenu(0, 0);
+
+		// 取得客戶資料
+		getUserData();
 	});
 
-	function queryActivityMenu() {
-		$
-				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityMenu",
-					data : {
-						dbid : 0
-					},
-					type : "POST",
-					dataType : 'json',
-					error : function(e) {
-						console.log(e);
-					},
-					success : function(data) {
-						console.log(data)
+	function getUserData() {
+		var parentChatList = parent.chatList;
+		var interactionId = "${interactionId}";
 
-						for ( var index in data.activitymenu) {
-							console.log(data.activitymenu[index].menuname);
-						}
-					}
+		for ( var index in parentChatList) {
+			console.log(parentChatList[index]);
+
+			if (parentChatList[index].id == interactionId) {
+				var userData = parentChatList[index].currentUserData;
+				var customerData = userData.CustomerData[0];
+
+				var mapping = userData.mapping.Message;
+				var mappingSorted = {};
+
+				Object.keys(mapping).sort(function(a, b) {
+					return mapping[a].sort - mapping[b].sort
+				}).forEach(function(key) {
+					mappingSorted[mapping[key].sort] = mapping[key];
 				});
+
+				for ( var count in mappingSorted) {
+					var $a = '<a href="#" class="list-group-item">';
+					$a += '<h4>' + mappingSorted[count].chiname + '</h4>';
+					$a += '<h4 id="customer'
+							+ mappingSorted[count].engname.toLowerCase()
+							+ '"></h4>';
+					$a += '</a>';
+
+					$("div.customerInfo").append($a);
+				}
+
+				for ( var key in customerData) {
+					var id = key
+					$('#customer' + key.toLowerCase()).html(customerData[key]);
+				}
+			}
+		}
+
+		// 重新綁定點選複雜事件
+		$(".customerInfo a").on("click", function() {
+			var copyText = $(this).find(':nth-child(2)').text();
+			var $temp = $("<input>");
+
+			$("body").append($temp);
+			$temp.val(copyText).select();
+			document.execCommand("copy");
+			$temp.remove();
+		});
+	}
+
+	Array.prototype.sortOn = function(key) {
+		this.sort(function(a, b) {
+			if (a[key] < b[key]) {
+				return -1;
+			} else if (a[key] > b[key]) {
+				return 1;
+			}
+			return 0;
+		});
 	}
 
 	/**
@@ -499,7 +497,9 @@
 							var id = secondLevel[index].id;
 							var level = parseInt($('ul[dbid="' + parent + '"]')
 									.attr("level"));
-							var href = secondLevel[index].a_attr.href;
+							if (secondLevel[index].a_attr) {
+								var href = secondLevel[index].a_attr.href || "";
+							}
 
 							if (2 != level) {
 								$li = '<li><span><i class="fa fa-fw fa-folder-open"></i>';
@@ -580,7 +580,7 @@
 		hideAllContent()
 		$("#caseInfoButton").show();
 		$("#caseInfo").show();
-		
+
 		// 搜尋案件資訊選單
 		var level1DbId = $("#caseSelection option:selected").val();
 		Query_ActivityMenu(1, level1DbId);
@@ -606,6 +606,11 @@
 		$("#queryButton").removeClass("btn-success");
 		$("#queryButton").addClass("btn-primary");
 
+		// iframe 重新載入
+		var src = $('#link' + linkIndex +' iframe').prop("src");
+		$('#link' + linkIndex +' iframe').prop("src", "");
+		$('#link' + linkIndex +' iframe').prop("src", src);
+		
 		hideAllContent()
 		$("#historyQuery").show();
 	}
@@ -921,6 +926,7 @@
 				});
 	}
 
+	// 「案件資訊」點選checkbox畫面清單控制
 	function getCheckedData() {
 		var val = [];
 		var dbid = [];
@@ -948,6 +954,7 @@
 		$(".activityLog[dbid=" + dbid + "]").prop("checked", false);
 	}
 
+	// 將「案件資訊」選取結果與備註欄發送至Server
 	function insertRptActivityLog() {
 		var interactionId = "${interactionId}";
 		var theComment = $("#theComment").val() || "";
@@ -963,10 +970,6 @@
 				activitydataids += "," + dbid[i];
 			}
 		});
-
-		// 		console.log("insertRptActivityLog");
-		// 		console.log("activitydataids : " + activitydataids);
-		// 		console.log("interactionId : " + interactionId);
 
 		$
 				.ajax({
@@ -992,6 +995,7 @@
 				});
 	}
 
+	// 通話結束，自動點選案件資訊，根據設定決定是否選取第一層清單
 	function showCaseInfoTab() {
 		$("#caseInfoTab").trigger("click");
 
@@ -1000,6 +1004,7 @@
 		}
 	}
 
+	// 結束客戶資訊頁籤
 	function finishChat() {
 		// 新增案件資訊活動代碼紀錄
 		insertRptActivityLog();

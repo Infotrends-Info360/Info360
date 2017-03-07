@@ -97,7 +97,7 @@
 								<!-- 																<hr> -->
 								<li><a onclick="openTab(0)">儀表板</a></li>
 								<li><a onclick="openTab(6)">案件搜尋</a></li>
-<!-- 								<li><a onclick="openTab(7)">設定</a></li> -->
+								<li><a onclick="openTab(7)">設定</a></li>
 								<!-- 								<li><a onclick="openTab(8)">修改密碼</a></li> -->
 								<li><a onclick="logout()">登出</a></li>
 								<hr>
@@ -638,11 +638,13 @@
 
 						newTab.id = RoomID_g;
 						newTab.chatTab = currentChatTab;
+						newTab.currentUserData = currentUserData;
 						chatList.push(newTab);
 
+						console.log("chatList : ");
 						console.log(chatList);
-						console.log("currentUserData");
-						console.log(currentUserData);
+						//console.log("currentUserData");
+						//console.log(currentUserData);
 
 // 						var id = currentUserData.CustomerData[0].id || "";
 // 						var name = currentUserData.CustomerData[0].name || "";
@@ -1180,6 +1182,8 @@
 					$("#" + entry.chatTab + "Tab").hide();
 				}
 			});
+			console.log("after close tab and remove (chatList) : ");
+			console.log(chatList);
 		}
 
 		/*-------------------------------------------------------*/
