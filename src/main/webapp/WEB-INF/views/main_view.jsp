@@ -638,11 +638,13 @@
 
 						newTab.id = RoomID_g;
 						newTab.chatTab = currentChatTab;
+						newTab.currentUserData = currentUserData;
 						chatList.push(newTab);
 
+						console.log("chatList : ");
 						console.log(chatList);
-						console.log("currentUserData");
-						console.log(currentUserData);
+						//console.log("currentUserData");
+						//console.log(currentUserData);
 
 // 						var id = currentUserData.CustomerData[0].id || "";
 // 						var name = currentUserData.CustomerData[0].name || "";
@@ -1180,6 +1182,8 @@
 					$("#" + entry.chatTab + "Tab").hide();
 				}
 			});
+			console.log("after close tab and remove (chatList) : ");
+			console.log(chatList);
 		}
 
 		/*-------------------------------------------------------*/
