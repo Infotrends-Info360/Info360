@@ -166,8 +166,9 @@ label.required:after {
 											<th>員工編號</th>
 											<th>分機號碼</th>
 											<th>信箱</th>
-											<th>狀態</th>
+											
 											<th>最大接通數</th>
+											<th >狀態</th>
 										</tr>
 									</thead>
 								</table>
@@ -215,8 +216,9 @@ label.required:after {
 											<th>員工編號</th>
 											<th>分機號碼</th>
 											<th>信箱</th>
-											<th>狀態</th>
+											
 											<th>最大接通數</th>
+										
 										</tr>
 									</thead>
 
@@ -646,7 +648,7 @@ label.required:after {
 											<th>告警顏色</th>
 											<th>告警時間</th>
 											<th>註解</th>
-											<th>狀態</th>
+											
 										</tr>
 									</thead>
 								</table>
@@ -1218,7 +1220,7 @@ label.required:after {
 								<li onclick="showAddMemberAG()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
 								<li onclick="unlockAccountAG()"><a href="#"><i
-										class="fa fa-fw fa-unlock-alt"></i></a></li>
+										class="fa fa-fw fa-ban"></i></a></li>
 							</ul>
 							<ul class="pagination" style="float: right;">
 								<li><input type="text" id="manageTableAGSearch"
@@ -1382,7 +1384,7 @@ label.required:after {
 								<li onclick="showAddMemberAD()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
 								<li onclick="unlockAccountAD()"><a href="#"><i
-										class="fa fa-fw fa-unlock-alt"></i></a></li>
+										class="fa fa-fw fa-ban"></i></a></li>
 							</ul>
 							<ul class="pagination" style="float: right;">
 								<li><input type="text" id="manageTableADSearch"
@@ -1422,7 +1424,7 @@ label.required:after {
 						<div>
 							<ul class="pagination">
 						
-								<li onclick="AD_ok()"><a href="#"><i
+								<li onclick="AD_ok22()"><a href="#"><i
 										class="glyphicon glyphicon-ok"></i></a></li>
 							</ul>
 							<ul class="pagination" style="float: right;">
@@ -2006,7 +2008,7 @@ label.required:after {
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-body">
-				<h3>是否啟用/停用？</h3>
+				<h3>是否停用？</h3>
 			</div>
 			<div class="modal-footer">
 <!-- 				<div class="form-group col-sm-6"> -->
@@ -2016,17 +2018,17 @@ label.required:after {
 <!-- 							placeholder=""> -->
 <!-- 					</div> -->
 <!-- 				</div> -->
-				<div class="form-group col-sm-6">
-					<label for="inputAssignedDepartment" class="col-sm-2 control-label">開關:</label>
-					<div class="col-sm-4">
-						<select class="form-control" id="Delete_flagAG">
-							<option value="0">啟用</option>
-							<option value="1">停用</option>
-						</select>
-					</div>
-				</div>
+<!-- 				<div class="form-group col-sm-6"> -->
+<!-- 					<label for="inputAssignedDepartment" class="col-sm-2 control-label">開關:</label> -->
+<!-- 					<div class="col-sm-4"> -->
+<!-- 						<select class="form-control" id="Delete_flagAG"> -->
+<!-- 							<option value="0">啟用</option> -->
+<!-- 							<option value="1">停用</option> -->
+<!-- 						</select> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 				<button type="button" class="btn btn-success" data-dismiss="modal"
-					onclick="AGLuck('鎖定/解鎖成功')">確定</button>
+					onclick="AGLuck('鎖定成功')">確定</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
 			</div>
 		</div>
@@ -2070,35 +2072,41 @@ label.required:after {
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-body">
-				<h3>是否解除/鎖定帳號？</h3>
+				<h3>是否停用？</h3>
 			</div>
 			<div class="modal-footer">
-			<div class="form-group col-sm-6">
-					<label for="inputAssignedDepartment" class="col-sm-2 control-label">開關:</label>
-					<div class="col-sm-4">
-						<select class="form-control" id="Delete_flagAD">
-							<option value="0">啟用</option>
-							<option value="1">停用</option>
-						</select>
-					</div>
-				</div>
-			
-<!-- 				<div class="form-group col-sm-6"> -->
-<!-- 					<label for="inputAssignedDepartment" class="col-sm-2 control-label">代碼名稱:</label> -->
-<!-- 					<div class="col-sm-4"> -->
-<!-- 						<input type="text" class="form-control" id="Delete_idAD" -->
-<!-- 							placeholder=""> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-				
+
 				<button type="button" class="btn btn-success" data-dismiss="modal"
-					onclick="ADLuck('鎖定/解鎖成功')">確定</button>
+					onclick="ADLuck('停用')">確定</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- 鎖符號BUTTON END -->
+
+<!-- AD_OK -->
+<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+	data-target="#ADok1" style="display: none;" id="ADok2">unlockDialog</button>
+<div id="ADok1" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3>是否啟用？</h3>
+			</div>
+			<div class="modal-footer">
+
+				<button type="button" class="btn btn-success" data-dismiss="modal"
+					onclick="ADok('啟用成功')">確定</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- AD_OK END -->
 
 <!-- ActivityData END-->
 
@@ -2204,20 +2212,39 @@ $.ajax({
 														"data" : "dn"
 													}, {
 														"data" : "emailaddress"
-													}, {
-														"data" : "state"
-													}, {
+													}, 
+													{
 														"data" : "max_count"
-													} ],'columnDefs': [{
+													},
+// 													{
+// 														className : "label label-danger",
+//  														"data" : "state"
+// 													} 
+													],'columnDefs': [{
 												         'targets': 0,
 												         'searchable': false,
 												         'orderable': false,
 												         'className': 'dt-body-center',
 												         'render': function (data, type, full, meta){
-// 												        	 alert(JSON.stringify(full));
 												             return '<input type="checkbox" name="person0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
-												         }
-												      }],
+												         },
+												
+												      },
+												      {
+													         'targets': 7,
+													         'searchable': false,
+													         'orderable': false,
+													        'className': "  ",
+													         'render': function (data, type, full, meta){
+													        	 if(full.state!=null&&full.state!=""){
+													        		 return '<label class="label label-danger">'+full.state+'</label>';
+													        	 }else{
+													        		 return '<label>'+full.state+'</label>';
+													        	 }
+													         },
+													
+													      }
+												      ],
 											lengthChange : false
 										});
 						aa();
@@ -2314,8 +2341,6 @@ $.ajax({
 														"data" : "dn"
 													}, {
 														"data" : "emailaddress"
-													}, {
-														"data" : "state"
 													}, {
 														"data" : "max_count"
 													} ],'columnDefs': [{
@@ -3635,9 +3660,10 @@ $.ajax({
 														"data" : "alarmduration"
 													}, {
 														"data" : "description"
-													}, {
-														"data" : "flag"
-													} ],'columnDefs': [{
+													}
+// 													}, {
+// 														"data" : "flag"
+													 ],'columnDefs': [{
 												         'targets': 0,
 												         'searchable': false,
 												         'orderable': false,
@@ -3645,8 +3671,21 @@ $.ajax({
 												         'render': function (data, type, full, meta){
 //													        	 alert(JSON.stringify(full));
 												             return '<input type="checkbox" name="agentreason0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+												         }}, 
+												         {
+													         'targets': 8,
+													         'searchable': false,
+													         'orderable': false,
+													        'className': "  ",
+													         'render': function (data, type, full, meta){
+													        	 if(full.flag!=null&&full.flag!=""){
+													        		 return '<label class="label label-danger">'+full.flag+'</label>';
+													        	 }else{
+													        		 return '<label>'+full.flag+'</label>';
+													        	 }
+													         }
 												         }
-												      }],
+													],
 											lengthChange : false
 										});
 						agentreason2();
@@ -3747,8 +3786,6 @@ $.ajax({
 														"data" : "alarmduration"
 													}, {
 														"data" : "description"
-													}, {
-														"data" : "flag"
 													} ],'columnDefs': [{
 												         'targets': 0,
 												         'searchable': false,
@@ -4561,6 +4598,8 @@ var selected=[];
 			  
 			  var ActivityMenu_DBID_list = selected.join();
 			  
+			  if(ActivityMenu_DBID_list.length!=0){
+
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_activitymenu",
@@ -4571,14 +4610,18 @@ var selected=[];
 					type : "POST",
 					dataType : 'json',
 					error : function(e) {
-						toastr.error("鎖定錯誤");
+						toastr.error("停用錯誤");
 					},
 					success : function(data) {
 						AM();
-						toastr.success("鎖定成功");
+						toastr.success("停用成功");
 					}
 				});
+			  }else{
+					toastr.error("請選擇停用項目");
 
+			  }
+			  
 		closeAllHrContent();
 		$("#AMContent").show();
 		$("#manageAMContent").show();
@@ -4597,7 +4640,7 @@ var selected=[];
 		      });
 			  
 			  var ActivityMenu_DBID_list = selected.join();
-			  
+			  if(ActivityMenu_DBID_list.length!=0){
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_activitymenu",
@@ -4615,6 +4658,9 @@ var selected=[];
 						toastr.success("啟用成功");
 					}
 				});
+			  }else{
+				  toastr.error("請選擇啟用項目");
+			  }
 		closeAllHrContent();
 		$("#AMContent").show();
 		$("#banAMContent").show();
@@ -5017,7 +5063,11 @@ var selected=[];
 	function unlockAccountAG() {
 		$("#unlockButtonAG").trigger("click");
 	}
-
+	function AG_ok() {
+		$("#AG_OK").trigger("click");
+	}
+	
+	
 	function AGLuck(message) {
 		var selected=[];
 	    $("[name=AG0]:checkbox:checked").each(function(){
@@ -5029,30 +5079,73 @@ var selected=[];
 			  
 			  var ActivityGroup_DBID_list = selected.join();
 			  
-		var flag = document.getElementById('Delete_flagAG').value;
+// 		var flag = document.getElementById('Delete_flagAG').value;
 // 		var dbid = document.getElementById('Delete_idAG').value;
-
+	if(ActivityGroup_DBID_list.length){
+		
+	
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_ActivityGroup",
 					data : {
-						deleteflag : flag,
+						deleteflag : 1,
 						ActivityGroup_DBID_list : ActivityGroup_DBID_list,
 					},
 					type : "POST",
 					dataType : 'json',
 					error : function(e) {
-						toastr.error("鎖定錯誤");
+						toastr.error("停用錯誤");
 					},
 					success : function(data) {
 						group();
-						toastr.success("鎖定成功");
+						toastr.success("停用成功");
 					}
 				});
-		toastr.error(message);
+	}else{
+		toastr.error("請選擇停用項目");
+	}
 		closeAllHrContent();
 		$("#AGContent").show();
 		$("#manageAGContent").show();
+	}
+	
+	function AGKK(message) {
+		var selected=[];
+	    $("[name=AG0]:checkbox:checked").each(function(){
+	      selected.push($(this).val());
+	      });
+	    $("[name=AG1]:checkbox:checked").each(function(){
+		      selected.push($(this).val());
+		      });
+			  
+			  var ActivityGroup_DBID_list = selected.join();
+			  
+// 		var flag = document.getElementById('Delete_flagAG').value;
+// 		var dbid = document.getElementById('Delete_idAG').value;
+if(ActivityGroup_DBID_list.length){
+		$
+				.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_ActivityGroup",
+					data : {
+						deleteflag : 0,
+						ActivityGroup_DBID_list : ActivityGroup_DBID_list,
+					},
+					type : "POST",
+					dataType : 'json',
+					error : function(e) {
+						toastr.error("啟用錯誤");
+					},
+					success : function(data) {
+						group();
+						toastr.success("啟用成功");
+					}
+				});
+}else{
+	toastr.error("選擇啟用項目");
+}
+		closeAllHrContent();
+		$("#AGContent").show();
+		$("#banAGContent").show();
 	}
 </script>
 
@@ -5485,9 +5578,13 @@ var selected=[];
 		$("#unlockButtonAD").trigger("click");
 
 	}
+	function AD_ok22() {
+		$("#ADok2").trigger("click");
+
+	}
 
 	function ADLuck(message) {
-		var flag = document.getElementById('Delete_flagAD').value;
+// 		var flag = document.getElementById('Delete_flagAD').value;
 // 		var dbid = document.getElementById('Delete_idAD').value;
 		
 		var selected=[];
@@ -5499,28 +5596,69 @@ var selected=[];
 		      });
 			  
 			  var ActivityData_DBID_list = selected.join();
-
+			  if(ActivityData_DBID_list.length){
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_ActivityData",
 					data : {
-						deleteflag : flag,
+						deleteflag : 1,
 						ActivityData_DBID_list : ActivityData_DBID_list
 					},
 					type : "POST",
 					dataType : 'json',
 					error : function(e) {
-						toastr.error("鎖定錯誤");
+						toastr.error("停用錯誤");
 					},
 					success : function(data) {
 						groupAD();
-						toastr.error("鎖定成功");
+						toastr.success("停用成功");
 					}
 				});
-	
+			  }else{
+				  toastr.error("請選擇停用項目");
+			  }
 		closeAllHrContent();
 		$("#ADContent").show();
 		$("#manageADContent").show();
+	}
+	
+	function ADok(message) {
+// 		var flag = document.getElementById('Delete_flagAD').value;
+// 		var dbid = document.getElementById('Delete_idAD').value;
+		
+		var selected=[];
+	    $("[name=AD0]:checkbox:checked").each(function(){
+	      selected.push($(this).val());
+	      });
+	    $("[name=AD1]:checkbox:checked").each(function(){
+		      selected.push($(this).val());
+		      });
+			  
+			  var ActivityData_DBID_list = selected.join();
+			  if(ActivityData_DBID_list.length){
+		$
+				.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_ActivityData",
+					data : {
+						deleteflag : 0,
+						ActivityData_DBID_list : ActivityData_DBID_list
+					},
+					type : "POST",
+					dataType : 'json',
+					error : function(e) {
+						toastr.error("啟用錯誤");
+					},
+					success : function(data) {
+						groupAD();
+						toastr.success("啟用成功");
+					}
+				});
+	}else{
+		toastr.error("請選擇啟用項目");
+	}
+		closeAllHrContent();
+		$("#ADContent").show();
+		$("#banADContent").show();
 	}
 </script>
 
