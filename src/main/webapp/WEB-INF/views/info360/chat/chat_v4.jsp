@@ -129,9 +129,9 @@
 									<span class="input-group-addon" id="basic-addon1">日期</span>
 									<div class="input-daterange input-group" id="datepicker">
 										<input type="text" class="input-sm form-control" name="start"
-											value="2017-03-01"> <span class="input-group-addon">到</span>
+											value="2014-11-11"> <span class="input-group-addon">到</span>
 										<input type="text" class="input-sm form-control" name="end"
-											value="2017-03-31">
+											value="2014-11-17">
 									</div>
 								</div>
 							</div>
@@ -151,14 +151,14 @@
 								</div>
 							</div>
 
-<!-- 							<div class="col-lg-9 col-md-9 col-xs-8" -->
-<!-- 								style="margin-bottom: 2px;"> -->
-<!-- 								<div class="input-group"> -->
-<!-- 									<span class="input-group-addon" id="basic-addon1">主旨</span> <input -->
-<!-- 										type="text" class="form-control" placeholder="請輸入" -->
-<!-- 										aria-describedby="basic-addon1"> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
+							<div class="col-lg-9 col-md-9 col-xs-8"
+								style="margin-bottom: 2px;">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1">主旨</span> <input
+										type="text" class="form-control" placeholder="請輸入"
+										aria-describedby="basic-addon1">
+								</div>
+							</div>
 							<div class="col-lg-3 col-md-3 col-xs-4"
 								style="margin-bottom: 2px;">
 								<button class="btn-sm btn-success">搜尋</button>
@@ -170,93 +170,92 @@
 									id="queryTable">
 									<thead>
 										<tr>
-											<td>來源</td>
-											<td>開始時間</td>
-											<td>結束時間</td>
-											<td>處理人</td>
-											<td>備註</td>
-											<td>服務代碼</td>
+											<td>欄位1</td>
+											<td>欄位2</td>
+											<td>欄位3</td>
+											<td>欄位4</td>
+											<td>欄位5</td>
 										</tr>
 									</thead>
-<!-- 									<tbody> -->
-<!-- 										<tr> -->
-<!-- 											<td></td> -->
-<!-- 											<td></td> -->
-<!-- 											<td>FireFox</td> -->
-<!-- 											<td>Safari</td> -->
-<!-- 											<td>Netscape</td> -->
-<!-- 										</tr> -->
-<!-- 										<tr> -->
-<!-- 											<td>Chrome</td> -->
-<!-- 											<td>IE</td> -->
-<!-- 											<td>FireFox</td> -->
-<!-- 											<td>Safari</td> -->
-<!-- 											<td>Netscape</td> -->
-<!-- 										</tr> -->
-<!-- 										<tr> -->
-<!-- 											<td>Chrome</td> -->
-<!-- 											<td>IE</td> -->
-<!-- 											<td>FireFox</td> -->
-<!-- 											<td>Safari</td> -->
-<!-- 											<td>Netscape</td> -->
-<!-- 										</tr> -->
-<!-- 										<tr> -->
-<!-- 											<td>Chrome</td> -->
-<!-- 											<td>IE</td> -->
-<!-- 											<td>FireFox</td> -->
-<!-- 											<td>Safari</td> -->
-<!-- 											<td>Netscape</td> -->
-<!-- 										</tr> -->
-<!-- 										<tr> -->
-<!-- 											<td>Chrome</td> -->
-<!-- 											<td>IE</td> -->
-<!-- 											<td>FireFox</td> -->
-<!-- 											<td>Safari</td> -->
-<!-- 											<td>Netscape</td> -->
-<!-- 										</tr> -->
-<!-- 										<tr> -->
-<!-- 											<td>Chrome</td> -->
-<!-- 											<td>IE</td> -->
-<!-- 											<td>FireFox</td> -->
-<!-- 											<td>Safari</td> -->
-<!-- 											<td>Netscape</td> -->
-<!-- 										</tr> -->
-<!-- 										<tr> -->
-<!-- 											<td>Chrome</td> -->
-<!-- 											<td>IE</td> -->
-<!-- 											<td>FireFox</td> -->
-<!-- 											<td>Safari</td> -->
-<!-- 											<td>Netscape</td> -->
-<!-- 										</tr> -->
-<!-- 										<tr> -->
-<!-- 											<td>Chrome</td> -->
-<!-- 											<td>IE</td> -->
-<!-- 											<td>FireFox</td> -->
-<!-- 											<td>Safari</td> -->
-<!-- 											<td>Netscape</td> -->
-<!-- 										</tr> -->
-<!-- 										<tr> -->
-<!-- 											<td>Chrome</td> -->
-<!-- 											<td>IE</td> -->
-<!-- 											<td>FireFox</td> -->
-<!-- 											<td>Safari</td> -->
-<!-- 											<td>Netscape</td> -->
-<!-- 										</tr> -->
-<!-- 										<tr> -->
-<!-- 											<td>Chrome</td> -->
-<!-- 											<td>IE</td> -->
-<!-- 											<td>FireFox</td> -->
-<!-- 											<td>Safari</td> -->
-<!-- 											<td>Netscape</td> -->
-<!-- 										</tr> -->
-<!-- 										<tr> -->
-<!-- 											<td>Chrome</td> -->
-<!-- 											<td>IE</td> -->
-<!-- 											<td>FireFox</td> -->
-<!-- 											<td>Safari</td> -->
-<!-- 											<td>Netscape</td> -->
-<!-- 										</tr> -->
-<!-- 									</tbody> -->
+									<tbody>
+										<tr>
+											<td>Chrome</td>
+											<td>IE</td>
+											<td>FireFox</td>
+											<td>Safari</td>
+											<td>Netscape</td>
+										</tr>
+										<tr>
+											<td>Chrome</td>
+											<td>IE</td>
+											<td>FireFox</td>
+											<td>Safari</td>
+											<td>Netscape</td>
+										</tr>
+										<tr>
+											<td>Chrome</td>
+											<td>IE</td>
+											<td>FireFox</td>
+											<td>Safari</td>
+											<td>Netscape</td>
+										</tr>
+										<tr>
+											<td>Chrome</td>
+											<td>IE</td>
+											<td>FireFox</td>
+											<td>Safari</td>
+											<td>Netscape</td>
+										</tr>
+										<tr>
+											<td>Chrome</td>
+											<td>IE</td>
+											<td>FireFox</td>
+											<td>Safari</td>
+											<td>Netscape</td>
+										</tr>
+										<tr>
+											<td>Chrome</td>
+											<td>IE</td>
+											<td>FireFox</td>
+											<td>Safari</td>
+											<td>Netscape</td>
+										</tr>
+										<tr>
+											<td>Chrome</td>
+											<td>IE</td>
+											<td>FireFox</td>
+											<td>Safari</td>
+											<td>Netscape</td>
+										</tr>
+										<tr>
+											<td>Chrome</td>
+											<td>IE</td>
+											<td>FireFox</td>
+											<td>Safari</td>
+											<td>Netscape</td>
+										</tr>
+										<tr>
+											<td>Chrome</td>
+											<td>IE</td>
+											<td>FireFox</td>
+											<td>Safari</td>
+											<td>Netscape</td>
+										</tr>
+										<tr>
+											<td>Chrome</td>
+											<td>IE</td>
+											<td>FireFox</td>
+											<td>Safari</td>
+											<td>Netscape</td>
+										</tr>
+										<tr>
+											<td>Chrome</td>
+											<td>IE</td>
+											<td>FireFox</td>
+											<td>Safari</td>
+											<td>Netscape</td>
+										</tr>
+									</tbody>
 								</table>
 							</div>
 						</div>
@@ -410,7 +409,6 @@
 					$a += '<h4>' + mappingSorted[count].chiname + '</h4>';
 					$a += '<h4 id="customer'
 							+ mappingSorted[count].engname.toLowerCase()
-							//count.toLowerCase()
 							+ '"></h4>';
 					$a += '</a>';
 
@@ -484,7 +482,7 @@
 								var id = linkList[index].id;
 								var text = linkList[index].text;
 
-								$span += '<i class="fa fa-fw fa-folder-open"></i>';
+								$span += '<i class="fa fa-fw fa-folder-open">';
 								$span += text;
 								$span += '</span>';
 								$span += '<ul style="list-style-type:none;margin-left:-20px;" dbid="' + id + '" level=0>';
@@ -559,7 +557,7 @@
 		var $content = $("#content");
 		var $div = '<div class="panel-body" id="link' + linkIndex + '" style="display:none;">';
 		$div += '<iframe src="' + href
-				+ '" style="width:100%;min-height:750px;"></iframe>';
+				+ '" style="width:100%;min-height:400px;"></iframe>';
 		$div += '</div>';
 
 		$content.append($div);
@@ -819,22 +817,18 @@
 								for ( var index in data.activitygroups) {
 									var groupname = data.activitygroups[index].groupname;
 									var dbid = data.activitygroups[index].dbid;
-									
-									if(!isNaN(index)){ //20170308 Lin
-										if (0 == index) { //20170308 Lin
-											var $li = "<li class='active'><a href='#caseInfo" + index + "'";
-	                                        $li += " data-toggle='tab'>"
-													+ groupname + "</a></li>";
-										} else { //20170308 Lin
-											var $li = "<li><a href='#caseInfo" + index + "'";
-	                                        $li += " data-toggle='tab'>"
-													+ groupname + "</a></li>";
-										}
 
-										$ul.append($li);
+									if (0 == index) {
+										var $li = "<li class='active'><a href='#caseInfo" + index + "'";
+                                        $li += " data-toggle='tab'>"
+												+ groupname + "</a></li>";
+									} else {
+										var $li = "<li><a href='#caseInfo" + index + "'";
+                                        $li += " data-toggle='tab'>"
+												+ groupname + "</a></li>";
 									}
-									
-									
+
+									$ul.append($li);
 
 									//console.log($("#caseInfo" + index));
 									if (0 == $("#caseInfo" + index).length) {
@@ -897,45 +891,39 @@
 						//console.log(titleList);
 						// 根據巢狀結構建立對應的表格
 						for ( var index in titleList) {
-							if(titleList[index].codename!="undefined" && titleList[index].codename!="" && titleList[index].codename!=null){ //20170308 Lin
-								var $table = '<table class="table table-striped table-bordered table-hover" style="width:100%">';
+							var $table = '<table class="table table-striped table-bordered table-hover" style="width:100%">';
 
-								// 加入標題
-								$table += '<thead><tr><td colspan="5"><b class="text-success">'
-										+ titleList[index].codename
-										+ '</b></td></tr></thead>';
+							// 加入標題
+							$table += '<thead><tr><td colspan="5"><b class="text-success">'
+									+ titleList[index].codename
+									+ '</b></td></tr></thead>';
 
-								var dataList = titleList[index].dataList;
-								var dataCount = 0;
-								var $tbody = '<tr>';
+							var dataList = titleList[index].dataList;
+							var dataCount = 0;
+							var $tbody = '<tr>';
 
-								for ( var key in dataList) {
-									if(dataList[key].dbid!="undefined" && dataList[key].dbid!="" && dataList[key].dbid!=null){ //20170308 Lin
-										$tbody += '<td sytle="width:20%">';
-										$tbody += '<input class="activityLog" type="checkbox" value="'
-												+ dataList[key].codename
-												+ '" dbid ="'
-												+ dataList[key].dbid
-												+ '" onclick="getCheckedData();">';
-										$tbody += dataList[key].codename + '</td>';
+							for ( var key in dataList) {
+								$tbody += '<td sytle="width:20%">';
+								$tbody += '<input class="activityLog" type="checkbox" value="'
+										+ dataList[key].codename
+										+ '" dbid ="'
+										+ dataList[key].dbid
+										+ '" onclick="getCheckedData();">';
+								$tbody += dataList[key].codename + '</td>';
 
-										if (dataCount % 5 == 4
-												|| key == dataList.length - 1) {
-											$tbody += "</tr>";
-										}
-									}
-									
-
-									dataCount++;
+								if (dataCount % 5 == 4
+										|| key == dataList.length - 1) {
+									$tbody += "</tr>";
 								}
 
-								$tbody += '</tbody>';
-								$table += $tbody;
-
-								$table += '</table>';
-								targetTable.append($table);
+								dataCount++;
 							}
-							
+
+							$tbody += '</tbody>';
+							$table += $tbody;
+
+							$table += '</table>';
+							targetTable.append($table);
 						}
 					}
 				});
