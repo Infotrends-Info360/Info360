@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<title>Chat頁面-03</title>
+<title>Chat頁面-04</title>
 
 <link href="resources/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
 <link href="resources/css/font-awesome.css?v=4.4.0" rel="stylesheet">
@@ -396,8 +396,6 @@
 
 			if (parentChatList[index].id == interactionId) {
 				var userData = parentChatList[index].currentUserData;
-				var customerData = userData.CustomerData[0];
-
 				var mapping = userData.mapping.Message;
 				var mappingSorted = {};
 
@@ -418,10 +416,15 @@
 
 					$("div.customerInfo").append($a);
 				}
-
-				for ( var key in customerData) {
-					var id = key
-					$('#customer' + key.toLowerCase()).html(customerData[key]);
+				
+				// 因客戶資料不一定會傳入，因此需先判斷是否有內容
+				if (userData.CustomerData) {
+					var customerData = userData.CustomerData[0];
+					
+					for ( var key in customerData) {
+						var id = key
+						$('#customer' + key.toLowerCase()).html(customerData[key]);
+					}
 				}
 			}
 		}

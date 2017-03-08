@@ -396,8 +396,6 @@
 
 			if (parentChatList[index].id == interactionId) {
 				var userData = parentChatList[index].currentUserData;
-				var customerData = userData.CustomerData[0];
-
 				var mapping = userData.mapping.Message;
 				var mappingSorted = {};
 
@@ -418,10 +416,15 @@
 
 					$("div.customerInfo").append($a);
 				}
-
-				for ( var key in customerData) {
-					var id = key
-					$('#customer' + key.toLowerCase()).html(customerData[key]);
+				
+				// 因客戶資料不一定會傳入，因此需先判斷是否有內容
+				if (userData.CustomerData) {
+					var customerData = userData.CustomerData[0];
+					
+					for ( var key in customerData) {
+						var id = key
+						$('#customer' + key.toLowerCase()).html(customerData[key]);
+					}
 				}
 			}
 		}
