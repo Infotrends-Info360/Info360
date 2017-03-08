@@ -377,6 +377,7 @@ function today(){
 	var today = $('#today').val();
 	var aa = $('#agentid').val();
 	var pp = $('#page').val();
+	console.log("today : " + today + "; aa:" + aa + "; pp:" + pp)
 $.ajax({                              
           url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_Interaction",
 	        data:{

@@ -643,47 +643,9 @@
 
 						console.log("chatList : ");
 						console.log(chatList);
-						//console.log("currentUserData");
-						//console.log(currentUserData);
 
-// 						var id = currentUserData.CustomerData[0].id || "";
-// 						var name = currentUserData.CustomerData[0].name || "";
-// 						var address = currentUserData.CustomerData[0].CUSTNAM
-// 								|| "";
-						//var IVR1 = currentUserData.CustomerData[0].IVR1 || "";
-						var IDNO_ = currentUserData.CustomerData[0].IDNO_ || ClientName_g; // 取不到Id時使用目前客戶Id
-						var CUSTNAME_ = currentUserData.CustomerData[0].CUSTNAME_ || "";
-						var BHNO_ = currentUserData.CustomerData[0].BHNO_ || "";
-						var BHNOTYPE_ = currentUserData.CustomerData[0].BHNOTYPE_ || "";
-						var CUSTFNO_ = currentUserData.CustomerData[0].CUSTFNO_ || "";
-						var CUSTLEVEL_ = currentUserData.CustomerData[0].CUSTLEVEL_ || "";
-						var BIRTH_ = currentUserData.CustomerData[0].BIRTH_ || "";
-						var MOBTEL_ = currentUserData.CustomerData[0].MOBTEL_ || "";
-						var CATTEL_ = currentUserData.CustomerData[0].CATTEL_ || "";
-						var EMAIL_ = currentUserData.CustomerData[0].EMAIL_ || "";
-						
-						var BHNOCUSTFNO_ = currentUserData.CustomerData[0].BHNOCUSTFNO_ || "";
-						var strID = currentUserData.CustomerData[0].strID || "";
-						var strBHNOCUSTFNO = currentUserData.CustomerData[0].strBHNOCUSTFNO || "";
-
-// 						$("#" + currentChatTab).html(id);
-						$("#" + currentChatTab).html(IDNO_);
-// 						var newHref = currentChatTab + "?id=" + id;
-// 						newHref += "&name=" + name;
-// 						newHref += "&address=" + address;
-// 						newHref += "&interactionId=" + RoomID_g;
-						
-						var newHref = currentChatTab + "?id=" + IDNO_;
-						//newHref += "&IVR1=" + IVR1;
-						newHref += "&name=" + CUSTNAME_;
-						newHref += "&bhno=" + BHNO_;
-						newHref += "&bhnotype=" + BHNOTYPE_;
-						newHref += "&custfno=" + CUSTFNO_;
-						newHref += "&custlevel=" + CUSTLEVEL_;
-						newHref += "&birth=" + BIRTH_;
-						newHref += "&mobtel=" + MOBTEL_;
-						newHref += "&cattel=" + CATTEL_;
-						newHref += "&email=" + EMAIL_;
+						$("#" + currentChatTab).html(ClientName_g);
+						var newHref = currentChatTab + "?id=" + ClientName_g;
 						newHref += "&interactionId=" + RoomID_g;
 
 						$("#" + currentChatTab).prop("href", newHref);
