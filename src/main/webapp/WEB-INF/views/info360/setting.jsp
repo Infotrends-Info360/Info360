@@ -8,8 +8,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
 <title>「設定」頁面</title>
+<!--   	<script src="resources/js/plugins/jquery-ui/jquery-ui.min.js"></script> -->
+  	
 <script src="resources/jstree/jquery.min.js"></script>
 <link href="resources/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
 <link href="resources/css/font-awesome.css?v=4.4.0" rel="stylesheet">
@@ -28,6 +29,9 @@
 label.required:after {
 	content: " *";
 	color: red;
+}
+.black {
+	color: black !important;
 }
 
 .red {
@@ -50,6 +54,17 @@ label.required:after {
 	display: none;
 }
 </style>
+<style type="text/css">
+#Box2,#Box3,#Box4{
+    width:200px;
+    height:100px;
+    padding:10px;
+    border:1px #ccc dashed;
+    float:left;
+    margin-right:10px;
+}
+</style>
+
 </head>
 <body class="gray-bg">
 	<div class="widget">
@@ -166,7 +181,6 @@ label.required:after {
 											<th>員工編號</th>
 											<th>分機號碼</th>
 											<th>信箱</th>
-											
 											<th>最大接通數</th>
 											<th >狀態</th>
 										</tr>
@@ -216,7 +230,6 @@ label.required:after {
 											<th>員工編號</th>
 											<th>分機號碼</th>
 											<th>信箱</th>
-											
 											<th>最大接通數</th>
 										
 										</tr>
@@ -234,7 +247,7 @@ label.required:after {
 								<label for="inputAccount" class="col-sm-2 control-label ">帳號</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="inputAccount"
-										placeholder="">
+										placeholder="" >
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
@@ -246,31 +259,31 @@ label.required:after {
 							</div>
 
 							<div class="form-group col-sm-6">
-								<label for="inputLastName" class="col-sm-2 control-label">姓氏</label>
+								<label for="inputLastName" class="col-sm-2 control-label">名字</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="inputLastName"
 										placeholder="">
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
-								<label for="inputFirstName" class="col-sm-2 control-label">名字</label>
+								<label for="inputFirstName" class="col-sm-2 control-label">姓氏</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="inputFirstName"
-										placeholder="">
+										placeholder="" pattern="[0-9]">
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
 								<label for="inputEmployNumber" class="col-sm-2 control-label">員工編號</label>
 								<div class="col-sm-8">
-									<input type="number" class="form-control"
-										id="inputEmployNumber" placeholder="">
+									<input type="tel" class="form-control"
+										id="inputEmployNumber" placeholder="" pattern="[0-9]">
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
 								<label for="inputPhoneNumber" class="col-sm-2 control-label">分機號碼</label>
 								<div class="col-sm-8">
-									<input type="number" class="form-control" id="inputPhoneNumber"
-										placeholder="">
+									<input type="tel" class="form-control" id="inputPhoneNumber"
+										placeholder="" pattern="[0-9]">
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
@@ -283,8 +296,8 @@ label.required:after {
 							<div class="form-group col-sm-6">
 								<label for="inputDepartment" class="col-sm-2 control-label">最大接通數</label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" id="inputMaxcount"
-										placeholder="">
+									<input type="tel" class="form-control" id="inputMaxcount"
+										placeholder="" pattern="[0-9]">
 								</div>
 							</div>
 							<div class="form-group col-sm-12">
@@ -294,14 +307,26 @@ label.required:after {
 										placeholder="">
 								</div>
 							</div>
-
-							<div class="form-group col-sm-12">
-								<label for="inputDepartment" class="col-sm-1 control-label">部門</label>
-								<div class="col-sm-4">
-									<select class="form-control" id="inputDepartment">
-									</select>
-								</div>
+				<div class="form-group col-sm-6">
+							<label for="inputEmail" class="col-sm-5 control-label">部門選擇區</label>
+				<div id="Box2" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
+							
+							<ul id="Box22">
+<!-- 								<li   draggable="true" style="padding:5px 15px; background:#ccc; border:0 none; width: 100%;cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;">選擇區</li> -->
+							</ul>																													
+				</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="inputEmail" class="col-sm-5 control-label">部門新增區</label>
+						<div id="Box3" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
+							
+							<ul id="Box33" >
+<!-- 								<li   draggable="true" style="padding:5px 15px; background:#ccc; border:0 none; width: 100%;cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;">新增區</li> -->
+							</ul>	
 							</div>
+						<div style="clear:both;"></div>
+				</div>
+					
 
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
@@ -310,6 +335,22 @@ label.required:after {
 								</div>
 							</div>
 						</div>
+						
+						<script type="text/javascript">
+function AllowDrop(event){
+    event.preventDefault();
+}
+function Drag(event){
+    event.dataTransfer.setData("text",event.currentTarget.id);
+}
+function Drop(event){
+    event.preventDefault();
+    var data=event.dataTransfer.getData("text");
+    event.currentTarget.appendChild(document.getElementById(data));
+}
+</script>
+				
+
 					</div>
 					<!-- 新增 END -->
 					<!-- 更新  -->
@@ -332,14 +373,14 @@ label.required:after {
 							</div>
 
 							<div class="form-group col-sm-6">
-								<label for="inputLastName" class="col-sm-2 control-label">姓氏</label>
+								<label for="inputLastName" class="col-sm-2 control-label">名字</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="updateLastName"
 										placeholder="">
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
-								<label for="inputFirstName" class="col-sm-2 control-label">名字</label>
+								<label for="inputFirstName" class="col-sm-2 control-label">姓氏</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="updateFirstName"
 										placeholder="">
@@ -348,14 +389,14 @@ label.required:after {
 							<div class="form-group col-sm-6">
 								<label for="inputEmployNumber" class="col-sm-2 control-label">員工編號</label>
 								<div class="col-sm-8">
-									<input type="number" class="form-control" id="updateEmployNumber"
+									<input type="tel"class="form-control" id="updateEmployNumber"
 										placeholder="">
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
 								<label for="inputPhoneNumber" class="col-sm-2 control-label">分機號碼</label>
 								<div class="col-sm-8">
-									<input type="number" class="form-control"
+									<input type="tel" class="form-control"
 										id="updatePhoneNumber" placeholder="">
 								</div>
 							</div>
@@ -369,7 +410,7 @@ label.required:after {
 							<div class="form-group col-sm-6">
 								<label for="inputDepartment" class="col-sm-2 control-label">最大接通數</label>
 								<div class="col-sm-6">
-									<input type="" class="form-control" id="updateMaxcount"
+									<input type="tel" class="form-control" id="updateMaxcount"
 										placeholder="">
 								</div>
 							</div>
@@ -437,7 +478,7 @@ label.required:after {
 					</button>
 					<button class="btn-sm btn-success editMember"
 						style="display: none;">
-						<span onclick="showEditMembergroup()">更新部門</span> <i
+						<span onclick="showEditMembergroup()" id="UPgroup"></span> <i
 							class="fa fa-times" onclick="closeEditMembergroup()"></i>
 					</button>
 				</div>
@@ -512,7 +553,7 @@ label.required:after {
 						
 
 							<div class="form-group col-sm-6">
-								<label for="inputDepartment" class="col-sm-2 control-label">更新部門名稱:</label>
+								<label for="inputDepartment" class="col-sm-3 control-label">部門名稱:</label>
 								<div class="col-sm-6">
 									<input type="text" class="form-control" id="up_name"
 										placeholder="">
@@ -546,17 +587,17 @@ label.required:after {
 						onclick="showManage_Agentreason()">
 						<i class="fa fa-fw fa-user"></i>值機管理
 					</button>
-					<button class="btn-sm btn-success ban"
-						onclick="showBan_Agentreason()">
-						<i class="fa fa-fw fa-user"></i>停用列表
-					</button>
+<!-- 					<button class="btn-sm btn-success ban" -->
+<!-- 						onclick="showBan_Agentreason()"> -->
+<!-- 						<i class="fa fa-fw fa-user"></i>停用列表 -->
+<!-- 					</button> -->
 					<button class="btn-sm btn-success addMember" style="display: none;">
 						<span onclick="showAddMemberAGR()">新增值機狀態</span> <i
 							class="fa fa-times" onclick="closeAddMemberAGR()"></i>
 					</button>
 					<button class="btn-sm btn-success editMember"
 						style="display: none;">
-						<span onclick="showEditMemberAgentreason()">更新值機狀態</span> <i
+						<span onclick="showEditMemberAgentreason()" id="UPagentreason"></span> <i
 							class="fa fa-times" onclick="closeEditMemberAgentreason()"></i>
 					</button>
 				</div>
@@ -569,8 +610,8 @@ label.required:after {
 							<ul class="pagination">
 								<li onclick="showAddMemberAGR()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
-								<li onclick="unlockAccountAgentreason()"><a href="#"><i
-										class="fa fa-fw fa-unlock-alt"></i></a></li>
+<!-- 								<li onclick="unlockAccountAgentreason()"><a href="#"><i -->
+<!-- 										class="fa fa-fw fa-unlock-alt"></i></a></li> -->
 								<li onclick="confirmBanAgentreason()"><a href="#"><i
 										class="fa fa-fw fa-ban"></i></a></li>
 								<li onclick="AgentReasonB()"><a href="#"><i
@@ -601,7 +642,7 @@ label.required:after {
 											<th>告警顏色</th>
 											<th>告警時間</th>
 											<th>註解</th>
-											<th>狀態</th>
+<!-- 											<th>狀態</th> -->
 										</tr>
 									</thead>
 								</table>
@@ -609,57 +650,57 @@ label.required:after {
 						</div>
 					</div>
 
-					<div id="banAgentreasonContent" style="display: none;">
-						<div>
-							<ul class="pagination">
+<!-- 					<div id="banAgentreasonContent" style="display: none;"> -->
+<!-- 						<div> -->
+<!-- 							<ul class="pagination"> -->
 <!-- 								<li onclick="showAddMemberAGR()"><a href="#"><i -->
 <!-- 										class="fa fa-fw fa-plus"></i></a></li> -->
 <!-- 								<li onclick="unlockAccountAgentreason()"><a href="#"><i -->
 <!-- 										class="fa fa-fw fa-unlock-alt"></i></a></li> -->
 <!-- 								<li onclick="confirmBanAgentreason()"><a href="#"><i -->
 <!-- 										class="fa fa-fw fa-ban"></i></a></li> -->
-								<li onclick="AgentReason_ok()"><a href="#"><i
-										class="glyphicon glyphicon-ok"></i></a></li>
-								<li onclick="AgentReasonB()"><a href="#"><i
-										class="glyphicon glyphicon-trash"></i></a></li>
-							</ul>
-							<ul class="pagination" style="float: right;">
-								<li><input type="text" id="banAgentreasonTableSearch"
-									placeholder="搜索"
-									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
-								</li>
+<!-- 								<li onclick="AgentReason_ok()"><a href="#"><i -->
+<!-- 										class="glyphicon glyphicon-ok"></i></a></li> -->
+<!-- 								<li onclick="AgentReasonB()"><a href="#"><i -->
+<!-- 										class="glyphicon glyphicon-trash"></i></a></li> -->
+<!-- 							</ul> -->
+<!-- 							<ul class="pagination" style="float: right;"> -->
+<!-- 								<li><input type="text" id="banAgentreasonTableSearch" -->
+<!-- 									placeholder="搜索" -->
+<!-- 									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;"> -->
+<!-- 								</li> -->
 
-								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
-							</ul>
-						</div>
+<!-- 								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
 
-						<div class="row ibox" id="agentreason11">
-							<div class="col-lg-12 col-md-12" id="agentreason1">
-								<table class="table table-bordered table-hover"
-									id="banAgentreasonTable">
-									<thead>
-										<tr>
-											<th class="no-sort"><input type="checkbox"
-												id="agentreason1All" ischecked=false></th>
-											<th>名稱</th>
-											<th>繁體名稱</th>
-											<th>英文名稱</th>
-											<th>簡體名稱</th>
-											<th>告警顏色</th>
-											<th>告警時間</th>
-											<th>註解</th>
+<!-- 						<div class="row ibox" id="agentreason11"> -->
+<!-- 							<div class="col-lg-12 col-md-12" id="agentreason1"> -->
+<!-- 								<table class="table table-bordered table-hover" -->
+<!-- 									id="banAgentreasonTable"> -->
+<!-- 									<thead> -->
+<!-- 										<tr> -->
+<!-- 											<th class="no-sort"><input type="checkbox" -->
+<!-- 												id="agentreason1All" ischecked=false></th> -->
+<!-- 											<th>名稱</th> -->
+<!-- 											<th>繁體名稱</th> -->
+<!-- 											<th>英文名稱</th> -->
+<!-- 											<th>簡體名稱</th> -->
+<!-- 											<th>告警顏色</th> -->
+<!-- 											<th>告警時間</th> -->
+<!-- 											<th>註解</th> -->
 											
-										</tr>
-									</thead>
-								</table>
-							</div>
-						</div>
-					</div>
+<!-- 										</tr> -->
+<!-- 									</thead> -->
+<!-- 								</table> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 					<!-- 新增  -->
 					<div id="addMemberAGRContent" style="display: none;">
 						<div class="widget">
 							<div class="form-group col-sm-6">
-								<label for="inputAccount" class="col-sm-2 control-label">名稱:</label>
+								<label for="inputAccount" class="col-sm-2 control-label required">名稱:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="Insert_statusname"
 										placeholder="">
@@ -691,13 +732,13 @@ label.required:after {
 								<label for="inputAccount" class="col-sm-2 control-label">告警顏色:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="Insert_alarmcolor"
-										placeholder="">
+										placeholder="" value="000000">
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
-								<label for="inputAccount" class="col-sm-2 control-label">告警時間:</label>
+								<label for="inputAccount" class="col-sm-2 control-label required">告警時間:</label>
 								<div class="col-sm-8">
-									<input type="number" class="form-control"
+									<input type="text" class="form-control"
 										id="Insert_alarmduration" placeholder="">
 								</div>
 							</div>
@@ -708,13 +749,13 @@ label.required:after {
 										placeholder="">
 								</div>
 							</div>
-							<div class="form-group col-sm-6">
-								<label for="inputAccount" class="col-sm-2 control-label">建立者:</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control"
-										id="Insert_createuserid" placeholder="">
-								</div>
-							</div>
+<!-- 							<div class="form-group col-sm-6"> -->
+<!-- 								<label for="inputAccount" class="col-sm-2 control-label">建立者:</label> -->
+<!-- 								<div class="col-sm-8"> -->
+<!-- 									<input type="text" class="form-control" -->
+<!-- 										id="Insert_createuserid" placeholder=""> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
@@ -789,20 +830,6 @@ label.required:after {
 								</div>
 							</div>
 							
-							
-							
-							
-<!-- 							<div class="form-group col-sm-6"> -->
-<!-- 								<label for="inputConfirmPassword" class="col-sm-2 control-label">啟用狀態:</label> -->
-<!-- 								<div class="col-sm-8"> -->
-<!-- 									<select class="form-control" id="Update_flag"> -->
-<!-- 										<option value="0">啟用</option> -->
-<!-- 										<option value="2">鎖定</option> -->
-<!-- 										<option value="1">停用</option> -->
-<!-- 									</select> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary"
@@ -857,6 +884,8 @@ label.required:after {
 								<li onclick="confirmBancomm()"><a href="#"><i
 										class="glyphicon glyphicon-trash"></i></a></li>
 							</ul>
+							
+							
 						</div>
 
 						<div class="row ibox">
@@ -970,12 +999,12 @@ label.required:after {
 							</div>
 						</div>
 
-						<div class="form-group col-sm-6">
-							<label for="inputLastName" class="col-sm-3 control-label">建立者名稱:</label>
-							<div class="col-sm-8">
-								<input type="text" class="form-control" id="nodeUSERu"
-									placeholder="">
-							</div>
+<!-- 						<div class="form-group col-sm-6"> -->
+<!-- 							<label for="inputLastName" class="col-sm-3 control-label">建立者名稱:</label> -->
+<!-- 							<div class="col-sm-8"> -->
+								<input type="hidden" class="form-control" id="nodeUSERu"
+									placeholder="" >
+<!-- 							</div> -->
 						</div>
 						<div class="form-group col-sm-6">
 							<label for="inputFirstName" class="col-sm-3 control-label">上層節點:</label>
@@ -999,7 +1028,7 @@ label.required:after {
 							</div>
 						</div>
 					</div>
-				</div>
+				
 				<!-- 更新END -->
 			</div>
 		</div>
@@ -1014,16 +1043,16 @@ label.required:after {
 					<button class="btn-sm btn-primary manage" onclick="showManage_AM()">
 						<i class="fa fa-fw fa-user"></i>清單管理
 					</button>
-					<button class="btn-sm btn-success ban" onclick="showBan_AM()">
-						<i class="fa fa-fw fa-user"></i>停用列表
-					</button>
+<!-- 					<button class="btn-sm btn-success ban" onclick="showBan_AM()"> -->
+<!-- 						<i class="fa fa-fw fa-user"></i>停用列表 -->
+<!-- 					</button> -->
 					<button class="btn-sm btn-success addMember" style="display: none;">
 						<span onclick="showAddMember()">新增清單</span> <i class="fa fa-times"
 							onclick="closeAddMemberAM()"></i>
 					</button>
 					<button class="btn-sm btn-success editMember"
 						style="display: none;">
-						<span onclick="showEditMember()">更新清單</span> <i
+						<span onclick="showEditMember()" id="UPAM"></span> <i
 							class="fa fa-times" onclick="closeEditMemberAM()"></i>
 					</button>
 				</div>
@@ -1037,8 +1066,9 @@ label.required:after {
 								<li onclick="showAddMemberAM()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
 								<li onclick="unlockAccountAM()"><a href="#"><i
-										class="fa fa-fw fa-ban"></i></a></li>
+										class="glyphicon glyphicon-trash"></i></a></li>
 							</ul>
+							
 							<ul class="pagination" style="float: right;">
 								<li><input type="text" id="manageTableAMSearch"
 									placeholder="搜索"
@@ -1053,59 +1083,60 @@ label.required:after {
 							<div class="col-lg-12 col-md-12" id="AM0">
 								<table class="table table-bordered table-hover"
 									id="manageTableAM">
-									<thead>
+								<thead>
 										<tr>
 											<th class="no-sort"><input type="checkbox"
 												id="AM0All" ischecked=false></th>
 											<th style="display: none;">編號</th>
 											<th>清單名稱</th>
-											
 											<th>建立時間</th>
-											<th>排序</th>
+											<th >排序</th>
 										</tr>
 									</thead>
+									
 								</table>
+								<input id="AMupdbid" value="" type="hidden">
+								<input id="AMdowdbid" value="" type="hidden">
 							</div>
 						</div>
 					</div>
 
-					<div id="banAMContent" style="display: none;">
-						<div>
-							<ul class="pagination">
+<!-- 					<div id="banAMContent" style="display: none;"> -->
+<!-- 						<div> -->
+<!-- 							<ul class="pagination"> -->
 <!-- 								<li onclick="showAddMemberAM()"><a href="#"><i -->
 <!-- 										class="fa fa-fw fa-plus"></i></a></li> -->
-								<li onclick="AccountAM_ok()"><a href="#"><i
-										class="glyphicon glyphicon-ok"></i></a></li>
-							</ul>
-							<ul class="pagination" style="float: right;">
-								<li><input type="text" id="banTableAMSearch"
-									placeholder="搜索"
-									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
-								</li>
+<!-- 								<li onclick="AccountAM_ok()"><a href="#"><i -->
+<!-- 										class="glyphicon glyphicon-ok"></i></a></li> -->
+<!-- 							</ul> -->
+<!-- 							<ul class="pagination" style="float: right;"> -->
+<!-- 								<li><input type="text" id="banTableAMSearch" -->
+<!-- 									placeholder="搜索" -->
+<!-- 									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;"> -->
+<!-- 								</li> -->
 
-								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
-							</ul>
-						</div>
+<!-- 								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
 
-						<div class="row ibox" id="AM11">
-							<div class="col-lg-12 col-md-12" id="AM1">
-								<table class="table table-bordered table-hover" id="banTableAM">
-									<thead>
-										<tr>
-											<th class="no-sort"><input type="checkbox"
-												id="AM1All" ischecked=false></th>
-											<th style="display: none;">編號</th>
-											<th>清單名稱</th>
+<!-- 						<div class="row ibox" id="AM11"> -->
+<!-- 							<div class="col-lg-12 col-md-12" id="AM1"> -->
+<!-- 								<table class="table table-bordered table-hover" id="banTableAM"> -->
+<!-- 									<thead> -->
+<!-- 										<tr> -->
+<!-- 											<th class="no-sort"><input type="checkbox" -->
+<!-- 												id="AM1All" ischecked=false></th> -->
+<!-- 											<th style="display: none;">編號</th> -->
+<!-- 											<th>清單名稱</th> -->
+<!-- 											<th>停用時間</th> -->
+<!-- 											<th>排序</th> -->
 											
-											<th>停用時間</th>
-											<th>排序</th>
-											
-										</tr>
-									</thead>
-								</table>
-							</div>
-						</div>
-					</div>
+<!-- 										</tr> -->
+<!-- 									</thead> -->
+<!-- 								</table> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 					<!-- 新增  -->
 					<div id="addMemberAMContent" style="display: none;">
 						<div class="widget">
@@ -1193,16 +1224,16 @@ label.required:after {
 					<button class="btn-sm btn-primary manage" onclick="showManage_AG()">
 						<i class="fa fa-fw fa-user"></i>群組管理
 					</button>
-					<button class="btn-sm btn-success ban" onclick="showBan_AG()">
-						<i class="fa fa-fw fa-user"></i>停用列表
-					</button>
+<!-- 					<button class="btn-sm btn-success ban" onclick="showBan_AG()"> -->
+<!-- 						<i class="fa fa-fw fa-user"></i>停用列表 -->
+<!-- 					</button> -->
 					<button class="btn-sm btn-success addMember" style="display: none;">
 						<span onclick="showAddMemberAG()">新增群組</span> <i
 							class="fa fa-times" onclick="closeAddMemberAG()"></i>
 					</button>
 					<button class="btn-sm btn-success editMember"
 						style="display: none;">
-						<span onclick="showEditMemberAG()">更新群組</span> <i
+						<span onclick="showEditMemberAG()" id="UPAG"></span> <i
 							class="fa fa-times" onclick="closeEditMemberAG()"></i>
 					</button>
 					<select class="selectpicker" style="width: 127px;" id="menu"
@@ -1220,7 +1251,7 @@ label.required:after {
 								<li onclick="showAddMemberAG()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
 								<li onclick="unlockAccountAG()"><a href="#"><i
-										class="fa fa-fw fa-ban"></i></a></li>
+										class="glyphicon glyphicon-trash"></i></a></li>
 							</ul>
 							<ul class="pagination" style="float: right;">
 								<li><input type="text" id="manageTableAGSearch"
@@ -1251,40 +1282,40 @@ label.required:after {
 						</div>
 					</div>
 
-					<div id="banAGContent" style="display: none;">
-						<div>
-							<ul class="pagination">
+<!-- 					<div id="banAGContent" style="display: none;"> -->
+<!-- 						<div> -->
+<!-- 							<ul class="pagination"> -->
 							
-								<li onclick="AG_ok()"><a href="#"><i
-										class="glyphicon glyphicon-ok"></i></a></li>
-							</ul>
-							<ul class="pagination" style="float: right;">
-								<li><input type="text" id="banTableAGSearch"
-									placeholder="搜索"
-									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
-								</li>
+<!-- 								<li onclick="AG_ok()"><a href="#"><i -->
+<!-- 										class="glyphicon glyphicon-ok"></i></a></li> -->
+<!-- 							</ul> -->
+<!-- 							<ul class="pagination" style="float: right;"> -->
+<!-- 								<li><input type="text" id="banTableAGSearch" -->
+<!-- 									placeholder="搜索" -->
+<!-- 									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;"> -->
+<!-- 								</li> -->
 
-								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
-							</ul>
-						</div>
+<!-- 								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
 
-						<div class="row ibox" id="AG11">
-							<div class="col-lg-12 col-md-12" id="AG1">
-								<table class="table table-bordered table-hover" id="banTableAG">
-									<thead>
-										<tr>
-											<th class="no-sort"><input type="checkbox"
-												id="AG1All" ischecked=false></th>
-											<th style="display: none;">編號</th>
-											<th>群組名稱</th>
-											<th>停用時間</th>
-											<th>排序</th>
-										</tr>
-									</thead>
-								</table>
-							</div>
-						</div>
-					</div>
+<!-- 						<div class="row ibox" id="AG11"> -->
+<!-- 							<div class="col-lg-12 col-md-12" id="AG1"> -->
+<!-- 								<table class="table table-bordered table-hover" id="banTableAG"> -->
+<!-- 									<thead> -->
+<!-- 										<tr> -->
+<!-- 											<th class="no-sort"><input type="checkbox" -->
+<!-- 												id="AG1All" ischecked=false></th> -->
+<!-- 											<th style="display: none;">編號</th> -->
+<!-- 											<th>群組名稱</th> -->
+<!-- 											<th>停用時間</th> -->
+<!-- 											<th>排序</th> -->
+<!-- 										</tr> -->
+<!-- 									</thead> -->
+<!-- 								</table> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 					<!-- 新增  -->
 					<div id="addMemberAGContent" style="display: none;">
 						<div class="widget">
@@ -1367,7 +1398,7 @@ label.required:after {
 					</button>
 					<button class="btn-sm btn-success editMember"
 						style="display: none;">
-						<span onclick="showEditMemberAD()">更新代碼</span> <i
+						<span onclick="showEditMemberAD()" id="UPAD"></span> <i
 							class="fa fa-times" onclick="closeEditMemberAD()"></i>
 					</button>
 					<select class="selectpicker" style="width: 127px;" id="menuAD"
@@ -2135,13 +2166,6 @@ label.required:after {
 	src="resources/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
 <script src="resources/js/demo/bootstrap-table-demo.js"></script>
 
-<!-- <script src="resources/js/setting/group.js"></script> -->
-<!-- <script src="resources/js/setting/agentreason.js"></script> -->
-<!-- <script src="resources/js/setting/commonlink.js"></script> -->
-<!-- <script src="resources/js/setting/activitymenu.js"></script> -->
-<!-- <script src="resources/js/setting/activitygroup.js"></script> -->
-<!-- <script src="resources/js/setting/activitydata.js"></script> -->
-<!-- <script src="resources/js/setting/person.js"></script> -->
 <script>
 
 function person_groupmenu(){
@@ -2162,9 +2186,13 @@ $.ajax({
 	success : function(data) {
 		
 		for(var i=0; i<data.group.length; i++){
-	        var menu = "<option value='"+data.group[i].dbid+"'>"+data.group[i].name+"</option>"
-          	 document.getElementById("updateDepartment").insertAdjacentHTML("BeforeEnd",menu);
-	        document.getElementById("inputDepartment").insertAdjacentHTML("BeforeEnd",menu);
+// 			var menu = "<option value='"+data.group[i].dbid+"'>"+data.group[i].name+"</option>"
+	        var menu = "<li id='Imgperson'"+data.group[i].dbid+"''  draggable='true' ondragstart='Drag(event)' value='"+data.group[i].dbid+"' style='padding:5px 15px; background:#ccc; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;''>"+data.group[i].name+"</li>"
+	        
+	        
+	        
+//           	 document.getElementById("updateDepartment").insertAdjacentHTML("BeforeEnd",menu);
+	        document.getElementById("Box22").insertAdjacentHTML("BeforeEnd",menu);
 	        	 }
 	}
 });
@@ -2456,6 +2484,9 @@ $.ajax({
 		
 	}
 	function showManage() {
+	
+		
+		
 		closeAllHrContent();
 		$("#person").show();
 		$("#manageContent").show();
@@ -2474,6 +2505,17 @@ $.ajax({
 	}
 
 	function showAddMember() {
+		document.getElementById('inputFirstName').value = "";
+		document.getElementById('inputLastName').value = "";
+		document.getElementById('inputName').value = "";
+		document.getElementById('inputEmail').value = "";
+		document.getElementById('inputPassword').value = "";
+		document.getElementById('inputEmployNumber').value = "";
+// 		document.getElementById('inputDepartment').value = "";
+		document.getElementById('inputAccount').value = "";
+		document.getElementById('inputPhoneNumber').value = "";
+		document.getElementById('inputMaxcount').value = "";
+		
 		closeAllHrContent();
 		$("#person").show();
 		$("#addMemberContent").show();
@@ -2494,21 +2536,26 @@ $.ajax({
 	}
 
 	function sendAddMember() {
-		//             if (!validateAddMember()) {
-		//                 return;
-		//             }
+		            if (!validateAddMember()) {
+		                return;
+		            }
 
 		closeAddMember();
+		$("#Box33");
+		
+	
 		var in_first_name = document.getElementById('inputFirstName').value;
 		var in_last_name = document.getElementById('inputLastName').value;
 		var in_user_name = document.getElementById('inputName').value;
 		var in_emailaddress = document.getElementById('inputEmail').value;
 		var in_password = document.getElementById('inputPassword').value;
 		var in_employee_id = document.getElementById('inputEmployNumber').value;
-		var in_group_dbid = document.getElementById('inputDepartment').value;
+// 		var in_group_dbid = document.getElementById('inputDepartment').value;
 		var in_account = document.getElementById('inputAccount').value;
 		var in_dn = document.getElementById('inputPhoneNumber').value;
 		var in_maxcount = document.getElementById('inputMaxcount').value;
+		
+		
 		$
 				.ajax({
 					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Insert_PersonInfo",
@@ -2530,7 +2577,7 @@ $.ajax({
 					dataType : 'json',
 
 					error : function(e) {
-						toastr.success("新增錯誤");
+						toastr.error("新增錯誤");
 					},
 					success : function(data) {
 						person();
@@ -2539,8 +2586,133 @@ $.ajax({
 				});
 		
 	}
+	 function validateAddMember() {
+         var account = $("#inputAccount").val();
+         var name = $("#inputName").val();
+         var passowrd = $("#inputPassword").val();
+         var email = $("#inputEmail").val();
+         var FN = $("#inputFirstName").val();
+         var LN = $("#inputLastName").val();
+         var EN = $("#inputEmployNumber").val();
+         var PN = $("#inputPhoneNumber").val();
+         var MX = $("#inputMaxcount").val();
+         var DT = $("#Box33").val();
+         
+         if (!account || account == '' ) {
+             toastr.error("請輸入帳號");
+             return false;
+         }
 
+         if (!name || name == '') {
+             toastr.error("請輸入姓名");
+             return false;
+         }
+         
+         if (name !='' && isValidNumber(name)) {
+             toastr.error("姓名請輸入中文或英文");
+             return false;
+         }
+         
+         if (!FN || FN == '') {
+             toastr.error("請輸入姓氏");
+             return false;
+         }
+         
+         if (FN !='' && isValidNumber(FN)) {
+             toastr.error("姓氏請輸入中文或英文");
+             return false;
+         }
+         if (!LN || LN == '') {
+             toastr.error("請輸入名字");
+             return false;
+         }
+         
+         if (LN !='' && isValidNumber(LN)) {
+             toastr.error("名字請輸入中文或英文");
+             return false;
+         }
+         if (!EN || EN == '') {
+             toastr.error("請輸入員工編號");
+             return false;
+         }
+         
+         if (EN !='' && !isValidNumber(EN)) {
+             toastr.error("員工編號請輸入數字");
+             return false;
+         }
+         if (!PN || PN == '') {
+             toastr.error("請輸入分機號碼");
+             return false;
+         }
+         
+         if (PN !='' && !isValidNumber(PN)) {
+             toastr.error("分機號碼請輸入數字");
+             return false;
+         }
+         if (!PN || MX == '') {
+             toastr.error("請輸入接通數");
+             return false;
+         }
+         
+         if (MX !='' && !isValidNumber(MX)) {
+             toastr.error("接通數請輸入數字");
+             return false;
+         }
+//          if (!DT || DT == '') {
+//              toastr.error("請選擇部門");
+//              return false;
+//          }
+
+         if (!passowrd || passowrd == '') {
+             toastr.error("請輸入密碼");
+             return false;
+         }
+         if (!email || email == '') {
+             toastr.error("請輸入Email");
+             return false;
+         }
+
+         if (email !='' && !isValidEmail(email)) {
+             toastr.error("請輸入正確的Email格式");
+             return false;
+         }
+
+         return true;
+     }
 	
+	 function isValidEmail(email) {
+			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(email);
+		}
+	 function isValidNumber(name) {
+			var re2 = /^[0-9]*$/;
+			return re2.test(name);
+		}
+	 function isValidNumber(FN) {
+			var re3 = /^[0-9]*$/;
+			return re3.test(FN);
+		}
+	 function isValidNumber(LN) {
+			var re4 = /^[0-9]*$/;
+			return re4.test(LN);
+		}
+	 function isValidNumber(EN) {
+			var re5 = /^[0-9]*$/;
+			return re5.test(EN);
+		}
+	 function isValidNumber(PN) {
+			var re5 = /^[0-9]*$/;
+			return re5.test(PN);
+		}
+	 function isValidNumber(MX) {
+			var re5 = /^[0-9]*$/;
+			return re5.test(MX);
+		}
+	
+	 
+	 
+	 
+	 
 
 	function closeAddMember() {
 		closeAllHrContent();
@@ -2561,9 +2733,9 @@ $.ajax({
 	}
 
 	function sendEditMember() {
-		//             if (!validateEditMember()) {
-		//                 return;
-		//             }
+		            if (!validatePersonUP()) {
+		                return;
+		            }
 		closeEditMember();
 		var up_first_name = $('#updateFirstName').val();
 		var up_last_name = $('#updateLastName').val();
@@ -2609,6 +2781,103 @@ $.ajax({
 		
 		
 	}
+	
+	
+	 function validatePersonUP() {
+         var account = $("#updateAccount").val();
+         var name = $("#updateName").val();
+         var passowrd = $("#updatePassword").val();
+         var email = $("#updateEmail").val();
+         var FN = $("#updateFirstName").val();
+         var LN = $("#updateLastName").val();
+         var EN = $("#updateEmployNumber").val();
+         var PN = $("#updatePhoneNumber").val();
+         var MX = $("#updateMaxcount").val();
+         var DT = $("#updateDepartment").val();
+         
+         if (!account || account == '' ) {
+             toastr.error("請輸入帳號");
+             return false;
+         }
+
+         if (!name || name == '') {
+             toastr.error("請輸入姓名");
+             return false;
+         }
+         
+         if (name !='' && isValidNumber(name)) {
+             toastr.error("姓名請輸入中文或英文");
+             return false;
+         }
+         
+         if (!FN || FN == '') {
+             toastr.error("請輸入姓氏");
+             return false;
+         }
+         
+         if (FN !='' && isValidNumber(FN)) {
+             toastr.error("姓氏請輸入中文或英文");
+             return false;
+         }
+         if (!LN || LN == '') {
+             toastr.error("請輸入名字");
+             return false;
+         }
+         
+         if (LN !='' && isValidNumber(LN)) {
+             toastr.error("名字請輸入中文或英文");
+             return false;
+         }
+         if (!EN || EN == '') {
+             toastr.error("請輸入員工編號");
+             return false;
+         }
+         
+         if (EN !='' && !isValidNumber(EN)) {
+             toastr.error("員工編號請輸入數字");
+             return false;
+         }
+         if (!PN || PN == '') {
+             toastr.error("請輸入分機號碼");
+             return false;
+         }
+         
+         if (PN !='' && !isValidNumber(PN)) {
+             toastr.error("分機號碼請輸入數字");
+             return false;
+         }
+         if (!PN || MX == '') {
+             toastr.error("請輸入接通數");
+             return false;
+         }
+         
+         if (MX !='' && !isValidNumber(MX)) {
+             toastr.error("接通數請輸入數字");
+             return false;
+         }
+         if (!DT || DT == '') {
+             toastr.error("請選擇部門");
+             return false;
+         }
+
+         if (!passowrd || passowrd == '') {
+             toastr.error("請輸入密碼");
+             return false;
+         }
+         if (!email || email == '') {
+             toastr.error("請輸入Email");
+             return false;
+         }
+
+         if (email !='' && !isValidEmail(email)) {
+             toastr.error("請輸入正確的Email格式");
+             return false;
+         }
+
+         return true;
+     }
+	
+	
 	
 	function closeAllHrContent() {
 
@@ -2858,11 +3127,7 @@ $.ajax({
 	}
 	
 
-	function isValidEmail(email) {
-		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-		return re.test(email);
-	}
+	
 
 	/* 表格全選控制 */
 	$("#manageCheck").on(
@@ -2975,18 +3240,24 @@ $.ajax({
 														'click',
 														'tr',
 														function() {
+															
 								document
 										.getElementById('deletedbid_GroupDelete').value = table
 										.row(this).data().dbid;
-								document
-										.getElementById('deletegroup').innerHTML = table
-										.row(this).data().name;
+// 								document
+// 										.getElementById('deletegroup').innerHTML = table
+// 										.row(this).data().name;
 								document
 										.getElementById('up_dbid').value = table
 										.row(this).data().dbid;
 								document
 										.getElementById('up_name').value = table
 										.row(this).data().name;
+								
+								document
+										.getElementById('UPgroup').innerHTML = table
+										.row(this).data().name;
+								
 
 							});
 					}
@@ -3054,6 +3325,8 @@ $.ajax({
 
 	//新增畫面
 	function showAddMembergroup() {
+		document.getElementById('in_name').value=""
+		
 		closeAllHrContent();
 		$("#groupContent").show();
 		$("#addMembergroupContent").show();
@@ -3065,6 +3338,9 @@ $.ajax({
 
 	//新增功能
 	function sendAddMembergroup() {
+		   if (!validateGroupN()) {
+               return;
+           }
 		closeAddMember();
 		var in_name = document.getElementById('in_name').value;
 		//	var in_state = document.getElementById('inputState').value;
@@ -3091,6 +3367,24 @@ $.ajax({
 		closeAllHrContent();
 		$("#groupContent").show();
 		$("#managegroupContent").show();
+	}
+
+	function validateGroupN() {
+        var IN = $("#in_name").val();
+       
+        if (!IN || IN == '' ) {
+            toastr.error("請輸入部門名稱");
+            return false;
+        }
+        if (IN !='' && isValidNumber(IN)) {
+            toastr.error("名稱請輸入中文或英文");
+            return false;
+        }
+		   return true;
+    }
+	function isValidNumber(IN) {
+		var re = /^[0-9]*$/;		
+		return re.test(IN);
 	}
 
 	function closeAddMembergroup() {
@@ -3126,6 +3420,9 @@ $.ajax({
 	}
 
 	function sendEditMembergroup() {
+		   if (!validateGroupU()) {
+               return;
+           }
 
 		closeEditMember();
 		var up_dbid = document.getElementById('up_dbid').value;
@@ -3155,6 +3452,24 @@ $.ajax({
 		$("#managegroupContent").show();
 	}
 
+	function validateGroupU() {
+        var IN = $("#up_name").val();
+       
+        if (!IN || IN == '' ) {
+            toastr.error("請輸入部門名稱");
+            return false;
+        }
+        if (IN !='' && isValidNumber(IN)) {
+            toastr.error("名稱請輸入中文或英文");
+            return false;
+        }
+		   return true;
+    }
+	function isValidNumber(IN) {
+		var re = /^[0-9]*$/;		
+		return re.test(IN);
+	}
+	
 	//解鎖對話視窗
 	function unlockAccountgroup() {
 		$("#unlockButtongroup").trigger("click");
@@ -3265,7 +3580,7 @@ $.ajax({
 							"plugins" : [ "themes", "json_data", "ui" ],
 
 						}).bind("loaded.jstree", function(event, data) {
-							 createRootNode.call(this);
+						
 							$(this).jstree("open_all")
 						});
 
@@ -3339,7 +3654,7 @@ $.ajax({
 						var oo1 = "<option value="+0+">#</option>";
 						var one = "<option  id='UPlist'></option>";
 						var two = "<option  id='INlist'></option>";
-						var color = "<option>blue</option><option>yellow</option><option>red</option>";
+						var color = "<option>black</option><option>blue</option><option>yellow</option><option>red</option>";
 						document.getElementById("insert_color")
 								.insertAdjacentHTML("BeforeEnd", color);
 						document.getElementById("update_color")
@@ -3412,6 +3727,9 @@ $.ajax({
 	//
 	//新增功能
 	function sendAddMembercomm() {
+		   if (!validateCmI()) {
+               return;
+           }
 		closeAddMember();
 
 		var a = 0;
@@ -3477,7 +3795,7 @@ $.ajax({
 						}
 					});
 		} else {
-			alert("不可超過第四層");
+			alert("不可超過第三層");
 		}
 
 
@@ -3485,9 +3803,20 @@ $.ajax({
 		$("#CommonlinkContent").show();
 		$("#0Commonlink").show();
 	}
-	//
-	//
-	//
+
+	function validateCmI() {
+        var nodeNAME = $("#nodeNAME").val();
+     
+        if (!nodeNAME || nodeNAME == '' ) {
+            toastr.error("請輸入名稱");
+            return false;
+        }
+       
+      
+        return true;
+    }
+	
+	
 	//更新頁面
 	function showEditMembercomm() {
 		closeAllHrContent();
@@ -3512,6 +3841,9 @@ $.ajax({
 	//
 	//
 	function sendEditMembercomm() {
+		   if (!validateCmU()) {
+               return;
+           }
 
 		closeEditMember();
 		var a = 0;
@@ -3551,11 +3883,24 @@ $.ajax({
 		} else {
 			alert("有子節點無法移動");
 		}
+		
 		closeAllHrContent();
 		$("#CommonlinkContent").show();
 		$("#0Commonlink").show();
 	}
 
+	
+	function validateCmU() {
+        var nodeNAME = $("#nodeNAMEu").val();
+      
+        if (!nodeNAME || nodeNAME == '' ) {
+            toastr.error("請輸入名稱");
+            return false;
+        }
+      
+        return true;
+    }
+	
 	//停用對話視窗
 	function confirmBancomm() {
 		$("#confirmBanButtoncomm").trigger("click");
@@ -3588,7 +3933,6 @@ $.ajax({
 					}
 				});
 
-		toastr.success(message);
 		closeAllHrContent();
 		$("#CommonlinkContent").show();
 		$("#0Commonlink").show();
@@ -3672,19 +4016,19 @@ $.ajax({
 //													        	 alert(JSON.stringify(full));
 												             return '<input type="checkbox" name="agentreason0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
 												         }}, 
-												         {
-													         'targets': 8,
-													         'searchable': false,
-													         'orderable': false,
-													        'className': "  ",
-													         'render': function (data, type, full, meta){
-													        	 if(full.flag!=null&&full.flag!=""){
-													        		 return '<label class="label label-danger">'+full.flag+'</label>';
-													        	 }else{
-													        		 return '<label>'+full.flag+'</label>';
-													        	 }
-													         }
-												         }
+// 												         {
+// 													         'targets': 8,
+// 													         'searchable': false,
+// 													         'orderable': false,
+// 													        'className': "  ",
+// 													         'render': function (data, type, full, meta){
+// 													        	 if(full.flag!=null&&full.flag!=""){
+// 													        		 return '<label class="label label-danger">'+full.flag+'</label>';
+// 													        	 }else{
+// 													        		 return '<label>'+full.flag+'</label>';
+// 													        	 }
+// 													         }
+// 												         }
 													],
 											lengthChange : false
 										});
@@ -3721,6 +4065,10 @@ $.ajax({
 				document
 						.getElementById('statusname_tw').value = table
 						.row(this).data().statusname_tw;
+				document
+					.getElementById('UPagentreason').innerHTML = table
+					.row(this).data().statusname;
+				
 			
 			});
 					}
@@ -3741,113 +4089,113 @@ $.ajax({
 							"keyup");
 				});
 
-		$
-				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Select_agentreason",
-					data : {
-						flag : 1
-					},
-					type : "POST",
-					dataType : 'json',
+// 		$
+// 				.ajax({
+// 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Select_agentreason",
+// 					data : {
+// 						flag : 1
+// 					},
+// 					type : "POST",
+// 					dataType : 'json',
 
-					error : function(e) {
-						toastr.error("請重新整理");
-					},
-					success : function(data) {
-						console.log("停用值機", data);
+// 					error : function(e) {
+// 						toastr.error("請重新整理");
+// 					},
+// 					success : function(data) {
+// 						console.log("停用值機", data);
 
-						//	        	alert(JSON.stringify(data.person));
-						$('#banAgentreasonTable')
-								.DataTable(
-										{
-											"autoWidth": false,
-											destroy : true,
-											aaData : data.agentreason,
-											aoColumns : [
-													{
-														className : "dt-body-center"
-													},
-													{
-														"data" : "statusname"
-													},
-													{
-														"data" : "statusname_tw"
-													},
-													{
-														"data" : "statusname_en"
-													},
-													{
-														"data" : "statusname_cn"
-													},
-													{
-														"data" : "alarmcolor"
-													},
-													{
-														"data" : "alarmduration"
-													}, {
-														"data" : "description"
-													} ],'columnDefs': [{
-												         'targets': 0,
-												         'searchable': false,
-												         'orderable': false,
-												         'className': 'dt-body-center',
-												         'render': function (data, type, full, meta){
-//													        	 alert(JSON.stringify(full));
-												             return '<input type="checkbox" name="agentreason1" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
-												         }
-												      }],
-											lengthChange : false
-										});
-						agentreason2();
+// 						//	        	alert(JSON.stringify(data.person));
+// 						$('#banAgentreasonTable')
+// 								.DataTable(
+// 										{
+// 											"autoWidth": false,
+// 											destroy : true,
+// 											aaData : data.agentreason,
+// 											aoColumns : [
+// 													{
+// 														className : "dt-body-center"
+// 													},
+// 													{
+// 														"data" : "statusname"
+// 													},
+// 													{
+// 														"data" : "statusname_tw"
+// 													},
+// 													{
+// 														"data" : "statusname_en"
+// 													},
+// 													{
+// 														"data" : "statusname_cn"
+// 													},
+// 													{
+// 														"data" : "alarmcolor"
+// 													},
+// 													{
+// 														"data" : "alarmduration"
+// 													}, {
+// 														"data" : "description"
+// 													} ],'columnDefs': [{
+// 												         'targets': 0,
+// 												         'searchable': false,
+// 												         'orderable': false,
+// 												         'className': 'dt-body-center',
+// 												         'render': function (data, type, full, meta){
+// //													        	 alert(JSON.stringify(full));
+// 												             return '<input type="checkbox" name="agentreason1" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+// 												         }
+// 												      }],
+// 											lengthChange : false
+// 										});
+// 						agentreason2();
 						
-						var table = $('#banAgentreasonTable').DataTable();
-						$('#banAgentreasonTable tbody')
-								.on(
-										'click',
-										'tr',
-										function() {
-				document
-						.getElementById('Update_id').value = table
-						.row(this).data().dbid;
-				document
-						.getElementById('statusname').value = table
-						.row(this).data().statusname;
+// 						var table = $('#banAgentreasonTable').DataTable();
+// 						$('#banAgentreasonTable tbody')
+// 								.on(
+// 										'click',
+// 										'tr',
+// 										function() {
+// 				document
+// 						.getElementById('Update_id').value = table
+// 						.row(this).data().dbid;
+// 				document
+// 						.getElementById('statusname').value = table
+// 						.row(this).data().statusname;
 				
-				document
-						.getElementById('alarmcolor').value = table
-						.row(this).data().alarmcolor;
-				document
-						.getElementById('alarmduration').value = table
-						.row(this).data().alarmduration;
-				document
-						.getElementById('description').value = table
-						.row(this).data().description;
-				document
-						.getElementById('statusname_cn').value = table
-						.row(this).data().statusname_cn;
-				document
-						.getElementById('statusname_en').value = table
-						.row(this).data().statusname_en;
-				document
-						.getElementById('statusname_tw').value = table
-						.row(this).data().statusname_tw;
+// 				document
+// 						.getElementById('alarmcolor').value = table
+// 						.row(this).data().alarmcolor;
+// 				document
+// 						.getElementById('alarmduration').value = table
+// 						.row(this).data().alarmduration;
+// 				document
+// 						.getElementById('description').value = table
+// 						.row(this).data().description;
+// 				document
+// 						.getElementById('statusname_cn').value = table
+// 						.row(this).data().statusname_cn;
+// 				document
+// 						.getElementById('statusname_en').value = table
+// 						.row(this).data().statusname_en;
+// 				document
+// 						.getElementById('statusname_tw').value = table
+// 						.row(this).data().statusname_tw;
 			
-			});
+// 			});
 						
-					}
-				});
+// 					}
+// 				});
 
-		$("#banAgentreasonTable").css("width", "100%");
-		$("#banAgentreasonTable_filter").prop("style", "float:right;");
-		$("#banAgentreasonTable_wrapper > div:nth-child(1)").hide();
+// 		$("#banAgentreasonTable").css("width", "100%");
+// 		$("#banAgentreasonTable_filter").prop("style", "float:right;");
+// 		$("#banAgentreasonTable_wrapper > div:nth-child(1)").hide();
 
-		$("#banAgentreasonTableSearch").keyup(function() {
+// 		$("#banAgentreasonTableSearch").keyup(function() {
 
-			var searchText = $("#banAgentreasonTableSearch").val();
+// 			var searchText = $("#banAgentreasonTableSearch").val();
 
-			$("input[aria-controls='banAgentreasonTable']").val(searchText);
-			$("input[aria-controls='banAgentreasonTable']").trigger("keyup");
-		});
+// 			$("input[aria-controls='banAgentreasonTable']").val(searchText);
+// 			$("input[aria-controls='banAgentreasonTable']").trigger("keyup");
+// 		});
 	}
 
 	function agentreason2() {
@@ -3899,19 +4247,26 @@ $.ajax({
 
 	}
 	//顯示 停用表格
-	function showBan_Agentreason() {
-		closeAllHrContent();
+// 	function showBan_Agentreason() {
+// 		closeAllHrContent();
 
-		$("#AgentreasonContent").show();
-		$("#banAgentreasonContent").show();
+// 		$("#AgentreasonContent").show();
+// 		$("#banAgentreasonContent").show();
 
-		$("button.ban").removeClass("btn-success");
-		$("button.ban").addClass("btn-primary");
+// 		$("button.ban").removeClass("btn-success");
+// 		$("button.ban").addClass("btn-primary");
 
-	}
+// 	}
 	//
 	//新增畫面
 	function showAddMemberAGR() {
+		document.getElementById('Insert_statusname_tw').value="";
+		document.getElementById('Insert_statusname_en').value="";
+		document.getElementById('Insert_statusname_cn').value="";
+		document.getElementById('Insert_statusname').value="";
+		document.getElementById('Insert_description').value="";
+		document.getElementById('Insert_alarmduration').value="";
+		
 		closeAllHrContent();
 		$("#AgentreasonContent").show();
 		$("#addMemberAGRContent").show();
@@ -3936,6 +4291,10 @@ $.ajax({
 
 	//新增功能
 	function sendAddMemberAgentreason() {
+		   if (!validateAR()) {
+               return;
+           }
+		
 		closeAddMember();
 		var alarmcolor = document.getElementById('Insert_alarmcolor').value;
 		var alarmduration = document.getElementById('Insert_alarmduration').value;
@@ -3944,7 +4303,7 @@ $.ajax({
 		var statusname_cn = document.getElementById('Insert_statusname_cn').value;
 		var statusname_en = document.getElementById('Insert_statusname_en').value;
 		var statusname_tw = document.getElementById('Insert_statusname_tw').value;
-		var createuserid = document.getElementById('Insert_createuserid').value;
+// 		var createuserid = document.getElementById('Insert_createuserid').value;
 
 		$
 				.ajax({
@@ -3957,8 +4316,8 @@ $.ajax({
 						statusname : statusname,
 						statusname_cn : statusname_cn,
 						statusname_en : statusname_en,
-						statusname_tw : statusname_tw,
-						createuserid : createuserid
+						statusname_tw : statusname_tw
+// 						createuserid : createuserid
 					},
 					type : "POST",
 					dataType : 'json',
@@ -3977,6 +4336,39 @@ $.ajax({
 		$("#AgentreasonContent").show();
 		$("#manageAgentreasonContent").show();
 	}
+	
+	function validateAR() {
+        var Iac = $("#Insert_alarmcolor").val();
+        var Iaa = $("#Insert_alarmduration").val();
+        var Id = $("#Insert_description").val();
+        var Is = $("#Insert_statusname").val();
+        var Iscn = $("#Insert_statusname_cn").val();
+        var Isen = $("#Insert_statusname_en").val();
+        var Itw = $("#Insert_statusname_tw").val();
+
+        
+        if (!Is || Is == '' ) {
+            toastr.error("請輸入名稱");
+            return false;
+        }
+
+        if (!Iaa || Iaa == '') {
+            toastr.error("請輸入告警時間");
+            return false;
+        }
+        if (Iaa !='' && !isValidNumber(Iaa)) {
+            toastr.error("告警時間請輸入數字");
+            return false;
+        }
+       
+        return true;
+    }
+	
+	 function isValidNumber(Iaa) {
+			var re2 = /^[0-9]*$/;
+			return re2.test(Iaa);
+		}
+	
 
 	//更新頁面
 	function showEditMemberAgentreason() {
@@ -4000,11 +4392,14 @@ $.ajax({
 	}
 
 	function sendEditMemberAgentreason() {
+		   if (!validateARU()) {
+               return;
+           }
+			
 
 		closeEditMember();
 // 		var flag = document.getElementById('Update_flag').value;
 		var dbid = document.getElementById('Update_id').value;
-		;
 		var alarmcolor = document.getElementById('alarmcolor').value;
 		var alarmduration = document.getElementById('alarmduration').value;
 		var description = document.getElementById('description').value;
@@ -4045,6 +4440,23 @@ $.ajax({
 		$("#AgentreasonContent").show();
 		$("#manageAgentreasonContent").show();
 	}
+	
+	function validateARU() {
+       
+        var Iaa = $("#alarmduration").val();
+       
+
+        if (!Iaa || Iaa == '') {
+            toastr.error("請輸入告警時間");
+            return false;
+        }
+        if (Iaa !='' && !isValidNumber(Iaa)) {
+            toastr.error("告警時間請輸入數字");
+            return false;
+        }
+       
+        return true;
+    }
 
 	//解鎖對話視窗
 	function unlockAccountAgentreason() {
@@ -4249,11 +4661,9 @@ $.ajax({
 
 	function AM() {
 		
-		$("#AM1All").prop("checked", false);
 		$("#AM0All").prop("checked", false);
 		
 		$("#manageTableAM tbody tr").empty();
-		$("#banTableAM tboby tr").empty();
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Flag_ActivityMenu",
@@ -4289,9 +4699,9 @@ $.ajax({
 													},{
 														"data" : "createdatetime"
 													},
-													{
-														"data" : "sort"
-													},
+// 													{
+// 														"data" : "sort"
+// 													},
 													
 
 											],'columnDefs': [{
@@ -4303,7 +4713,19 @@ $.ajax({
 //											        	 alert(JSON.stringify(full));
 										             return '<input type="checkbox" name="AM0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
 										         }
-										      }],
+										      },
+										      {
+											         'targets': 3,
+											         'searchable': false,
+											         'orderable': false,
+											        'className': "  ",
+											         'render': function (data, type, full, meta){
+											        	
+											        		 return '<label ondblclick="AM_up()" class="glyphicon glyphicon-arrow-up"></label><label ondblclick="AM_dow()" class="glyphicon glyphicon-arrow-down"></label>';
+											        
+											         },
+											
+											      }],
 											lengthChange : false
 										});
 						AM2();
@@ -4322,6 +4744,17 @@ $.ajax({
 											document
 											.getElementById('up_dbidam').value = table
 											.row(this).data().dbid;
+											
+											document
+											.getElementById('AMupdbid').value = table
+											.row(this).data().dbid;
+											document
+											.getElementById('AMdowdbid').value = table
+											.row(this).data().dbid;
+											document
+											.getElementById('UPAM').innerHTML = table
+											.row(this).data().menuname;
+											
 
 					});
 					}
@@ -4338,72 +4771,7 @@ $.ajax({
 			$("input[aria-controls='manageTableAM']").trigger("keyup");
 		});
 
-		$
-				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Flag_ActivityMenu",
-					data : {
-						deleteflag : 1
-					},
-					type : "POST",
-					dataType : 'json',
 
-					error : function(e) {
-						toastr.error("請重新整理");
-					},
-					success : function(data) {
-						console.log("停用清單", data);
-
-						//        	alert(JSON.stringify(data.person));
-						$('#banTableAM')
-								.DataTable(
-										{
-											  "ordering": false,
-											"autoWidth": false,
-											destroy : true,
-											aaData : data.activitymenu,
-											aoColumns : [
-													{
-														className : "dt-body-center"
-													},
-// 													{
-// 														"data" : "dbid"
-// 													},
-													{
-														"data" : "menuname"
-													},
-													{
-														"data" : "deletedatetime"
-													},
-													{
-														"data" : "sort"
-													},
-													 ],'columnDefs': [{
-												         'targets': 0,
-												         'searchable': false,
-												         'orderable': false,
-												         'className': 'dt-body-center',
-												         'render': function (data, type, full, meta){
-//													        	 alert(JSON.stringify(full));
-												             return '<input type="checkbox" name="AM1" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
-												         }
-												      }],
-											lengthChange : false
-										});
-						AM2();
-					}
-				});
-
-		$("#banTableAM").css("width", "100%");
-		$("#banTableAM_filter").prop("style", "float:right;");
-		$("#banTableAM_wrapper > div:nth-child(1)").hide();
-
-		$("#banTableAMSearch").keyup(function() {
-
-			var searchText = $("#banTableAMSearch").val();
-
-			$("input[aria-controls='banTableAM']").val(searchText);
-			$("input[aria-controls='banTableAM']").trigger("keyup");
-		});
 	}
 
 	function AM2() {
@@ -4453,16 +4821,16 @@ $.ajax({
 
 	}
 	//顯示 停用表格
-	function showBan_AM() {
-		closeAllHrContent();
+// 	function showBan_AM() {
+// 		closeAllHrContent();
 
-		$("#AMContent").show();
-		$("#banAMContent").show();
+// 		$("#AMContent").show();
+// 		$("#banAMContent").show();
 
-		$("button.ban").removeClass("btn-success");
-		$("button.ban").addClass("btn-primary");
+// 		$("button.ban").removeClass("btn-success");
+// 		$("button.ban").addClass("btn-primary");
 
-	}
+// 	}
 	//
 	//新增畫面
 	function showAddMemberAM() {
@@ -4584,6 +4952,70 @@ $.ajax({
 		$("#am_ok2").trigger("click");
 
 	}
+	
+	
+	function AM_up() {
+// 		var deleteflag = document.getElementById('Delete_flagAM').value;
+// 		var menuname = document.getElementById('Delete_idAM').value;
+
+			  
+			  var AMupdbid = document.getElementById('AMupdbid').value;
+		
+		$
+				.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AMenu_Sort2",
+					data : {
+						dbid:AMupdbid
+					},
+					type : "POST",
+					dataType : 'json',
+					error : function(e) {
+						toastr.error("至頂");
+					},
+					success : function(data) {
+						AM();
+						toastr.success("上升排序成功");
+					}
+				});
+			
+			  
+		closeAllHrContent();
+		$("#AMContent").show();
+		$("#manageAMContent").show();
+	}
+	function AM_dow() {
+// 		var deleteflag = document.getElementById('Delete_flagAM').value;
+// 		var menuname = document.getElementById('Delete_idAM').value;
+
+			  
+			  var AMdowdbid = document.getElementById('AMdowdbid').value;
+			 
+		$
+				.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AMenu_Sort",
+					data : {
+						dbid:AMdowdbid
+					},
+					type : "POST",
+					dataType : 'json',
+					error : function(e) {
+						toastr.error("最底層");
+					},
+					success : function(data) {
+						AM();
+						toastr.success("下降排序成功");
+					}
+				});
+			
+			  
+		closeAllHrContent();
+		$("#AMContent").show();
+		$("#manageAMContent").show();
+	}
+	
+	
+	
+	
 
 	function AMLuck(message) {
 // 		var deleteflag = document.getElementById('Delete_flagAM').value;
@@ -4759,6 +5191,10 @@ var selected=[];
 											document 
 											.getElementById('up_dbidAG').value = table
 											.row(this).data().dbid;
+											
+											document
+											.getElementById('UPAG').innerHTML = table
+											.row(this).data().groupname;
 										});
 						
 					}
@@ -4775,96 +5211,15 @@ var selected=[];
 			$("input[aria-controls='manageTableAG']").trigger("keyup");
 		});
 
-		$
-				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityMenu",
-					data : {
-						dbid : dbid
-					},
-					type : "POST",
-					dataType : 'json',
-
-					error : function(e) {
-						toastr.error("請重新整理");
-					},
-					success : function(data) {
-						console.log("停用服務代碼群組", data);
-
-						//        	alert(JSON.stringify(data.person));
-						$('#banTableAG')
-								.DataTable(
-										{
-											"ordering": false,
-											"autoWidth": false,
-											destroy : true,
-											aaData : data.flag1_group,
-											aoColumns : [
-													{
-														className : "dt-body-center"
-													},
-// 													{
-// 														"data" : "dbid"
-// 													},
-													{
-														"data" : "groupname"
-													},
-													{
-														"data" : "deletedatetime"
-													},{
-														"data" : "sort"
-													}, 
-													],'columnDefs': [{
-												         'targets': 0,
-												         'searchable': false,
-												         'orderable': false,
-												         'className': 'dt-body-center',
-												         'render': function (data, type, full, meta){
-// 												        	 alert(JSON.stringify(full));
-												             return '<input type="checkbox" name="AG1" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
-												         }
-												      }],
-											lengthChange : false
-										});
-						AG2();
-						var table = $('#banTableAG').DataTable();
-
-						$('#banTableAG tbody')
-								.on(
-										'click',
-										'tr',
-										function() {
-											console.log("banTableAG", table.row(
-													this).data());
-											document 
-													.getElementById('up_groupnameAG').value = table
-													.row(this).data().groupname;
-											document 
-											.getElementById('up_dbidAG').value = table
-											.row(this).data().dbid;
-											
-										});
-					}
-				});
-
-		$("#banTableAG").css("width", "100%");
-		$("#banTableAG_filter").prop("style", "float:right;");
-		$("#banTableAG_wrapper > div:nth-child(1)").hide();
-
-		$("#banTableAGSearch").keyup(function() {
-
-			var searchText = $("#banTableAGSearch").val();
-
-			$("input[aria-controls='banTableAG']").val(searchText);
-			$("input[aria-controls='banTableAG']").trigger("keyup");
-		});
+	
 	}
 
 	function AG() {
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityMenu",
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Flag_ActivityMenu",
 					data : {
-						dbid : 0
+						deleteflag : 0
 					},
 
 					type : "POST",
@@ -4940,16 +5295,16 @@ var selected=[];
 
 	}
 	//顯示 停用表格
-	function showBan_AG() {
-		closeAllHrContent();
+// 	function showBan_AG() {
+// 		closeAllHrContent();
 
-		$("#AGContent").show();
-		$("#banAGContent").show();
+// 		$("#AGContent").show();
+// 		$("#banAGContent").show();
 
-		$("button.ban").removeClass("btn-success");
-		$("button.ban").addClass("btn-primary");
+// 		$("button.ban").removeClass("btn-success");
+// 		$("button.ban").addClass("btn-primary");
 
-	}
+// 	}
 	//
 	//新增畫面
 	function showAddMemberAG() {
@@ -5148,7 +5503,7 @@ if(ActivityGroup_DBID_list.length){
 		$("#banAGContent").show();
 	}
 </script>
-
+<!-- ===============================================服務代碼===============================================================  -->
 <script>
 	function showActivityData() {
 
@@ -5256,6 +5611,9 @@ if(ActivityGroup_DBID_list.length){
 											document
 											.getElementById('up_dbidAD').value = table
 											.row(this).data().dbid;
+											document
+											.getElementById('UPAD').innerHTML = table
+											.row(this).data().codename;
 										});
 					}
 				});
@@ -5309,9 +5667,11 @@ if(ActivityGroup_DBID_list.length){
 														"data" : "titlegroup"
 													}, {
 														"data" : "titleflag"
-													}, 	{
+													}
+													,{
 														"data" : "deletedatetime"
-													},{
+													}
+													,{
 														"data" : "sort"
 													} ],'columnDefs': [{
 												         'targets': 0,
