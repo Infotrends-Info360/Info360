@@ -402,13 +402,17 @@
 					return mapping[a].sort - mapping[b].sort
 				}).forEach(function(key) {
 					mappingSorted[mapping[key].sort] = mapping[key];
+					mappingSorted[mapping[key].sort].key = key;
 				});
-
+				
+				console.log("mappingSorted : ");
+				console.log(mappingSorted);
+				
 				for ( var count in mappingSorted) {
 					var $a = '<a href="#" class="list-group-item">';
 					$a += '<h4>' + mappingSorted[count].chiname + '</h4>';
 					$a += '<h4 id="customer'
-							+ mappingSorted[count].engname.toLowerCase()
+							+ mappingSorted[count].key.toLowerCase() // Billy 改為由key值作為id選擇器參照
 							+ '"></h4>';
 					$a += '</a>';
 
