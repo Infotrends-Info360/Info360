@@ -10,25 +10,30 @@
 
 
 <title>「儀表板」頁面</title>
-        <script src="resources/js/jquery.min.js?v=2.1.4"></script>
-        <link href="resources/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-        <link href="resources/css/font-awesome.css?v=4.4.0" rel="stylesheet">
-        <link href="resources/css/animate.css" rel="stylesheet">
-        <link href="resources/layui/css/layui.css" rel="stylesheet">
-        <link href="resources/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-        <link href="resources/css/style.css?v=4.1.0" rel="stylesheet">
-		
-		 <link rel="stylesheet" href="resources/jstree/style.min.css" />
-        <script type="text/javascript" src="resources/jstree/jstree.min.js"></script>
-		
-        <link href="resources/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+<script src="resources/js/jquery.min.js?v=2.1.4"></script>
+<link href="resources/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+<link href="resources/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+<link href="resources/css/animate.css" rel="stylesheet">
+<link href="resources/layui/css/layui.css" rel="stylesheet">
+<link href="resources/css/plugins/datapicker/datepicker3.css"
+	rel="stylesheet">
+<link href="resources/css/style.css?v=4.1.0" rel="stylesheet">
+
+<link rel="stylesheet" href="resources/jstree/style.min.css" />
+<script type="text/javascript" src="resources/jstree/jstree.min.js"></script>
+
+<link href="resources/css/plugins/toastr/toastr.min.css"
+	rel="stylesheet">
 
 </head>
 <style>
-.dataTables_filter { display: none; }
+.dataTables_filter {
+	display: none;
+}
 </style>
 <body class="gray-bg">
 	<div class="widget">
+		<!-- 左側快速選取區Start -->
 		<div class="col-lg-2 col-sm-3">
 			<div class="panel panel-success" style="height: 780px;">
 				<div class="panel-heading">
@@ -37,10 +42,10 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-				<input id="today" type="hidden"></input>
-				<input id="week" type="hidden"></input>
-				
-				
+					<input id="today" type="hidden"></input> <input id="week"
+						type="hidden"></input>
+
+
 					<table class="table table-bordered table-hover">
 						<thead>
 							<tr class="bg-primary">
@@ -49,61 +54,50 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td type="button" onclick="today()" >今天</td>
+								<td type="button" onclick="quickSearchByTime(0)">今天</td>
 							</tr>
 							<tr>
-								<td type="button" onclick="week()">本週</td>
+								<td type="button" onclick="quickSearchByTime(7)">本週</td>
 							</tr>
 							<tr>
-								<td>一個月</td>
+								<td type="button" onclick="quickSearchByTime(30)">一個月</td>
 							</tr>
 							<tr>
-								<td>三個月</td>
+								<td type="button" onclick="quickSearchByTime(90)">三個月</td>
 							</tr>
 							<tr>
-								<td>半年</td>
+								<td type="button" onclick="quickSearchByTime(180)">半年</td>
 							</tr>
 						</tbody>
 					</table>
-					<!--
-<div class="ibox">
-<div class="ibox-body">
-<ul class="list-group" style="line-height:30px;">
-<li class="list-group-item"><b>快速篩選</b></li>
-<li class="list-group-item">今天</li>
-<li class="list-group-item">本週</li>
-<li class="list-group-item">一個月</li>
-<li class="list-group-item">三個月</li>
-<li class="list-group-item">半年</li>
-</ul>
-</div>
-</div>
--->
 				</div>
 			</div>
 		</div>
+		<!-- 左側快速選取區End -->
+
+		<!-- 右側搜尋面板Start -->
 		<div class="col-lg-10 col-sm-9">
 			<div class="panel panel-success" style="height: 780px;">
 				<div class="panel-body">
+					<!-- 搜尋條件區 Start -->
 					<div class="row ibox">
 						<div class="col-lg-6 col-md-6">
 							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">日期</span>
+								<span class="input-group-addon">日期</span>
 								<div class="input-daterange input-group" id="datepicker">
 									<input type="text" class="input-sm form-control" name="start"
-										value="2017-01-01" id="startdate"> <span class="input-group-addon">到</span>
-									<input type="text" class="input-sm form-control" name="end"
-										value="2017-01-22" id="enddate">
+										value=""> <span class="input-group-addon">到</span> <input
+										type="text" class="input-sm form-control" name="end" value="">
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-3 col-md-3">
 							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">處理人</span> <input
-									type="text" class="form-control" placeholder="請輸入處理人" id="agentid"
-									aria-describedby="basic-addon1">
+								<span class="input-group-addon">處理人</span> <input type="text"
+									class="form-control" placeholder="請輸入處理人" id="inputAgentId">
 							</div>
 						</div>
+						<!-- 
 						<div class="col-lg-3 col-md-3">
 							<div class="input-group">
 								<span class="input-group-addon" id="basic-addon1">客戶ID</span> <input
@@ -111,8 +105,16 @@
 									aria-describedby="basic-addon1">
 							</div>
 						</div>
+						 -->
+						<div class="col-lg-3 col-md-3">
+							<button class="btn-sm btn-success" onclick="search()"
+								id="searchButton">搜尋</button>
+							<button class="btn-sm btn-danger">取消</button>
+						</div>
 					</div>
+					<!-- 
 					<div class="row ibox">
+						
 						<div class="col-lg-9 col-md-9">
 							<div class="input-group">
 								<span class="input-group-addon" id="basic-addon1">主旨</span> <input
@@ -120,334 +122,186 @@
 									aria-describedby="basic-addon1">
 							</div>
 						</div>
+						 
 						<div class="col-lg-3 col-md-3">
-							<button class="btn-sm btn-success" onclick="search()">搜尋</button>
+							<button class="btn-sm btn-success">搜尋</button>
 							<button class="btn-sm btn-danger">取消</button>
 						</div>
+						
 					</div>
+					-->
+					<!-- 搜尋條件區 End -->
 
 					<div class="row ibox">
-						<div class="col-lg-12 col-md-12" style="overflow: auto; width: 100%; height: 640px; border: 1px silver solid">
-							<table class="table table-striped table-bordered table-hover "
-								id="queryTable123"  >
+						<div class="col-lg-12 col-md-12">
+							<table class="table table-striped table-bordered table-hover"
+								id="queryTable">
 								<thead>
-									 <tr>
-                                         <th class="no-sort"><input type="checkbox" id="manageCheck" ischecked=false></th>
-                                         <th>聯繫ID</th>
-                                         <th>活動代碼</th>
-                                         <th>標題</th>
-                                         <th>開始時間</th>
-                                         <th>結構化類型</th>
-                                         <th>結束時間</th>
-                                         <th>結構化文本</th>
-                                         <th>實體類型ID</th>
-                                         <th>描述</th>
-                                         <th>狀態</th>
-                                         <th>形態ID</th>
-                                         <th>互動ID</th>
-                                         <th>停止的描述</th>
-                                         <th>評論</th>
-                                    </tr>
+									<tr>
+										<th>開始時間</th>
+										<th>結束時間</th>
+										<th>來源</th>
+										<th>處理人</th>
+										<th>服務代碼</th>
+										<th>備註</th>
+									</tr>
 								</thead>
+								<tbody></tbody>
 							</table>
-							<div id="form1">
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- 右側搜尋面板End -->
 	</div>
 </body>
 
+<!-- 全局js -->
 
- <!-- 全局js -->
-   
-    <script src="resources/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="resources/js/bootstrap.min.js?v=3.3.6"></script>
 
-    <!-- Data Tables -->
-    <script src="resources/js/plugins/dataTables/jquery.dataTables.js"></script>
-    <script src="resources/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+<!-- Data Tables -->
+<script src="resources/js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="resources/js/plugins/dataTables/dataTables.bootstrap.js"></script>
 
-    <!-- DataPicker -->
-    <script src="resources/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+<!-- DataPicker -->
+<script src="resources/js/plugins/datapicker/bootstrap-datepicker.js"></script>
 
-    <!-- toastStr -->
-    <script src="resources/js/plugins/toastr/toastr.min.js"></script>
-
-    <!-- layui -->
-    <script src="resources/layui/layui.js"></script>
-<script language="javascript">
-var Today=new Date();
-document.getElementById("today").value=(Today.getFullYear()+"-"+(Today.getMonth()+1)+"-"+Today.getDate());
-
-
-document.getElementById("week").value=(Today.getFullYear()+"-"+(Today.getMonth()+1)+"-"+Today.getDate()-7); 
-</script>
+<!-- toastStr -->
+<script src="resources/js/plugins/toastr/toastr.min.js"></script>
 
 <script type="text/javascript">
-$("#queryTable123 tbody tr ").empty();
-function search(){
-	
-// 	var ss = $('#startdate').val();
-// 	var ee = $('#enddate').val();
-// 	var aa = $('#agentid').val();
-// 	var pp = $('#page').val();
+	var agentId = parent.UserID_g;
 
-// 	$.ajax({                              
-// 	    url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/QueryAll_Interaction",
-// 	       data:{
-// 	      	 startdate:ss,
-// 	      	 enddate:ee,
-// 	      	 agentid:aa
-// 	      	 },
-	      	 
-// 	       type : "POST",                                                                    
-// 	       dataType:'json', 
-// 	       error:function(e){                                                                 
-// 	    	alert("請重新整理");
-	    	
-// 	       },
-// 	       success:function(all){                                                           
-// 	      	 console.log("ALL",all)
-// 	           var Totalcount="<h4>總共筆數:"+all.Interaction+"筆     共"+Math.ceil(all.Interaction/10)+"頁</h4><br>";
-// 	             	document.getElementById("form1").insertAdjacentHTML("BeforeEnd",Totalcount);
-	            	
-// 	          var left="<button type='button' class='btn btn-white' id='Pageleft'"+
-// 	      	"onclick='Pageleft()'>"+"<i class='fa fa-chevron-left'></i></button>"
-// 	      	document.getElementById("form1").insertAdjacentHTML("BeforeEnd",left); 
-	      	        			
-// 	      	for(var i=1; i<=Math.ceil(all.Interaction/10); i++){
-	      		
-// 	      		    var str= "<button id='bu"+i+"' class='btn btn-white' onclick='page("+i+")' value='"+i+"'>"+i+"</button>"; 
-// 	      		    document.getElementById("form1").insertAdjacentHTML("BeforeEnd",str); 
-// 	      	}
-	      	
-// 	      		var right="<button type='button' class='btn btn-white' id='Pageright'"+
-// 				"onclick='Pageright()'>"+"<i class='fa fa-chevron-right'></i></button>"
-// 				document.getElementById("form1").insertAdjacentHTML("BeforeEnd",right);
-// 	       },
-// 	   }); 
-	
-$.ajax({                              
-          url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_Interaction",
-	        data:{
-	        	 startdate:ss,
-		    	 enddate:ee,
-		    	 agentid:aa,
-		    	 page:pp
-	        	 },
-	         type : "POST",                                                                    
-	         dataType:'json',
-	         
-	         error:function(e){                                                                 
-	         alert("請重新整理");
-	         
-	         },
-	         success:function(data){ 
-	      		console.log(data);
-//	        	alert(JSON.stringify(data.person));
-	        	$('#queryTable123').DataTable({
-	        		autoWidth: false,
-	        		destroy: true,
-	        		aaData: data.Interaction,
-	        		aoColumns: [
-				{ data:   "dbid",
-	                render: function ( data, type, row ) {
-	                    if ( type === 'display' ) {
-	                        return '<input type="checkbox" class="editor-active" value='+data+'>';
-	                    }
-	                    return data;
-	                },
-	            className: "dt-body-center" },
-                    { "data": "contactid" },
-                    { "data": "activitycode" },
-                    { "data": "subject" },
-                    { "data": "startdate" },
-                    { "data": "structuredmimetype" },
-                    { "data": "enddate" },
-                    { "data": "structuredtext" },
-                    { "data": "entitytypeid" },
-                    { "data": "text" },
-                    { "data": "status" },
-                    { "data": "typeid" },
-                    { "data": "ixnid" },
-                    { "data": "stoppedreason" },
-                    { "data": "thecomment" }
-                    
-                ],'columnDefs': [{
-                	
-                	"bInfo": false,
-                    'targets': 0,
-                    'searchable':false,
-                    'orderable':false,
-                    'className': 'dt-body-center',
-                    
-                 }],
-              lengthChange: false
-            });	
-	    }  
-     });
-}
-</script>
-
-
-<script type="text/javascript">
-$("#queryTable123 tbody tr ").empty();
-// function page(i){
-		
-// 		var r = (i-1)*10;	
-// 		var ss = $('#startdate').val();
-// 		var ee = $('#enddate').val();
-// 		var aa = $('#agentid').val();
-// 		var pp = r;
-		
-// 		$.ajax({                              
-// 	          url:"http://ws.crm.com.tw:8080/IMWebSocket/RESTful/Query_Interaction",
-// 		        data:{
-// 		        	 startdate:ss,
-// 			    	 enddate:ee,
-// 			    	 agentid:aa,
-// 			    	 page:pp
-// 		        	 },
-// 		         type : "POST",                                                                    
-// 		         dataType:'json',
-		         
-// 		         error:function(e){                                                                 
-// 		         alert("請重新整理");
-		         
-// 		         },
-// 		         success:function(data){ 
-// 		      		console.log(data);
-// //		        	alert(JSON.stringify(data.person));
-// 		        	$('#queryTable123').DataTable({
-// 		        		autoWidth: false,
-// 		        		destroy: true,
-// 		        		aaData: data.Interaction,
-// 		        		aoColumns: [
-// 					{ data:   "dbid",
-// 		                render: function ( data, type, row ) {
-// 		                    if ( type === 'display' ) {
-// 		                        return '<input type="checkbox" class="editor-active" value='+data+'>';
-// 		                    }
-// 		                    return data;
-// 		                },
-// 		            className: "dt-body-center" },
-// 	                    { "data": "contactid" },
-// 	                    { "data": "activitycode" },
-// 	                    { "data": "subject" },
-// 	                    { "data": "startdate" },
-// 	                    { "data": "structuredmimetype" },
-// 	                    { "data": "enddate" },
-// 	                    { "data": "structuredtext" },
-// 	                    { "data": "entitytypeid" },
-// 	                    { "data": "text" },
-// 	                    { "data": "status" },
-// 	                    { "data": "typeid" },
-// 	                    { "data": "ixnid" },
-// 	                    { "data": "stoppedreason" },
-// 	                    { "data": "thecomment" }
-	                    
-// 	                ],'columnDefs': [{
-	               
-// 	                    'targets': 0,
-// 	                    'searchable':false,
-// 	                    'orderable':false,
-// 	                    'className': 'dt-body-center',
-	                    
-// 	                 }],
-// 	              lengthChange: false
-// 	            });	
-// 		    }  
-// 	     });
-
-// 	}
-	</script>
-	
-	
-	
-	
-	
-	<script type="text/javascript">
-
-function today(){
-	$("#queryTable123 tbody tr ").empty();
-
-	
-	var today = $('#today').val();
-	var aa = $('#agentid').val();
-	var pp = $('#page').val();
-	console.log("today : " + today + "; aa:" + aa + "; pp:" + pp)
-$.ajax({                              
-          url:"${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_Interaction",
-	        data:{
-	        	 startdate:today,
-		    	 enddate:today,
-		    	 agentid:aa,
-		    	 page:pp
-	        	 },
-	         type : "POST",                                                                    
-	         dataType:'json',
-	         
-	         error:function(e){                                                                 
-	         alert("請重新整理");
-	         
-	         },
-	         success:function(data){ 
-	      		console.log(data);
-//	        	alert(JSON.stringify(data.person));
-	        	$('#queryTable123').DataTable({
-	        		autoWidth: false,
-	        		destroy: true,
-	        		aaData: data.Interaction,
-	        		aoColumns: [
-				{ data:   "dbid",
-	                render: function ( data, type, row ) {
-	                    if ( type === 'display' ) {
-	                        return '<input type="checkbox" class="editor-active" value='+data+'>';
-	                    }
-	                    return data;
-	                },
-	            className: "dt-body-center" },
-                    { "data": "contactid" },
-                    { "data": "activitycode" },
-                    { "data": "subject" },
-                    { "data": "startdate" },
-                    { "data": "structuredmimetype" },
-                    { "data": "enddate" },
-                    { "data": "structuredtext" },
-                    { "data": "entitytypeid" },
-                    { "data": "text" },
-                    { "data": "status" },
-                    { "data": "typeid" },
-                    { "data": "ixnid" },
-                    { "data": "stoppedreason" },
-                    { "data": "thecomment" }
-                    
-                ],'columnDefs': [{
-               
-                    'targets': 0,
-                    'searchable':false,
-                    'orderable':false,
-                    'className': 'dt-body-center',
-                    
-                 }],
-              lengthChange: false
-            });	
-	    }  
-     });
-}
-</script>
-
-
-
-<script>
 	$(document).ready(function() {
 		// init datepicker
-		$("#datepicker").datepicker();
-		//init datatable
-		$("#queryTable").DataTable();
-		$("#queryTable123").css("width", "100%");
+		$("#datepicker").datepicker({
+			format : 'yyyy-mm-dd',
+			endDate : '0d'
+		});
+
+		// default search and initdataTable
+		var opt = {
+			"bLengthChange" : false,
+			"iDisplayLength" : 15
+		};
+
+		$('#queryTable').DataTable(opt);
+		$("#queryTable").css("width", "100%");
+
+		quickSearchByTime(0);
 	});
+
+	// 案件搜尋
+	function search() {
+		var start = $('#datepicker [name="start"]').val();
+		var end = $('#datepicker [name="end"]').val();
+		var id = $("#inputAgentId").val() || agentId;
+
+		console.log("start : " + start + "; end : " + end + "; id :" + id);
+
+		$('#queryTable').DataTable().destroy();
+		$('#queryTable tbody').html("");
+
+		$
+				.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query",
+					data : {
+						startdate : start,
+						enddate : end,
+						agentid : id
+					},
+					type : "POST",
+					dataType : 'json',
+
+					error : function(e) {
+						console.log("請重新整理");
+
+					},
+					success : function(data) {
+						console.log(data);
+						var queryData = data.data;
+
+						for ( var index in queryData) {
+							var agentName = queryData[index].Agentname;
+							var codeName = queryData[index].Codename;
+							var endd = queryData[index].Enddate;
+							var startd = queryData[index].Startdate;
+							var comment = queryData[index].Thecomment;
+							var ixnId = queryData[index].ixnid;
+							var src = queryData[index].src;
+
+							var $tr = '<tr>';
+							$tr += '<td>' + startd + '</td>';
+							$tr += '<td>' + endd + '</td>';
+							$tr += '<td>' + src + '</td>';
+							$tr += '<td>' + agentName + '</td>';
+							$tr += '<td>' + codeName + '</td>';
+							$tr += '<td>' + comment + '</td>';
+							$tr += '</tr>';
+
+							$('#queryTable tbody').append($tr);
+						}
+
+						var opt = {
+							"bLengthChange" : false,
+							"iDisplayLength" : 15
+						};
+
+						$('#queryTable').DataTable(opt);
+						$("#queryTable").css("width", "100%");
+					}
+				});
+	}
+
+	// 快速選取指定時間
+	function quickSearchByTime(days) {
+		var endDate = new Date();
+		var year = endDate.getFullYear();
+		var month = endDate.getMonth() + 1;
+		var day = endDate.getDate();
+		var endDateStr = addZeroLeft(year, 4) + "-" + addZeroLeft(month, 2)
+				+ "-" + addZeroLeft(day, 2);
+
+		if (0 == days) {
+			var startDate = new Date(year, month - 1, day);
+		} else if (7 == days) {
+			var startDate = new Date(year, month - 1, day - 7);
+		} else if (30 == days) {
+			var startDate = new Date(year, month - 2, day);
+		} else if (90 == days) {
+			var startDate = new Date(year, month - 4, day);
+		} else if (180 == days) {
+			var startDate = new Date(year, month - 7, day);
+		}
+
+		year = startDate.getFullYear();
+		month = startDate.getMonth() + 1;
+		day = startDate.getDate();
+		var startDateStr = addZeroLeft(year, 4) + "-" + addZeroLeft(month, 2)
+				+ "-" + addZeroLeft(day, 2);
+
+		$('#datepicker [name="start"]').datepicker("update", startDateStr);
+		$('#datepicker [name="end"]').datepicker("update", endDateStr);
+
+		search();
+	}
+
+	/*
+	 * 左邊補0，用於日期或時間
+	 * str: 要被補0的字串
+	 * length: 要補多少個0
+	 */
+	function addZeroLeft(str, length) {
+		str = str + '';
+
+		if (str.length >= length) {
+			return str;
+		} else {
+			return addZeroLeft("0" + str, length);
+		}
+	}
 </script>
+
 </html>
