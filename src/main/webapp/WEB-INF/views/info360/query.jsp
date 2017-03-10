@@ -180,8 +180,16 @@
 			format : 'yyyy-mm-dd',
 			endDate : '0d'
 		});
-		
-		// default search and initdataTable 
+
+		// default search and initdataTable
+		var opt = {
+			"bLengthChange" : false,
+			"iDisplayLength" : 15
+		};
+
+		$('#queryTable').DataTable(opt);
+		$("#queryTable").css("width", "100%");
+
 		quickSearchByTime(0);
 	});
 
@@ -190,7 +198,7 @@
 		var start = $('#datepicker [name="start"]').val();
 		var end = $('#datepicker [name="end"]').val();
 		var id = $("#inputAgentId").val() || agentId;
-		
+
 		console.log("start : " + start + "; end : " + end + "; id :" + id);
 
 		$('#queryTable').DataTable().destroy();
@@ -276,7 +284,7 @@
 
 		$('#datepicker [name="start"]').datepicker("update", startDateStr);
 		$('#datepicker [name="end"]').datepicker("update", endDateStr);
-		
+
 		search();
 	}
 
