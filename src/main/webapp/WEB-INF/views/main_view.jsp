@@ -602,7 +602,8 @@
 						// 拿取資料 + 為之後建立roomList做準備
 						RoomID_g = obj.roomID; // 之後要改成local variable
 						var myRoomID = obj.roomID;
-						var UserName = obj.fromName
+						var UserName = obj.fromName;
+						var chatRoomMsg = obj.chatRoomMsg; // 接收系統訊息
 						roomId = RoomID_g;
 
 						// 建立Layim名單
@@ -610,6 +611,8 @@
 						console.log(e);
 
 						addLayimList(ClientName_g, UserName, roomId);
+						// 20170313_sam
+						getclientmessagelayim(chatRoomMsg, myRoomID, "系統通知"); // 更新系統訊息
 
 						// 更新開啟頁籤  & 組合客戶資料參數至後端
 						var newTab = {};
@@ -682,6 +685,9 @@
 					if ("removeUserinroom" == obj.Event) {
 						var fromUserId = obj.fromUserID;
 						var roomID = obj.roomID
+						// 20170313_sam
+						var chatRoomMsg = obj.chatRoomMsg; // 接收系統訊息
+						getclientmessagelayim(chatRoomMsg, roomID, "系統通知"); // 更新系統訊息
 
 						// 清除layim群聊清單
 						layim.removeList({
