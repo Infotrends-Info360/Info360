@@ -1009,9 +1009,8 @@ function Drop(event){
 						</div>
 						<div class="form-group col-sm-6">
 							<label for="inputFirstName" class="col-sm-3 control-label">上層節點:</label>
-							<div class="col-sm-8" id="nodeLINKlistU">
-<!-- 								<select id="nodeLINKlistU"> -->
-<!-- 								</select><br> -->
+							<div class="col-sm-8"><span id="nodeLINKlistU"></span>
+
 							</div>
 						</div>
 						<div class="form-group col-sm-6">
@@ -3609,6 +3608,14 @@ $.ajax({
 
 <script>
 	function showCommonlink() {
+		$('#nodeLINKlist').empty();
+		$('#nodeLINKlistU').empty();
+		$('#insert_color').empty();
+		$('#update_color').empty();
+		$('#nodeLINKlistU').empty();
+		
+		$('#nodeUSERu').empty();
+		
 		$("button.editMember").hide();
 		closeAllHrContent();
 		$("#CommonlinkContent").show();
@@ -3621,27 +3628,31 @@ $.ajax({
 		selectcomm();
 	}
 	
-	function showCommonlink2() {
-		$("button.editMember").hide();
-		closeAllHrContent();
-		$("#CommonlinkContent").show();
+// 	function showCommonlink2() {
+// 		$("button.editMember").hide();
+// 		closeAllHrContent();
+// 		$("#CommonlinkContent").show();
 
-		$("#0Commonlink").show();
-		$("#comm").show();
+// 		$("#0Commonlink").show();
+// 		$("#comm").show();
 
-		$("button.Commonlink").removeClass("btn-success");
-		$("button.Commonlink").addClass("btn-primary");
+// 		$("button.Commonlink").removeClass("btn-success");
+// 		$("button.Commonlink").addClass("btn-primary");
 		
-	}
+// 	}
 
 	function selectcomm() {
 
 		Uinsertornot = false;
 		insertornot = false;
+		
 		$('#nodeLINKlist').empty();
 		$('#nodeLINKlistU').empty();
 		$('#insert_color').empty();
 		$('#update_color').empty();
+		$('#nodeLINKlistU').empty();
+		
+		$('#nodeUSERu').empty();
 
 		$
 				.ajax({
@@ -3933,7 +3944,7 @@ $.ajax({
 	function showEditMembercomm() {
 		
 		$('#nodeLINKlistU').empty();
-		$('#nodeLINKlistU').empty();
+	
 		var nodeLINKu = document.getElementById('nodeUSERu').value;
 
 		$
@@ -3950,16 +3961,15 @@ $.ajax({
 			
 			},
 			success : function(data) {
-				var str = "<span >"+data.Tree[0].text+"</span>"
-	
-			document.getElementById("nodeLINKlistU")
-					.insertAdjacentHTML("BeforeEnd", str);
+				var str = "<span >"+data.Tree[0].text+"</span>"	
+				document.getElementById("nodeLINKlistU").innerHTML=str;
+						//.insertAdjacentHTML("BeforeEnd", str);
 			}
 
 		});
 	
-		
 		closeAllHrContent();
+		
 		$("#CommonlinkContent").show();
 		$("#editMemberContentcomm").show();
 
