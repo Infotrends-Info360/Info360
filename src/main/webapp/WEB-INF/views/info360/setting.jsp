@@ -2202,6 +2202,9 @@ $.ajax({
 											document
 											.getElementById('updateFirstName').value = table
 											.row(this).data().first_name;
+											document
+											.getElementById('updatePassword').value = table
+											.row(this).data().password;
 											
 											
 											var arr = table.row(this).data().groupname.split(',');
@@ -2305,43 +2308,78 @@ $.ajax({
 											console.log("person1", table.row(
 													this).data());
 											document
-													.getElementById('updateAccount').value = table
-													.row(this).data().account;
-											document
-													.getElementById('updateEmail').value = table
-													.row(this).data().emailaddress;
-											document
-													.getElementById('updatePhoneNumber').value = table
-													.row(this).data().dn;
-											document
-													.getElementById('updateName').value = table
-													.row(this).data().user_name;
-											document
-													.getElementById('updateEmployNumber').value = table
-													.row(this).data().employee_id;
-// 											document
-// 													.getElementById('person1').innerHTML = table
-// 													.row(this).data().account;
-											document
-													.getElementById('deletedbid').value = table
-													.row(this).data().dbid;
-// 											document
-// 													.getElementById('person2').innerHTML = table
-// 													.row(this).data().account;
-											document
-													.getElementById('state_account').value = table
-													.row(this).data().dbid;
-											document
-													.getElementById('personTrashdbid').value = table
-													.row(this).data().dbid;
-// 											document
-// 													.getElementById('person3').innerHTML = table
-// 													.row(this).data().account;
-											document
-											.getElementById('updateMaxcount').value = table
-											.row(this).data().max_count;
+											.getElementById('updateAccount').value = table
+											.row(this).data().account;
+									document
+											.getElementById('updateEmail').value = table
+											.row(this).data().emailaddress;
+									document
+											.getElementById('updatePhoneNumber').value = table
+											.row(this).data().dn;
+									document
+											.getElementById('updateName').value = table
+											.row(this).data().user_name;
+									document
+											.getElementById('updateEmployNumber').value = table
+											.row(this).data().employee_id;
+//										document
+//												.getElementById('person1').innerHTML = table
+//												.row(this).data().account;
+									document
+											.getElementById('deletedbid').value = table
+											.row(this).data().dbid;
+//										document
+//												.getElementById('person2').innerHTML = table
+//												.row(this).data().account;
+									document
+											.getElementById('state_account').value = table
+											.row(this).data().dbid;
+									document
+											.getElementById('personTrashdbid').value = table
+											.row(this).data().dbid;
+									document
+											.getElementById('UPpeople').innerHTML = table
+											.row(this).data().account;
+									document
+									.getElementById('updateMaxcount').value = table
+									.row(this).data().max_count;
+									document
+									.getElementById('updateLastName').value = table
+									.row(this).data().last_name;
+									document
+									.getElementById('updateFirstName').value = table
+									.row(this).data().first_name;
+									document
+									.getElementById('updatePassword').value = table
+									.row(this).data().password;
+									
+									
+									var arr = table.row(this).data().groupname.split(',');
+									var arrdbid = table.row(this).data().groupdbid.split(',');
+									
+									for (var i in arrdbid ) {
+										if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
+//												alert("arr " +arr[i]);
+//												alert("arrdbid " +arrdbid[i]);
 											
-										});
+											var menu3 = "<li id='Imgperson3"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
+									        document.getElementById("Box1").insertAdjacentHTML("BeforeEnd",menu3);	
+										}
+									}
+									
+									
+									var notarr = table.row(this).data().notgroupname.split(',');
+									var notarrdbid = table.row(this).data().notgroupdbid.split(',');
+									for (var i in notarrdbid ) {
+										if(notarrdbid[i].trim()!="" && notarr[i].trim()!="" ){
+
+											var menu4 = "<li id='Imgperson2"+notarrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+notarrdbid[i]+" ><p>"+notarr[i]+"</p></li>"
+									        document.getElementById("Box4").insertAdjacentHTML("BeforeEnd",menu4);	
+										}
+									}
+									
+									
+								});
 					}
 				});
 
@@ -2676,9 +2714,57 @@ $.ajax({
 		
 		var aa = $('#Box1 input');
 		var arr = $.makeArray(aa);
+				
+		if(arr.length==0){
+			
+			var up_first_name = $('#updateFirstName').val();
+			var up_last_name = $('#updateLastName').val();
+			var up_user_name = $('#updateName').val();
+			var up_emailaddress = $('#updateEmail').val();
+			var up_password = $('#updatePassword').val();
+			var up_employee_id = $('#updateEmployNumber').val();
+			var up_account = $('#updateAccount').val();
+//	 		var up_state = $('#updateState').val();
+			var up_dn = $('#updatePhoneNumber').val();
+			var up_updateMaxcount = $('#updateMaxcount').val();
+			 
+			$
+				.ajax({
+				url : '${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Update_PersonInfo',
+				data : {
+					max_count :up_updateMaxcount,
+					first_name : up_first_name,
+					last_name : up_last_name,
+					user_name : up_user_name,
+					emailaddress : up_emailaddress,
+					password : up_password,
+					employee_id : up_employee_id,
+					group_dbid : "",
+					account : up_account,
+					state : 0,
+					dn : up_dn,
+					
+				},
+				type : "POST",
+				dataType : 'json',
+
+				error : function(e) {
+					toastr.error("更新失敗");
+				},
+				success : function(data) {
+					person();
+					toastr.success("更新成功");
+				}
+
+			});
+		}
 		
+		
+		var kk = "";
 		for(var i=0;i<arr.length;i++){
 		var hh = arr[i].value;
+		kk += arr[i].value+",";
+		}
 		
 		var up_first_name = $('#updateFirstName').val();
 		var up_last_name = $('#updateLastName').val();
@@ -2686,7 +2772,6 @@ $.ajax({
 		var up_emailaddress = $('#updateEmail').val();
 		var up_password = $('#updatePassword').val();
 		var up_employee_id = $('#updateEmployNumber').val();
-		var up_group_dbid = hh;
 		var up_account = $('#updateAccount').val();
 // 		var up_state = $('#updateState').val();
 		var up_dn = $('#updatePhoneNumber').val();
@@ -2703,7 +2788,7 @@ $.ajax({
 				emailaddress : up_emailaddress,
 				password : up_password,
 				employee_id : up_employee_id,
-				group_dbid : up_group_dbid,
+				GP_DBID_list: kk,
 				account : up_account,
 				state : 0,
 				dn : up_dn,
@@ -2721,7 +2806,7 @@ $.ajax({
 			}
 
 		});
-	}
+	
 		
 	}
 	
@@ -2736,7 +2821,11 @@ $.ajax({
          var EN = $("#updateEmployNumber").val();
          var PN = $("#updatePhoneNumber").val();
          var MX = $("#updateMaxcount").val();
-         var DT = $("#updateDepartment").val();
+//          var DT = $("#Box1").val();
+         
+         var aa = $('#Box1 input');
+ 		var arr = $.makeArray(aa);
+         
          
          if (!account || account == '' ) {
              toastr.error("請輸入帳號");
@@ -2798,10 +2887,10 @@ $.ajax({
              toastr.error("接通數請輸入數字");
              return false;
          }
-         if (!DT || DT == '') {
-             toastr.error("請選擇部門");
-             return false;
-         }
+//          if (!DT || DT == '') {
+//              toastr.error("請選擇部門");
+//              return false;
+//          }
 
          if (!passowrd || passowrd == '') {
              toastr.error("請輸入密碼");
@@ -2816,6 +2905,10 @@ $.ajax({
              toastr.error("請輸入正確的Email格式");
              return false;
          }
+//          if(arr.length==0){
+//   			toastr.error("請選擇部門");
+//   			 return false;
+//   		}
 
          return true;
      }
@@ -3163,10 +3256,10 @@ $.ajax({
 				console.log("查詢人員", data);
 	
 		
-		for(var i=0; i<data.person.length; i++){
-	        var gp = "<li id='Imgperson"+data.person[i].dbid+"'draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.person[i].dbid+" ><p>"+data.person[i].account+"</p></li>"
-	        document.getElementById("Box66").insertAdjacentHTML("BeforeEnd",gp);
-		}
+// 		for(var i=0; i<data.person.length; i++){
+// 	        var gp = "<li id='Imgperson"+data.person[i].dbid+"'draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.person[i].dbid+" ><p>"+data.person[i].account+"</p></li>"
+// 	        document.getElementById("Box66").insertAdjacentHTML("BeforeEnd",gp);
+// 		}
 // 	        var menu2 = "<li id='Imgperson"+data.group[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.group[i].dbid+" ><p>"+data.group[i].name+"</p></li>"
 // 	        document.getElementById("Box44").insertAdjacentHTML("BeforeEnd",menu2);
 				}
