@@ -720,19 +720,19 @@ function Drop(event){
 								</div>
 							</div>
 							
-							<form><input type="text" id="color" name="color" value="#123456" /></form>
+<!-- 							<form><input type="text" id="color" name="color" value="#123456" /></form> -->
 
-							<div id="colorpicker"></div>
+<!-- 							<div id="colorpicker"></div> -->
 							
-							<script type="text/javascript">
+<!-- 							<script type="text/javascript"> -->
 
-  							$(document).ready(function() {
+<!--   							$(document).ready(function() { -->
 
-    						$('#colorpicker').farbtastic('#color');
+<!--     						$('#colorpicker').farbtastic('#color'); -->
 
-  							});
+<!--   							}); -->
 
-							</script>
+<!-- 						</script>  -->
 							
 							
 							
@@ -1500,7 +1500,7 @@ function Drop(event){
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-body">
-				<h3>是否確定啟用/鎖定帳號？</h3>
+				<h3>是否啟用/鎖定帳號？</h3>
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
@@ -1628,7 +1628,7 @@ function Drop(event){
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-body">
-				<h3>是否確定刪除帳號？</h3>
+				<h3>是否刪除帳號？</h3>
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
@@ -3631,7 +3631,6 @@ $.ajax({
 		$("button.Commonlink").addClass("btn-primary");
 		
 	}
-	
 
 	function selectcomm() {
 
@@ -3678,6 +3677,11 @@ $.ajax({
 						$("#tree").on(
 								"select_node.jstree",
 								function(evt, data) {
+									
+// 									alert(data.node.parent);
+									if(data.node.parent=="#"){
+										return false;
+									}	
 									$('#commname')
 											.text(data.node.original.text);
 									$('#delete_name').text(
@@ -3696,17 +3700,16 @@ $.ajax({
 											data.node.original.createuser);
 									$('#delete_number').text(
 											"編號:" + data.node.original.id);
-									
-									
+
 									$('#type').text(data.node.original.parent);
 									
 									$('#pass').text(data.node.original.id);
 									$('#children').text(data.node.children_d);
-									
-									
-									
+					
 									$("#comm").hide();
 									$("#commTB").show();
+									
+									
 								});
 
 						$('#tree').on(
@@ -3824,7 +3827,7 @@ $.ajax({
 			var nodeLINK = document.getElementById('nodeLINKlist').value;
 			var nodeNAME = document.getElementById('nodeNAME').value;
 			var nodeURL = document.getElementById('nodeURL').value;
-			var nodeUSER = document.getElementById('nodeUSER').value;
+// 			var nodeUSER = document.getElementById('nodeUSER').value;
 			var color = document.getElementById('insert_color').value;
 			var myMap = new Map();
 
@@ -3836,7 +3839,7 @@ $.ajax({
 							"parnetid" : nodeLINK,
 							"nodetext" : nodeNAME,
 							"nodeurl" : nodeURL,
-							"createuserid" : nodeUSER,
+							"createuserid" : parent.UserID_g,
 							"color" : color
 						},
 						type : "POST",
@@ -3855,7 +3858,7 @@ $.ajax({
 			var nodeLINK = "0"
 			var nodeNAME = document.getElementById('nodeNAME').value;
 			var nodeURL = document.getElementById('nodeURL').value;
-			var nodeUSER = document.getElementById('nodeUSER').value;
+// 			var nodeUSER = document.getElementById('nodeUSER').value;
 			var color = document.getElementById('insert_color').value;
 			var myMap = new Map();
 
@@ -3867,7 +3870,7 @@ $.ajax({
 							"parnetid" : nodeLINK,
 							"nodetext" : nodeNAME,
 							"nodeurl" : nodeURL,
-							"createuserid" : nodeUSER,
+							"createuserid" : parent.UserID_g,
 							"color" : color
 						},
 						type : "POST",
@@ -3939,7 +3942,7 @@ $.ajax({
 			var nodeLINKu = document.getElementById('nodeLINKlistU').value;
 			var nodeNAMEu = document.getElementById('nodeNAMEu').value;
 			var nodeURLu = document.getElementById('nodeURLu').value;
-			var nodeUSERu = document.getElementById('nodeUSERu').value;
+// 			var nodeUSERu = document.getElementById('nodeUSERu').value;
 			var color = document.getElementById('update_color').value;
 			var myMap = new Map();
 
@@ -3951,7 +3954,7 @@ $.ajax({
 							"parnetid" : nodeLINKu,
 							"nodetext" : nodeNAMEu,
 							"nodeurl" : nodeURLu,
-							"createuserid" : nodeUSERu,
+							"createuserid" : parent.UserID_g,
 							"nodeid" : nodeIDu,
 							"color" : color
 						},
