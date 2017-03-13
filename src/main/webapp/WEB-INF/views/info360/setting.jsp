@@ -552,23 +552,23 @@ function Drop(event){
 							</div>
 							
 							
-				<div class="form-group col-sm-6">
-					<label for="inputEmail" class="col-sm-5 control-label">人員所屬部門</label>
-						<div id="Box5" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
+<!-- 				<div class="form-group col-sm-6"> -->
+<!-- 					<label for="inputEmail" class="col-sm-5 control-label">人員所屬部門</label> -->
+<!-- 						<div id="Box5" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid"> -->
 						
-							</div>
-						<div style="clear:both;"></div>
-				</div>
+<!-- 							</div> -->
+<!-- 						<div style="clear:both;"></div> -->
+<!-- 				</div> -->
 
-				<div class="form-group col-sm-6"> 
-					<label for="inputEmail" class="col-sm-5 control-label">部門列表</label> 
-							<div id="Box6" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
-									<ul id="Box66"> 
-									</ul>	
-								</div>
-				</div>		
+<!-- 				<div class="form-group col-sm-6">  -->
+<!-- 					<label for="inputEmail" class="col-sm-5 control-label">部門列表</label>  -->
+<!-- 							<div id="Box6" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid"> -->
+<!-- 									<ul id="Box66">  -->
+<!-- 									</ul>	 -->
+<!-- 								</div> -->
+<!-- 				</div>		 -->
 
-					<div style="clear:both;"></div>
+<!-- 					<div style="clear:both;"></div> -->
 							
 							
 							
@@ -2204,14 +2204,6 @@ $.ajax({
 											.row(this).data().first_name;
 											
 											
-											
-											document
-											.getElementById('ggg').value = table
-											.row(this).data().groupname;
-											
-											var aa = $('#ggg');
-											
-
 											var arr = table.row(this).data().groupname.split(',');
 											var arrdbid = table.row(this).data().groupdbid.split(',');
 											
@@ -3342,17 +3334,17 @@ $.ajax({
 		
 		var in_name = document.getElementById('in_name').value;
 
-		var aa = $('#Box5 input');
-		var arr = $.makeArray(aa);
-		for(var i=0;i<arr.length;i++){
-		var hh = arr[i].value;
+// 		var aa = $('#Box5 input');
+// 		var arr = $.makeArray(aa);
+// 		for(var i=0;i<arr.length;i++){
+// 		var hh = arr[i].value;
 		$
 				.ajax({
 					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Insert_GroupInfo",
 					data : {
 						state : 0,
-						name : in_name,
-						person_dbid:hh
+						name : in_name
+// 						person_dbid:hh
 					},
 					type : "POST",
 					dataType : 'json',
@@ -3364,7 +3356,7 @@ $.ajax({
 						toastr.success("新增成功");		
 						}
 				});
-		}
+// 		}
 		
 		closeAllHrContent();
 		$("#groupContent").show();
