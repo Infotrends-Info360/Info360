@@ -68,7 +68,7 @@ label.required:after {
 #Box2,#Box3,#Box4,#Box5,#Box6{
     width:200px;
     height:100px;
-    padding:10px;
+/*     padding:10px; */
     border:1px #ccc dashed;
     float:left;
     margin-right:10px;
@@ -434,24 +434,19 @@ function Drop(event){
 										placeholder="">
 								</div>
 							</div>
-
 							
 							
 							
 				<div class="form-group col-sm-6">
 					<label for="inputEmail" class="col-sm-5 control-label">人員所屬部門</label>
 						<div id="Box1" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
-							<ul id="Box11" >
-
-							</ul>	
+							
 							</div>
 						<div style="clear:both;"></div>
 				</div>
 				<div class="form-group col-sm-6"> 
 					<label for="inputEmail" class="col-sm-5 control-label">部門列表</label> 
 							<div id="Box4" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
-									<ul id="Box44"> 
-									</ul>	
 								</div>
 					</div>		
 							
@@ -728,6 +723,7 @@ function Drop(event){
 							<form><input type="text" id="color" name="color" value="#123456" /></form>
 
 							<div id="colorpicker"></div>
+							
 							<script type="text/javascript">
 
   							$(document).ready(function() {
@@ -2049,8 +2045,8 @@ function person_groupmenu(){
 	$("#updateDepartment").empty();
 	$("#inputDepartment").empty();
 	$("#Box3").empty();
-	$("#Box1").empty();
-	$("#Box44").empty();
+// 	$("#Box1").empty();
+	$("#Box4").empty();
 $.ajax({
 	url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Group_STATE",
 	data : {
@@ -2069,8 +2065,8 @@ $.ajax({
 	        var menu = "<li id='Imgperson"+data.group[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.group[i].dbid+" ><p>"+data.group[i].name+"</p></li>"
 	        document.getElementById("Box22").insertAdjacentHTML("BeforeEnd",menu);
 	        
-	        var menu2 = "<li id='Imgperson"+data.group[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.group[i].dbid+" ><p>"+data.group[i].name+"</p></li>"
-	        document.getElementById("Box44").insertAdjacentHTML("BeforeEnd",menu2);
+// 	        var menu2 = "<li id='Imgperson"+data.group[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#1c84c6;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.group[i].dbid+" ><p>"+data.group[i].name+"</p></li>"
+// 	        document.getElementById("Box4").insertAdjacentHTML("BeforeEnd",menu2);
 	      
 	        	 }
 	}
@@ -2197,6 +2193,50 @@ $.ajax({
 											document
 													.getElementById('UPpeople').innerHTML = table
 													.row(this).data().account;
+											document
+											.getElementById('updateMaxcount').value = table
+											.row(this).data().max_count;
+											document
+											.getElementById('updateLastName').value = table
+											.row(this).data().last_name;
+											document
+											.getElementById('updateFirstName').value = table
+											.row(this).data().first_name;
+											
+											
+											
+											document
+											.getElementById('ggg').value = table
+											.row(this).data().groupname;
+											
+											var aa = $('#ggg');
+											
+
+											var arr = table.row(this).data().groupname.split(',');
+											var arrdbid = table.row(this).data().groupdbid.split(',');
+											
+											for (var i in arrdbid ) {
+												if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
+// 													alert("arr " +arr[i]);
+// 													alert("arrdbid " +arrdbid[i]);
+													
+													var menu3 = "<li id='Imgperson3"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
+											        document.getElementById("Box1").insertAdjacentHTML("BeforeEnd",menu3);	
+												}
+											}
+											
+											
+											var notarr = table.row(this).data().notgroupname.split(',');
+											var notarrdbid = table.row(this).data().notgroupdbid.split(',');
+											for (var i in notarrdbid ) {
+												if(notarrdbid[i].trim()!="" && notarr[i].trim()!="" ){
+
+													var menu4 = "<li id='Imgperson2"+notarrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+notarrdbid[i]+" ><p>"+notarr[i]+"</p></li>"
+											        document.getElementById("Box4").insertAdjacentHTML("BeforeEnd",menu4);	
+												}
+											}
+											
+											
 										});
 					}
 				});
@@ -2305,6 +2345,10 @@ $.ajax({
 // 											document
 // 													.getElementById('person3').innerHTML = table
 // 													.row(this).data().account;
+											document
+											.getElementById('updateMaxcount').value = table
+											.row(this).data().max_count;
+											
 										});
 					}
 				});
@@ -2406,7 +2450,7 @@ $.ajax({
 	}
 
 	function showEditMember() {
-		$("#Box44").empty();
+		$("#Box4").empty();
 		$("#Box1").empty();
 		person_groupmenu();
 
@@ -2421,9 +2465,9 @@ $.ajax({
 
 	function sendAddMember() {
 
-// 		            if (!validateAddMember()) {
-// 		                return;
-// 		            }
+		            if (!validateAddMember()) {
+		                return;
+		            }
 
 		closeAddMember();
 	
@@ -2468,10 +2512,11 @@ $.ajax({
 					},
 					success : function(data) {
 						person();
-						toastr.success("新增成功");
+						
 					}
 				});
 			}
+		toastr.success("新增成功");
 	}
 	 function validateAddMember() {
          var account = $("#inputAccount").val();
@@ -2483,7 +2528,14 @@ $.ajax({
          var EN = $("#inputEmployNumber").val();
          var PN = $("#inputPhoneNumber").val();
          var MX = $("#inputMaxcount").val();
-         var DT = $("#Box33").val();
+         
+     	var aa = $('#Box3 input');
+		var arr = $.makeArray(aa);
+		
+		 
+		
+         
+         var DT = $("#Box3").val();
          
          if (!account || account == '' ) {
              toastr.error("請輸入帳號");
@@ -2563,6 +2615,11 @@ $.ajax({
              toastr.error("請輸入正確的Email格式");
              return false;
          }
+         
+         if(arr.length==0){
+ 			toastr.error("請選擇部門");
+ 			 return false;
+ 		}
 
          return true;
      }
@@ -2620,9 +2677,9 @@ $.ajax({
 	}
 
 	function sendEditMember() {
-// 		            if (!validatePersonUP()) {
-// 		                return;
-// 		            }
+		            if (!validatePersonUP()) {
+		                return;
+		            }
 		closeEditMember();
 		
 		var aa = $('#Box1 input');
@@ -3094,7 +3151,7 @@ $.ajax({
 		$("#Box22").empty();
 		$("#Box3").empty();
 		$("#Box1").empty();
-		$("#Box44").empty();
+		$("#Box4").empty();
 		$("#Box5").empty();
 		$("#Box66").empty();
 		
