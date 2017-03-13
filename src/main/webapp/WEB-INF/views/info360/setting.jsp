@@ -1086,18 +1086,18 @@ function Drop(event){
 									id="manageTableAM">
 								<thead>
 										<tr>
-											<th class="no-sort"><input type="checkbox"
-												id="AM0All" ischecked=false></th>
-											<th style="display: none;">編號</th>
+											<th style="width:20px" class="no-sort"><inputtype="checkbox"
+												id="AM0All" ischecked=false ></th>
+											<th style="display: none;" >編號</th>
 											<th>清單名稱</th>
-											<th>建立時間</th>
-											<th style="width: 50px">排序</th>
+											<th style="width:140px"> 建立時間</th>
+<!-- 											<th style="width: 50px">排序</th> -->
 										</tr>
 									</thead>
 									
 								</table>
-								<input id="AMupdbid" value="" type="hidden">
-								<input id="AMdowdbid" value="" type="hidden">
+<!-- 								<input id="AMupdbid" value="" type="hidden"> -->
+<!-- 								<input id="AMdowdbid" value="" type="hidden"> -->
 							</div>
 						</div>
 					</div>
@@ -1113,13 +1113,13 @@ function Drop(event){
 								</div>
 							</div>
 
-							<div class="form-group col-sm-6">
-								<label for="inputAccount" class="col-sm-2 control-label">sort:</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="insert_sort"
-										placeholder="">
-								</div>
-							</div>
+<!-- 							<div class="form-group col-sm-6"> -->
+<!-- 								<label for="inputAccount" class="col-sm-2 control-label">sort:</label> -->
+<!-- 								<div class="col-sm-8"> -->
+<!-- 									<input type="text" class="form-control" id="insert_sort" -->
+<!-- 										placeholder=""> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 					
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
@@ -1220,12 +1220,12 @@ function Drop(event){
 									id="manageTableAG">
 									<thead>
 										<tr>
-											<th class="no-sort"><input type="checkbox"
+											<th style="width: 20px" class="no-sort"><input type="checkbox"
 												id="AG0All" ischecked=false></th>
 											<th style="display: none;">編號</th>
 											<th>群組名稱</th>
-											<th>建立時間</th>
-											<th>排序</th>
+											<th style="width: 140px">建立時間</th>
+<!-- 											<th>排序</th> -->
 										</tr>
 									</thead>
 								</table>
@@ -1243,13 +1243,13 @@ function Drop(event){
 										placeholder="">
 								</div>
 							</div>
-							<div class="form-group col-sm-6">
-								<label for="inputAccount" class="col-sm-2 control-label">sort:</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="in_sort"
-										placeholder="">
-								</div>
-							</div>
+<!-- 							<div class="form-group col-sm-6"> -->
+<!-- 								<label for="inputAccount" class="col-sm-2 control-label">sort:</label> -->
+<!-- 								<div class="col-sm-8"> -->
+<!-- 									<input type="text" class="form-control" id="in_sort" -->
+<!-- 										placeholder=""> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendAddMemberAG()">儲存</button>
@@ -1340,17 +1340,17 @@ function Drop(event){
 									id="manageTableAD">
 									<thead>
 										<tr>
-											<th class="no-sort"><input type="checkbox"
+											<th style="width:20px" class="no-sort"><input type="checkbox"
 												id="AD0All" ischecked=false></th>
 											<th style="display: none;">編號</th>
 											
 											<th>名稱</th>
 											<th>顏色</th>
 <!-- 											<th>狀態</th> -->
-											<th>titlegroup</th>
-											<th>titleflag</th>
-											<th>建立時間</th>
-											<th>排序</th>
+											<th>關聯</th>
+											<th>類型</th>
+											<th style="width:140px">建立時間</th>
+<!-- 											<th>排序</th> -->
 										</tr>
 									</thead>
 								</table>
@@ -1358,45 +1358,45 @@ function Drop(event){
 						</div>
 					</div>
 
-					<div id="banADContent" style="display: none;">
-						<div>
-							<ul class="pagination">
+<!-- 					<div id="banADContent" style="display: none;"> -->
+<!-- 						<div> -->
+<!-- 							<ul class="pagination"> -->
 						
-								<li onclick="AD_ok22()"><a href="#"><i
-										class="glyphicon glyphicon-ok"></i></a></li>
-							</ul>
-							<ul class="pagination" style="float: right;">
-								<li><input type="text" id="banTableADSearch"
-									placeholder="搜索"
-									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
-								</li>
+<!-- 								<li onclick="AD_ok22()"><a href="#"><i -->
+<!-- 										class="glyphicon glyphicon-ok"></i></a></li> -->
+<!-- 							</ul> -->
+<!-- 							<ul class="pagination" style="float: right;"> -->
+<!-- 								<li><input type="text" id="banTableADSearch" -->
+<!-- 									placeholder="搜索" -->
+<!-- 									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;"> -->
+<!-- 								</li> -->
 
-								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
-							</ul>
-						</div>
+<!-- 								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
 
-						<div class="row ibox" id=AD11>
-							<div class="col-lg-12 col-md-12" id="AD1">
-								<table class="table table-bordered table-hover" id="banTableAD">
-									<thead>
-										<tr>
-											<th class="no-sort"><input type="checkbox"
-												id="AD1All" ischecked=false></th>
-											<th style="display: none;">編號</th>
+<!-- 						<div class="row ibox" id=AD11> -->
+<!-- 							<div class="col-lg-12 col-md-12" id="AD1"> -->
+<!-- 								<table class="table table-bordered table-hover" id="banTableAD"> -->
+<!-- 									<thead> -->
+<!-- 										<tr> -->
+<!-- 											<th class="no-sort"><input type="checkbox" -->
+<!-- 												id="AD1All" ischecked=false></th> -->
+<!-- 											<th style="display: none;">編號</th> -->
 											
-											<th>名稱</th>
-											<th>顏色</th>
-<!-- 											<th>狀態</th> -->
-											<th>titlegroup</th>
-											<th>titleflag</th>
-											<th>停用時間</th>
-											<th>排序</th>
-										</tr>
-									</thead>
-								</table>
-							</div>
-						</div>
-					</div>
+<!-- 											<th>名稱</th> -->
+<!-- 											<th>顏色</th> -->
+<!-- <!-- 											<th>狀態</th> -->
+<!-- 											<th>titlegroup</th> -->
+<!-- 											<th>titleflag</th> -->
+<!-- 											<th>停用時間</th> -->
+<!-- 											<th>排序</th> -->
+<!-- 										</tr> -->
+<!-- 									</thead> -->
+<!-- 								</table> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 					<!-- 新增  -->
 					<div id="addMemberADContent" style="display: none;">
 						<div class="widget">
@@ -1411,31 +1411,34 @@ function Drop(event){
 								<label for="inputAccount" class="col-sm-3 control-label">顏色代碼</label>
 								<div class="col-sm-8">
 									<input type="number" class="form-control" id="in_color"
-										placeholder="">
+										placeholder="" value="000000">
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
-								<label for="inputAccount" class="col-sm-3 control-label">titleflag:</label>
+								<label for="inputAccount" class="col-sm-3 control-label">分類:</label>
 								<div class="col-sm-8">
-									<input type="number" class="form-control" id=in_titleflag
-											placeholder="">
-								</div>
-							</div>
-							<div class="form-group col-sm-6">
-								<label for="inputAccount" class="col-sm-3 control-label">titlegroup:</label>
-								<div class="col-sm-8">
-									<select id="titleflagD">
-									<option></option>
+									
+									<select id="in_titleflag">
+										<option value="0">資料</option>
+										<option value="1">標題</option>
 									</select>
 								</div>
 							</div>
 							<div class="form-group col-sm-6">
-								<label for="inputAccount" class="col-sm-3 control-label">sort:</label>
+								<label for="inputAccount" class="col-sm-3 control-label">關聯:</label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" id="in_sort"
-										placeholder="">
+									<select id="titleflagD">
+									
+									</select>
 								</div>
 							</div>
+<!-- 							<div class="form-group col-sm-6"> -->
+<!-- 								<label for="inputAccount" class="col-sm-3 control-label">sort:</label> -->
+<!-- 								<div class="col-sm-8"> -->
+<!-- 									<input type="text" class="form-control" id="in_sort" -->
+<!-- 										placeholder=""> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendAddMemberAD()">儲存</button>
@@ -4747,21 +4750,22 @@ $.ajax({
 										         'className': 'dt-body-center',
 										         'render': function (data, type, full, meta){
 //											        	 alert(JSON.stringify(full));
-										             return '<input type="checkbox" name="AM0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+										             return '<input  type="checkbox" name="AM0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
 										         }
 										      },
-										      {
-											         'targets': 3,
-											         'searchable': false,
-											         'orderable': false,
-											        'className': "  ",
-											         'render': function (data, type, full, meta){
+// 										      {
+// 											         'targets': 3,
+// 											         'searchable': false,
+// 											         'orderable': false,
+// 											        'className': "  ",
+// 											         'render': function (data, type, full, meta){
 											        	
-											        		 return '<label style="padding-left:5px" ondblclick="AM_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  ondblclick="AM_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
+// 											        		 return '<label style="padding-left:5px" ondblclick="AM_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  ondblclick="AM_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
 											        
-											         },
+// 											         },
 											
-											      }],
+// 											      }
+										      ],
 											lengthChange : false
 										});
 						AM2();
@@ -4781,12 +4785,12 @@ $.ajax({
 											.getElementById('up_dbidam').value = table
 											.row(this).data().dbid;
 											
-											document
-											.getElementById('AMupdbid').value = table
-											.row(this).data().dbid;
-											document
-											.getElementById('AMdowdbid').value = table
-											.row(this).data().dbid;
+// 											document
+// 											.getElementById('AMupdbid').value = table
+// 											.row(this).data().dbid;
+// 											document
+// 											.getElementById('AMdowdbid').value = table
+// 											.row(this).data().dbid;
 											document
 											.getElementById('UPAM').innerHTML = table
 											.row(this).data().menuname;
@@ -4870,6 +4874,8 @@ $.ajax({
 	//
 	//新增畫面
 	function showAddMemberAM() {
+		
+		document.getElementById('insert_menuname').value=""
 		closeAllHrContent();
 		$("#AMContent").show();
 		$("#addMemberAMContent").show();
@@ -4896,14 +4902,14 @@ $.ajax({
 		closeAddMember();
 		var menuname = document.getElementById('insert_menuname').value;
 		//var deleteflag = document.getElementById('insert_deleteflag').value;
-		var sort = document.getElementById('insert_sort').value;
+// 		var sort = document.getElementById('insert_sort').value;
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_ActivityMenu",
 					data : {
 						menuname : menuname,
-						deleteflag : 0,
-						sort : sort
+						deleteflag : 0
+// 						sort : sort
 					},
 
 					type : "POST",
@@ -4990,64 +4996,64 @@ $.ajax({
 	}
 	
 	
-	function AM_up() {
-// 		var deleteflag = document.getElementById('Delete_flagAM').value;
-// 		var menuname = document.getElementById('Delete_idAM').value;
+// 	function AM_up() {
+// // 		var deleteflag = document.getElementById('Delete_flagAM').value;
+// // 		var menuname = document.getElementById('Delete_idAM').value;
 
 			  
-			  var AMupdbid = document.getElementById('AMupdbid').value;
+// 			  var AMupdbid = document.getElementById('AMupdbid').value;
 		
-		$
-				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AMenu_Sort2",
-					data : {
-						dbid:AMupdbid
-					},
-					type : "POST",
-					dataType : 'json',
-					error : function(e) {
-						toastr.error("至頂");
-					},
-					success : function(data) {
-						AM();
-						toastr.success("上升排序成功");
-					}
-				});
+// 		$
+// 				.ajax({
+// 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AMenu_Sort2",
+// 					data : {
+// 						dbid:AMupdbid
+// 					},
+// 					type : "POST",
+// 					dataType : 'json',
+// 					error : function(e) {
+// 						toastr.error("至頂");
+// 					},
+// 					success : function(data) {
+// 						AM();
+// 						toastr.success("上升排序成功");
+// 					}
+// 				});
 			
 			  
-		closeAllHrContent();
-		$("#AMContent").show();
-		$("#manageAMContent").show();
-	}
-	function AM_dow() {
-// 		var deleteflag = document.getElementById('Delete_flagAM').value;
-// 		var menuname = document.getElementById('Delete_idAM').value;
+// 		closeAllHrContent();
+// 		$("#AMContent").show();
+// 		$("#manageAMContent").show();
+// 	}
+// 	function AM_dow() {
+// // 		var deleteflag = document.getElementById('Delete_flagAM').value;
+// // 		var menuname = document.getElementById('Delete_idAM').value;
 
 			  
-			  var AMdowdbid = document.getElementById('AMdowdbid').value;
+// 			  var AMdowdbid = document.getElementById('AMdowdbid').value;
 			 
-		$
-				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AMenu_Sort",
-					data : {
-						dbid:AMdowdbid
-					},
-					type : "POST",
-					dataType : 'json',
-					error : function(e) {
-						toastr.error("最底層");
-					},
-					success : function(data) {
-						AM();
-						toastr.success("下降排序成功");
-					}
-				});
+// 		$
+// 				.ajax({
+// 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AMenu_Sort",
+// 					data : {
+// 						dbid:AMdowdbid
+// 					},
+// 					type : "POST",
+// 					dataType : 'json',
+// 					error : function(e) {
+// 						toastr.error("最底層");
+// 					},
+// 					success : function(data) {
+// 						AM();
+// 						toastr.success("下降排序成功");
+// 					}
+// 				});
 			
 			  
-		closeAllHrContent();
-		$("#AMContent").show();
-		$("#manageAMContent").show();
-	}
+// 		closeAllHrContent();
+// 		$("#AMContent").show();
+// 		$("#manageAMContent").show();
+// 	}
 	
 	
 	
@@ -5337,9 +5343,10 @@ var selected=[];
 																		},
 																		{
 																			"data" : "createdatetime"
-																		},{
-																			"data" : "sort"
-																		},
+																		}
+// 																		,{
+// 																			"data" : "sort"
+// 																		},
 
 																],'columnDefs': [{
 															         'targets': 0,
@@ -5458,6 +5465,7 @@ var selected=[];
 	//
 	//新增畫面
 	function showAddMemberAG() {
+		document.getElementById('in_groupname').value="";
 		closeAllHrContent();
 		$("#AGContent").show();
 		$("#addMemberAGContent").show();
@@ -5484,15 +5492,15 @@ var selected=[];
 		closeAddMember();
 		var dbid = document.getElementById("menu").value
 		var in_groupname = document.getElementById('in_groupname').value;
-		var in_sort = document.getElementById('in_sort').value;
+// 		var in_sort = document.getElementById('in_sort').value;
 
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_ActivityGroup",
 					data : {
 						activitymenuid : dbid,
-						groupname : in_groupname,
-						sort : in_sort
+						groupname : in_groupname
+// 						sort : in_sort
 					},
 
 					type : "POST",
@@ -5671,6 +5679,8 @@ if(ActivityGroup_DBID_list.length){
 
 	function groupAD() {
 		
+		$("#titleflagD").empty();
+		
 		$("#AD1All").prop("checked", false);
 		$("#AD0All").prop("checked", false);
 		
@@ -5692,16 +5702,17 @@ if(ActivityGroup_DBID_list.length){
 					},
 					success : function(data) {
 						
-						for (var i = 0; i < data.activitydata.length; i++) {
-							var titleflagD = "<option value='"+data.activitydata[i].titleflag+"'>"
-									+ data.activitydata[i].codename
-									+ "</option>"
-							document.getElementById("titleflagD")
-									.insertAdjacentHTML("BeforeEnd", titleflagD);
-						}						
+ 						for (var i = 0; i < data.Title.length; i++) {
+							
+ 							var titleflagD = "<option value='"+data.Title[i].dbid+"'>"
+ 									+ data.Title[i].codename
+ 									+ "</option>"
+ 							document.getElementById("titleflagD")
+ 									.insertAdjacentHTML("BeforeEnd", titleflagD);
+ 						}						
 						
 						console.log("啟用服務代碼", data);
-
+						var tgroup = data.Title;
 						//        	alert(JSON.stringify(data.person));
 						$('#manageTableAD')
 								.DataTable(
@@ -5710,6 +5721,7 @@ if(ActivityGroup_DBID_list.length){
 											"autoWidth": false,
 											destroy : true,
 											aaData : data.Flag0,
+											
 											aoColumns : [
 													{
 														className : "dt-body-center"
@@ -5721,15 +5733,22 @@ if(ActivityGroup_DBID_list.length){
 														"data" : "codename"
 													}, {
 														"data" : "color"
-													},{
-														"data" : "titlegroup"
-													}, {
-														"data" : "titleflag"
-													},	{
+													},
+													{
+//															"data" : "titlegroup"
+														className:"titlegroup"
+
+													}, 
+													{
+// 														"data" : "titleflag"
+														className:"titleflag"
+													},	
+													{
 														"data" : "createdatetime"
-													}, {
-														"data" : "sort"
 													}
+// 													, {
+// 														"data" : "sort"
+// 													}
 
 											],'columnDefs': [{
 										         'targets': 0,
@@ -5740,7 +5759,42 @@ if(ActivityGroup_DBID_list.length){
 //											        	 alert(JSON.stringify(full));
 										             return '<input type="checkbox" name="AD0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
 										         }
-										      }],
+										      },{
+											         'targets': 4,
+											         'searchable': false,
+											         'orderable': false,
+											         'className': 'titleflag',
+											         'render': function (data, type, full, meta){
+//													        	 alert(JSON.stringify(tgroup));
+															if(full.titleflag==0){
+																 return '<span  ' + $('<div/>').text(data).html() + '">資料</span>';
+															}else{
+																
+											             return '<span  ' + $('<div/>').text(data).html() + '">標題</span>';
+															}
+													}
+											      },
+											      {
+												         'targets': 3,
+												         'searchable': false,
+												         'orderable': false,
+												         'className': 'titleflag',
+												         'render': function (data, type, full, meta){
+//													        	 alert(JSON.stringify(full));
+																if(full.titlegroup==0){
+																	 return '<span  ' + $('<div/>').text(data).html() + '"></span>';
+																}else{
+//																		alert(JSON.stringify(data.Title));
+																	for(var i = 0; i<tgroup.length;i++){
+																		if(tgroup[i].dbid==full.titlegroup){
+																			 return '<span  ' + $('<div/>').text(data).html() + '">'+tgroup[i].codename+'</span>';
+																		}																						
+																	}
+
+																}
+														}
+												      }
+										      ],
 											lengthChange : false
 										});
 						AD2();
@@ -5780,100 +5834,9 @@ if(ActivityGroup_DBID_list.length){
 			$("input[aria-controls='manageTableAD']").trigger("keyup");
 		});
 
-		$
-				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/FLAGDATA",
-					data : {
-						dbid : dbid
-					},
-					type : "POST",
-					dataType : 'json',
-
-					error : function(e) {
-						toastr.error("請重新整理");
-					},
-					success : function(data) {
-						console.log("停用服務代碼", data);
-
-						//        	alert(JSON.stringify(data.person));
-						$('#banTableAD')
-								.DataTable(
-										{
-											"ordering": false,
-											"autoWidth": false,
-											destroy : true,
-											aaData : data.Flag1,
-											aoColumns : [
-													{
-														className : "dt-body-center"
-													},
-// 													{
-// 														"data" : "dbid"
-// 													},
-												 {
-														"data" : "codename"
-													}, {
-														"data" : "color"
-													}, {
-														"data" : "titlegroup"
-													}, {
-														"data" : "titleflag"
-													}
-													,{
-														"data" : "deletedatetime"
-													}
-													,{
-														"data" : "sort"
-													} ],'columnDefs': [{
-												         'targets': 0,
-												         'searchable': false,
-												         'orderable': false,
-												         'className': 'dt-body-center',
-												         'render': function (data, type, full, meta){
-// 												        	 alert(JSON.stringify(full));
-												             return '<input type="checkbox" name="AD1" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
-												         }
-												      }],
-											lengthChange : false
-										});
-						AD2();
-						var table = $('#banTableAD').DataTable();
-
-						$('#banTableAD tbody')
-								.on(
-										'click',
-										'tr',
-										function() {
-											console.log("AD1", table.row(
-													this).data());
-											document
-													.getElementById('up_codenameAD').value = table
-													.row(this).data().codename;
-											document
-													.getElementById('up_colorAD').value = table
-													.row(this).data().color;
-											document
-											.getElementById('up_dbidAD').value = table
-											.row(this).data().dbid;
-										});
-					}
-				});
-
-		$("#banTableAD").css("width", "100%");
-		$("#banTableAD_filter").prop("style", "float:right;");
-		$("#banTableAD_wrapper > div:nth-child(1)").hide();
-
-		$("#banTableADSearch").keyup(function() {
-
-			var searchText = $("#banTableADSearch").val();
-
-			$("input[aria-controls='banTableAD']").val(searchText);
-			$("input[aria-controls='banTableAD']").trigger("keyup");
-		});
 	}
-
+	
 	function AD() {
-
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityGroup",
@@ -5888,20 +5851,183 @@ if(ActivityGroup_DBID_list.length){
 					},
 					success : function(data) {
 						$('#menuAD').empty();
-						var menu1 = "<option></option>"
-						document.getElementById("menuAD").insertAdjacentHTML(
-								"BeforeEnd", menu1);
-						for (var i = 0; i < data.activitygroups.length; i++) {
+						var menu1 = "<option id='ADfirst' value='"+data.activitygroups[0].dbid+"'>"+data.activitygroups[0].groupname+"</option>"
+							document.getElementById("menuAD").insertAdjacentHTML(
+									"BeforeEnd", menu1);
+						
+						
+						for (var i = 1; i < data.activitygroups.length; i++) {
+							
 							var menu = "<option value='"+data.activitygroups[i].dbid+"'>"
 									+ data.activitygroups[i].groupname
 									+ "</option>"
 							document.getElementById("menuAD")
 									.insertAdjacentHTML("BeforeEnd", menu);
 						}
+						
 						console.log("服務代碼群組", data);
+						
+						$("#AD1All").prop("checked", false);
+						$("#AD0All").prop("checked", false);
+						
+						$("#manageTableAD tbody tr").empty();
+						$("#banTableAD tboby tr").empty();
+
+						var dbid = document.getElementById("ADfirst").value
+						$
+								.ajax({
+									url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/FLAGDATA",
+									data : {
+										dbid : dbid
+									},
+									type : "POST",
+									dataType : 'json',
+
+									error : function(e) {
+										toastr.error("請重新整理");
+									},
+									success : function(data) {
+										
+				 						for (var i = 0; i < data.Title.length; i++) {
+											
+				 							var titleflagD = "<option value='"+data.Title[i].dbid+"'>"
+				 									+ data.Title[i].codename
+				 									+ "</option>"
+				 							document.getElementById("titleflagD")
+				 									.insertAdjacentHTML("BeforeEnd", titleflagD);
+				 						}						
+										
+										console.log("啟用服務代碼", data);
+										var tgroup = data.Title;
+										//        	alert(JSON.stringify(data.person));
+										$('#manageTableAD')
+												.DataTable(
+														{
+															"ordering": false,
+															"autoWidth": false,
+															destroy : true,
+															aaData : data.Flag0,
+															
+															aoColumns : [
+																	{
+																		className : "dt-body-center"
+																	},
+//				 													{
+//				 														"data" : "dbid"
+//				 													},
+																	 {
+																		"data" : "codename"
+																	}, {
+																		"data" : "color"
+																	},
+																	{
+// 																		"data" : "titlegroup"
+																		className:"titlegroup"
+
+																	}, 
+																	{
+//				 														"data" : "titleflag"
+																		className:"titleflag"
+																	},	
+																	{
+																		"data" : "createdatetime"
+																	}
+//				 													, {
+//				 														"data" : "sort"
+//				 													}
+
+															],'columnDefs': [{
+														         'targets': 0,
+														         'searchable': false,
+														         'orderable': false,
+														         'className': 'dt-body-center',
+														         'render': function (data, type, full, meta){
+//															        	 alert(JSON.stringify(full));
+														             return '<input type="checkbox" name="AD0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+														         }
+														      },{
+															         'targets': 4,
+															         'searchable': false,
+															         'orderable': false,
+															         'className': 'titleflag',
+															         'render': function (data, type, full, meta){
+// 																        	 alert(JSON.stringify(tgroup));
+																			if(full.titleflag==0){
+																				 return '<span  ' + $('<div/>').text(data).html() + '">資料</span>';
+																			}else{
+																				
+															             return '<span  ' + $('<div/>').text(data).html() + '">標題</span>';
+																			}
+																	}
+															      },
+															      {
+																         'targets': 3,
+																         'searchable': false,
+																         'orderable': false,
+																         'className': 'titleflag',
+																         'render': function (data, type, full, meta){
+//																	        	 alert(JSON.stringify(full));
+																				if(full.titlegroup==0){
+																					 return '<span  ' + $('<div/>').text(data).html() + '"></span>';
+																				}else{
+// 																					alert(JSON.stringify(data.Title));
+																					for(var i = 0; i<tgroup.length;i++){
+																						if(tgroup[i].dbid==full.titlegroup){
+																							 return '<span  ' + $('<div/>').text(data).html() + '">'+tgroup[i].codename+'</span>';
+																						}																						
+																					}
+
+																				}
+																		}
+																      }
+														      ],
+															lengthChange : false
+														});
+										AD2();
+										var table = $('#manageTableAD').DataTable();
+
+										$('#manageTableAD tbody')
+												.on(
+														'click',
+														'tr',
+														function() {
+															console.log("AD0", table.row(
+																	this).data());
+															document
+																	.getElementById('up_codenameAD').value = table
+																	.row(this).data().codename;
+															document
+																	.getElementById('up_colorAD').value = table
+																	.row(this).data().color;
+															document
+															.getElementById('up_dbidAD').value = table
+															.row(this).data().dbid;
+															document
+															.getElementById('UPAD').innerHTML = table
+															.row(this).data().codename;
+														});
+									}
+								});
+
+						$("#manageTableAD").css("width", "100%");
+						$("#manageTableAD_filter").prop("style", "float:right;");
+						$("#manageTableAD_wrapper > div:nth-child(1)").hide();
+
+						$("#manageTableADSearch").keyup(function() {
+							var searchText = $("#manageTableADSearch").val();
+
+							$("input[aria-controls='manageTableAD']").val(searchText);
+							$("input[aria-controls='manageTableAD']").trigger("keyup");
+						});
+
+						
 
 					}
 				});
+		
+		
+		
+		
 
 	}
 
@@ -5965,6 +6091,10 @@ if(ActivityGroup_DBID_list.length){
 	//
 	//新增畫面
 	function showAddMemberAD() {
+		
+		
+		
+		document.getElementById("in_codename").value="";
 		closeAllHrContent();
 		$("#ADContent").show();
 		$("#addMemberADContent").show();
@@ -5993,9 +6123,15 @@ if(ActivityGroup_DBID_list.length){
 		var in_codename = document.getElementById("in_codename").value;
 		var in_color = document.getElementById("in_color").value;
 		var in_titleflag = document.getElementById("in_titleflag").value;
-		var in_titlegroup = document.getElementById("in_titlegroup").value;
+		var in_titlegroup = document.getElementById("titleflagD").value;
+		
+		if(in_titleflag==1){
+			in_titlegroup=0;
+		}
+		
+		
 		//var in_deleteflag = document.getElementById("in_deleteflag").value;
-		var in_sort = document.getElementById("in_sort").value;
+// 		var in_sort = document.getElementById("in_sort").value;
 
 		$
 				.ajax({
@@ -6006,8 +6142,8 @@ if(ActivityGroup_DBID_list.length){
 						color : in_color,
 						titleflag : in_titleflag,
 						titlegroup : in_titlegroup,
-						deleteflag : 0,
-						sort : in_sort
+						deleteflag : 0
+						
 
 					},
 
