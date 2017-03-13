@@ -556,16 +556,6 @@
 							tmpStatusEnum.dbid = val.dbid;
 							tmpStatusEnum.description = val.description;
 						});
-
-						// 更新狀態
-						// 						var myUpdateStatusJson = new updateStatusJson("Agent",
-						// 								UserID_g, userName, "1", "no reason", "start");
-						// 						ws.send(JSON.stringify(myUpdateStatusJson));
-						StatusEnum.updateStatus(StatusEnum.LOGIN, "start");
-						StatusEnum.updateStatus(StatusEnum.NOTREADY, "start",
-								null, null, null, notreadyreason_dbid_g);
-
-						//20170223 Lin
 					}
 
 					// 接收到Client邀請chat的event
@@ -605,16 +595,6 @@
 							this.clientID = obj.userdata.id
 						});
 						//20170220 Lin
-
-						//20170223 Lin
-						agentNotReady(); //20170224 Lin
-						StatusEnum.ready_dbid = StatusEnum.updateStatus(
-								StatusEnum.READY, "end", StatusEnum.ready_dbid);
-						StatusEnum.updateStatus(StatusEnum.NOTREADY, "start",
-								null, null, null, notreadyreason_dbid_g);
-						StatusEnum.updateStatus(StatusEnum.RING, "start", null,
-								null, obj.clientID);
-						//20170223 Lin
 					}
 
 					// 接受成功加入Layim清單
@@ -654,17 +634,6 @@
 						$("#" + currentChatTab + "Tab > a").html(ClientName_g);
 						$("#" + currentChatTab + "Tab").show();
 
-						//20170223 Lin
-						// 更新狀態
-						// 						var myUpdateStatusJson = new updateStatusJson("Agent",
-						// 								UserID_g, UserName_g, "Established",
-						// 								"Established");
-						// 						ws.send(JSON.stringify(myUpdateStatusJson));
-						StatusEnum.ring_dbid = StatusEnum.updateStatus(
-								StatusEnum.RING, "end", StatusEnum.ring_dbid);
-						StatusEnum.updateStatus(StatusEnum.IESTABLISHED,
-								"start", null, obj.roomID);
-
 						// maxCount機制
 						currRoomCount_g++ // here
 						if (currRoomCount_g == maxCount) {
@@ -672,12 +641,7 @@
 						}
 
 						//判斷接起對談後的狀態是否要切換為Ready
-						// 						alert("obj.EstablishedStatus: "+ obj.EstablishedStatus);
 						if (obj.EstablishedStatus == StatusEnum.READY.dbid) {
-							StatusEnum.notready_dbid = StatusEnum.updateStatus(
-									StatusEnum.NOTREADY, "end",
-									StatusEnum.notready_dbid);
-							StatusEnum.updateStatus(StatusEnum.READY, "start");
 							agentReady(); //20170224 Lin
 						}
 						//20170223 Lin
@@ -689,9 +653,7 @@
 					//20170223 Lin
 					// 接收拒絕事件
 					if ("RejectEvent" == obj.Event) {
-						// 						alert("Reject");
-						StatusEnum.ring_dbid = StatusEnum.updateStatus(
-								StatusEnum.RING, "end", StatusEnum.ring_dbid);
+
 					}
 					//20170223 Lin
 
@@ -729,37 +691,18 @@
 						});
 
 						// 20170223 Lin
-
 						currRoomCount_g--;
-
-						// 						alert("StatusEnum.currStatusEnum: " + StatusEnum.currStatusEnum);
-						// 						alert("StatusEnum.currStatusEnum.description: " + StatusEnum.currStatusEnum.description);
-						// 						alert("obj.AfterCallStatus: " + obj.AfterCallStatus ) ;
-						// 						alert("StatusEnum.notready_dbid: " + StatusEnum.notready_dbid);
-						// 						alert("obj.AfterCallStatus: " + obj.AfterCallStatus);
+						// 20170313_sam
 						if (obj.AfterCallStatus == StatusEnum.READY.dbid) { //如果AfterCallStatus == ready
 							if (StatusEnum.ready_dbid == null) {
-								// 								alert("here1");
-								StatusEnum.notready_dbid = StatusEnum
-										.updateStatus(StatusEnum.NOTREADY,
-												"end", StatusEnum.notready_dbid);
-								StatusEnum.updateStatus(StatusEnum.READY,
-										"start");
 								agentReady(); //20170224 Lin
 							}
 						} else if (obj.AfterCallStatus == StatusEnum.NOTREADY.dbid) { //如果AfterCallStatus == not ready
 							if (StatusEnum.notready_dbid == null) {
-								// 								alert("here2");
-								StatusEnum.ready_dbid = StatusEnum
-										.updateStatus(StatusEnum.READY, "end",
-												StatusEnum.ready_dbid);
-								StatusEnum.updateStatus(StatusEnum.NOTREADY,
-										"start", null, null, null,
-										notreadyreason_dbid_g);
 								agentNotReady(); //20170224 Lin
 							}
 						}
-						// 20170223 Lin
+						// end of 20170313_sam
 
 					}
 				} else if ("{" != e.data.substring(0, 1)) {
@@ -806,24 +749,6 @@
 
 		// 登出
 		function logout() {
-
-			console.log("StatusEnum.login_dbid: " + StatusEnum.login_dbid);
-			console
-					.log("StatusEnum.notready_dbid: "
-							+ StatusEnum.notready_dbid);
-			console.log("StatusEnum.ready_dbid: " + StatusEnum.ready_dbid);
-			console.log("StatusEnum.ring_dbid: " + StatusEnum.ring_dbid);
-			console.log("StatusEnum.iestablished_dbid: "
-					+ StatusEnum.iestablished_dbid);
-			StatusEnum.login_dbid = StatusEnum.updateStatus(StatusEnum.LOGOUT,
-					"end", StatusEnum.login_dbid);
-			StatusEnum.notready_dbid = StatusEnum.updateStatus(
-					StatusEnum.NOTREADY, "end", StatusEnum.notready_dbid);
-			StatusEnum.ready_dbid = StatusEnum.updateStatus(StatusEnum.READY,
-					"end", StatusEnum.ready_dbid);
-			StatusEnum.ring_dbid = StatusEnum.updateStatus(StatusEnum.RING,
-					"end", StatusEnum.ring_dbid);
-
 			// 向websocket送出登出指令
 			var now = new Date();
 			var msg = {
@@ -847,17 +772,10 @@
 
 		//Agent準備就緒
 		function agentReady() {
-			//20170223 Lin 
-
+			// 20170313_sam 
 			// 向websocket送出變更狀態至準備就緒指令
-			// 			var myUpdateStatusJson = new updateStatusJson("Agent", UserID_g,
-			// 					userName, "3", "ready");
-			// 			ws.send(JSON.stringify(myUpdateStatusJson));
-			StatusEnum.notready_dbid = StatusEnum.updateStatus(
-					StatusEnum.NOTREADY, "end", StatusEnum.notready_dbid);
 			StatusEnum.updateStatus(StatusEnum.READY, "start");
-
-			//20170223 Lin 
+			// end of 20170313_sam
 
 			// 取得狀態
 			getStatus();
@@ -875,13 +793,10 @@
 			
 			$("#statusButton button.status-notready").html(statusName);
 			
-			// 更新狀態
-			// 			updateStatus("4", "no reason");
-			StatusEnum.ready_dbid = StatusEnum.updateStatus(StatusEnum.READY,
-					"end", StatusEnum.ready_dbid);
+			// 20170313_sam 
 			StatusEnum.updateStatus(StatusEnum.NOTREADY, "start", null, null,
 					null, reasonDbId);
-			// 取得狀態
+			// end of 20170313_sam 
 			getStatus();
 
 		}

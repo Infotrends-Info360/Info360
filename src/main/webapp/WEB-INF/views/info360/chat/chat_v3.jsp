@@ -994,6 +994,10 @@
 					success : function(data) {
 						console.log("Insert_rpt_activitylog success");
 						console.log(data);
+						
+						// 20170313_sam
+						// 更新ACW結束時間 
+						sendComment(interactionId, activitydataids, theComment);
 
 						// 關閉目前使用頁籤
 						var interactionId = "${interactionId}";
@@ -1016,6 +1020,22 @@
 		// 新增案件資訊活動代碼紀錄
 		insertRptActivityLog();
 	}
+	
+	// 20170313_sam
+	// 更新ACW結束時間 
+	function sendComment(aInteractionid, aActivitydataids, aComment){
+// 		alert("sendComment()");
+		function sendCommentJson(aInteractionid, aActivitydataids, aComment){
+			this.type = "sendComment";
+			this.interactionid = aInteractionid;
+			this.activitydataids = aActivitydataids;
+			this.comment = aComment;
+		}
+		// 寄送請求至WS
+		var mySendCommentJson = new sendCommentJson(aInteractionid, aActivitydataids, aComment);
+		parent.ws.send(JSON.stringify(mySendCommentJson));	
+	}
+	// end of 20170313_sam
 </script>
 
 </html>
