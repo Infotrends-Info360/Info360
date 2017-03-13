@@ -83,8 +83,8 @@
 								未就緒
 						</button>
 						<ul role="menu" class="dropdown-menu" id="statusList">
-							<li><a onclick="agentReady()">準備就緒</a></li>
-							<li><a onclick="agentNotReady()">離席</a></li>
+							<li class="agentReady"><a onclick="agentReady()">準備就緒</a></li>
+							<li style="display:none;"><a onclick="agentNotReady()">離席</a></li>
 						</ul> 
 					</li>
 					<li class="dropdown"><a aria-expanded="false" role="button"
@@ -205,7 +205,7 @@
 					<button type="button" class="btn btn-success" data-dismiss="modal"
 						onclick="acceptEvent()">接受</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal"
-						onclick="rejectEvent()">拒絕</button>
+						onclick="rejectEvent()" id="inviteRejectButton">拒絕</button>
 				</div>
 			</div>
 
@@ -544,7 +544,7 @@
 							var statusName = reasonList[index].statusname_tw;
 							var dbid = reasonList[index].dbid.trim();
 							
-							var $li = '<li><a dbid="' + dbid + '" onclick="agentNotReady(' + dbid + ')">' + statusName + '</a></li>'
+							var $li = '<li style="display:none;"><a dbid="' + dbid + '" onclick="agentNotReady(' + dbid + ')">' + statusName + '</a></li>'
 							$("#statusList").append($li);
 						}
 
@@ -575,12 +575,21 @@
 									"display", "inline-block");
 							$("#statusButton button.status-notready").css(
 									"display", "none");
+							
+							//控制可選取按鈕
+							$("#statusList li").show();
+							$("#statusList li.agentReady").hide();
+							
 							// 結果為未就緒
 						} else if ("4" == obj.Status) {
 							$("#statusButton button.status-ready").css(
 									"display", "none");
 							$("#statusButton button.status-notready").css(
 									"display", "inline-block");
+							
+							//控制可選取按鈕
+							$("#statusList li").hide();
+							$("#statusList li.agentReady").show();
 						}
 					}
 
@@ -679,6 +688,13 @@
 					//通知響鈴結束
 					if ("ringTimeout" == obj.Event) {
 						console.log("ringTimeout");
+						
+						// 加入逾時自動拒絕機制
+						if($('#inviteDialog').hasClass("in")) {
+							$("#inviteRejectButton").trigger("click");
+						} else {
+							rejectEvent();
+						}
 					}
 					//20170223 Lin
 
@@ -901,8 +917,8 @@
 			waittingClientIDList_g.splice(index_remove, 1);
 			//20170220 Lin
 
-			document.getElementById("AcceptEvent").disabled = true;
-			document.getElementById("RejectEvent").disabled = true;
+			//document.getElementById("AcceptEvent").disabled = true;
+			//document.getElementById("RejectEvent").disabled = true;
 		}
 
 		// 將多人同時加入房間
