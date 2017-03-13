@@ -478,8 +478,8 @@
 						$('iframe[name="iframe0"]').show();
 						$("#userNickName").html(UserName_g);
 
-						$('.J_iframe').attr('src',
-								'/info360/dashboard?userid=' + UserID_g); // 20170222 Lin 刷新dashboard，為了取的UserID
+// 						$('.J_iframe').attr('src',
+// 								'/info360/dashboard?userid=' + UserID_g); // 20170222 Lin 刷新dashboard，為了取的UserID
 						// Step-1 載入時連線ws
 						doConnect();
 					}

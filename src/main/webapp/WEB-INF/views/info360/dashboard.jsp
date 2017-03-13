@@ -352,12 +352,13 @@
 
         <!-- Peity demo -->
 <!--         <script src="../js/demo/peity-demo.js"></script> -->
-		<%
-		String userid =  request.getParameter("userid");
-		%>
+<%-- 		<% --%>
+// 		String userid =  request.getParameter("userid");
+<%-- 		%> --%>
 		<script>
 		function kpiview() {
-			var user = <%= userid%>;
+<%-- 			var user = <%= userid%>; --%>
+			var user = parent.UserID_g;
 			if(user!=null && ""!=user){
 				var data = 'user=' + user;
 				var me = this;
