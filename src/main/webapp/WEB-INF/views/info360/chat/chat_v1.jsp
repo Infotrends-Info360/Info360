@@ -994,15 +994,16 @@
 					success : function(data) {
 						console.log("Insert_rpt_activitylog success");
 						console.log(data);
+						
+						// 20170313_sam
+						// 更新ACW結束時間 
+						sendComment(interactionId, activitydataids, theComment);
 
 						// 關閉目前使用頁籤
 						var interactionId = "${interactionId}";
 						parent.closeCurrentTab(interactionId);
 					}
 				});
-		
-		// 更新ACW結束時間 
-		sendComment(interactionId, activitydataids, theComment);
 	}
 
 	// 通話結束，自動點選案件資訊，根據設定決定是否選取第一層清單
