@@ -1571,7 +1571,7 @@ function Drop(event){
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-body">
-				<h3>是否刪除帳號？</h3>
+				<h3>是否刪除？</h3>
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
@@ -1630,7 +1630,7 @@ function Drop(event){
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-body">
-				<h3>是否刪除帳號？</h3>
+				<h3>是否刪除？</h3>
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
@@ -1858,7 +1858,7 @@ function Drop(event){
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-body">
-				<h3>是否停用？</h3>
+				<h3>是否刪除？</h3>
 			</div>
 			<div class="modal-footer">
 <!-- 				<div class="form-group col-sm-6"> -->
@@ -1914,7 +1914,7 @@ function Drop(event){
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-body">
-				<h3>是否停用？</h3>
+				<h3>是否刪除？</h3>
 			</div>
 			<div class="modal-footer">
 <!-- 				<div class="form-group col-sm-6"> -->
@@ -1978,7 +1978,7 @@ function Drop(event){
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-body">
-				<h3>是否停用？</h3>
+				<h3>是否刪除？</h3>
 			</div>
 			<div class="modal-footer">
 
