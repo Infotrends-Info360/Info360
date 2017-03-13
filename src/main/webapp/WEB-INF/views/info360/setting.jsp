@@ -952,18 +952,17 @@ function Drop(event){
 							</div>
 						</div>
 
-						<div class="form-group col-sm-6">
-							<label for="inputLastName" class="col-sm-3 control-label">建立者名稱:</label>
-							<div class="col-sm-8">
-								<input type="text" class="form-control" id="nodeUSER"
+<!-- 						<div class="form-group col-sm-6"> -->
+<!-- 							<label for="inputLastName" class="col-sm-3 control-label">建立者名稱:</label> -->
+<!-- 							<div class="col-sm-8"> -->
+								<input type="hidden" class="form-control" id="nodeUSER"
 									placeholder="">
-							</div>
-						</div>
+<!-- 							</div> -->
+<!-- 						</div> -->
 						<div class="form-group col-sm-6">
 							<label for="inputFirstName" class="col-sm-3 control-label">上層節點:</label>
-							<div class="col-sm-8">
-								<select id="nodeLINKlist">
-								</select><br>
+							<div class="col-sm-8"><span id="nodeLINKlist"></span>
+							
 							</div>
 						</div>
 						<div class="form-group col-sm-6">
@@ -1010,9 +1009,9 @@ function Drop(event){
 						</div>
 						<div class="form-group col-sm-6">
 							<label for="inputFirstName" class="col-sm-3 control-label">上層節點:</label>
-							<div class="col-sm-8">
-								<select id="nodeLINKlistU">
-								</select><br>
+							<div class="col-sm-8" id="nodeLINKlistU">
+<!-- 								<select id="nodeLINKlistU"> -->
+<!-- 								</select><br> -->
 							</div>
 						</div>
 						<div class="form-group col-sm-6">
@@ -1826,13 +1825,13 @@ function Drop(event){
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-body">
-				<h3>是否確定刪除？</h3>
+				<h3>是否確定刪除？(相關子節點將連帶刪除)</h3>
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
-					<h2>ps.相關聯子節點全數刪除</h2>
-					<h3 id="delete_name">名稱:</h3>
-					<h3 id="delete_number">編號:</h3>
+					
+<!-- 					<h3 id="delete_name">名稱:</h3> -->
+<!-- 					<h3 id="delete_number">編號:</h3> -->
 				</div>
 				<button type="button" class="btn btn-success" data-dismiss="modal"
 					onclick="deletefunctioncomm('刪除成功')">確定</button>
@@ -3684,8 +3683,8 @@ $.ajax({
 									}	
 									$('#commname')
 											.text(data.node.original.text);
-									$('#delete_name').text(
-											"名稱: " + data.node.original.text);
+// 									$('#delete_name').text(
+// 											"名稱: " + data.node.original.text);
 									$('#Update_myModalLabel').text(
 											"更新的節點名稱: "
 													+ data.node.original.text);
@@ -3698,16 +3697,20 @@ $.ajax({
 													data.selected[0], "/", 0));
 									$('#createuser').text(
 											data.node.original.createuser);
-									$('#delete_number').text(
-											"編號:" + data.node.original.id);
+// 									$('#delete_number').text(
+// 											"編號:" + data.node.original.id);
 
 									$('#type').text(data.node.original.parent);
 									
 									$('#pass').text(data.node.original.id);
 									$('#children').text(data.node.children_d);
-					
+									
+								
+								
+									
 									$("#comm").hide();
 									$("#commTB").show();
+									
 									
 									
 								});
@@ -3722,16 +3725,23 @@ $.ajax({
 									console.log("parents.length",
 											data.node.parents.length);
 									Upcot = data.node.children_d.length;
+									
+									
 									console.log("id", data.node.id);
 									console.log("text", data.node.text);
 								
 									document.getElementById('nodeNAMEu').value = data.node.text;
 									document.getElementById('nodeURLu').value = data.node.a_attr.href;
-									document.getElementById('nodeUSERu').value = data.node.original.createuser;
-
 									
+									
+									document.getElementById('nodeUSERu').value = data.node.parent;
 
-									if (cot <= 3) {
+									document.getElementById('nodeLINKlist').innerHTML = data.node.text;
+									document.getElementById('nodeUSER').value = data.node.id;
+		
+									
+									
+									if (cot < 3) {
 										insertornot = true;
 										//		alert("Insert");
 									}
@@ -3741,32 +3751,32 @@ $.ajax({
 									}
 
 								});
-						var oo1 = "<option value="+0+">#</option>";
-						var one = "<option  id='UPlist'></option>";
-						var two = "<option  id='INlist'></option>";
+// 						var oo1 = "<option value="+0+">#</option>";
+// 						var one = "<option  id='UPlist'></option>";
+// 						var two = "<option  id='INlist'></option>";
 						var color = "<option>black</option><option>blue</option><option>yellow</option><option>red</option>";
 						document.getElementById("insert_color")
 								.insertAdjacentHTML("BeforeEnd", color);
 						document.getElementById("update_color")
 								.insertAdjacentHTML("BeforeEnd", color);
-						document.getElementById("nodeLINKlist")
-								.insertAdjacentHTML("BeforeEnd", two);
-						document.getElementById("nodeLINKlistU")
-								.insertAdjacentHTML("BeforeEnd", one);
-						for (var i = 0; i <= data.count - 1; i++) {
+// 						document.getElementById("nodeLINKlist")
+// 								.insertAdjacentHTML("BeforeEnd", two);
+// 						document.getElementById("nodeLINKlistU")
+// 								.insertAdjacentHTML("BeforeEnd", one);
+// 						for (var i = 0; i <= data.count - 1; i++) {
 
-							var str = "<option value='"+data.Tree[i].id+"'>"
-									+ data.Tree[i].text + "</option>";
-							document.getElementById("nodeLINKlist")
-									.insertAdjacentHTML("BeforeEnd", str);
-							document.getElementById("nodeLINKlistU")
-									.insertAdjacentHTML("BeforeEnd", str);
+// 							var str = "<option value='"+data.Tree[i].id+"'>"
+// 									+ data.Tree[i].text + "</option>";
+// 							document.getElementById("nodeLINKlist")
+// 									.insertAdjacentHTML("BeforeEnd", str);
+// 							document.getElementById("nodeLINKlistU")
+// 									.insertAdjacentHTML("BeforeEnd", str);
 
-						}
-						document.getElementById("nodeLINKlist")
-								.insertAdjacentHTML("BeforeEnd", oo1);
-						document.getElementById("nodeLINKlistU")
-								.insertAdjacentHTML("BeforeEnd", oo1);
+// 						}
+// 						document.getElementById("nodeLINKlist")
+// 								.insertAdjacentHTML("BeforeEnd", oo1);
+// 						document.getElementById("nodeLINKlistU")
+// 								.insertAdjacentHTML("BeforeEnd", oo1);
 					},
 				});
 	};
@@ -3793,6 +3803,12 @@ $.ajax({
 
 	//新增畫面
 	function showAddMembercomm() {
+		document.getElementById('nodeNAME').value=""
+		document.getElementById('nodeURL').value=""
+		
+		
+		var nodeid =  document.getElementById('nodeUSER').value
+	
 		closeAllHrContent();
 		$("#CommonlinkContent").show();
 		$("#addMemberContentcomm").show();
@@ -3817,6 +3833,7 @@ $.ajax({
 	//
 	//新增功能
 	function sendAddMembercomm() {
+
 		   if (!validateCmI()) {
                return;
            }
@@ -3824,10 +3841,12 @@ $.ajax({
 
 		var a = 0;
 		if (insertornot) {
-			var nodeLINK = document.getElementById('nodeLINKlist').value;
+			var nodeLINK = document.getElementById('nodeUSER').value;
 			var nodeNAME = document.getElementById('nodeNAME').value;
 			var nodeURL = document.getElementById('nodeURL').value;
 // 			var nodeUSER = document.getElementById('nodeUSER').value;
+
+
 			var color = document.getElementById('insert_color').value;
 			var myMap = new Map();
 
@@ -3909,6 +3928,34 @@ $.ajax({
 	
 	//更新頁面
 	function showEditMembercomm() {
+		
+		$('#nodeLINKlistU').empty();
+		var nodeLINKu = document.getElementById('nodeUSERu').value;
+
+		$
+		.ajax({
+			url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Select_commonlink",
+
+			data : {
+				"nodeid" : nodeLINKu
+			},
+			type : "POST",
+			dataType : 'json',
+
+			error : function(e) {
+			
+			},
+			success : function(data) {
+				var str = "<span >"+data.Tree[0].text+"</span>"
+	
+			document.getElementById("nodeLINKlistU")
+					.insertAdjacentHTML("BeforeEnd", str);
+			}
+
+		});
+	
+		
+		
 		closeAllHrContent();
 		$("#CommonlinkContent").show();
 		$("#editMemberContentcomm").show();
@@ -3939,7 +3986,7 @@ $.ajax({
 		var a = 0;
 		if (Uinsertornot) {
 			var nodeIDu = document.getElementById('pass').innerHTML;
-			var nodeLINKu = document.getElementById('nodeLINKlistU').value;
+			var nodeLINKu = document.getElementById('nodeUSERu').value;
 			var nodeNAMEu = document.getElementById('nodeNAMEu').value;
 			var nodeURLu = document.getElementById('nodeURLu').value;
 // 			var nodeUSERu = document.getElementById('nodeUSERu').value;
