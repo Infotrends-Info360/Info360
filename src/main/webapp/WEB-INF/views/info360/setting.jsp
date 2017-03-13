@@ -3741,7 +3741,7 @@ $.ajax({
 		
 									
 									
-									if (cot < 3) {
+									if (cot <= 3) {
 										insertornot = true;
 										//		alert("Insert");
 									}
@@ -3904,7 +3904,7 @@ $.ajax({
 						}
 					});
 		} else {
-			alert("不可超過第三層");
+			toastr.error("不可超過第三層");
 		}
 
 
@@ -3930,6 +3930,7 @@ $.ajax({
 	function showEditMembercomm() {
 		
 		$('#nodeLINKlistU').empty();
+		$('#nodeLINKlistU').empty();
 		var nodeLINKu = document.getElementById('nodeUSERu').value;
 
 		$
@@ -3954,7 +3955,6 @@ $.ajax({
 
 		});
 	
-		
 		
 		closeAllHrContent();
 		$("#CommonlinkContent").show();
