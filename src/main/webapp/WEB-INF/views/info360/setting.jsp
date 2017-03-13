@@ -9,8 +9,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>「設定」頁面</title>
+
+
+
+
 <!--   	<script src="resources/js/plugins/jquery-ui/jquery-ui.min.js"></script> -->
-  	
 <script src="resources/jstree/jquery.min.js"></script>
 <link href="resources/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
 <link href="resources/css/font-awesome.css?v=4.4.0" rel="stylesheet">
@@ -25,6 +28,13 @@
 
 <link href="resources/css/plugins/toastr/toastr.min.css"
 	rel="stylesheet">
+	
+	
+<link rel="stylesheet" href="resources/css/farbtastic.css" type="text/css" />
+
+<script src="resources/js/farbtastic.js"></script>
+	
+	
 <style>
 label.required:after {
 	content: " *";
@@ -55,7 +65,7 @@ label.required:after {
 }
 </style>
 <style type="text/css">
-#Box2,#Box3,#Box4{
+#Box2,#Box3,#Box4,#Box5,#Box6{
     width:200px;
     height:100px;
     padding:10px;
@@ -326,13 +336,7 @@ label.required:after {
 								</div>
 				</div>		
 
-
-
-
-
-
-
-<div style="clear:both;"></div>
+					<div style="clear:both;"></div>
 
 
 
@@ -434,7 +438,7 @@ function Drop(event){
 							
 							
 							
-							<div class="form-group col-sm-6">
+				<div class="form-group col-sm-6">
 					<label for="inputEmail" class="col-sm-5 control-label">人員所屬部門</label>
 						<div id="Box1" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
 							<ul id="Box11" >
@@ -551,6 +555,28 @@ function Drop(event){
 										placeholder="">
 								</div>
 							</div>
+							
+							
+				<div class="form-group col-sm-6">
+					<label for="inputEmail" class="col-sm-5 control-label">人員所屬部門</label>
+						<div id="Box5" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
+						
+							</div>
+						<div style="clear:both;"></div>
+				</div>
+
+				<div class="form-group col-sm-6"> 
+					<label for="inputEmail" class="col-sm-5 control-label">部門列表</label> 
+							<div id="Box6" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
+									<ul id="Box66"> 
+									</ul>	
+								</div>
+				</div>		
+
+					<div style="clear:both;"></div>
+							
+							
+							
 
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
@@ -698,6 +724,23 @@ function Drop(event){
 										id="Insert_statusname_cn" placeholder="">
 								</div>
 							</div>
+							
+							<form><input type="text" id="color" name="color" value="#123456" /></form>
+
+							<div id="colorpicker"></div>
+							<script type="text/javascript">
+
+  							$(document).ready(function() {
+
+    						$('#colorpicker').farbtastic('#color');
+
+  							});
+
+							</script>
+							
+							
+							
+							
 							<div class="form-group col-sm-6">
 								<label for="inputAccount" class="col-sm-2 control-label">告警顏色:</label>
 								<div class="col-sm-8">
@@ -2430,99 +2473,99 @@ $.ajax({
 				});
 			}
 	}
-// 	 function validateAddMember() {
-//          var account = $("#inputAccount").val();
-//          var name = $("#inputName").val();
-//          var passowrd = $("#inputPassword").val();
-//          var email = $("#inputEmail").val();
-//          var FN = $("#inputFirstName").val();
-//          var LN = $("#inputLastName").val();
-//          var EN = $("#inputEmployNumber").val();
-//          var PN = $("#inputPhoneNumber").val();
-//          var MX = $("#inputMaxcount").val();
-//          var DT = $("#Box33").val();
+	 function validateAddMember() {
+         var account = $("#inputAccount").val();
+         var name = $("#inputName").val();
+         var passowrd = $("#inputPassword").val();
+         var email = $("#inputEmail").val();
+         var FN = $("#inputFirstName").val();
+         var LN = $("#inputLastName").val();
+         var EN = $("#inputEmployNumber").val();
+         var PN = $("#inputPhoneNumber").val();
+         var MX = $("#inputMaxcount").val();
+         var DT = $("#Box33").val();
          
-//          if (!account || account == '' ) {
-//              toastr.error("請輸入帳號");
+         if (!account || account == '' ) {
+             toastr.error("請輸入帳號");
+             return false;
+         }
+
+         if (!name || name == '') {
+             toastr.error("請輸入姓名");
+             return false;
+         }
+         
+         if (name !='' && isValidNumber(name)) {
+             toastr.error("姓名請輸入中文或英文");
+             return false;
+         }
+         
+         if (!FN || FN == '') {
+             toastr.error("請輸入姓氏");
+             return false;
+         }
+         
+         if (FN !='' && isValidNumber(FN)) {
+             toastr.error("姓氏請輸入中文或英文");
+             return false;
+         }
+         if (!LN || LN == '') {
+             toastr.error("請輸入名字");
+             return false;
+         }
+         
+         if (LN !='' && isValidNumber(LN)) {
+             toastr.error("名字請輸入中文或英文");
+             return false;
+         }
+         if (!EN || EN == '') {
+             toastr.error("請輸入員工編號");
+             return false;
+         }
+         
+         if (EN !='' && !isValidNumber(EN)) {
+             toastr.error("員工編號請輸入數字");
+             return false;
+         }
+         if (!PN || PN == '') {
+             toastr.error("請輸入分機號碼");
+             return false;
+         }
+         
+         if (PN !='' && !isValidNumber(PN)) {
+             toastr.error("分機號碼請輸入數字");
+             return false;
+         }
+         if (!PN || MX == '') {
+             toastr.error("請輸入接通數");
+             return false;
+         }
+         
+         if (MX !='' && !isValidNumber(MX)) {
+             toastr.error("接通數請輸入數字");
+             return false;
+         }
+//          if (!DT || DT == '') {
+//              toastr.error("請選擇部門");
 //              return false;
 //          }
 
-//          if (!name || name == '') {
-//              toastr.error("請輸入姓名");
-//              return false;
-//          }
-         
-//          if (name !='' && isValidNumber(name)) {
-//              toastr.error("姓名請輸入中文或英文");
-//              return false;
-//          }
-         
-//          if (!FN || FN == '') {
-//              toastr.error("請輸入姓氏");
-//              return false;
-//          }
-         
-//          if (FN !='' && isValidNumber(FN)) {
-//              toastr.error("姓氏請輸入中文或英文");
-//              return false;
-//          }
-//          if (!LN || LN == '') {
-//              toastr.error("請輸入名字");
-//              return false;
-//          }
-         
-//          if (LN !='' && isValidNumber(LN)) {
-//              toastr.error("名字請輸入中文或英文");
-//              return false;
-//          }
-//          if (!EN || EN == '') {
-//              toastr.error("請輸入員工編號");
-//              return false;
-//          }
-         
-//          if (EN !='' && !isValidNumber(EN)) {
-//              toastr.error("員工編號請輸入數字");
-//              return false;
-//          }
-//          if (!PN || PN == '') {
-//              toastr.error("請輸入分機號碼");
-//              return false;
-//          }
-         
-//          if (PN !='' && !isValidNumber(PN)) {
-//              toastr.error("分機號碼請輸入數字");
-//              return false;
-//          }
-//          if (!PN || MX == '') {
-//              toastr.error("請輸入接通數");
-//              return false;
-//          }
-         
-//          if (MX !='' && !isValidNumber(MX)) {
-//              toastr.error("接通數請輸入數字");
-//              return false;
-//          }
-// //          if (!DT || DT == '') {
-// //              toastr.error("請選擇部門");
-// //              return false;
-// //          }
+         if (!passowrd || passowrd == '') {
+             toastr.error("請輸入密碼");
+             return false;
+         }
+         if (!email || email == '') {
+             toastr.error("請輸入Email");
+             return false;
+         }
 
-//          if (!passowrd || passowrd == '') {
-//              toastr.error("請輸入密碼");
-//              return false;
-//          }
-//          if (!email || email == '') {
-//              toastr.error("請輸入Email");
-//              return false;
-//          }
+         if (email !='' && !isValidEmail(email)) {
+             toastr.error("請輸入正確的Email格式");
+             return false;
+         }
 
-//          if (email !='' && !isValidEmail(email)) {
-//              toastr.error("請輸入正確的Email格式");
-//              return false;
-//          }
-
-//          return true;
-//      }
+         return true;
+     }
 	
 	 function isValidEmail(email) {
 			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -3024,6 +3067,10 @@ $.ajax({
 		person();
 	}
 </script>
+<!-- =======================================Person=END============================================================================ -->
+
+
+<!-- =======================================Group============================================================================== -->
 
 <script>
 	function showGroup() {
@@ -3040,9 +3087,47 @@ $.ajax({
 
 		select();
 	}
+	
+	
+	function groupperson(){
+		
+		$("#Box22").empty();
+		$("#Box3").empty();
+		$("#Box1").empty();
+		$("#Box44").empty();
+		$("#Box5").empty();
+		$("#Box66").empty();
+		
+		$
+		.ajax({
+			url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Person_STATE",
+			data : {
+				dbid : 0
+			},
+			type : "POST",
+			dataType : 'json',
+
+			error : function(e) {
+				toastr.error("請重新整理");
+			},
+			success : function(data) {
+				console.log("查詢人員", data);
+	
+		
+		for(var i=0; i<data.person.length; i++){
+	        var gp = "<li id='Imgperson"+data.person[i].dbid+"'draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.person[i].dbid+" ><p>"+data.person[i].account+"</p></li>"
+	        document.getElementById("Box66").insertAdjacentHTML("BeforeEnd",gp);
+		}
+// 	        var menu2 = "<li id='Imgperson"+data.group[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.group[i].dbid+" ><p>"+data.group[i].name+"</p></li>"
+// 	        document.getElementById("Box44").insertAdjacentHTML("BeforeEnd",menu2);
+				}
+			}
+	)};
+	
 
 	function select() {
 		
+		groupperson();
 		$("#group0All").prop("checked", false);
 
 		
@@ -3197,19 +3282,23 @@ $.ajax({
                return;
            }
 		closeAddMember();
+		
 		var in_name = document.getElementById('in_name').value;
-		//	var in_state = document.getElementById('inputState').value;
+
+		var aa = $('#Box5 input');
+		var arr = $.makeArray(aa);
+		for(var i=0;i<arr.length;i++){
+		var hh = arr[i].value;
 		$
 				.ajax({
 					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Insert_GroupInfo",
 					data : {
 						state : 0,
 						name : in_name,
-
+						person_dbid:hh
 					},
 					type : "POST",
 					dataType : 'json',
-
 					error : function(e) {
 						toastr.error("新增錯誤");
 					},
@@ -3218,6 +3307,7 @@ $.ajax({
 						toastr.success("新增成功");		
 						}
 				});
+		}
 		
 		closeAllHrContent();
 		$("#groupContent").show();
@@ -3793,6 +3883,11 @@ $.ajax({
 		$("#0Commonlink").show();
 	}
 </script>
+
+<!-- =======================================Group=END============================================================================= -->
+
+
+<!-- =======================================Agentreason============================================================================= -->
 
 <script>
 	function showAgentreason() {
