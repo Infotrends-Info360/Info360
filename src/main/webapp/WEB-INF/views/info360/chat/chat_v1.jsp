@@ -1000,6 +1000,9 @@
 						parent.closeCurrentTab(interactionId);
 					}
 				});
+		
+		// 更新ACW結束時間 
+		sendComment(interactionId, activitydataids, theComment);
 	}
 
 	// 通話結束，自動點選案件資訊，根據設定決定是否選取第一層清單
@@ -1016,6 +1019,22 @@
 		// 新增案件資訊活動代碼紀錄
 		insertRptActivityLog();
 	}
+	
+	// 20170313_sam
+	// 更新ACW結束時間 
+	function sendComment(aInteractionid, aActivitydataids, aComment){
+// 		alert("sendComment()");
+		function sendCommentJson(aInteractionid, aActivitydataids, aComment){
+			this.type = "sendComment";
+			this.interactionid = aInteractionid;
+			this.activitydataids = aActivitydataids;
+			this.comment = aComment;
+		}
+		// 寄送請求至WS
+		var mySendCommentJson = new sendCommentJson(aInteractionid, aActivitydataids, aComment);
+		parent.ws.send(JSON.stringify(mySendCommentJson));	
+	}
+	// end of 20170313_sam
 </script>
 
 </html>
