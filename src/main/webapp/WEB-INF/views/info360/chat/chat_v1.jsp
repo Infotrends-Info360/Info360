@@ -55,7 +55,8 @@
 						<div class="portlet">
 							<div class="portlet-body">
 								<div class="widget">
-									<div class="fa-tree-list" id="commonLinkRoot"></div>
+									<div class="fa-tree-list" id="commonLinkRoot"
+										style="font-size: 14px;"></div>
 								</div>
 
 							</div>
@@ -120,147 +121,81 @@
 
 				<!-- 右側内容區塊 Start -->
 				<div id="content">
+					<!-- 歷史資料Start -->
 					<div class="panel-body" id="historyQuery">
-						<!-- 客戶資料Start -->
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-xs-12"
-								style="margin-bottom: 2px;">
+						<!-- 搜尋條件區 Start -->
+						<div class="row ibox">
+							<div class="col-lg-6 col-md-6">
 								<div class="input-group">
-									<span class="input-group-addon" id="basic-addon1">日期</span>
+									<span class="input-group-addon">日期</span>
 									<div class="input-daterange input-group" id="datepicker">
 										<input type="text" class="input-sm form-control" name="start"
-											value="2014-11-11"> <span class="input-group-addon">到</span>
-										<input type="text" class="input-sm form-control" name="end"
-											value="2014-11-17">
+											value=""> <span class="input-group-addon">到</span> <input
+											type="text" class="input-sm form-control" name="end" value="">
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-3 col-md-3 col-xs-6"
-								style="margin-bottom: 2px;">
+							<div class="col-lg-3 col-md-3">
 								<div class="input-group">
-									<span class="input-group-addon" id="basic-addon1">處理人</span> <input
-										type="text" class="form-control" placeholder="請輸入處理人"
-										aria-describedby="basic-addon1">
+									<span class="input-group-addon">處理人</span> <input type="text"
+										class="form-control" placeholder="請輸入處理人" id="inputAgentId">
 								</div>
 							</div>
-							<div class="col-lg-3 col-md-3 col-xs-6">
-								<div class="input-group">
-									<span class="input-group-addon" id="basic-addon1">客戶ID</span> <input
-										type="text" class="form-control" placeholder="請輸入ID"
-										aria-describedby="basic-addon1">
-								</div>
+							<!-- 
+						<div class="col-lg-3 col-md-3">
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">客戶ID</span> <input
+									type="text" class="form-control" placeholder="請輸入ID"
+									aria-describedby="basic-addon1">
 							</div>
-
-							<div class="col-lg-9 col-md-9 col-xs-8"
-								style="margin-bottom: 2px;">
-								<div class="input-group">
-									<span class="input-group-addon" id="basic-addon1">主旨</span> <input
-										type="text" class="form-control" placeholder="請輸入"
-										aria-describedby="basic-addon1">
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-3 col-xs-4"
-								style="margin-bottom: 2px;">
-								<button class="btn-sm btn-success">搜尋</button>
+						</div>
+						 -->
+							<div class="col-lg-3 col-md-3">
+								<button class="btn-sm btn-success" onclick="search()"
+									id="searchButton">搜尋</button>
 								<button class="btn-sm btn-danger">取消</button>
 							</div>
+						</div>
+						<!-- 
+					<div class="row ibox">
+						
+						<div class="col-lg-9 col-md-9">
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">主旨</span> <input
+									type="text" class="form-control" placeholder="請輸入"
+									aria-describedby="basic-addon1">
+							</div>
+						</div>
+						 
+						<div class="col-lg-3 col-md-3">
+							<button class="btn-sm btn-success">搜尋</button>
+							<button class="btn-sm btn-danger">取消</button>
+						</div>
+						
+					</div>
+					-->
+						<!-- 搜尋條件區 End -->
 
-							<div class="col-lg-12 col-md-12 col-xs-12">
+						<div class="row ibox">
+							<div class="col-lg-12 col-md-12">
 								<table class="table table-striped table-bordered table-hover"
 									id="queryTable">
 									<thead>
 										<tr>
-											<td>欄位1</td>
-											<td>欄位2</td>
-											<td>欄位3</td>
-											<td>欄位4</td>
-											<td>欄位5</td>
+											<th>開始時間</th>
+											<th>結束時間</th>
+											<th>來源</th>
+											<th>處理人</th>
+											<th>服務代碼</th>
+											<th>備註</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td>Chrome</td>
-											<td>IE</td>
-											<td>FireFox</td>
-											<td>Safari</td>
-											<td>Netscape</td>
-										</tr>
-										<tr>
-											<td>Chrome</td>
-											<td>IE</td>
-											<td>FireFox</td>
-											<td>Safari</td>
-											<td>Netscape</td>
-										</tr>
-										<tr>
-											<td>Chrome</td>
-											<td>IE</td>
-											<td>FireFox</td>
-											<td>Safari</td>
-											<td>Netscape</td>
-										</tr>
-										<tr>
-											<td>Chrome</td>
-											<td>IE</td>
-											<td>FireFox</td>
-											<td>Safari</td>
-											<td>Netscape</td>
-										</tr>
-										<tr>
-											<td>Chrome</td>
-											<td>IE</td>
-											<td>FireFox</td>
-											<td>Safari</td>
-											<td>Netscape</td>
-										</tr>
-										<tr>
-											<td>Chrome</td>
-											<td>IE</td>
-											<td>FireFox</td>
-											<td>Safari</td>
-											<td>Netscape</td>
-										</tr>
-										<tr>
-											<td>Chrome</td>
-											<td>IE</td>
-											<td>FireFox</td>
-											<td>Safari</td>
-											<td>Netscape</td>
-										</tr>
-										<tr>
-											<td>Chrome</td>
-											<td>IE</td>
-											<td>FireFox</td>
-											<td>Safari</td>
-											<td>Netscape</td>
-										</tr>
-										<tr>
-											<td>Chrome</td>
-											<td>IE</td>
-											<td>FireFox</td>
-											<td>Safari</td>
-											<td>Netscape</td>
-										</tr>
-										<tr>
-											<td>Chrome</td>
-											<td>IE</td>
-											<td>FireFox</td>
-											<td>Safari</td>
-											<td>Netscape</td>
-										</tr>
-										<tr>
-											<td>Chrome</td>
-											<td>IE</td>
-											<td>FireFox</td>
-											<td>Safari</td>
-											<td>Netscape</td>
-										</tr>
-									</tbody>
+									<tbody></tbody>
 								</table>
 							</div>
 						</div>
 					</div>
-					<!-- 客戶資料End -->
+					<!-- 歷史資料End -->
 
 					<!-- 案件資訊專區 Start -->
 					<div class="panel-body panel-success" id="caseInfo"
@@ -365,13 +300,9 @@
 <script src="resources/js/plugins/treeview/bootstrap-treeview.js"></script>
 
 <script>
-	$(document).ready(function() {
-		// init datepicker
-		$("#datepicker").datepicker();
-		// init datatable
-		$("#queryTable").DataTable();
-		$("#queryTable").css("width", "100%");
+	var agentId = parent.UserID_g;
 
+	$(document).ready(function() {
 		// 案件資訊處理人
 		console.log(parent.UserName_g);
 		$("#caseUserName").val(parent.UserName_g);
@@ -384,8 +315,26 @@
 
 		// 取得客戶資料
 		getUserData();
+
+		// init datepicker
+		$("#datepicker").datepicker({
+			format : 'yyyy-mm-dd',
+			endDate : '0d'
+		});
+
+		// default search and initdataTable
+		var opt = {
+			"bLengthChange" : false,
+			"iDisplayLength" : 15
+		};
+
+		$('#queryTable').DataTable(opt);
+		$("#queryTable").css("width", "100%");
+
+		quickSearchByTime(0);
 	});
 
+	// 取得左側客戶資料
 	function getUserData() {
 		var parentChatList = parent.chatList;
 		var interactionId = "${interactionId}";
@@ -404,10 +353,10 @@
 					mappingSorted[mapping[key].sort] = mapping[key];
 					mappingSorted[mapping[key].sort].key = key;
 				});
-				
+
 				console.log("mappingSorted : ");
 				console.log(mappingSorted);
-				
+
 				for ( var count in mappingSorted) {
 					var $a = '<a href="#" class="list-group-item">';
 					$a += '<h4>' + mappingSorted[count].chiname + '</h4>';
@@ -418,14 +367,15 @@
 
 					$("div.customerInfo").append($a);
 				}
-				
+
 				// 因客戶資料不一定會傳入，因此需先判斷是否有內容
 				if (userData.CustomerData) {
 					var customerData = userData.CustomerData[0];
-					
+
 					for ( var key in customerData) {
 						var id = key
-						$('#customer' + key.toLowerCase()).html(customerData[key]);
+						$('#customer' + key.toLowerCase()).html(
+								customerData[key]);
 					}
 				}
 			}
@@ -440,17 +390,6 @@
 			$temp.val(copyText).select();
 			document.execCommand("copy");
 			$temp.remove();
-		});
-	}
-
-	Array.prototype.sortOn = function(key) {
-		this.sort(function(a, b) {
-			if (a[key] < b[key]) {
-				return -1;
-			} else if (a[key] > b[key]) {
-				return 1;
-			}
-			return 0;
 		});
 	}
 
@@ -561,7 +500,7 @@
 		var $content = $("#content");
 		var $div = '<div class="panel-body" id="link' + linkIndex + '" style="display:none;">';
 		$div += '<iframe src="' + href
-				+ '" style="width:100%;min-height:400px;"></iframe>';
+				+ '" style="width:100%;min-height:750px;"></iframe>';
 		$div += '</div>';
 
 		$content.append($div);
@@ -614,10 +553,10 @@
 		$("#queryButton").addClass("btn-primary");
 
 		// iframe 重新載入
-		var src = $('#link' + linkIndex +' iframe').prop("src");
-		$('#link' + linkIndex +' iframe').prop("src", "");
-		$('#link' + linkIndex +' iframe').prop("src", src);
-		
+		var src = $('#link' + linkIndex + ' iframe').prop("src");
+		$('#link' + linkIndex + ' iframe').prop("src", "");
+		$('#link' + linkIndex + ' iframe').prop("src", src);
+
 		hideAllContent()
 		$("#historyQuery").show();
 	}
@@ -797,7 +736,6 @@
 								var menuName = data.activitymenu[index].menuname;
 								var dbid = data.activitymenu[index].dbid;
 
-								//console.log("[" + index + "]" + menuName + ";" + dbid);
 								$caseSelection
 										.append("<option value='" + dbid +"'>"
 												+ menuName + "</option");
@@ -869,30 +807,35 @@
 					success : function(data) {
 						var targetTable = $("#caseInfo" + tabIndex + " > div");
 						targetTable.html("");
-
+						console.log(data);
 						// 重新將acitivitydata與flag組成巢狀結構
 						var titleList = [];
 
-						for ( var index in data.activitydata) {
-							var titleflag = data.activitydata[index].titleflag;
-							var codename = data.activitydata[index].codename;
-							data.activitydata[index].dataList = [];
+						for ( var index in data.Flag0) {
+							var titleflag = data.Flag0[index].titleflag;
 
-							titleList.push(data.activitydata[index]);
+							if (1 == titleflag) {
+								data.Flag0[index].dataList = [];
+								titleList.push(data.Flag0[index]);
+							}
 						}
 
-						for ( var index in data.Flag) {
-							var titlegroup = data.Flag[index].titlegroup;
+						for ( var index in data.Flag0) {
+							var titleflag = data.Flag0[index].titleflag;
+							var titlegroup = data.Flag0[index].titlegroup;
 
-							for ( var key in titleList) {
-								if (titleList[key].titleflag == titlegroup) {
-									titleList[key].dataList
-											.push(data.Flag[index]);
+							if (0 == titleflag) {
+								for ( var key in titleList) {
+									if (titleList[key].dbid == titlegroup) {
+										titleList[key].dataList
+												.push(data.Flag0[index]);
+									}
 								}
 							}
 						}
 
-						//console.log(titleList);
+						console.log("titleList");
+						console.log(titleList);
 						// 根據巢狀結構建立對應的表格
 						for ( var index in titleList) {
 							var $table = '<table class="table table-striped table-bordered table-hover" style="width:100%">';
@@ -994,7 +937,7 @@
 					success : function(data) {
 						console.log("Insert_rpt_activitylog success");
 						console.log(data);
-						
+
 						// 20170313_sam
 						// 更新ACW結束時間 
 						sendComment(interactionId, activitydataids, theComment);
@@ -1020,22 +963,134 @@
 		// 新增案件資訊活動代碼紀錄
 		insertRptActivityLog();
 	}
-	
+
 	// 20170313_sam
 	// 更新ACW結束時間 
-	function sendComment(aInteractionid, aActivitydataids, aComment){
-// 		alert("sendComment()");
-		function sendCommentJson(aInteractionid, aActivitydataids, aComment){
+	function sendComment(aInteractionid, aActivitydataids, aComment) {
+		// 		alert("sendComment()");
+		function sendCommentJson(aInteractionid, aActivitydataids, aComment) {
 			this.type = "sendComment";
 			this.interactionid = aInteractionid;
 			this.activitydataids = aActivitydataids;
 			this.comment = aComment;
 		}
 		// 寄送請求至WS
-		var mySendCommentJson = new sendCommentJson(aInteractionid, aActivitydataids, aComment);
-		parent.ws.send(JSON.stringify(mySendCommentJson));	
+		var mySendCommentJson = new sendCommentJson(aInteractionid,
+				aActivitydataids, aComment);
+		parent.ws.send(JSON.stringify(mySendCommentJson));
 	}
 	// end of 20170313_sam
+
+	/* 搜尋功能專區 */
+	// 案件搜尋
+	function search() {
+		var start = $('#datepicker [name="start"]').val();
+		var end = $('#datepicker [name="end"]').val();
+		var id = $("#inputAgentId").val() || agentId;
+
+		console.log("start : " + start + "; end : " + end + "; id :" + id);
+
+		$('#queryTable').DataTable().destroy();
+		$('#queryTable tbody').html("");
+
+		$
+				.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query",
+					data : {
+						startdate : start,
+						enddate : end,
+						agentid : id
+					},
+					type : "POST",
+					dataType : 'json',
+
+					error : function(e) {
+						console.log("請重新整理");
+
+					},
+					success : function(data) {
+						console.log(data);
+						var queryData = data.data;
+
+						for ( var index in queryData) {
+							var agentName = queryData[index].Agentname;
+							var codeName = queryData[index].Codename;
+							var endd = queryData[index].Enddate;
+							var startd = queryData[index].Startdate;
+							var comment = queryData[index].Thecomment;
+							var ixnId = queryData[index].ixnid;
+							var src = queryData[index].src;
+
+							var $tr = '<tr>';
+							$tr += '<td>' + startd + '</td>';
+							$tr += '<td>' + endd + '</td>';
+							$tr += '<td>' + src + '</td>';
+							$tr += '<td>' + agentName + '</td>';
+							$tr += '<td>' + codeName + '</td>';
+							$tr += '<td>' + comment + '</td>';
+							$tr += '</tr>';
+
+							$('#queryTable tbody').append($tr);
+						}
+
+						var opt = {
+							"bLengthChange" : false,
+							"iDisplayLength" : 15
+						};
+
+						$('#queryTable').DataTable(opt);
+						$("#queryTable").css("width", "100%");
+					}
+				});
+	}
+
+	// 快速選取指定時間
+	function quickSearchByTime(days) {
+		var endDate = new Date();
+		var year = endDate.getFullYear();
+		var month = endDate.getMonth() + 1;
+		var day = endDate.getDate();
+		var endDateStr = addZeroLeft(year, 4) + "-" + addZeroLeft(month, 2)
+				+ "-" + addZeroLeft(day, 2);
+
+		if (0 == days) {
+			var startDate = new Date(year, month - 1, day);
+		} else if (7 == days) {
+			var startDate = new Date(year, month - 1, day - 7);
+		} else if (30 == days) {
+			var startDate = new Date(year, month - 2, day);
+		} else if (90 == days) {
+			var startDate = new Date(year, month - 4, day);
+		} else if (180 == days) {
+			var startDate = new Date(year, month - 7, day);
+		}
+
+		year = startDate.getFullYear();
+		month = startDate.getMonth() + 1;
+		day = startDate.getDate();
+		var startDateStr = addZeroLeft(year, 4) + "-" + addZeroLeft(month, 2)
+				+ "-" + addZeroLeft(day, 2);
+
+		$('#datepicker [name="start"]').datepicker("update", startDateStr);
+		$('#datepicker [name="end"]').datepicker("update", endDateStr);
+
+		search();
+	}
+
+	/*
+	 * 左邊補0，用於日期或時間
+	 * str: 要被補0的字串
+	 * length: 要補多少個0
+	 */
+	function addZeroLeft(str, length) {
+		str = str + '';
+
+		if (str.length >= length) {
+			return str;
+		} else {
+			return addZeroLeft("0" + str, length);
+		}
+	}
 </script>
 
 </html>
