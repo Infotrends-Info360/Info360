@@ -206,6 +206,8 @@
 						onclick="acceptEvent()">接受</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal"
 						onclick="rejectEvent()" id="inviteRejectButton">拒絕</button>
+					<button type="button" class="btn btn-default" style="visibility: hidden;" data-dismiss="modal"
+						id="inviteCloseButton"></button>
 				</div>
 			</div>
 
@@ -689,21 +691,40 @@
 					if ("ringTimeout" == obj.Event) {
 						console.log("ringTimeout");
 						
-						// 加入逾時自動拒絕機制
-						if($('#inviteDialog').hasClass("in")) {
-							$("#inviteRejectButton").trigger("click");
-						} else {
-							rejectEvent();
+						// 20170314_sam
+						// 將請求畫面去掉
+						if($('#inviteDialog').hasClass("in")){
+							$("#inviteCloseButton").trigger("click");
 						}
+						// 將此clientID從waittingClientIDList_g中去除
+						var index_remove;
+						for ( var index in waittingClientIDList_g) {
+							clientIDJson = waittingClientIDList_g[index];
+							var clientID = clientIDJson.clientID;
+							if (ClientID_g == clientID) {
+								index_remove = index;
+							}
+							//   console.log("clietIDJson.clientID: " + clientIDJson.clientID);
+						}
+						waittingClientIDList_g.splice(index_remove, 1);
+						// end of 20170314_sam
+						
+						
+						// 加入逾時自動拒絕機制
+// 						if($('#inviteDialog').hasClass("in")) {
+// 							$("#inviteRejectButton").trigger("click");
+// 						} else {
+// 							rejectEvent();
+// 						}
 					}
 					//20170223 Lin
 
 					if ("removeUserinroom" == obj.Event) {
-						var fromUserId = obj.fromUserID;
+						var fromUserID = obj.fromUserID;
 						var roomID = obj.roomID
 						// 20170313_sam
 						// 只收他人傳來的系統訊息
-						if (fromUserID != parent.UserID_g){
+						if (fromUserID != UserID_g){
 							var chatRoomMsg = obj.chatRoomMsg; // 接收系統訊息
 							var leftRoomMsg = chatRoomMsg.leftRoomMsg;
 							var closedRoomMsg = chatRoomMsg.closedRoomMsg;
