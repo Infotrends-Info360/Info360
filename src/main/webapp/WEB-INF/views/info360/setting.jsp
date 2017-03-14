@@ -552,24 +552,49 @@ function Drop(event){
 							</div>
 							
 							
-<!-- 				<div class="form-group col-sm-6"> -->
-<!-- 					<label for="inputEmail" class="col-sm-5 control-label">人員所屬部門</label> -->
-<!-- 						<div id="Box5" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid"> -->
+								<div class="form-group col-sm-6">
+					<label for="inputEmail" class="col-sm-5 control-label">部門權限</label>
+						<div id="Box77" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
 						
-<!-- 							</div> -->
-<!-- 						<div style="clear:both;"></div> -->
-<!-- 				</div> -->
+						</div>
+						<div style="clear:both;"></div>
+				</div>
 
-<!-- 				<div class="form-group col-sm-6">  -->
-<!-- 					<label for="inputEmail" class="col-sm-5 control-label">部門列表</label>  -->
-<!-- 							<div id="Box6" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid"> -->
-<!-- 									<ul id="Box66">  -->
-<!-- 									</ul>	 -->
-<!-- 								</div> -->
-<!-- 				</div>		 -->
 
-<!-- 					<div style="clear:both;"></div> -->
+				<div class="form-group col-sm-6"> 
+					<label for="inputEmail" class="col-sm-5 control-label">權限列表</label> 
+							<div id="Box8" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
+									<ul id="Box88"> 
+									</ul>	
+								</div>
+				</div>		
+
+					<div style="clear:both;"></div>
+										
 							
+							
+				<div class="form-group col-sm-6">
+					<label for="inputEmail" class="col-sm-5 control-label">部門人員</label>
+						<div id="Box5" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
+						
+						</div>
+						<div style="clear:both;"></div>
+				</div>
+
+
+				<div class="form-group col-sm-6"> 
+					<label for="inputEmail" class="col-sm-5 control-label">人員列表</label> 
+							<div id="Box6" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
+									<ul id="Box66"> 
+									</ul>	
+								</div>
+				</div>		
+
+					<div style="clear:both;"></div>
+					
+					
+					
+
 							
 							
 
@@ -3267,13 +3292,15 @@ $.ajax({
 			}
 	)};
 	
+	
 
 	function select() {
 		
 		groupperson();
 		$("#group0All").prop("checked", false);
 
-		
+		$("#Box66").empty();
+		$("#Box88").empty();
 		$("#managegroupTable tbody tr").empty();
 		$("#bangroupTable tboby tr").empty();
 		$
@@ -3346,6 +3373,9 @@ $.ajax({
 					}
 				});
 
+		
+		
+
 		$("#managegroupTable").css("width", "100%");
 		$("#managegroupTable_filter").prop("style", "float:right;");
 		$("#managegroupTable_wrapper > div:nth-child(1)").hide();
@@ -3408,7 +3438,43 @@ $.ajax({
 
 	//新增畫面
 	function showAddMembergroup() {
+		$('#Box77').empty();
+		$('#Box5').empty();
+		$('#Box88').empty();
+		$('#Box66').empty();
 		document.getElementById('in_name').value=""
+		
+		
+		
+
+			$
+			.ajax({
+				url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/about_GroupInfo",
+				data : {
+					state : 0
+				},
+				type : "POST",
+				dataType : 'json',
+
+				error : function(e) {
+					toastr.error("請重新整理");
+				},
+				success : function(data) {
+					console.log("部門待新增人員", data);
+
+					for(var i=0; i<data.Person.length; i++){
+				        var menu1 = "<li id='Imggroup"+data.Person[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.Person[i].dbid+" ><p>"+data.Person[i].name+"</p></li>"
+				        document.getElementById("Box66").insertAdjacentHTML("BeforeEnd",menu1);
+					}
+					for(var i=0; i<data.Function.length; i++){
+				        var menu2 = "<li id='Imggroupf"+data.Function[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.Function[i].dbid+" ><p>"+data.Function[i].name+"</p></li>"
+				        document.getElementById("Box88").insertAdjacentHTML("BeforeEnd",menu2);
+					}
+				}
+			});
+		
+		
+		
 		
 		closeAllHrContent();
 		$("#groupContent").show();
@@ -3428,17 +3494,37 @@ $.ajax({
 		
 		var in_name = document.getElementById('in_name').value;
 
-// 		var aa = $('#Box5 input');
-// 		var arr = $.makeArray(aa);
-// 		for(var i=0;i<arr.length;i++){
-// 		var hh = arr[i].value;
+		var groupperson = $('#Box5 input');
+		var arr = $.makeArray(groupperson);
+		
+		var kk = "";
+		for(var i=0;i<arr.length;i++){
+		var hh = arr[i].value;
+		kk += arr[i].value+",";
+		}
+		
+		
+		var groupfunction = $('#Box77 input');
+		var arr = $.makeArray(groupfunction);
+		
+		var ll = "";
+		for(var a=0;a<arr.length;a++){
+		var hh = arr[a].value;
+		ll += arr[a].value+",";
+		}
+// 	alert("person :"+kk);
+// 	alert("function :"+ll);
+	
+		
 		$
 				.ajax({
 					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Insert_GroupInfo",
 					data : {
 						state : 0,
-						name : in_name
-// 						person_dbid:hh
+						name : in_name,
+						person_dbid:kk,
+						function_dbid:ll
+						
 					},
 					type : "POST",
 					dataType : 'json',
@@ -3450,7 +3536,7 @@ $.ajax({
 						toastr.success("新增成功");		
 						}
 				});
-// 		}
+	
 		
 		closeAllHrContent();
 		$("#groupContent").show();
@@ -4087,6 +4173,9 @@ $.ajax({
 		$("#CommonlinkContent").show();
 		$("#0Commonlink").show();
 	}
+	
+	
+	
 </script>
 
 <!-- =======================================Group=END============================================================================= -->
