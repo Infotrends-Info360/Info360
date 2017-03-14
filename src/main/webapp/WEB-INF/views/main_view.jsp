@@ -661,7 +661,7 @@
 						//20170223 Lin
 
 						// 取得狀態
-						getStatus();
+// 						getStatus();
 					}
 
 					//20170223 Lin
@@ -685,7 +685,36 @@
 					//20170223 Lin
 					//接收更新狀態後取得的DBID
 					if ("updateStatus" == obj.Event) {
-						StatusEnum.updateDbid(obj);
+						// 20170313_sam
+// 						alert("obj.startORend: " + obj.startORend + " - " + obj.currStatusEnum);
+// 						alert("obj.currStatusEnum: " + obj.currStatusEnum);
+						var startORend = obj.startORend;
+						var currStatusEnum = StatusEnum.getStatusEnum(obj.currStatusEnum);
+						
+						// 更新狀態前端畫面
+						if (currStatusEnum == StatusEnum.READY){
+// 							alert("switch to ready button");
+							$("#statusButton button.status-ready").css(
+									"display", "inline-block");
+							$("#statusButton button.status-notready").css(
+									"display", "none");
+							
+							//控制可選取按鈕
+							$("#statusList li").show();
+							$("#statusList li.agentReady").hide();
+						}else if (currStatusEnum == StatusEnum.NOTREADY){
+// 							alert("switch to notready button");
+							$("#statusButton button.status-ready").css(
+									"display", "none");
+							$("#statusButton button.status-notready").css(
+									"display", "inline-block");
+							
+							//控制可選取按鈕
+							$("#statusList li").hide();
+							$("#statusList li.agentReady").show();
+						}
+						// end of 20170313_sam
+// 						StatusEnum.updateDbid(obj);
 					}
 					//通知響鈴結束
 					if ("ringTimeout" == obj.Event) {
@@ -829,7 +858,7 @@
 			// end of 20170313_sam
 
 			// 取得狀態
-			getStatus();
+// 			getStatus();
 		}
 
 		// Agent尚未準備就緒
@@ -848,11 +877,11 @@
 			StatusEnum.updateStatus(StatusEnum.NOTREADY, "start", null, null,
 					null, reasonDbId);
 			// end of 20170313_sam 
-			getStatus();
+// 			getStatus();
 
 		}
 
-		// 取得Agent狀態
+		// 取得Agent狀態(此方法不再使用)
 		function getStatus() {
 			console.log("getStatus");
 			// 向websocket送出取得Agent狀態指令
