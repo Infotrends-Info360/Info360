@@ -207,7 +207,7 @@
 					<button type="button" class="btn btn-danger" data-dismiss="modal"
 						onclick="rejectEvent()" id="inviteRejectButton">拒絕</button>
 					<button type="button" class="btn btn-default" style="visibility: hidden;" data-dismiss="modal"
-						id="inviteCloseButton"></button>
+						id="inviteCloseButton"></button> <!-- ringTimeout時關閉此inviteDialog視窗 -->
 				</div>
 			</div>
 
