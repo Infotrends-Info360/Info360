@@ -206,6 +206,8 @@
 						onclick="acceptEvent()">接受</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal"
 						onclick="rejectEvent()" id="inviteRejectButton">拒絕</button>
+					<button type="button" class="btn btn-default" style="visibility: hidden;" data-dismiss="modal"
+						id="inviteCloseButton"></button> <!-- ringTimeout時關閉此inviteDialog視窗 -->
 				</div>
 			</div>
 
@@ -659,7 +661,7 @@
 						//20170223 Lin
 
 						// 取得狀態
-						getStatus();
+// 						getStatus();
 					}
 
 					//20170223 Lin
@@ -683,27 +685,83 @@
 					//20170223 Lin
 					//接收更新狀態後取得的DBID
 					if ("updateStatus" == obj.Event) {
-						StatusEnum.updateDbid(obj);
+						// 20170313_sam
+// 						alert("obj.startORend: " + obj.startORend + " - " + obj.currStatusEnum);
+// 						alert("obj.currStatusEnum: " + obj.currStatusEnum);
+						var startORend = obj.startORend;
+						var currStatusEnum = StatusEnum.getStatusEnum(obj.currStatusEnum);
+						
+						// 更新狀態前端畫面
+						if (currStatusEnum == StatusEnum.READY){
+// 							alert("switch to ready button");
+							$("#statusButton button.status-ready").css(
+									"display", "inline-block");
+							$("#statusButton button.status-notready").css(
+									"display", "none");
+							
+							//控制可選取按鈕
+							$("#statusList li").show();
+							$("#statusList li.agentReady").hide();
+						}else if (currStatusEnum == StatusEnum.NOTREADY){
+// 							alert("switch to notready button");
+							$("#statusButton button.status-ready").css(
+									"display", "none");
+							$("#statusButton button.status-notready").css(
+									"display", "inline-block");
+							
+							//控制可選取按鈕
+							$("#statusList li").hide();
+							$("#statusList li.agentReady").show();
+						}
+						// end of 20170313_sam
+// 						StatusEnum.updateDbid(obj);
 					}
 					//通知響鈴結束
 					if ("ringTimeout" == obj.Event) {
 						console.log("ringTimeout");
 						
-						// 加入逾時自動拒絕機制
-						if($('#inviteDialog').hasClass("in")) {
-							$("#inviteRejectButton").trigger("click");
-						} else {
-							rejectEvent();
+						// 20170314_sam
+						// 將請求畫面去掉
+						if($('#inviteDialog').hasClass("in")){
+							$("#inviteCloseButton").trigger("click");
 						}
+						// 將此clientID從waittingClientIDList_g中去除
+						var index_remove;
+						for ( var index in waittingClientIDList_g) {
+							clientIDJson = waittingClientIDList_g[index];
+							var clientID = clientIDJson.clientID;
+							if (ClientID_g == clientID) {
+								index_remove = index;
+							}
+							//   console.log("clietIDJson.clientID: " + clientIDJson.clientID);
+						}
+						waittingClientIDList_g.splice(index_remove, 1);
+						// end of 20170314_sam
+						
+						
+						// 加入逾時自動拒絕機制
+// 						if($('#inviteDialog').hasClass("in")) {
+// 							$("#inviteRejectButton").trigger("click");
+// 						} else {
+// 							rejectEvent();
+// 						}
 					}
 					//20170223 Lin
 
 					if ("removeUserinroom" == obj.Event) {
-						var fromUserId = obj.fromUserID;
+						var fromUserID = obj.fromUserID;
 						var roomID = obj.roomID
 						// 20170313_sam
-						var chatRoomMsg = obj.chatRoomMsg; // 接收系統訊息
-						getclientmessagelayim(chatRoomMsg, roomID, "系統通知"); // 更新系統訊息
+						// 只收他人傳來的系統訊息
+						if (fromUserID != UserID_g){
+							var chatRoomMsg = obj.chatRoomMsg; // 接收系統訊息
+							var leftRoomMsg = chatRoomMsg.leftRoomMsg;
+							var closedRoomMsg = chatRoomMsg.closedRoomMsg;
+							
+							getclientmessagelayim(leftRoomMsg, roomID, "系統通知"); // 更新系統訊息	
+							if (closedRoomMsg != undefined)
+								getclientmessagelayim(closedRoomMsg, roomID, "系統通知"); // 更新系統訊息	
+						}
 
 						// 清除layim群聊清單
 						layim.removeList({
@@ -800,7 +858,7 @@
 			// end of 20170313_sam
 
 			// 取得狀態
-			getStatus();
+// 			getStatus();
 		}
 
 		// Agent尚未準備就緒
@@ -819,11 +877,11 @@
 			StatusEnum.updateStatus(StatusEnum.NOTREADY, "start", null, null,
 					null, reasonDbId);
 			// end of 20170313_sam 
-			getStatus();
+// 			getStatus();
 
 		}
 
-		// 取得Agent狀態
+		// 取得Agent狀態(此方法不再使用)
 		function getStatus() {
 			console.log("getStatus");
 			// 向websocket送出取得Agent狀態指令
