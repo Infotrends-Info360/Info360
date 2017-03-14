@@ -702,8 +702,10 @@
 						var fromUserId = obj.fromUserID;
 						var roomID = obj.roomID
 						// 20170313_sam
-						var chatRoomMsg = obj.chatRoomMsg; // 接收系統訊息
-						getclientmessagelayim(chatRoomMsg, roomID, "系統通知"); // 更新系統訊息
+						if (fromUserID != parent.UserID_g){
+							var chatRoomMsg = obj.chatRoomMsg; // 接收系統訊息
+							getclientmessagelayim(chatRoomMsg, roomID, "系統通知"); // 更新系統訊息							
+						}
 
 						// 清除layim群聊清單
 						layim.removeList({
