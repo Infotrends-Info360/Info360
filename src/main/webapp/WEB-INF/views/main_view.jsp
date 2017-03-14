@@ -702,9 +702,15 @@
 						var fromUserId = obj.fromUserID;
 						var roomID = obj.roomID
 						// 20170313_sam
+						// 只收他人傳來的系統訊息
 						if (fromUserID != parent.UserID_g){
 							var chatRoomMsg = obj.chatRoomMsg; // 接收系統訊息
-							getclientmessagelayim(chatRoomMsg, roomID, "系統通知"); // 更新系統訊息							
+							var leftRoomMsg = chatRoomMsg.leftRoomMsg;
+							var closedRoomMsg = chatRoomMsg.closedRoomMsg;
+							
+							getclientmessagelayim(leftRoomMsg, roomID, "系統通知"); // 更新系統訊息	
+							if (closedRoomMsg != undefined)
+								getclientmessagelayim(closedRoomMsg, roomID, "系統通知"); // 更新系統訊息	
 						}
 
 						// 清除layim群聊清單
