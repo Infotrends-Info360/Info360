@@ -339,6 +339,8 @@
 				dbid : '0',
 				description : '中文'
 			},
+			REJECT: { statusname : 'REJECT', dbid : '0',description : '中文'}, 
+			
 
 			currStatusEnum : '',
 
@@ -350,6 +352,7 @@
 			ring_dbid : null,
 			iestablished_dbid : [],
 			oestablished_dbid : null,
+			reject_dbid : null,
 
 			getStatusEnum : function(aStatusname) {
 				aStatusname = aStatusname.toUpperCase();
@@ -370,6 +373,8 @@
 					return StatusEnum.IESTABLISHED;
 				} else if (StatusEnum.OESTABLISHED.statusname == aStatusname) {
 					return StatusEnum.OESTABLISHED;
+				}else if (StatusEnum.REJECT.statusname == aStatusname){
+					return StatusEnum.REJECT;
 				}
 
 				return null;
@@ -392,6 +397,8 @@
 					StatusEnum.iestablished_dbid.push(aObj.iestablished_dbid);
 				if (aObj.oestablished_dbid != null)
 					StatusEnum.oestablished_dbid = aObj.oestablished_dbid;
+				if (aObj.reject_dbid != null)
+					StatusEnum.reject_dbid = aObj.reject_dbid;
 			},
 
 			updateStatus : function(aStatusEnum, aStartORend, aDbid, aRoomID,
