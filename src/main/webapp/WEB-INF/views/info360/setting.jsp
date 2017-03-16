@@ -552,7 +552,7 @@ function Drop(event){
 							</div>
 							
 							
-								<div class="form-group col-sm-6">
+				<div class="form-group col-sm-6">
 					<label for="inputEmail" class="col-sm-5 control-label">部門權限</label>
 						<div id="Box77" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
 						
@@ -614,13 +614,53 @@ function Drop(event){
 									<input type="hidden" class="form-control" id="up_dbid" disabled>
 						
 
-							<div class="form-group col-sm-6">
-								<label for="inputDepartment" class="col-sm-3 control-label">部門名稱:</label>
+							<div class="form-group col-sm-12">
+								<label for="inputDepartment" class="col-sm-2 control-label">部門名稱:</label>
 								<div class="col-sm-6">
 									<input type="text" class="form-control" id="up_name"
 										placeholder="">
 								</div>
 							</div>
+							
+							<div class="form-group col-sm-6">
+					<label for="inputEmail" class="col-sm-5 control-label">部門權限</label>
+						<div id="Box9" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
+						
+						</div>
+						<div style="clear:both;"></div>
+				</div>
+
+
+				<div class="form-group col-sm-6"> 
+					<label for="inputEmail" class="col-sm-5 control-label">權限列表</label> 
+							<div id="Box0" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
+									<ul id="Box00"> 
+									</ul>	
+								</div>
+				</div>		
+
+					<div style="clear:both;"></div>
+										
+							
+							
+				<div class="form-group col-sm-6">
+					<label for="inputEmail" class="col-sm-5 control-label">部門人員</label>
+						<div id="Box90" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
+						
+						</div>
+						<div style="clear:both;"></div>
+				</div>
+
+
+				<div class="form-group col-sm-6"> 
+					<label for="inputEmail" class="col-sm-5 control-label">人員列表</label> 
+							<div id="Box66" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
+									<ul id="Box09"> 
+									</ul>	
+								</div>
+				</div>		
+
+					<div style="clear:both;"></div>
 						
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
@@ -3296,6 +3336,15 @@ $.ajax({
 
 	function select() {
 		
+		$('#Box77').empty();
+		$('#Box5').empty();
+		$('#Box88').empty();
+		$('#Box66').empty();
+		$('#Box0').empty();
+		$('#Box9').empty();
+		$('#Box90').empty();
+		$('#Box09').empty();
+		
 		groupperson();
 		$("#group0All").prop("checked", false);
 
@@ -3368,8 +3417,72 @@ $.ajax({
 										.getElementById('UPgroup').innerHTML = table
 										.row(this).data().name;
 								
-
+								var arr = table.row(this).data().have_person_username.split(',');
+								var arrdbid = table.row(this).data().have_person_dbid.split(',');
+								for (var i in arrdbid ) {
+									if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
+// 											alert("arr " +arr[i]);
+// 											alert("arrdbid " +arrdbid[i]);
+										
+										var menu3 = "<li id='Imgperson11"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
+								        document.getElementById("Box90").insertAdjacentHTML("BeforeEnd",menu3);	
+									}
+								}
+								
+								
+								var arr = table.row(this).data().have_function.split(',');
+								var arrdbid = table.row(this).data().have_function_dbid.split(',');
+					
+								for (var i in arrdbid ) {
+									if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
+// 											alert("arr " +arr[i]);
+// 											alert("arrdbid " +arrdbid[i]);
+										
+										var menu3 = "<li id='Imgperson11"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
+								        document.getElementById("Box9").insertAdjacentHTML("BeforeEnd",menu3);	
+									}
+								}
+								
+								
+								var arr = table.row(this).data().not_have_person_username.split(',');
+								var arrdbid = table.row(this).data().not_have_person_dbid.split(',');
+								for (var i in arrdbid ) {
+									if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
+// 											alert("arr " +arr[i]);
+// 											alert("arrdbid " +arrdbid[i]);
+										
+										var menu3 = "<li id='Imgperson11"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
+								        document.getElementById("Box09").insertAdjacentHTML("BeforeEnd",menu3);	
+									}
+								}
+								
+								
+								var arr = table.row(this).data().not_function.split(',');
+								var arrdbid = table.row(this).data().not_function_dbid.split(',');
+								for (var i in arrdbid ) {
+									if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
+// 											alert("arr " +arr[i]);
+// 											alert("arrdbid " +arrdbid[i]);
+										
+										var menu3 = "<li id='Imgperson11"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
+								        document.getElementById("Box0").insertAdjacentHTML("BeforeEnd",menu3);	
+									}
+								}
+								
+								
 							});
+										
+									
+										for(var i=0; i<data.ALLperson.length; i++){
+									        var menu1 = "<li id='Imggroup"+data.ALLperson[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.ALLperson[i].dbid+" ><p>"+data.ALLperson[i].user_name+"</p></li>"
+									        document.getElementById("Box66").insertAdjacentHTML("BeforeEnd",menu1);
+										}
+										
+										for(var a=0; a<data.ALLfunction.length; a++){
+									        var menu2 = "<li id='Imggroupf"+data.ALLfunction[a].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.ALLfunction[a].dbid+" ><p>"+data.ALLfunction[a].Function_name+"</p></li>"
+									        document.getElementById("Box88").insertAdjacentHTML("BeforeEnd",menu2);
+										}
+										
 					}
 				});
 
@@ -3442,36 +3555,41 @@ $.ajax({
 		$('#Box5').empty();
 		$('#Box88').empty();
 		$('#Box66').empty();
+		$('#Box0').empty();
+		$('#Box9').empty();
+		$('#Box09').empty();
+		$('#Box90').empty();
+
 		document.getElementById('in_name').value=""
 		
 		
-		
+		select();
 
-			$
-			.ajax({
-				url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/about_GroupInfo",
-				data : {
-					state : 0
-				},
-				type : "POST",
-				dataType : 'json',
+// 			$
+// 			.ajax({
+// 				url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/about_GroupInfo",
+// 				data : {
+// 					state : 0
+// 				},
+// 				type : "POST",
+// 				dataType : 'json',
 
-				error : function(e) {
-					toastr.error("請重新整理");
-				},
-				success : function(data) {
-					console.log("部門待新增人員", data);
+// 				error : function(e) {
+// 					toastr.error("請重新整理");
+// 				},
+// 				success : function(data) {
+// 					console.log("部門待新增人員", data);
 
-					for(var i=0; i<data.Person.length; i++){
-				        var menu1 = "<li id='Imggroup"+data.Person[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.Person[i].dbid+" ><p>"+data.Person[i].name+"</p></li>"
-				        document.getElementById("Box66").insertAdjacentHTML("BeforeEnd",menu1);
-					}
-					for(var i=0; i<data.Function.length; i++){
-				        var menu2 = "<li id='Imggroupf"+data.Function[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.Function[i].dbid+" ><p>"+data.Function[i].name+"</p></li>"
-				        document.getElementById("Box88").insertAdjacentHTML("BeforeEnd",menu2);
-					}
-				}
-			});
+// 					for(var i=0; i<data.Person.length; i++){
+// 				        var menu1 = "<li id='Imggroup"+data.Person[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.Person[i].dbid+" ><p>"+data.Person[i].name+"</p></li>"
+// 				        document.getElementById("Box66").insertAdjacentHTML("BeforeEnd",menu1);
+// 					}
+// 					for(var i=0; i<data.Function.length; i++){
+// 				        var menu2 = "<li id='Imggroupf"+data.Function[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.Function[i].dbid+" ><p>"+data.Function[i].name+"</p></li>"
+// 				        document.getElementById("Box88").insertAdjacentHTML("BeforeEnd",menu2);
+// 					}
+// 				}
+// 			});
 		
 		
 		
@@ -3545,6 +3663,12 @@ $.ajax({
 
 	function validateGroupN() {
         var IN = $("#in_name").val();
+        
+    	var groupfunction = $('#Box77 input');
+		var arr = $.makeArray(groupfunction);
+		
+        var GF = arr.length; 
+        
        
         if (!IN || IN == '' ) {
             toastr.error("請輸入部門名稱");
@@ -3552,6 +3676,11 @@ $.ajax({
         }
         if (IN !='' && isValidNumber(IN)) {
             toastr.error("名稱請輸入中文或英文");
+            return false;
+        }
+        
+        if (GF==0) {
+            toastr.error("請選擇權限");
             return false;
         }
 		   return true;
@@ -3574,6 +3703,19 @@ $.ajax({
 
 	//更新頁面
 	function showEditMembergroup() {
+		
+		$('#Box77').empty();
+		$('#Box5').empty();
+		$('#Box88').empty();
+		$('#Box66').empty();
+		$('#Box0').empty();
+		$('#Box9').empty();
+		$('#Box90').empty();
+		$('#Box09').empty();
+		
+		document.getElementById('up_name').value="";
+		
+		
 		closeAllHrContent();
 		$("#groupContent").show();
 		$("#editMembergroupContent").show();
@@ -3597,17 +3739,42 @@ $.ajax({
 		   if (!validateGroupU()) {
                return;
            }
+		   
+		   var groupperson = $('#Box90 input');
+			var arr = $.makeArray(groupperson);
 
+			var kk = "";
+			for(var i=0;i<arr.length;i++){
+			var hh = arr[i].value;
+			kk += arr[i].value+",";
+			}
+			
+			   var groupfunction = $('#Box9 input');
+				var arr = $.makeArray(groupfunction);
+
+				var ff = "";
+				for(var i=0;i<arr.length;i++){
+				var hh = arr[i].value;
+				ff += arr[i].value+",";
+				}
+				
+// 				alert(ff);
+// 				alert(kk);
+		   
+		   
 		closeEditMember();
 		var up_dbid = document.getElementById('up_dbid').value;
 		var up_name = document.getElementById('up_name').value;
+		
 		$
 				.ajax({
 					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Update_GroupInfo",
 					data : {
 						state : 0,
-						name : up_name,
-						dbid : up_dbid
+						name:up_name,
+						person_dbid:kk,
+						function_dbid:ff,
+						groupDBID_list:up_dbid
 					},
 					type : "POST",
 					dataType : 'json',
@@ -3628,6 +3795,12 @@ $.ajax({
 
 	function validateGroupU() {
         var IN = $("#up_name").val();
+        
+        var groupfunction = $('#Box9 input');
+		var arr = $.makeArray(groupfunction);
+        var GF = arr.length;
+        
+
        
         if (!IN || IN == '' ) {
             toastr.error("請輸入部門名稱");
@@ -3635,6 +3808,10 @@ $.ajax({
         }
         if (IN !='' && isValidNumber(IN)) {
             toastr.error("名稱請輸入中文或英文");
+            return false;
+        }
+        if (GF==0) {
+            toastr.error("請選擇權限");
             return false;
         }
 		   return true;
