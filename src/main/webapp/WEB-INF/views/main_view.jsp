@@ -76,17 +76,16 @@
 					<li class="dropdown"><a aria-expanded="false" role="button"
 						class="dropdown-toggle" data-toggle="dropdown"
 						style="line-height: 30px;" id="statusButton">
-						<button class="btn btn-sm btn-primary status-ready" style="display:none;">
-								準備就緒
-						</button>
-						<button class="btn btn-sm btn-danger status-notready">
-								未就緒
-						</button>
-						<ul role="menu" class="dropdown-menu" id="statusList">
-							<li class="agentReady"><a onclick="agentReady()">準備就緒</a></li>
-							<li style="display:none;"><a onclick="agentNotReady()">離席</a></li>
-						</ul> 
-					</li>
+							<button class="btn btn-sm btn-primary status-ready"
+								style="display: none;">準備就緒</button>
+							<button class="btn btn-sm btn-danger status-notready">
+								未就緒</button>
+							<button class="btn btn-sm btn-warning status-paperWork"
+								style="display: none;">文書處理</button>
+							<ul role="menu" class="dropdown-menu" id="statusList">
+								<li class="agentReady"><a onclick="agentReady()">準備就緒</a></li>
+								<li><a notReady="notReady" onclick="agentNotReady()">離席</a></li>
+							</ul></li>
 					<li class="dropdown"><a aria-expanded="false" role="button"
 						class="dropdown-toggle" data-toggle="dropdown"
 						style="line-height: 30px;" id="menuButton"><span
@@ -206,8 +205,10 @@
 						onclick="acceptEvent()">接受</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal"
 						onclick="rejectEvent()" id="inviteRejectButton">拒絕</button>
-					<button type="button" class="btn btn-default" style="visibility: hidden;" data-dismiss="modal"
-						id="inviteCloseButton"></button> <!-- ringTimeout時關閉此inviteDialog視窗 -->
+					<button type="button" class="btn btn-default"
+						style="visibility: hidden;" data-dismiss="modal"
+						id="inviteCloseButton"></button>
+					<!-- ringTimeout時關閉此inviteDialog視窗 -->
 				</div>
 			</div>
 
@@ -341,8 +342,11 @@
 				dbid : '0',
 				description : '中文'
 			},
-			REJECT: { statusname : 'REJECT', dbid : '0',description : '中文'}, 
-			
+			REJECT : {
+				statusname : 'REJECT',
+				dbid : '0',
+				description : '中文'
+			},
 
 			currStatusEnum : '',
 
@@ -375,7 +379,7 @@
 					return StatusEnum.IESTABLISHED;
 				} else if (StatusEnum.OESTABLISHED.statusname == aStatusname) {
 					return StatusEnum.OESTABLISHED;
-				}else if (StatusEnum.REJECT.statusname == aStatusname){
+				} else if (StatusEnum.REJECT.statusname == aStatusname) {
 					return StatusEnum.REJECT;
 				}
 
@@ -487,8 +491,8 @@
 						$('iframe[name="iframe0"]').show();
 						$("#userNickName").html(UserName_g);
 
-// 						$('.J_iframe').attr('src',
-// 								'/info360/dashboard?userid=' + UserID_g); // 20170222 Lin 刷新dashboard，為了取的UserID
+						// 						$('.J_iframe').attr('src',
+						// 								'/info360/dashboard?userid=' + UserID_g); // 20170222 Lin 刷新dashboard，為了取的UserID
 						// Step-1 載入時連線ws
 						doConnect();
 					}
@@ -548,12 +552,14 @@
 						var reasonList = obj.reasonList;
 
 						// 產生NotReady狀態切換按鈕
-						for (var index in reasonList) {
+						for ( var index in reasonList) {
 							console.log(reasonList[index]);
 							var statusName = reasonList[index].statusname_tw;
 							var dbid = reasonList[index].dbid.trim();
-							
-							var $li = '<li style="display:none;"><a dbid="' + dbid + '" onclick="agentNotReady(' + dbid + ')">' + statusName + '</a></li>'
+
+							var $li = '<li><a dbid="' + dbid
+									+ '" onclick="agentNotReady(' + dbid
+									+ ')">' + statusName + '</a></li>'
 							$("#statusList").append($li);
 						}
 
@@ -576,31 +582,35 @@
 						$("#inviteDialogButton").trigger("click");
 					}
 
-					// 取得狀態
-					if ("getUserStatus" == obj.Event) {
-						// 結果為就緒
-						if ("3" == obj.Status) {
-							$("#statusButton button.status-ready").css(
-									"display", "inline-block");
-							$("#statusButton button.status-notready").css(
-									"display", "none");
-							
-							//控制可選取按鈕
-							$("#statusList li").show();
-							$("#statusList li.agentReady").hide();
-							
-							// 結果為未就緒
-						} else if ("4" == obj.Status) {
-							$("#statusButton button.status-ready").css(
-									"display", "none");
-							$("#statusButton button.status-notready").css(
-									"display", "inline-block");
-							
-							//控制可選取按鈕
-							$("#statusList li").hide();
-							$("#statusList li.agentReady").show();
-						}
-					}
+					// 取得狀態 (此方法不再使用)
+					// 					if ("getUserStatus" == obj.Event) {
+					// 						// 結果為就緒
+					// 						if ("3" == obj.Status) {
+					// 							$("#statusButton button.status-ready").css(
+					// 									"display", "inline-block");
+					// 							$("#statusButton button.status-notready").css(
+					// 									"display", "none");
+					// 							$("#statusButton button.status-paperWork").css(
+					// 									"display", "none");
+
+					// 							//控制可選取按鈕
+					// 							$("#statusList li").show();
+					// 							$("#statusList li.agentReady").hide();
+
+					// 							// 結果為未就緒
+					// 						} else if ("4" == obj.Status) {
+					// 							$("#statusButton button.status-ready").css(
+					// 									"display", "none");
+					// 							$("#statusButton button.status-notready").css(
+					// 									"display", "inline-block");
+					// 							$("#statusButton button.status-paperWork").css(
+					// 									"display", "none");
+
+					// 							//控制可選取按鈕
+					// 							$("#statusList li").hide();
+					// 							$("#statusList li.agentReady").show();
+					// 						}
+					// 					}
 
 					if ("senduserdata" == obj.Event) {
 						console.log("onMessage - senduserdata event");
@@ -668,7 +678,7 @@
 						//20170223 Lin
 
 						// 取得狀態
-// 						getStatus();
+						// getStatus();
 					}
 
 					//20170223 Lin
@@ -693,43 +703,47 @@
 					//接收更新狀態後取得的DBID
 					if ("updateStatus" == obj.Event) {
 						// 20170313_sam
-// 						alert("obj.startORend: " + obj.startORend + " - " + obj.currStatusEnum);
-// 						alert("obj.currStatusEnum: " + obj.currStatusEnum);
+						// 						alert("obj.startORend: " + obj.startORend + " - " + obj.currStatusEnum);
+						// 						alert("obj.currStatusEnum: " + obj.currStatusEnum);
 						var startORend = obj.startORend;
-						var currStatusEnum = StatusEnum.getStatusEnum(obj.currStatusEnum);
-						
+						var currStatusEnum = StatusEnum
+								.getStatusEnum(obj.currStatusEnum);
+
 						// 更新狀態前端畫面
-						if (currStatusEnum == StatusEnum.READY){
-// 							alert("switch to ready button");
+						if (currStatusEnum == StatusEnum.READY) {
+							// 							alert("switch to ready button");
 							$("#statusButton button.status-ready").css(
 									"display", "inline-block");
 							$("#statusButton button.status-notready").css(
 									"display", "none");
-							
+							$("#statusButton button.status-paperWork").css(
+									"display", "none");
+
 							//控制可選取按鈕
 							$("#statusList li").show();
 							$("#statusList li.agentReady").hide();
-						}else if (currStatusEnum == StatusEnum.NOTREADY){
-// 							alert("switch to notready button");
+						} else if (currStatusEnum == StatusEnum.NOTREADY) {
+							// 							alert("switch to notready button");
 							$("#statusButton button.status-ready").css(
 									"display", "none");
 							$("#statusButton button.status-notready").css(
 									"display", "inline-block");
-							
+							$("#statusButton button.status-paperWork").css(
+									"display", "none");
+
 							//控制可選取按鈕
-							$("#statusList li").hide();
 							$("#statusList li.agentReady").show();
 						}
 						// end of 20170313_sam
-// 						StatusEnum.updateDbid(obj);
+						// 						StatusEnum.updateDbid(obj);
 					}
 					//通知響鈴結束
 					if ("ringTimeout" == obj.Event) {
 						console.log("ringTimeout");
-						
+
 						// 20170314_sam
 						// 將請求畫面去掉
-						if($('#inviteDialog').hasClass("in")){
+						if ($('#inviteDialog').hasClass("in")) {
 							$("#inviteCloseButton").trigger("click");
 						}
 						// 將此clientID從waittingClientIDList_g中去除
@@ -744,14 +758,13 @@
 						}
 						waittingClientIDList_g.splice(index_remove, 1);
 						// end of 20170314_sam
-						
-						
+
 						// 加入逾時自動拒絕機制
-// 						if($('#inviteDialog').hasClass("in")) {
-// 							$("#inviteRejectButton").trigger("click");
-// 						} else {
-// 							rejectEvent();
-// 						}
+						// 						if($('#inviteDialog').hasClass("in")) {
+						// 							$("#inviteRejectButton").trigger("click");
+						// 						} else {
+						// 							rejectEvent();
+						// 						}
 					}
 					//20170223 Lin
 
@@ -760,14 +773,15 @@
 						var roomID = obj.roomID
 						// 20170313_sam
 						// 只收他人傳來的系統訊息
-						if (fromUserID != UserID_g){
+						if (fromUserID != UserID_g) {
 							var chatRoomMsg = obj.chatRoomMsg; // 接收系統訊息
 							var leftRoomMsg = chatRoomMsg.leftRoomMsg;
 							var closedRoomMsg = chatRoomMsg.closedRoomMsg;
-							
+
 							getclientmessagelayim(leftRoomMsg, roomID, "系統通知"); // 更新系統訊息	
 							if (closedRoomMsg != undefined)
-								getclientmessagelayim(closedRoomMsg, roomID, "系統通知"); // 更新系統訊息	
+								getclientmessagelayim(closedRoomMsg, roomID,
+										"系統通知"); // 更新系統訊息	
 						}
 
 						// 清除layim群聊清單
@@ -865,46 +879,54 @@
 			// end of 20170313_sam
 
 			// 取得狀態
-// 			getStatus();
+			// 			getStatus();
 		}
 
 		// Agent尚未準備就緒
 		function agentNotReady(reason) {
 			var reasonDbId = notreadyreason_dbid_g;
 			var statusName = "未就緒";
-			
+
 			if (reason && reason > 0) {
 				reasonDbId = reason;
 				statusName = $('a[dbid="' + reason + '"]').html();
+
+				// 已選取的未就緒選項需隱藏
+				$("#statusList li").show();
+				$('a[dbid="' + reason + '"]').parent().hide();
+			} else {
+				// 已選取的未就緒選項需隱藏
+				$("#statusList li").show();
+				$('a[notReady="notReady"]').parent().hide();
 			}
-			
+
 			$("#statusButton button.status-notready").html(statusName);
-			
+
 			// 20170313_sam 
 			StatusEnum.updateStatus(StatusEnum.NOTREADY, "start", null, null,
 					null, reasonDbId);
 			// end of 20170313_sam 
-// 			getStatus();
+			// 			getStatus();
 
 		}
 
 		// 取得Agent狀態(此方法不再使用)
-		function getStatus() {
-			console.log("getStatus");
-			// 向websocket送出取得Agent狀態指令
-			var now = new Date();
-			var Eventmsg = {
-				type : "getUserStatus",
-				ACtype : "Agent",
-				id : UserID_g,
-				UserName : UserName_g,
-				channel : 'chat',
-				date : now.getHours() + ":" + now.getMinutes() + ":"
-						+ now.getSeconds()
-			};
-			// 發送消息
-			ws.send(JSON.stringify(Eventmsg));
-		}
+		// 		function getStatus() {
+		// 			console.log("getStatus");
+		// 			// 向websocket送出取得Agent狀態指令
+		// 			var now = new Date();
+		// 			var Eventmsg = {
+		// 				type : "getUserStatus",
+		// 				ACtype : "Agent",
+		// 				id : UserID_g,
+		// 				UserName : UserName_g,
+		// 				channel : 'chat',
+		// 				date : now.getHours() + ":" + now.getMinutes() + ":"
+		// 						+ now.getSeconds()
+		// 			};
+		// 			// 發送消息
+		// 			ws.send(JSON.stringify(Eventmsg));
+		// 		}
 
 		// 只有再aStatus狀態為not ready時,才會傳入aReason參數
 		function updateStatus(aStatus, aReason) {
@@ -1128,6 +1150,14 @@
 							.showCaseInfoTab();
 				}
 			});
+
+			// 掛線後，狀態顯示文書處理。(加入顏色機制(橘色))
+			$("#statusList li").show();
+
+			$("#statusButton button.status-paperWork").css("display",
+					"inline-block");
+			$("#statusButton button.status-notready").css("display", "none");
+			$("#statusButton button.status-ready").css("display", "none");
 		}
 
 		function closeCurrentTab(interactionId) {
@@ -1151,19 +1181,17 @@
 		}
 
 		/*-------------------------------------------------------*/
-// 		$("#statusButton").on(
-// 				"click",
-// 				function() {
-// 					var statusReady = $("#statusButton button.status-ready")
-// 							.css("display");
-
-// 					if (statusReady && statusReady == "inline-block") {
-// 						agentNotReady();
-// 					} else {
-// 						agentReady();
-// 					}
-// 				});
-
+		// 		$("#statusButton").on(
+		// 				"click",
+		// 				function() {
+		// 					var statusReady = $("#statusButton button.status-ready")
+		// 							.css("display");
+		// 					if (statusReady && statusReady == "inline-block") {
+		// 						agentNotReady();
+		// 					} else {
+		// 						agentReady();
+		// 					}
+		// 				});
 		function openTab(order) {
 			$("#menuItemList>a:eq(" + order + ")").trigger("click");
 		}
