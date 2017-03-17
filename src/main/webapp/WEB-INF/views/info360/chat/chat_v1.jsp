@@ -108,9 +108,13 @@
 						onclick="leftTabToggle()" id="tabToggleButton">
 						<i class="fa fa-lg fa-arrow-left" id="leftTabToggleButton"></i>
 					</button>
-					<button class="btn-sm btn-success" onclick="showHistoryQuery()"
+					<button class="btn-sm btn-primary" onclick="showHistoryQuery()"
 						id="queryButton">
 						<i class="fa fa-lg fa-user"></i> <span>歷史資料</span>
+					</button>
+					<button class="btn-sm btn-success" style="display: none;"
+						onclick="showCustomerData()" id="customerDataButton">
+						<span>多筆資料查詢</span>
 					</button>
 					<button class="btn-sm btn-success" style="display: none;"
 						id="caseInfoButton">
@@ -196,6 +200,26 @@
 						</div>
 					</div>
 					<!-- 歷史資料End -->
+
+					<!-- 多筆客戶資料Start -->
+					<div class="panel-body" id="customerData" style="display: none;">
+						<div class="row ibox">
+							<div class="col-lg-12 col-md-12">
+								<table class="table table-striped table-bordered table-hover"
+									id="customerDataTable">
+									<thead>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+								<div class="text-right">
+									<button class="btn btn-success" onclick="updateCustomerData()">確定</button>
+									<button class="btn btn-danger" onclick="closeCustomerData()">取消</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 多筆客戶資料End -->
 
 					<!-- 案件資訊專區 Start -->
 					<div class="panel-body panel-success" id="caseInfo"
@@ -301,6 +325,7 @@
 
 <script>
 	var agentId = parent.UserID_g;
+	var userData;
 
 	$(document).ready(function() {
 		// 案件資訊處理人
@@ -340,10 +365,8 @@
 		var interactionId = "${interactionId}";
 
 		for ( var index in parentChatList) {
-			console.log(parentChatList[index]);
-
 			if (parentChatList[index].id == interactionId) {
-				var userData = parentChatList[index].currentUserData;
+				userData = parentChatList[index].currentUserData;
 				var mapping = userData.mapping.Message;
 				var mappingSorted = {};
 
@@ -354,10 +377,11 @@
 					mappingSorted[mapping[key].sort].key = key;
 				});
 
-				console.log("mappingSorted : ");
-				console.log(mappingSorted);
+				// 將排序後的mapping key值與chiname顯示在畫面上
+				var $tr = '<tr><th></th>'; // 多筆資料欄位
 
 				for ( var count in mappingSorted) {
+					// 處理左側客戶資料顯示區
 					var $a = '<a href="#" class="list-group-item">';
 					$a += '<h4>' + mappingSorted[count].chiname + '</h4>';
 					$a += '<h4 id="customer'
@@ -366,16 +390,58 @@
 					$a += '</a>';
 
 					$("div.customerInfo").append($a);
+
+					// 新增右側多筆資料欄位名稱
+					$tr += '<th>';
+					$tr += mappingSorted[count].chiname;
+					$tr += '</th>';
 				}
+
+				$tr += '</tr>';
+				$("#customerDataTable thead").append($tr);
 
 				// 因客戶資料不一定會傳入，因此需先判斷是否有內容
 				if (userData.CustomerData) {
-					var customerData = userData.CustomerData[0];
+					var customerData = userData.CustomerData;
 
-					for ( var key in customerData) {
+					// 當客戶資料存在時，預先將第一筆資料顯示於左側
+					for ( var key in customerData[0]) {
 						var id = key
 						$('#customer' + key.toLowerCase()).html(
-								customerData[key]);
+								customerData[0][key]);
+					}
+
+					// 當客戶資料超過一筆時才顯示「多筆客戶資料」選取區
+					if (customerData.length > 1) {
+						for ( var count in customerData) {
+							var currentCount = parseInt(count) + 1;
+
+							// 建立表格內容欄位
+							var $tr = '<tr><td>'
+							$tr += '<input type="radio" name="customerRadio" count="' + count + '">'
+							$tr += '</td>';
+
+							for ( var sortKey in mappingSorted) {
+								// 處理左側客戶資料顯示區
+								$tr += '<td class="'
+										+ mappingSorted[sortKey].key
+												.toLowerCase() + '">';
+								$tr += '</td>';
+							}
+							$tr += '</tr>';
+							$("#customerDataTable tbody").append($tr);
+
+							// 將客資放入指定欄位
+							for ( var key in customerData[count]) {
+								$(
+										'#customerDataTable tbody tr:nth-child('
+												+ currentCount + ') >  td.'
+												+ key.toLowerCase()).html(
+										customerData[count][key]);
+							}
+						}
+
+						showCustomerData();
 					}
 				}
 			}
@@ -391,6 +457,32 @@
 			document.execCommand("copy");
 			$temp.remove();
 		});
+	}
+
+	// 選取多筆客戶資料
+	function updateCustomerData() {
+		var count = $('#customerDataTable tbody tr > td input:checked').attr(
+				"count");
+		var customerData = userData.CustomerData;
+		var contactId = userData.SetContactLog[count].contactID;
+
+		for ( var key in customerData[count]) {
+			var id = key;
+			$('#customer' + key.toLowerCase()).html(customerData[count][key]);
+		}
+
+		// 向websocket送出選取的ContactId
+		var msg = {
+			type : "updateClientContactID",
+			roomID : "${interactionId}",
+			contactID : contactId
+		};
+
+		console.log("updateClientContactID :");
+		console.log(JSON.stringify(msg));
+		parent.ws.send(JSON.stringify(msg));
+
+		closeCustomerData();
 	}
 
 	/**
@@ -516,6 +608,18 @@
 		$("#historyQuery").show();
 	}
 
+	function showCustomerData() {
+		// 按鈕處理
+		clearLinkStyle();
+		$("#customerDataButton").removeClass("btn-success");
+		$("#customerDataButton").addClass("btn-primary");
+		$("#customerDataButton").show();
+
+		// 內容處理
+		hideAllContent();
+		$("#customerData").show();
+	}
+
 	function showCaseInfo() {
 		// 按鈕處理
 		clearLinkStyle();
@@ -543,6 +647,16 @@
 		// 內容處理
 		hideAllContent()
 		$("#link" + linkIndex).show();
+	}
+
+	function closeCustomerData() {
+		clearLinkStyle();
+		$("#queryButton").removeClass("btn-success");
+		$("#queryButton").addClass("btn-primary");
+		$("#customerDataButton").hide();
+
+		hideAllContent()
+		$("#historyQuery").show();
 	}
 
 	function closeLink(linkIndex) {
