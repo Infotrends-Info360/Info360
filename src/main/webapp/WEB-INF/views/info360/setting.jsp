@@ -3347,7 +3347,8 @@ $.ajax({
 		
 		groupperson();
 		$("#group0All").prop("checked", false);
-
+ 
+		
 		$("#Box66").empty();
 		$("#Box88").empty();
 		$("#managegroupTable tbody tr").empty();
