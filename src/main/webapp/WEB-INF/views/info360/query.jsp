@@ -227,8 +227,8 @@
 							</div>
 							<div id="detail_2" class="tab-pane">
 								<div class="panel-body">
-									<div class="ibox" id="detailText"
-										style="height: 330px; overflow-x: hidden; overflow-y: scroll;">
+									<div class="well" id="detailText"
+										style="background-color: white; height: 330px; overflow-x: hidden; overflow-y: scroll;">
 									</div>
 								</div>
 							</div>
@@ -405,7 +405,7 @@
 		$('#detailComments').html("");
 		$('#detailText').html("");
 		$('#inputComment').val("");
-		
+
 		// Step 1  處理客戶資料
 		var mapping = data.data[0].mapping.Message;
 		var mappingSorted = {};
@@ -492,7 +492,7 @@
 			var userName = structuretext[key].UserName;
 			var text = structuretext[key].text;
 
-			var $text = '<div class="well" style="background-color:white;">';
+			var $text = '<div>';
 			$text += '<b>' + userName + '：</b>';
 			$text += '<span>' + text + '</span>';
 			$text += '</div>';
@@ -509,7 +509,7 @@
 		console.log("send insertComment :");
 		console.log("ixnid:" + ixnid + ";ContactID:" + ContactID + ";comment:"
 				+ comment);
-		
+
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_CaseComments",
@@ -531,7 +531,7 @@
 					},
 					success : function(data) {
 						console.log(data);
-						
+
 						closeDetail();
 					}
 				});
