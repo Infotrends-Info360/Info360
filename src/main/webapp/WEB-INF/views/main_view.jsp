@@ -760,7 +760,7 @@
 
 							//控制可選取按鈕
 							$("#statusList li.agentReady").show();
-						} else if (currStatusEnum == StatusEnum.AFTERCALLWORK){
+						} else if ("start" == startORend && currStatusEnum == StatusEnum.AFTERCALLWORK){
 // 							alert("AFTERCALLWORK");
 							// 掛線後，狀態顯示文書處理。(加入顏色機制(橘色))
 							$("#statusList li").show();
