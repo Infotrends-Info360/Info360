@@ -15,6 +15,7 @@
 <link href="resources/css/animate.css" rel="stylesheet">
 <link href="resources/layui/css/layui.css" rel="stylesheet">
 <link href="resources/css/style.css?v=4.1.0" rel="stylesheet">
+<link href="resources/css/plugins/toastr/toastr.min.css" rel="stylesheet"> <!-- 20170320 Lin -->
 </head>
 
 <body class="full-height-layout gray-bg" style="overflow-x: hidden">
@@ -254,6 +255,7 @@
 
 	<!-- 第三方插件 -->
 	<script src="resources/js/plugins/pace/pace.min.js"></script>
+	<script src="resources/js/plugins/toastr/toastr.min.js"></script> <!-- 20170320 Lin -->
 
 	<!-- layui -->
 	<script src="resources/layui/layui.js"></script>
@@ -433,6 +435,24 @@
 
 		};
 		// 20170223 Lin
+		
+		// 20170320 Lin
+		toastr.options = {
+  			"closeButton": true,
+  			"debug": false,
+  			"progressBar": true,
+  			"positionClass": "toast-top-right",
+  			"onclick": null,
+  			"showDuration": "400",
+  			"hideDuration": "1000",
+  			"timeOut": "7000",
+  			"extendedTimeOut": "1000",
+  			"showEasing": "swing",
+  			"hideEasing": "linear",
+  			"showMethod": "fadeIn",
+  			"hideMethod": "fadeOut"
+			}
+		// 20170320 Lin
 
 		// Step-0 
 		loginValidate();
