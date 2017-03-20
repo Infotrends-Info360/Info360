@@ -841,7 +841,7 @@
 				id : UserID_g,
 				UserName : UserName_g,
 				// 				MaxCount : '3', //需從驗證登入頁面取得個人的max count並塞入
-				MaxCount : "" + maxCount,
+				maxCount : "" + maxCount,
 				ACtype : "Agent",
 				channel : "chat",
 				date : now.getHours() + ":" + now.getMinutes() + ":"
