@@ -708,6 +708,12 @@
 						var startORend = obj.startORend;
 						var currStatusEnum = StatusEnum
 								.getStatusEnum(obj.currStatusEnum);
+						
+						// 20170320 Lin
+						if(obj.maxCountReached){
+							toastr.error("已達到通話上限，無法切回準備就緒");
+						}
+						// 20170320 Lin
 
 						// 更新狀態前端畫面
 						if (currStatusEnum == StatusEnum.READY) {
