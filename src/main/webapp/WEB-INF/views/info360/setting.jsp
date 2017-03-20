@@ -2105,8 +2105,9 @@ function Drop(event){
 	src="resources/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
 <script src="resources/js/demo/bootstrap-table-demo.js"></script>
 
-<script>
 
+<!-- =====================================Person================================================================= -->
+<script>
 function person_groupmenu(){
 	$("#updateDepartment").empty();
 	$("#inputDepartment").empty();
@@ -2748,10 +2749,6 @@ $.ajax({
 			var re5 = /^[0-9]*$/;
 			return re5.test(MX);
 		}
-	
-	 
-	 
-	 
 	 
 
 	function closeAddMember() {
@@ -3869,7 +3866,9 @@ $.ajax({
 	}
 
 </script>
+<!-- =====================================Group END================================================================= -->
 
+<!-- =====================================Commonlink================================================================= -->
 <script>
 	function showCommonlink() {
 		$('#nodeLINKlist').empty();
@@ -4356,7 +4355,7 @@ $.ajax({
 	
 </script>
 
-<!-- =======================================Group=END============================================================================= -->
+<!-- =======================================Commonlink=END============================================================================= -->
 
 
 <!-- =======================================Agentreason============================================================================= -->
@@ -4961,7 +4960,9 @@ $.ajax({
 		$("#banAgentreasonContent").show();
 	}
 </script>
+<!-- =====================================Agentreason END================================================================= -->
 
+<!-- =====================================ActivityMenu================================================================= -->
 <script>
 	function showActivityMenu() {
 		$("button.editMember").hide();
@@ -5420,7 +5421,9 @@ var selected=[];
 	
 	
 </script>
+<!-- =====================================ActivityMenu END================================================================= -->
 
+<!-- =====================================ActivityGroup================================================================= -->
 <script>
 	function showActivityGroup() {
 		$("button.editMember").hide();
@@ -5776,8 +5779,8 @@ var selected=[];
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_ActivityGroup",
 					data : {
 						activitymenuid : dbid,
-						groupname : in_groupname
-// 						sort : in_sort
+						groupname : in_groupname,
+						sort :0
 					},
 
 					type : "POST",
@@ -5938,7 +5941,9 @@ if(ActivityGroup_DBID_list.length){
 		$("#banAGContent").show();
 	}
 </script>
-<!-- ===============================================服務代碼===============================================================  -->
+<!-- ===============================================ActivityGroup END===============================================================  -->
+
+<!-- ===============================================ActivityData===============================================================  -->
 <script>
 	function showActivityData() {
 		$("button.editMember").hide();
