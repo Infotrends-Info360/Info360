@@ -692,9 +692,9 @@
 						}
 
 						//判斷接起對談後的狀態是否要切換為Ready
-						if (obj.EstablishedStatus == StatusEnum.READY.dbid) {
-							agentReady(); //20170224 Lin
-						}
+// 						if (obj.EstablishedStatus == StatusEnum.READY.dbid) {
+// 							agentReady(); //20170224 Lin
+// 						}
 						//20170223 Lin
 
 						// 取得狀態
@@ -723,11 +723,12 @@
 					//接收更新狀態後取得的DBID
 					if ("updateStatus" == obj.Event) {
 						// 20170313_sam
-						// 						alert("obj.startORend: " + obj.startORend + " - " + obj.currStatusEnum);
-						// 						alert("obj.currStatusEnum: " + obj.currStatusEnum);
+// 						alert("obj.startORend: " + obj.startORend + " - " + obj.currStatusEnum);
+// 						alert("obj.currStatusEnum: " + obj.currStatusEnum);
 						var startORend = obj.startORend;
 						var currStatusEnum = StatusEnum
 								.getStatusEnum(obj.currStatusEnum);
+// 						alert("currStatusEnum: " + currStatusEnum);
 						
 						// 20170320 Lin
 						if(obj.maxCountReached){
@@ -759,6 +760,15 @@
 
 							//控制可選取按鈕
 							$("#statusList li.agentReady").show();
+						} else if (currStatusEnum == StatusEnum.AFTERCALLWORK){
+							alert("AFTERCALLWORK");
+							// 掛線後，狀態顯示文書處理。(加入顏色機制(橘色))
+							$("#statusList li").show();
+
+							$("#statusButton button.status-paperWork").css("display",
+									"inline-block");
+							$("#statusButton button.status-notready").css("display", "none");
+							$("#statusButton button.status-ready").css("display", "none");
 						}
 						// end of 20170313_sam
 						// 						StatusEnum.updateDbid(obj);
@@ -818,17 +828,17 @@
 						});
 
 						// 20170223 Lin
-						currRoomCount_g--;
-						// 20170313_sam
-						if (obj.AfterCallStatus == StatusEnum.READY.dbid) { //如果AfterCallStatus == ready
-							if (StatusEnum.ready_dbid == null) {
-								agentReady(); //20170224 Lin
-							}
-						} else if (obj.AfterCallStatus == StatusEnum.NOTREADY.dbid) { //如果AfterCallStatus == not ready
-							if (StatusEnum.notready_dbid == null) {
-								agentNotReady(); //20170224 Lin
-							}
-						}
+// 						currRoomCount_g--;
+// 						// 20170313_sam
+// 						if (obj.AfterCallStatus == StatusEnum.READY.dbid) { //如果AfterCallStatus == ready
+// 							if (StatusEnum.ready_dbid == null) {
+// 								agentReady(); //20170224 Lin
+// 							}
+// 						} else if (obj.AfterCallStatus == StatusEnum.NOTREADY.dbid) { //如果AfterCallStatus == not ready
+// 							if (StatusEnum.notready_dbid == null) {
+// 								agentNotReady(); //20170224 Lin
+// 							}
+// 						}
 						// end of 20170313_sam
 
 					}
@@ -1176,14 +1186,6 @@
 							.showCaseInfoTab();
 				}
 			});
-
-			// 掛線後，狀態顯示文書處理。(加入顏色機制(橘色))
-			$("#statusList li").show();
-
-			$("#statusButton button.status-paperWork").css("display",
-					"inline-block");
-			$("#statusButton button.status-notready").css("display", "none");
-			$("#statusButton button.status-ready").css("display", "none");
 		}
 
 		function closeCurrentTab(interactionId) {
