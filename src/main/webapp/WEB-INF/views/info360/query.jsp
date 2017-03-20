@@ -277,14 +277,14 @@
 		$('#queryTable').DataTable(opt);
 		$("#queryTable").css("width", "100%");
 
-		quickSearchByTime(0);
+		quickSearchByTime(7);
 	});
 
 	// 案件搜尋
 	function search() {
 		var start = $('#datepicker [name="start"]').val();
 		var end = $('#datepicker [name="end"]').val();
-		var id = $("#inputAgentId").val() || agentId;
+		var id = $("#inputAgentId").val();
 
 		console.log("start : " + start + "; end : " + end + "; id :" + id);
 
@@ -297,7 +297,7 @@
 					data : {
 						startdate : start,
 						enddate : end,
-// 						agentid : id
+ 						agentid : id
 					},
 					type : "POST",
 					dataType : 'json',
@@ -319,6 +319,14 @@
 							var ixnId = queryData[index].ixnid;
 							var src = queryData[index].src;
 
+							if (codeName && codeName.length >= 20) {
+								codeName = codeName.substr(0,20) + "...";
+							}
+							
+							if (comment && comment.length >= 20) {
+								comment = comment.substr(0,20) + "...";
+							}
+							
 							var $tr = '<tr onclick="queryDetail(\'' + ixnId
 									+ '\',\'' + startd + '\')">';
 							$tr += '<td>' + startd + '</td>';
