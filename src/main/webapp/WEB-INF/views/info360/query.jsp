@@ -297,7 +297,7 @@
 					data : {
 						startdate : start,
 						enddate : end,
-						agentid : id
+// 						agentid : id
 					},
 					type : "POST",
 					dataType : 'json',
