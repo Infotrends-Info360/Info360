@@ -859,7 +859,7 @@
 							$ul.html("");
 							$("#caseInfo" + index).html("");
 
-							if (0 == data.activitygroups.length) {
+							if (0 == data.flag0_group.length) {
 								$(
 										"#caseInfoLevel1TabContent > .tab-pane.active")
 										.removeClass("active");
@@ -870,9 +870,9 @@
 								$("#caseInfo99").removeClass("active");
 								$("#caseInfo0").addClass("active");
 
-								for ( var index in data.activitygroups) {
-									var groupname = data.activitygroups[index].groupname;
-									var dbid = data.activitygroups[index].dbid;
+								for ( var index in data.flag0_group) {
+									var groupname = data.flag0_group[index].groupname;
+									var dbid = data.flag0_group[index].dbid;
 
 									if (0 == index) {
 										var $li = "<li class='active'><a href='#caseInfo" + index + "'";
