@@ -602,7 +602,7 @@
 					// 20170321_sam
 					if ("userjoinAgain" == obj.Event) {
 						alert(obj.text);
-// 						switchStatus(StatusEnum.LOGOUT); // 畫面須再更動
+// 						switchStatus(StatusEnum.LOGOUT); // 畫面須再更動,但不再送出"Exit"事件
 					} 	
 					// end of 20170321_sam
 					
