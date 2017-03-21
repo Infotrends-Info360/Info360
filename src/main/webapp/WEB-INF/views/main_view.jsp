@@ -557,6 +557,12 @@
 
 					// 接收到有人登入的訊息
 					if ("userjoin" == obj.Event) {
+						// 20170321_sam
+						if (obj.isLoggedIn){
+							alert(obj.isLoggedInText);
+						}				
+						// end of 20170321_sam
+		
 						// 取得UserId
 						UserID_g = obj.from;
 
@@ -592,7 +598,14 @@
 							tmpStatusEnum.description = val.description;
 						});
 					}
-
+					
+					// 20170321_sam
+					if ("userjoinAgain" == obj.Event) {
+						alert(obj.text);
+// 						switchStatus(StatusEnum.LOGOUT); // 畫面須再更動
+					} 	
+					// end of 20170321_sam
+					
 					// 接收到Client邀請chat的event
 					if ("findAgentEvent" == obj.Event) {
 						ClientName_g = obj.fromName;
@@ -736,7 +749,7 @@
 						}
 						// 20170320 Lin
 
-						// 更新狀態前端畫面
+						// 更新狀態前端畫面 20170320_sam
 						if (currStatusEnum == StatusEnum.READY) {
 							// 							alert("switch to ready button");
 							$("#statusButton button.status-ready").css(
@@ -793,7 +806,7 @@
 							//   console.log("clietIDJson.clientID: " + clientIDJson.clientID);
 						}
 						waittingClientIDList_g.splice(index_remove, 1);
-						// end of 20170314_sam
+						// end of 20170320_sam
 
 						// 加入逾時自動拒絕機制
 						// 						if($('#inviteDialog').hasClass("in")) {
