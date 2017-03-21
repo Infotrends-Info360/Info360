@@ -8,19 +8,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
 <title>「儀表板」頁面</title>
-<script src="resources/js/jquery.min.js?v=2.1.4"></script>
 <link href="resources/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
 <link href="resources/css/font-awesome.css?v=4.4.0" rel="stylesheet">
 <link href="resources/css/animate.css" rel="stylesheet">
-<link href="resources/layui/css/layui.css" rel="stylesheet">
 <link href="resources/css/plugins/datapicker/datepicker3.css"
 	rel="stylesheet">
 <link href="resources/css/style.css?v=4.1.0" rel="stylesheet">
 
 <link rel="stylesheet" href="resources/jstree/style.min.css" />
-<script type="text/javascript" src="resources/jstree/jstree.min.js"></script>
 
 <link href="resources/css/plugins/toastr/toastr.min.css"
 	rel="stylesheet">
@@ -145,7 +141,7 @@
 					-->
 					<!-- 搜尋條件區 End -->
 
-					<div class="row ibox">
+					<div class="row ibox" style="height: 660px; overflow-y: scroll;">
 						<div class="col-lg-12 col-md-12">
 							<table class="table table-striped table-bordered table-hover"
 								id="queryTable">
@@ -245,8 +241,11 @@
 </body>
 
 <!-- 全局js -->
-
+<script src="resources/js/jquery.min.js?v=2.1.4"></script>
 <script src="resources/js/bootstrap.min.js?v=3.3.6"></script>
+
+<!-- Jstree -->
+<script type="text/javascript" src="resources/jstree/jstree.min.js"></script>
 
 <!-- Data Tables -->
 <script src="resources/js/plugins/dataTables/jquery.dataTables.js"></script>
@@ -277,14 +276,14 @@
 		$('#queryTable').DataTable(opt);
 		$("#queryTable").css("width", "100%");
 
-		quickSearchByTime(0);
+		quickSearchByTime(7);
 	});
 
 	// 案件搜尋
 	function search() {
 		var start = $('#datepicker [name="start"]').val();
 		var end = $('#datepicker [name="end"]').val();
-		var id = $("#inputAgentId").val() || agentId;
+		var id = $("#inputAgentId").val();
 
 		console.log("start : " + start + "; end : " + end + "; id :" + id);
 
@@ -297,7 +296,7 @@
 					data : {
 						startdate : start,
 						enddate : end,
-// 						agentid : id
+						agentid : id
 					},
 					type : "POST",
 					dataType : 'json',
@@ -319,6 +318,14 @@
 							var ixnId = queryData[index].ixnid;
 							var src = queryData[index].src;
 
+							if (codeName && codeName.length >= 20) {
+								codeName = codeName.substr(0, 20) + "...";
+							}
+
+							if (comment && comment.length >= 20) {
+								comment = comment.substr(0, 20) + "...";
+							}
+
 							var $tr = '<tr onclick="queryDetail(\'' + ixnId
 									+ '\',\'' + startd + '\')">';
 							$tr += '<td>' + startd + '</td>';
@@ -334,7 +341,24 @@
 
 						var opt = {
 							"bLengthChange" : false,
-							"iDisplayLength" : 15
+							"iDisplayLength" : 15,
+							"columnDefs" : [ {
+								"width" : "180px",
+								"targets" : 0
+							}, {
+								"width" : "180px",
+								"targets" : 1
+							}, {
+								"width" : "80px",
+								"targets" : 2
+							}, {
+								"width" : "100px",
+								"targets" : 3
+							}, {
+								"width" : "175px",
+								"targets" : 4
+							} ],
+							"fixedColumns" : true
 						};
 
 						$('#queryTable').DataTable(opt);

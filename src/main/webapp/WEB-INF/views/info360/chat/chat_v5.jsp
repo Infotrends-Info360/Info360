@@ -15,9 +15,10 @@
 <link href="resources/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
 <link href="resources/css/font-awesome.css?v=4.4.0" rel="stylesheet">
 <link href="resources/css/animate.css" rel="stylesheet">
-<link href="resources/css/style.css?v=4.1.0" rel="stylesheet">
 <link href="resources/css/plugins/datapicker/datepicker3.css"
 	rel="stylesheet">
+<link href="resources/css/style.css?v=4.1.0" rel="stylesheet">
+
 
 </head>
 <body class="gray-bg">
@@ -113,6 +114,11 @@
 						<i class="fa fa-lg fa-user"></i> <span>歷史資料</span>
 					</button>
 					<button class="btn-sm btn-success" style="display: none;"
+						id="detailButton">
+						<span onclick="showHistoryDetail()">currentDate</span> <i
+							class="fa fa-times" onclick="closeDetail()"></i>
+					</button>
+					<button class="btn-sm btn-success" style="display: none;"
 						onclick="showCustomerData()" id="customerDataButton">
 						<span>多筆資料查詢</span>
 					</button>
@@ -180,7 +186,7 @@
 					-->
 						<!-- 搜尋條件區 End -->
 
-						<div class="row ibox">
+						<div class="row ibox" style="height: 660px; overflow-y: scroll;">
 							<div class="col-lg-12 col-md-12">
 								<table class="table table-striped table-bordered table-hover"
 									id="queryTable">
@@ -200,6 +206,80 @@
 						</div>
 					</div>
 					<!-- 歷史資料End -->
+
+					<!-- 案件詳細區 Start -->
+					<div class="panel-body" id="historyDetail" style="display: none;">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th colspan="6" style="background-color: #f9f9f9">客戶資料</th>
+								</tr>
+							</thead>
+							<tbody id="detailCustomerInfo"></tbody>
+						</table>
+
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th colspan="6" style="background-color: #f9f9f9">案件資訊</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>處理人</td>
+									<td id="detailAgentName"></td>
+									<td>開始處理時間</td>
+									<td id="detailStartDate"></td>
+									<td>結束處理時間</td>
+									<td id="detailEndDate"></td>
+								</tr>
+								<tr>
+									<td>服務代碼</td>
+									<td colspan="5" id="detailCodeName">1234</td>
+								</tr>
+								<tr style="display: none;">
+									<td id="ixnid"></td>
+									<td id="ContactID"></td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="tabs-container">
+							<ul class="nav nav-tabs">
+								<li class="active"><a data-toggle="tab" href="#detail_1"
+									aria-expanded="true">案件資訊</a></li>
+								<li class=""><a data-toggle="tab" href="#detail_2"
+									aria-expanded="false">對談內容 </a></li>
+							</ul>
+							<div class="tab-content">
+								<div id="detail_1" class="tab-pane active">
+									<div class="panel-body">
+										<div id="detailComments"
+											style="width: 100%; height: 230px; padding: 10px; overflow-x: hidden; overflow-y: scroll;"></div>
+										<textarea style="width: 100%; height: 100px;"
+											id="inputComment"></textarea>
+
+										<div style="text-align: right; margin-top: 5px;">
+											<button class="btn btn-success text-right"
+												onclick="insertComment()">送出</button>
+											<button class="btn btn-danger text-right"
+												onclick="closeDetail();">取消</button>
+										</div>
+									</div>
+								</div>
+								<div id="detail_2" class="tab-pane">
+									<div class="panel-body">
+										<div class="well" id="detailText"
+											style="background-color: white; height: 330px; overflow-x: hidden; overflow-y: scroll;">
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+					<!-- 案件詳細區 End -->
 
 					<!-- 多筆客戶資料Start -->
 					<div class="panel-body" id="customerData" style="display: none;">
@@ -356,7 +436,7 @@
 		$('#queryTable').DataTable(opt);
 		$("#queryTable").css("width", "100%");
 
-		quickSearchByTime(0);
+		quickSearchByTime(7);
 	});
 
 	// 取得左側客戶資料
@@ -608,6 +688,18 @@
 		$("#historyQuery").show();
 	}
 
+	function showHistoryDetail(date) {
+		// 按鈕處理
+		clearLinkStyle();
+		$('#detailButton').removeClass("btn-success");
+		$('#detailButton').addClass("btn-primary");
+
+		hideAllContent();
+		$('#detailButton').show();
+		$('#historyDetail').show();
+		$('#detailButton span').html(date);
+	}
+
 	function showCustomerData() {
 		// 按鈕處理
 		clearLinkStyle();
@@ -683,6 +775,19 @@
 
 		hideAllContent()
 		$("#historyQuery").show();
+	}
+
+	function closeDetail() {
+		$('#detailButton').hide();
+
+		// 清空動態生成區
+		$('#detailCustomerInfo').html("");
+		$('#detailComments').html("");
+		$('#detailText').html("");
+		$('#inputComment').val("");
+
+		// 切換回搜尋區
+		showHistoryQuery();
 	}
 
 	function hideAllContent() {
@@ -1100,7 +1205,7 @@
 	function search() {
 		var start = $('#datepicker [name="start"]').val();
 		var end = $('#datepicker [name="end"]').val();
-		var id = $("#inputAgentId").val() || agentId;
+		var id = $("#inputAgentId").val();
 
 		console.log("start : " + start + "; end : " + end + "; id :" + id);
 
@@ -1135,7 +1240,16 @@
 							var ixnId = queryData[index].ixnid;
 							var src = queryData[index].src;
 
-							var $tr = '<tr>';
+							if (codeName && codeName.length >= 20) {
+								codeName = codeName.substr(0, 20) + "...";
+							}
+
+							if (comment && comment.length >= 20) {
+								comment = comment.substr(0, 20) + "...";
+							}
+
+							var $tr = '<tr onclick="queryDetail(\'' + ixnId
+									+ '\',\'' + startd + '\')">';
 							$tr += '<td>' + startd + '</td>';
 							$tr += '<td>' + endd + '</td>';
 							$tr += '<td>' + src + '</td>';
@@ -1149,7 +1263,24 @@
 
 						var opt = {
 							"bLengthChange" : false,
-							"iDisplayLength" : 15
+							"iDisplayLength" : 15,
+							"columnDefs" : [ {
+								"width" : "180px",
+								"targets" : 0
+							}, {
+								"width" : "180px",
+								"targets" : 1
+							}, {
+								"width" : "80px",
+								"targets" : 2
+							}, {
+								"width" : "100px",
+								"targets" : 3
+							}, {
+								"width" : "175px",
+								"targets" : 4
+							} ],
+							"fixedColumns" : true
 						};
 
 						$('#queryTable').DataTable(opt);
@@ -1189,6 +1320,167 @@
 		$('#datepicker [name="end"]').datepicker("update", endDateStr);
 
 		search();
+	}
+
+	function queryDetail(id, date) {
+		$
+				.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/detailQuery",
+					data : {
+						ixnid : id
+					},
+					type : "POST",
+					dataType : 'json',
+
+					error : function(e) {
+						console.log("請重新整理");
+
+					},
+					success : function(data) {
+						console.log(data);
+
+						generateDetailData(data);
+						showHistoryDetail(date);
+					}
+				});
+	}
+
+	function generateDetailData(data) {
+		// 清空動態生成區
+		$('#detailCustomerInfo').html("");
+		$('#detailComments').html("");
+		$('#detailText').html("");
+		$('#inputComment').val("");
+
+		// Step 1  處理客戶資料
+		var mapping = data.data[0].mapping.Message;
+		var mappingSorted = {};
+		mappingLength = 0;
+
+		Object.keys(mapping).sort(function(a, b) {
+			return mapping[a].sort - mapping[b].sort
+		}).forEach(function(key) {
+			mappingSorted[mapping[key].sort] = mapping[key];
+			mappingSorted[mapping[key].sort].key = key;
+
+			mappingLength++;
+		});
+
+		$customerData = '<tr>';
+		dataCount = 1;
+
+		for (key in mappingSorted) {
+			$customerData += '<td>';
+			$customerData += mappingSorted[key].chiname;
+			$customerData += '</td><td id="detail'
+					+ mappingSorted[key].key.toLowerCase() + '"></td>';
+
+			if (dataCount % 3 == 0 || dataCount == mappingSorted.length) {
+				$customerData += "</tr>";
+			}
+
+			if (dataCount == mappingLength) {
+				while (mappingLength % 3 != 0) {
+					$customerData += '<td></td><td></td>';
+					mappingLength++;
+				}
+			}
+			dataCount++;
+		}
+
+		$('#detailCustomerInfo').append($customerData);
+
+		var basicInfo = data.data[0].BasicINF;
+
+		for ( var key in basicInfo) {
+			var id = key
+			$('#detail' + key.toLowerCase()).html(basicInfo[key]);
+		}
+
+		// Step 2 處理案件資訊
+		var detailAgentName = data.data[0].Agentname;
+		var detailStartDate = data.data[0].Startdate;
+		var detailEndDate = data.data[0].Enddate;
+		var detailCodeName = data.data[0].Codename;
+
+		$('#detailAgentName').html(detailAgentName);
+		$('#detailStartDate').html(detailStartDate);
+		$('#detailEndDate').html(detailEndDate);
+		$('#detailCodeName').html(detailCodeName);
+
+		var ixnid = data.data[0].ixnid;
+		var ContactID = data.data[0].BasicINF.ContactID;
+		$('#ixnid').html(ixnid);
+		$('#ContactID').html(ContactID);
+
+		// Step 3 處理備註
+		var theComment = data.data[0].Thecomment;
+
+		for (key in theComment) {
+			var agent = theComment[key].agent;
+			var comment = theComment[key].comment;
+			var date = theComment[key].datetime;
+			//theComment[key].statusname;
+
+			var $comment = '<div class="row">';
+			$comment += '<div class="col-xs-6 text-left"><b>' + agent
+					+ '</b></div>';
+			$comment += '<div class="col-xs-6 text-right">' + date + '</div>';
+			$comment += '</div>';
+			$comment += '<div class="well">' + comment + '</div>'
+
+			$('#detailComments').append($comment);
+		}
+
+		// Step 4 處理對談文字
+		var structuretext = data.data[0].Structuredtext;
+		for (key in structuretext) {
+			var userName = structuretext[key].UserName;
+			var text = structuretext[key].text;
+
+			var $text = '<div>';
+			$text += '<b>' + userName + '：</b>';
+			$text += '<span>' + text + '</span>';
+			$text += '</div>';
+
+			$('#detailText').append($text);
+		}
+
+	}
+
+	function insertComment() {
+		var ixnid = $('#ixnid').html();
+		var ContactID = $('#ContactID').html();
+		var comment = $('#inputComment').val();
+		console.log("send insertComment :");
+		console.log("ixnid:" + ixnid + ";ContactID:" + ContactID + ";comment:"
+				+ comment);
+
+		$
+				.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_CaseComments",
+					data : {
+						ixnid : ixnid, //room id
+						contactid : ContactID, //連絡人ID
+						comment : comment, //註記內容
+						status : 3, //暫時固定塞3 (代表結案)
+						mediatype : 2, //暫時固定塞2(代表Chat)
+						source : agentId, //Agent ID
+						agentid : agentId
+					},
+					type : "POST",
+					dataType : 'json',
+
+					error : function(e) {
+						console.log("請重新整理");
+
+					},
+					success : function(data) {
+						console.log(data);
+
+						closeDetail();
+					}
+				});
 	}
 
 	/*
