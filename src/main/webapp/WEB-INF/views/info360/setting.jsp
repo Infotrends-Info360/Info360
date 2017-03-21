@@ -3931,15 +3931,39 @@ $.ajax({
 
 					},
 					success : function(data) {
+						
 						$('#tree').jstree("destroy").empty();
 						console.log("Tree", data);
 
+						
 						$('#tree').jstree({
 							'core' : {
 								'data' : data.Tree,
 							},
+							
+							 "types" : {
+					              "#" : {
+					                  valid_children : ['root'],
+			              	  		  "icon" : "resources/103.png"
 
-							"plugins" : [ "themes", "json_data", "ui" ],
+					              },
+					              "root" : {
+					                  valid_children : ['default', 'file'],
+					              	  "icon" : "jstree-folder"
+
+					              },
+					              "default" : {
+					                  valid_children : ['default', 'file'],
+					                  'icon': 'jstree-folder'
+					              },
+					              "file" : {
+					                  "icon" : "jstree-file",
+
+					              },
+					        },
+
+							"plugins" : [ "themes", "json_data", "ui","types" ],
+					          
 
 						}).bind("loaded.jstree", function(event, data) {
 						
@@ -5779,8 +5803,8 @@ var selected=[];
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_ActivityGroup",
 					data : {
 						activitymenuid : dbid,
-						groupname : in_groupname,
-						sort :0
+						groupname : in_groupname
+// 						sort : in_sort
 					},
 
 					type : "POST",
