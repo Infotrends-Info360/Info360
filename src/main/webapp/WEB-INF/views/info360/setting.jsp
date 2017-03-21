@@ -5779,8 +5779,8 @@ var selected=[];
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_ActivityGroup",
 					data : {
 						activitymenuid : dbid,
-						groupname : in_groupname,
-						sort :0
+						groupname : in_groupname
+// 						sort : in_sort
 					},
 
 					type : "POST",
