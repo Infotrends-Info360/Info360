@@ -602,7 +602,15 @@
 					// 20170321_sam
 					if ("userjoinAgain" == obj.Event) {
 						alert(obj.text);
-// 						switchStatus(StatusEnum.LOGOUT); // 畫面須再更動,但不再送出"Exit"事件
+						// 更新畫面
+						$("#statusButton button.status-ready").css("display",
+																	"none");
+						$("#statusButton button.status-notready").css(
+								"display", "inline-block");
+		
+						$("#navNickName").html("已登出");
+		
+						window.location.href = 'console';
 					} 	
 					// end of 20170321_sam
 					
