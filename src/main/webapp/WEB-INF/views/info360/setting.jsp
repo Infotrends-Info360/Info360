@@ -799,9 +799,6 @@ function Drop(event){
 
 <!-- 						</script>  -->
 							
-							
-							
-							
 							<div class="form-group col-sm-6">
 								<label for="inputAccount" class="col-sm-2 control-label">告警顏色:</label>
 								<div class="col-sm-8">
@@ -1009,7 +1006,9 @@ function Drop(event){
 									placeholder="">
 							</div>
 						</div>
-						<div class="form-group col-sm-6">
+						
+						
+						<div class="form-group col-sm-6" id="urllink">
 							<label for="inputName" class="col-sm-3 control-label">連結URL:</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" id="nodeURL"
@@ -1037,6 +1036,17 @@ function Drop(event){
 								</select>
 							</div>
 						</div>
+						
+						<div class="form-group col-sm-6" >
+							<label for="inputName" class="col-sm-3 control-label">檔案類型:</label>
+							<div class="col-sm-8">
+								<select id="file" onchange="file()">
+									<option value="2">檔案</option>
+									<option value="1">資料夾</option>
+									
+								</select>
+							</div>
+						</div>
 
 						<div class="form-group">
 							<div class="col-sm-offset-9 col-sm-3">
@@ -1047,6 +1057,33 @@ function Drop(event){
 					</div>
 				</div>
 				<!-- 新增 END -->
+				
+				<script type="text/javascript">
+					function file(){ 
+						if(document.getElementById('file').value==1){ 
+							$("#urllink").hide();
+							$("#urllink2").hide();
+							
+						}else{ 
+ 							$("#urllink").show(); 
+ 							$("#urllink2").show(); 
+						} 
+					
+ 					} 
+				</script>
+				<script type="text/javascript">
+					function file2(){ 
+						if(document.getElementById('file2').value==1){ 
+						
+							$("#urllink2").hide();
+							
+						}else{ 
+ 							$("#urllink2").show(); 
+						} 
+					
+ 					} 
+				</script>
+				
 				<!-- 更新  -->
 				<div id="editMemberContentcomm" style="display: none;">
 					<div class="widget">
@@ -1057,7 +1094,7 @@ function Drop(event){
 								<input type="text" class="form-control" id="nodeNAMEu">
 							</div>
 						</div>
-						<div class="form-group col-sm-6">
+						<div class="form-group col-sm-6" id="urllink2">
 							<label for="inputName" class="col-sm-3 control-label">連結URL:</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" id="nodeURLu"
@@ -1082,6 +1119,17 @@ function Drop(event){
 							<label for="inputEmployNumber" class="col-sm-3 control-label">節點顏色:</label>
 							<div class="col-sm-8">
 								<select id="update_color">
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group col-sm-6" id="">
+							<label for="inputName" class="col-sm-3 control-label">檔案類型:</label>
+							<div class="col-sm-8">
+								<select id="file2" onchange="file2()">
+									<option value="2">檔案</option>
+									<option value="1">資料夾</option>
+									
 								</select>
 							</div>
 						</div>
@@ -3944,12 +3992,10 @@ $.ajax({
 							 "types" : {
 					              "#" : {
 					                  valid_children : ['root'],
-			              	  		  "icon" : "resources/103.png"
-
 					              },
 					              "root" : {
 					                  valid_children : ['default', 'file'],
-					              	  "icon" : "jstree-folder"
+					              	  "icon" : "resources/Home-icon.png"
 
 					              },
 					              "default" : {
