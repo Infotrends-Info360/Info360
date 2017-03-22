@@ -4274,7 +4274,15 @@ $.ajax({
 
 	function validateCmI() {
         var nodeNAME = $("#nodeNAME").val();
-     
+        var file = $("#file").val();
+        var nodeURL =$("#nodeURL").val();
+        
+        if(file==2){
+        	if (!nodeURL || nodeURL == '' ) {
+            	toastr.error("請輸入URL");
+            	return false;
+        	}
+        }
         if (!nodeNAME || nodeNAME == '' ) {
             toastr.error("請輸入名稱");
             return false;
@@ -4387,7 +4395,15 @@ $.ajax({
 	
 	function validateCmU() {
         var nodeNAME = $("#nodeNAMEu").val();
-      
+        var file2 = $("#file2").val();
+        var nodeURLu = $("#nodeURLu").val();
+        if(file2==2){
+        	if (!nodeURLu || nodeURLu == '' ) {
+            	toastr.error("請輸入URL");
+            	return false;
+        	}
+        }
+      	
         if (!nodeNAME || nodeNAME == '' ) {
             toastr.error("請輸入名稱");
             return false;
