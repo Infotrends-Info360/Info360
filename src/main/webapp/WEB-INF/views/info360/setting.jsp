@@ -4082,8 +4082,10 @@ $.ajax({
 // 									console.log("parents.length",
 // 											data.node.parents.length);
 									Upcot = data.node.children_d.length;
-									type=data.node.type;
-									console.log("type", data.node.type);
+									
+									
+									
+// 									console.log("type", data.node.type);
 // 									console.log("id", data.node.id);
 // 									console.log("text", data.node.text);
 								
@@ -4097,11 +4099,8 @@ $.ajax({
 									document.getElementById('nodeUSER').value = data.node.id;
 		
 									
-									if (type.equals("file")) {
-										insertornot = false;
-										//		alert("Insert");
-									}
-									if (cot <= 3) {
+// 									
+									if (cot <= 3&&data.node.children.length!=0) {
 										insertornot = true;
 										//		alert("Insert");
 									}
