@@ -2503,7 +2503,8 @@ $.ajax({
 										}
 									}
 									
-									
+									showEditMember();
+
 								});
 					}
 				});
@@ -3525,7 +3526,8 @@ $.ajax({
 									}
 								}
 								
-								
+								showEditMembergroup();
+
 							});
 										
 									
@@ -4595,7 +4597,8 @@ $.ajax({
 				document
 					.getElementById('UPagentreason').innerHTML = table
 					.row(this).data().statusname;
-				
+				showEditMemberAgentreason();
+
 			
 			});
 					}
@@ -5179,6 +5182,7 @@ $.ajax({
 											.getElementById('UPAM').innerHTML = table
 											.row(this).data().menuname;
 											
+											showEditMemberAM();
 
 					});
 					}
@@ -5627,6 +5631,8 @@ var selected=[];
 											document
 											.getElementById('UPAG').innerHTML = table
 											.row(this).data().groupname;
+											showEditMemberAG();
+
 										});
 						
 					}
@@ -5766,6 +5772,8 @@ var selected=[];
 																document
 																.getElementById('UPAG').innerHTML = table
 																.row(this).data().groupname;
+																showEditMemberAG();
+
 															});
 											
 										}
@@ -6207,6 +6215,8 @@ if(ActivityGroup_DBID_list.length){
 											document
 											.getElementById('UPAD').innerHTML = table
 											.row(this).data().codename;
+											showEditMemberAD();
+
 										});
 					}
 				});
@@ -6393,6 +6403,8 @@ if(ActivityGroup_DBID_list.length){
 															document
 															.getElementById('UPAD').innerHTML = table
 															.row(this).data().codename;
+															showEditMemberAD();
+
 														});
 									}
 								});
@@ -6403,7 +6415,6 @@ if(ActivityGroup_DBID_list.length){
 
 						$("#manageTableADSearch").keyup(function() {
 							var searchText = $("#manageTableADSearch").val();
-
 							$("input[aria-controls='manageTableAD']").val(searchText);
 							$("input[aria-controls='manageTableAD']").trigger("keyup");
 						});
