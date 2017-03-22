@@ -4061,14 +4061,9 @@ $.ajax({
 									
 									$('#pass').text(data.node.original.id);
 									$('#children').text(data.node.children_d);
-									
-								
-								
-									
+
 									$("#comm").hide();
 									$("#commTB").show();
-									
-									
 									
 								});
 
@@ -4083,7 +4078,7 @@ $.ajax({
 // 											data.node.parents.length);
 									Upcot = data.node.children_d.length;
 									
-									
+									abc= data.node.a_attr.href
 									
 // 									console.log("type", data.node.type);
 // 									console.log("id", data.node.id);
@@ -4097,9 +4092,22 @@ $.ajax({
 
 									document.getElementById('nodeLINKlist').innerHTML = data.node.text;
 									document.getElementById('nodeUSER').value = data.node.id;
+									
+									document.getElementById('update_color').value = data.node.li_attr.class;
 		
 									
-// 									
+									if (abc=="") {
+// 												alert("空值");
+												document.getElementById('file2').value=1
+												$("#urllink2").hide();
+												document.getElementById('file').value=1
+												$("#urllink").hide();
+									}else{
+										document.getElementById('file2').value=2
+										$("#urllink2").show();
+										document.getElementById('file').value=2
+										$("#urllink").show();
+									}
 									if (cot <= 3&&data.node.children.length!=0) {
 										insertornot = true;
 										//		alert("Insert");
