@@ -999,7 +999,7 @@ function Drop(event){
 				<!-- 新增  -->
 				<div id="addMemberContentcomm" style="display: none;">
 					<div class="widget">
-						<div class="form-group col-sm-6">
+						<div class="form-group col-sm-6" >
 							<label for="inputAccount" class="col-sm-3 control-label">常用連結名稱:</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" id="nodeNAME"
@@ -1007,37 +1007,7 @@ function Drop(event){
 							</div>
 						</div>
 						
-						
-						<div class="form-group col-sm-6" id="urllink">
-							<label for="inputName" class="col-sm-3 control-label">連結URL:</label>
-							<div class="col-sm-8">
-								<input type="text" class="form-control" id="nodeURL"
-									placeholder="">
-							</div>
-						</div>
-
-<!-- 						<div class="form-group col-sm-6"> -->
-<!-- 							<label for="inputLastName" class="col-sm-3 control-label">建立者名稱:</label> -->
-<!-- 							<div class="col-sm-8"> -->
-								<input type="hidden" class="form-control" id="nodeUSER"
-									placeholder="">
-<!-- 							</div> -->
-<!-- 						</div> -->
-						<div class="form-group col-sm-6">
-							<label for="inputFirstName" class="col-sm-3 control-label">上層節點:</label>
-							<div class="col-sm-8"><span id="nodeLINKlist"></span>
-							
-							</div>
-						</div>
-						<div class="form-group col-sm-6">
-							<label for="inputEmployNumber" class="col-sm-3 control-label">顏色:</label>
-							<div class="col-sm-8">
-								<select id="insert_color">
-								</select>
-							</div>
-						</div>
-						
-						<div class="form-group col-sm-6" >
+						<div class="form-group col-sm-6" style="padding: 10px">
 							<label for="inputName" class="col-sm-3 control-label">檔案類型:</label>
 							<div class="col-sm-8">
 								<select id="file" onchange="file()">
@@ -1047,6 +1017,41 @@ function Drop(event){
 								</select>
 							</div>
 						</div>
+						
+
+<!-- 						<div class="form-group col-sm-6"> -->
+<!-- 							<label for="inputLastName" class="col-sm-3 control-label">建立者名稱:</label> -->
+<!-- 							<div class="col-sm-8"> -->
+								
+<!-- 							</div> -->
+<!-- 						</div> -->
+						<div class="form-group col-sm-6">
+							<label for="inputFirstName" class="col-sm-3 control-label">上層節點:</label>
+							<div class="col-sm-8"><span id="nodeLINKlist"></span>
+							
+							</div>
+						</div>
+						
+						<div class="form-group col-sm-5" id="urllink" >
+							<label for="inputName" class="col-sm-3 control-label">連結URL:</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="nodeURL"
+									placeholder="">
+							</div>
+						</div>
+						
+						
+						
+						<div class="form-group col-sm-6">
+							<label for="inputEmployNumber" class="col-sm-3 control-label">顏色:</label>
+							<div class="col-sm-8">
+								<select id="insert_color">
+								</select>
+							</div>
+						</div>
+						
+						<input type="hidden" class="form-control" id="nodeUSER"
+									placeholder="">
 
 						<div class="form-group">
 							<div class="col-sm-offset-9 col-sm-3">
@@ -1094,6 +1099,25 @@ function Drop(event){
 								<input type="text" class="form-control" id="nodeNAMEu">
 							</div>
 						</div>
+						
+						<div class="form-group col-sm-6" id="" style="padding: 10px">
+							<label for="inputName" class="col-sm-3 control-label">檔案類型:</label>
+							<div class="col-sm-8">
+								<select id="file2" onchange="file2()">
+									<option value="2">檔案</option>
+									<option value="1">資料夾</option>
+									
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group col-sm-6">
+							<label for="inputFirstName" class="col-sm-3 control-label" >上層節點:</label>
+							<div class="col-sm-8"><span id="nodeLINKlistU"></span>
+
+							</div>
+						</div>
+						
 						<div class="form-group col-sm-6" id="urllink2">
 							<label for="inputName" class="col-sm-3 control-label">連結URL:</label>
 							<div class="col-sm-8">
@@ -1109,12 +1133,7 @@ function Drop(event){
 									placeholder="" >
 <!-- 							</div> -->
 						</div>
-						<div class="form-group col-sm-6">
-							<label for="inputFirstName" class="col-sm-3 control-label">上層節點:</label>
-							<div class="col-sm-8"><span id="nodeLINKlistU"></span>
-
-							</div>
-						</div>
+						
 						<div class="form-group col-sm-6">
 							<label for="inputEmployNumber" class="col-sm-3 control-label">節點顏色:</label>
 							<div class="col-sm-8">
@@ -1123,16 +1142,7 @@ function Drop(event){
 							</div>
 						</div>
 						
-						<div class="form-group col-sm-6" id="">
-							<label for="inputName" class="col-sm-3 control-label">檔案類型:</label>
-							<div class="col-sm-8">
-								<select id="file2" onchange="file2()">
-									<option value="2">檔案</option>
-									<option value="1">資料夾</option>
-									
-								</select>
-							</div>
-						</div>
+						
 
 						<div class="form-group">
 							<div class="col-sm-offset-9 col-sm-3">
@@ -4066,16 +4076,16 @@ $.ajax({
 								"select_node.jstree",
 								function(e, data) {
 									console.log("QQ", data.node);
-									console.log("children_d.length",
-											data.node.children_d.length);
+// 									console.log("children_d.length",
+// 											data.node.children_d.length);
 									cot = data.node.parents.length;
-									console.log("parents.length",
-											data.node.parents.length);
+// 									console.log("parents.length",
+// 											data.node.parents.length);
 									Upcot = data.node.children_d.length;
-									
-									
-									console.log("id", data.node.id);
-									console.log("text", data.node.text);
+									type=data.node.type;
+									console.log("type", data.node.type);
+// 									console.log("id", data.node.id);
+// 									console.log("text", data.node.text);
 								
 									document.getElementById('nodeNAMEu').value = data.node.text;
 									document.getElementById('nodeURLu').value = data.node.a_attr.href;
@@ -4087,7 +4097,10 @@ $.ajax({
 									document.getElementById('nodeUSER').value = data.node.id;
 		
 									
-									
+									if (type.equals("file")) {
+										insertornot = false;
+										//		alert("Insert");
+									}
 									if (cot <= 3) {
 										insertornot = true;
 										//		alert("Insert");
@@ -4251,7 +4264,7 @@ $.ajax({
 						}
 					});
 		} else {
-			toastr.error("不可超過第三層");
+			toastr.error("不可超過第三層或在檔案下建立");
 		}
 
 
