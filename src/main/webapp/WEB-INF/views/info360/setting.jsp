@@ -1208,8 +1208,9 @@ function Drop(event){
 									id="manageTableAM">
 								<thead>
 										<tr>
-											<th style="width:20px" class="no-sort"><inputtype="checkbox"
+											<th style="width:20px" class="no-sort"><input type="checkbox"
 												id="AM0All" ischecked=false ></th>
+												
 											<th style="display: none;" >編號</th>
 											<th>清單名稱</th>
 											<th style="width:140px"> 建立時間</th>
@@ -2197,8 +2198,12 @@ $.ajax({
 	}
 });
 }
+var dataa;
+var tabledata;
 	function person() {
 		person_groupmenu();
+		
+		
 		
 		$("#person1All").prop("checked", false);
 		$("#person0All").prop("checked", false);
@@ -2275,12 +2280,13 @@ $.ajax({
 												      ],
 											lengthChange : false
 										});
-						aa();
-						var table = $('#person0Table').DataTable();
+			
+						var table = $('#person0Table').DataTable();					
 
+						var flag = true; 
+						
 						$('#person0Table tbody')
-								.on(
-										'click',
+								.on('click',
 										'tr',
 										function() {
 											console.log("person0", table.row(
@@ -2330,26 +2336,60 @@ $.ajax({
 											document
 											.getElementById('updatePassword').value = table
 											.row(this).data().password;
-											
-											//console.log('row');
-											//console.log(table.row(this));
-											console.log($("input[name]"));
-											//alert($(this).text());
-										var cells = table
-										.cell(this).index().row;
 
-										
-// 										console.log('row',$(this).index());
-// 										console.log('EEE',table.column.index("fromVisible",$(this).index()));
-// 										console.log('EEE2',table.cell(this).index());
-// 											var cells = document.getElementById("person0Table").rows.item(0).cells.length;
-// 											alert(table.rows(cells).nodes().to$());
-											
-											
-											
-											showEditMember(data,table.row(this).data());
-										
+
+											aa(data,table.row(this).data());
+// 											alert("trtr");
+											dataa = data;
+											tabledata = table.row(this).data();
+// 											alert("123  "+tabledata);
+
+// 											var text = $("#person0Table tbody tr td").text();	
+// 											alert(text);
+// 											if (text && text != "") {
+// 												showEditMember(data,tabledata);
+// 											}
+											if(flag){
+												showEditMember(data,tabledata);
+											}
+			 								
+
 										});
+						
+						
+						$('#person0Table tbody').on('click','td',function() {
+
+							var text = $(this).text();	
+							//$("input[name='person0']")
+// 							alert(text);
+							if (text && text != "") {
+// 								alert("if");
+								flag = true;
+								//aa(data,table.row(this).data());
+							}else{
+								flag = false;
+								return;
+							}
+					});
+						
+						
+						
+						
+// 						$("#person0Table tbody tr td,#person1Table tbody tr td").on("click",
+// 								function() {
+// 							alert(tabledata);
+// 									var text = $(this).text();	
+// 									if (text && text != "") {
+// 										showEditMember(data,tabledata);
+// 									}
+									
+// 								});
+						
+						
+						
+					
+						
+						
 					}
 				});
 
@@ -2414,7 +2454,7 @@ $.ajax({
 												      }],
 											lengthChange : false
 										});
-						aa();
+				
 						var table = $('#person1Table').DataTable();
 
 						$('#person1Table tbody')
@@ -2470,9 +2510,35 @@ $.ajax({
 									.getElementById('updatePassword').value = table
 									.row(this).data().password;
 									
-									showEditMember(data,table.row(this).data());
-
+									aa(data,table.row(this).data());
+// 									
+									dataa = data;
+									tabledata = table.row(this).data();
+//									
+									if(flag){
+										showEditMember(data,tabledata);
+									}
+	 								
 								});
+				
+				
+				$('#person1Table tbody').on('click','td',function() {
+
+					var text = $(this).text();	
+					//$("input[name='person0']")
+//						alert(text);
+					if (text && text != "") {
+//							alert("if");
+						flag = true;
+						//aa(data,table.row(this).data());
+					}else{
+						flag = false;
+						return;
+					}
+					
+								});
+						
+					
 						
 					}
 				});
@@ -2490,8 +2556,12 @@ $.ajax({
 		});
 	}
 
+// 	function nono(){
+// 		a
+// 	}
 	function personjump(data,tabledata){
-	
+// 		alert(tabledata)
+
 		console.log("personjump",tabledata)
 		var arr = tabledata.groupname.split(',');
 		var arrdbid = tabledata.groupdbid.split(',');
@@ -2523,17 +2593,15 @@ $.ajax({
 		person();
 
 	});
-	function aa() {
-		$("#person0Table tbody tr td,#person1Table tbody tr td").on("click",
-				function() {
-					var text = $(this).text();	
+	function aa(data,tabledata) {
+// 		$("#person0Table tbody tr td,#person1Table tbody tr td").on("click",
+// 				function() {
+// 					var text = $(this).text();	
+// 					if (text && text != "") {
+// 						showEditMember(data,tabledata);
+// 					}
 					
-					//$("input[name='person0']")
-					if (text && text != "") {
-						showEditMember();
-					}
-					
-				});
+// 				});
 		
 		$("#person0All").click(function() {
 			   if($("#person0All").prop("checked")) {
@@ -3203,7 +3271,6 @@ $.ajax({
         var personDBID_list = selected.join();
         if(personDBID_list.length!=0){
         	
-        
 		$
 				.ajax({
 					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Person_logicdelete",
@@ -3473,8 +3540,8 @@ $.ajax({
 										      }],
 											lengthChange : false
 										});
-										
-										
+						group2();
+						var groupflag = true; 			
 					var table = $('#managegroupTable').DataTable();
 										$('#managegroupTable tbody')
 												.on(
@@ -3501,12 +3568,30 @@ $.ajax({
 								document
 								.getElementById('up_name').value = table
 								.row(this).data().name;
-								
-								
-								showEditMembergroup(data,table.row(this).data());
+								if(groupflag){
+									showEditMembergroup(data,table.row(this).data());
+								}
+// 								
 							});
 							
+									
+									$('#managegroupTable tbody').on('click','td',function() {
+
+										var text = $(this).text();	
+										//$("input[name='person0']")
+//											alert(text);
+										if (text && text != "") {
+//												alert("if");
+											groupflag = true;
+										}else{
+											groupflag = false;
+											return;
+										}
 										
+													
+									
+									
+														});
 					}
 				});
 		
@@ -3524,14 +3609,14 @@ $.ajax({
 
 	}
 
-	function group2() {
-		$("#managegroupTable tbody tr td,#bangroupTable tbody tr td").on(
-				"click", function() {
-					var text = $(this).text();
-					if (text && text != "") {
-						showEditMembergroup();
-					}
-				});
+	function group2(data,tabledata) {
+// 		$("#managegroupTable tbody tr td,#bangroupTable tbody tr td").on(
+// 				"click", function() {
+// 					var text = $(this).text();
+// 					if (text && text != "") {
+// 						showEditMembergroup(data,tabledata);
+// 					}
+// 				});
 		
 		
 		$("#group0All").click(function() {
@@ -4577,7 +4662,7 @@ $.ajax({
 											lengthChange : false
 										});
 						agentreason2();
-						
+						var ARflag = true; 
 						var table = $('#manageAgentreasonTable').DataTable();
 						$('#manageAgentreasonTable tbody')
 								.on(
@@ -4612,10 +4697,28 @@ $.ajax({
 				document
 					.getElementById('UPagentreason').innerHTML = table
 					.row(this).data().statusname;
-				showEditMemberAgentreason();
 
-			
+				if(ARflag){
+					showEditMemberAgentreason(data,table.row(this).data());
+				}
 			});
+						
+						$('#manageAgentreasonTable tbody').on('click','td',function() {
+
+							var text = $(this).text();	
+							//$("input[name='person0']")
+//								alert(text);
+							if (text && text != "") {
+//									alert("if");
+								ARflag = true;
+								//aa(data,table.row(this).data());
+							}else{
+								ARflag = false;
+								return;
+							}
+							
+										});	
+						
 					}
 				});
 
@@ -4637,14 +4740,14 @@ $.ajax({
 	}
 
 	function agentreason2() {
-		$(
-				"#manageAgentreasonTable tbody tr td,#banAgentreasonTable tbody tr td")
-				.on("click", function() {
-					var text = $(this).text();
-					if (text && text != "") {
-						showEditMemberAgentreason();
-					}
-				});
+// 		$(
+// 				"#manageAgentreasonTable tbody tr td,#banAgentreasonTable tbody tr td")
+// 				.on("click", function() {
+// 					var text = $(this).text();
+// 					if (text && text != "") {
+// 						showEditMemberAgentreason();
+// 					}
+// 				});
 		
 		$("#agentreason0All").click(function() {
 			   if($("#agentreason0All").prop("checked")) {
@@ -5171,6 +5274,7 @@ $.ajax({
 											lengthChange : false
 										});
 						AM2();
+						var Amflag = true;
 						var table = $('#manageTableAM').DataTable();
 
 						$('#manageTableAM tbody')
@@ -5196,10 +5300,27 @@ $.ajax({
 											document
 											.getElementById('UPAM').innerHTML = table
 											.row(this).data().menuname;
-											
-											showEditMemberAM();
-
+											if(AMflag){
+												showEditMemberAM(data,table.row(this).data());
+											}
 					});
+						
+						$('#manageTableAM tbody').on('click','td',function() {
+
+							var text = $(this).text();	
+							//$("input[name='person0']")
+//								alert(text);
+							if (text && text != "") {
+//									alert("if");
+								AMflag = true;
+								//aa(data,table.row(this).data());
+							}else{
+								AMflag = false;
+								return;
+							}
+							
+										});
+						
 					}
 				});
 
@@ -5218,13 +5339,13 @@ $.ajax({
 	}
 
 	function AM2() {
-		$("#manageTableAM tbody tr td,#banTableAM tbody tr td").on("click",
-				function() {
-					var text = $(this).text();
-					if (text && text != "") {
-						showEditMemberAM();
-					}
-				});
+// 		$("#manageTableAM tbody tr td,#banTableAM tbody tr td").on("click",
+// 				function() {
+// 					var text = $(this).text();
+// 					if (text && text != "") {
+// 						showEditMemberAM();
+// 					}
+// 				});
 
 		$("#AM0All").click(function() {
 			   if($("#AM0All").prop("checked")) {
@@ -5627,8 +5748,9 @@ var selected=[];
 											lengthChange : false
 										});
 						AG2();
+						var AGflag = true;
 						var table = $('#manageTableAG').DataTable();
-
+						
 						$('#manageTableAG tbody')
 								.on(
 										'click',
@@ -5646,8 +5768,24 @@ var selected=[];
 											document
 											.getElementById('UPAG').innerHTML = table
 											.row(this).data().groupname;
-											showEditMemberAG();
+											if(AGflag){
+												showEditMemberAG(data,table.row(this).data());
+											}
+										});
+						$('#manageTableAG tbody').on('click','td',function() {
 
+							var text = $(this).text();	
+							//$("input[name='person0']")
+//								alert(text);
+							if (text && text != "") {
+//									alert("if");
+								AGflag = true;
+								//aa(data,table.row(this).data());
+							}else{
+								AGflag = false;
+								return;
+							}
+							
 										});
 						
 					}
@@ -5707,6 +5845,8 @@ var selected=[];
 
 						console.log("服務代碼清單", data);
 						group2();
+						
+						
 						function group2() {
 							
 							$("#AG0All").prop("checked", false);
@@ -5768,6 +5908,7 @@ var selected=[];
 																lengthChange : false
 															});
 											AG2();
+											var AGflag = true;
 											var table = $('#manageTableAG').DataTable();
 
 											$('#manageTableAG tbody')
@@ -5787,10 +5928,26 @@ var selected=[];
 																document
 																.getElementById('UPAG').innerHTML = table
 																.row(this).data().groupname;
-																showEditMemberAG();
-
+															
+																if(AGflag){
+																	showEditMemberAG(data,table.row(this).data());
+																}
 															});
-											
+											$('#manageTableAG tbody').on('click','td',function() {
+
+												var text = $(this).text();	
+												//$("input[name='person0']")
+//													alert(text);
+												if (text && text != "") {
+//														alert("if");
+													AGflag = true;
+													//aa(data,table.row(this).data());
+												}else{
+													AGflag = false;
+													return;
+												}
+												
+															});
 										}
 									});
 
@@ -5815,13 +5972,13 @@ var selected=[];
 	};
 
 	function AG2() {
-		$("#manageTableAG tbody tr td,#banTableAG tbody tr td").on("click",
-				function() {
-					var text = $(this).text();
-					if (text && text != "") {
-						showEditMemberAG();
-					}
-				});
+// 		$("#manageTableAG tbody tr td,#banTableAG tbody tr td").on("click",
+// 				function() {
+// 					var text = $(this).text();
+// 					if (text && text != "") {
+// 						showEditMemberAG();
+// 					}
+// 				});
 		
 		$("#AG1All").click(function() {
 			   if($("#AG1All").prop("checked")) {
@@ -6209,6 +6366,7 @@ if(ActivityGroup_DBID_list.length){
 											lengthChange : false
 										});
 						AD2();
+						var ADflag = true;
 						var table = $('#manageTableAD').DataTable();
 
 						$('#manageTableAD tbody')
@@ -6230,8 +6388,25 @@ if(ActivityGroup_DBID_list.length){
 											document
 											.getElementById('UPAD').innerHTML = table
 											.row(this).data().codename;
-											showEditMemberAD();
+											
+											if(ADflag){
+												showEditMemberAD(data,tabledata);
+											}
+										});
+						$('#manageTableAD tbody').on('click','td',function() {
 
+							var text = $(this).text();	
+							//$("input[name='person0']")
+//								alert(text);
+							if (text && text != "") {
+//									alert("if");
+								ADflag = true;
+								//aa(data,table.row(this).data());
+							}else{
+								ADflag = false;
+								return;
+							}
+							
 										});
 					}
 				});
@@ -6397,6 +6572,7 @@ if(ActivityGroup_DBID_list.length){
 															lengthChange : false
 														});
 										AD2();
+										var ADflag = true
 										var table = $('#manageTableAD').DataTable();
 
 										$('#manageTableAD tbody')
@@ -6418,8 +6594,24 @@ if(ActivityGroup_DBID_list.length){
 															document
 															.getElementById('UPAD').innerHTML = table
 															.row(this).data().codename;
-															showEditMemberAD();
+															if(ADflag){
+																showEditMemberAD(data,tabledata);
+															}
+														});
+										$('#manageTableAD tbody').on('click','td',function() {
 
+											var text = $(this).text();	
+											//$("input[name='person0']")
+//												alert(text);
+											if (text && text != "") {
+//													alert("if");
+												ADflag = true;
+												//aa(data,table.row(this).data());
+											}else{
+												ADflag = false;
+												return;
+											}
+											
 														});
 									}
 								});
@@ -6446,13 +6638,13 @@ if(ActivityGroup_DBID_list.length){
 	}
 
 	function AD2() {
-		$("#manageTableAD tbody tr td,#banTableAD tbody tr td").on("click",
-				function() {
-					var text = $(this).text();
-					if (text && text != "") {
-						showEditMemberAD();
-					}
-				});
+// 		$("#manageTableAD tbody tr td,#banTableAD tbody tr td").on("click",
+// 				function() {
+// 					var text = $(this).text();
+// 					if (text && text != "") {
+// 						showEditMemberAD();
+// 					}
+// 				});
 		
 		$("#AD0All").click(function() {
 			   if($("#AD0All").prop("checked")) {
