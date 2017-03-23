@@ -15,7 +15,9 @@
 <link href="resources/css/animate.css" rel="stylesheet">
 <link href="resources/layui/css/layui.css" rel="stylesheet">
 <link href="resources/css/style.css?v=4.1.0" rel="stylesheet">
-<link href="resources/css/plugins/toastr/toastr.min.css" rel="stylesheet"> <!-- 20170320 Lin -->
+<link href="resources/css/plugins/toastr/toastr.min.css"
+	rel="stylesheet">
+<!-- 20170320 Lin -->
 </head>
 
 <body class="full-height-layout gray-bg" style="overflow-x: hidden">
@@ -177,7 +179,8 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-success" data-dismiss="modal"
 						onclick="leaveRoom()">確定</button>
-					<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal"
+						onclick="reOpenCurrentChat()">取消</button>
 				</div>
 			</div>
 
@@ -242,8 +245,44 @@
 		</div>
 	</div>
 
+	<!-- Trigger the modal with a button -->
+	<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+		data-target="#waitingDialog" style="display: none;"
+		id="waitingDialogButton">Open Modal</button>
+
+	<div id="waitingDialog" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" id="closeWaitingDialogButton">&times;</button>
+					<h3 class="modal-title text-center">註冊中請稍候</h3>
+				</div>
+				<div class="modal-body">
+					<div class="sk-spinner sk-spinner-circle">
+						<div class="sk-circle1 sk-circle"></div>
+						<div class="sk-circle2 sk-circle"></div>
+						<div class="sk-circle3 sk-circle"></div>
+						<div class="sk-circle4 sk-circle"></div>
+						<div class="sk-circle5 sk-circle"></div>
+						<div class="sk-circle6 sk-circle"></div>
+						<div class="sk-circle7 sk-circle"></div>
+						<div class="sk-circle8 sk-circle"></div>
+						<div class="sk-circle9 sk-circle"></div>
+						<div class="sk-circle10 sk-circle"></div>
+						<div class="sk-circle11 sk-circle"></div>
+						<div class="sk-circle12 sk-circle"></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 	<!-- 全局js -->
 	<script src="resources/js/jquery.min.js?v=2.1.4"></script>
+	<script src="resources/js/jquery-ui-1.10.4.min.js"></script>
 	<script src="resources/js/bootstrap.min.js?v=3.3.6"></script>
 	<script src="resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 	<script src="resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
@@ -255,7 +294,8 @@
 
 	<!-- 第三方插件 -->
 	<script src="resources/js/plugins/pace/pace.min.js"></script>
-	<script src="resources/js/plugins/toastr/toastr.min.js"></script> <!-- 20170320 Lin -->
+	<script src="resources/js/plugins/toastr/toastr.min.js"></script>
+	<!-- 20170320 Lin -->
 
 	<!-- layui -->
 	<script src="resources/layui/layui.js"></script>
@@ -435,23 +475,23 @@
 
 		};
 		// 20170223 Lin
-		
+
 		// 20170320 Lin
 		toastr.options = {
-  			"closeButton": true,
-  			"debug": false,
-  			"progressBar": true,
-  			"positionClass": "toast-top-right",
-  			"onclick": null,
-  			"showDuration": "400",
-  			"hideDuration": "1000",
-  			"timeOut": "7000",
-  			"extendedTimeOut": "1000",
-  			"showEasing": "swing",
-  			"hideEasing": "linear",
-  			"showMethod": "fadeIn",
-  			"hideMethod": "fadeOut"
-			}
+			"closeButton" : true,
+			"debug" : false,
+			"progressBar" : true,
+			"positionClass" : "toast-top-right",
+			"onclick" : null,
+			"showDuration" : "400",
+			"hideDuration" : "1000",
+			"timeOut" : "7000",
+			"extendedTimeOut" : "1000",
+			"showEasing" : "swing",
+			"hideEasing" : "linear",
+			"showMethod" : "fadeIn",
+			"hideMethod" : "fadeOut"
+		}
 		// 20170320 Lin
 
 		// Step-0 
@@ -465,6 +505,8 @@
 					|| "ws.crm.com.tw";
 			var Info360_Setting_port = "${Info360_Setting_port}" || "8080";
 
+			$("#waitingDialogButton").trigger("click");
+			
 			$.ajax({
 				url : Info360_Setting_protocol + "//"
 						+ Info360_Setting_hostname + ":" + Info360_Setting_port
@@ -476,6 +518,7 @@
 				type : "POST",
 				dataType : 'json',
 				error : function(e) {
+					$("#closeWaitingDialogButton").trigger("click");
 					console.log("請重新整理");
 				},
 				success : function(data) {
@@ -499,6 +542,7 @@
 						$('#loginDialog').on('hidden.bs.modal', function() {
 							window.location.href = 'console';
 						})
+						
 						$("#loginDialogButton").trigger("click");
 					} else {
 						// 驗證通過
@@ -516,7 +560,7 @@
 						// Step-1 載入時連線ws
 						doConnect();
 					}
-
+					$("#closeWaitingDialogButton").trigger("click");
 				},
 				beforeSend : function() {
 					// 					$('#loading').show();
@@ -558,11 +602,11 @@
 					// 接收到有人登入的訊息
 					if ("userjoin" == obj.Event) {
 						// 20170321_sam
-						if (obj.isLoggedIn){
+						if (obj.isLoggedIn) {
 							alert(obj.isLoggedInText);
-						}				
+						}
 						// end of 20170321_sam
-		
+
 						// 取得UserId
 						UserID_g = obj.from;
 
@@ -598,22 +642,22 @@
 							tmpStatusEnum.description = val.description;
 						});
 					}
-					
+
 					// 20170321_sam
 					if ("userjoinAgain" == obj.Event) {
 						alert(obj.text);
 						// 更新畫面
 						$("#statusButton button.status-ready").css("display",
-																	"none");
+								"none");
 						$("#statusButton button.status-notready").css(
 								"display", "inline-block");
-		
+
 						$("#navNickName").html("已登出");
-		
+
 						window.location.href = 'console';
-					} 	
+					}
 					// end of 20170321_sam
-					
+
 					// 接收到Client邀請chat的event
 					if ("findAgentEvent" == obj.Event) {
 						ClientName_g = obj.fromName;
@@ -713,9 +757,9 @@
 						}
 
 						//判斷接起對談後的狀態是否要切換為Ready
-// 						if (obj.EstablishedStatus == StatusEnum.READY.dbid) {
-// 							agentReady(); //20170224 Lin
-// 						}
+						// 						if (obj.EstablishedStatus == StatusEnum.READY.dbid) {
+						// 							agentReady(); //20170224 Lin
+						// 						}
 						//20170223 Lin
 
 						// 取得狀態
@@ -744,15 +788,15 @@
 					//接收更新狀態後取得的DBID
 					if ("updateStatus" == obj.Event) {
 						// 20170313_sam
-// 						alert("obj.startORend: " + obj.startORend + " - " + obj.currStatusEnum);
-// 						alert("obj.currStatusEnum: " + obj.currStatusEnum);
+						// 						alert("obj.startORend: " + obj.startORend + " - " + obj.currStatusEnum);
+						// 						alert("obj.currStatusEnum: " + obj.currStatusEnum);
 						var startORend = obj.startORend;
 						var currStatusEnum = StatusEnum
 								.getStatusEnum(obj.currStatusEnum);
-// 						alert("currStatusEnum: " + currStatusEnum);
-						
+						// 						alert("currStatusEnum: " + currStatusEnum);
+
 						// 20170320 Lin
-						if(obj.maxCountReached){
+						if (obj.maxCountReached) {
 							toastr.error("已達到通話上限，無法切回準備就緒");
 						}
 						// 20170320 Lin
@@ -781,15 +825,18 @@
 
 							//控制可選取按鈕
 							$("#statusList li.agentReady").show();
-						} else if ("start" == startORend && currStatusEnum == StatusEnum.AFTERCALLWORK){
-// 							alert("AFTERCALLWORK");
+						} else if ("start" == startORend
+								&& currStatusEnum == StatusEnum.AFTERCALLWORK) {
+							// 							alert("AFTERCALLWORK");
 							// 掛線後，狀態顯示文書處理。(加入顏色機制(橘色))
 							$("#statusList li").show();
 
-							$("#statusButton button.status-paperWork").css("display",
-									"inline-block");
-							$("#statusButton button.status-notready").css("display", "none");
-							$("#statusButton button.status-ready").css("display", "none");
+							$("#statusButton button.status-paperWork").css(
+									"display", "inline-block");
+							$("#statusButton button.status-notready").css(
+									"display", "none");
+							$("#statusButton button.status-ready").css(
+									"display", "none");
 						}
 						// end of 20170313_sam
 						// 						StatusEnum.updateDbid(obj);
@@ -849,17 +896,17 @@
 						});
 
 						// 20170223 Lin
-// 						currRoomCount_g--;
-// 						// 20170313_sam
-// 						if (obj.AfterCallStatus == StatusEnum.READY.dbid) { //如果AfterCallStatus == ready
-// 							if (StatusEnum.ready_dbid == null) {
-// 								agentReady(); //20170224 Lin
-// 							}
-// 						} else if (obj.AfterCallStatus == StatusEnum.NOTREADY.dbid) { //如果AfterCallStatus == not ready
-// 							if (StatusEnum.notready_dbid == null) {
-// 								agentNotReady(); //20170224 Lin
-// 							}
-// 						}
+						// 						currRoomCount_g--;
+						// 						// 20170313_sam
+						// 						if (obj.AfterCallStatus == StatusEnum.READY.dbid) { //如果AfterCallStatus == ready
+						// 							if (StatusEnum.ready_dbid == null) {
+						// 								agentReady(); //20170224 Lin
+						// 							}
+						// 						} else if (obj.AfterCallStatus == StatusEnum.NOTREADY.dbid) { //如果AfterCallStatus == not ready
+						// 							if (StatusEnum.notready_dbid == null) {
+						// 								agentNotReady(); //20170224 Lin
+						// 							}
+						// 						}
 						// end of 20170313_sam
 
 					}
@@ -1243,12 +1290,29 @@
 		// 				});
 		function openTab(order) {
 			$("#menuItemList>a:eq(" + order + ")").trigger("click");
+
+			var chatTab = "chat" + order;
+			var roomId = "";
+
+			for (key in chatList) {
+				if (chatList[key].chatTab == chatTab) {
+					roomId = chatList[key].id;
+				}
+			}
+
+			$("#layim-group" + roomId).trigger("click");
 		}
 
 		function showCloseDialog() {
 			console.log(RoomID_g);
 			$("#closeRoomId").html(RoomID_g);
 			$("#closeDialogButton").trigger("click");
+		}
+
+		function reOpenCurrentChat() {
+			var roomId = $("#closeRoomId").html();
+
+			$("#layim-group" + roomId).trigger("click");
 		}
 
 		//var displayStatus = $("#layui-layer100001").css("display");

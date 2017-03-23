@@ -372,7 +372,8 @@
 										type="checkbox"> 黑名單
 								</span>
 								</span> <span style="margin: 0px 10px 0px 10px;">
-									<button class="btn btn-sm btn-success" onclick="finishChat()">服務完成</button>
+									<button class="btn btn-sm btn-success" onclick="finishChat()"
+										disabled="true" id="finishButton">服務完成</button>
 								</span>
 							</div>
 						</div>
@@ -1171,6 +1172,9 @@
 	// 通話結束，自動點選案件資訊，根據設定決定是否選取第一層清單
 	function showCaseInfoTab() {
 		$("#caseInfoTab").trigger("click");
+
+		// 新增掛線後才可使用服務完成 20170324 Billy
+		$("#finishButton").prop("disabled", false);
 
 		if (parent.autoSelectCaseInfo) {
 			showCaseInfo();
