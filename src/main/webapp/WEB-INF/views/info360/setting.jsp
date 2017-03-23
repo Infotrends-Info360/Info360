@@ -2185,7 +2185,7 @@ $.ajax({
 
 	},
 	success : function(data) {
-		
+		console.log("Pgroup",data)
 		for(var i=0; i<data.group.length; i++){
 	        var menu = "<li id='Imgperson"+data.group[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.group[i].dbid+" ><p>"+data.group[i].name+"</p></li>"
 	        document.getElementById("Box22").insertAdjacentHTML("BeforeEnd",menu);
@@ -2331,32 +2331,24 @@ $.ajax({
 											.getElementById('updatePassword').value = table
 											.row(this).data().password;
 											
-											
-											var arr = table.row(this).data().groupname.split(',');
-											var arrdbid = table.row(this).data().groupdbid.split(',');
-											
-											for (var i in arrdbid ) {
-												if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
-// 													alert("arr " +arr[i]);
-// 													alert("arrdbid " +arrdbid[i]);
-													
-													var menu3 = "<li id='Imgperson3"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
-											        document.getElementById("Box1").insertAdjacentHTML("BeforeEnd",menu3);	
-												}
-											}
-											
-											
-											var notarr = table.row(this).data().notgroupname.split(',');
-											var notarrdbid = table.row(this).data().notgroupdbid.split(',');
-											for (var i in notarrdbid ) {
-												if(notarrdbid[i].trim()!="" && notarr[i].trim()!="" ){
+											//console.log('row');
+											//console.log(table.row(this));
+											console.log($("input[name]"));
+											//alert($(this).text());
+										var cells = table
+										.cell(this).index().row;
 
-													var menu4 = "<li id='Imgperson2"+notarrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+notarrdbid[i]+" ><p>"+notarr[i]+"</p></li>"
-											        document.getElementById("Box4").insertAdjacentHTML("BeforeEnd",menu4);	
-												}
-											}
+										
+// 										console.log('row',$(this).index());
+// 										console.log('EEE',table.column.index("fromVisible",$(this).index()));
+// 										console.log('EEE2',table.cell(this).index());
+// 											var cells = document.getElementById("person0Table").rows.item(0).cells.length;
+// 											alert(table.rows(cells).nodes().to$());
 											
 											
+											
+											showEditMember(data,table.row(this).data());
+										
 										});
 					}
 				});
@@ -2478,34 +2470,10 @@ $.ajax({
 									.getElementById('updatePassword').value = table
 									.row(this).data().password;
 									
-									
-									var arr = table.row(this).data().groupname.split(',');
-									var arrdbid = table.row(this).data().groupdbid.split(',');
-									
-									for (var i in arrdbid ) {
-										if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
-//												alert("arr " +arr[i]);
-//												alert("arrdbid " +arrdbid[i]);
-											
-											var menu3 = "<li id='Imgperson3"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
-									        document.getElementById("Box1").insertAdjacentHTML("BeforeEnd",menu3);	
-										}
-									}
-									
-									
-									var notarr = table.row(this).data().notgroupname.split(',');
-									var notarrdbid = table.row(this).data().notgroupdbid.split(',');
-									for (var i in notarrdbid ) {
-										if(notarrdbid[i].trim()!="" && notarr[i].trim()!="" ){
-
-											var menu4 = "<li id='Imgperson2"+notarrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+notarrdbid[i]+" ><p>"+notarr[i]+"</p></li>"
-									        document.getElementById("Box4").insertAdjacentHTML("BeforeEnd",menu4);	
-										}
-									}
-									
-									showEditMember();
+									showEditMember(data,table.row(this).data());
 
 								});
+						
 					}
 				});
 
@@ -2522,6 +2490,34 @@ $.ajax({
 		});
 	}
 
+	function personjump(data,tabledata){
+	
+		console.log("personjump",tabledata)
+		var arr = tabledata.groupname.split(',');
+		var arrdbid = tabledata.groupdbid.split(',');
+		
+		for (var i in arrdbid ) {
+			if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
+//					alert("arr " +arr[i]);
+//					alert("arrdbid " +arrdbid[i]);
+				
+				var menu3 = "<li id='Imgperson3"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
+		        document.getElementById("Box1").insertAdjacentHTML("BeforeEnd",menu3);	
+			}
+		}
+		
+		
+		var notarr = tabledata.notgroupname.split(',');
+		var notarrdbid = tabledata.notgroupdbid.split(',');
+		for (var i in notarrdbid ) {
+			if(notarrdbid[i].trim()!="" && notarr[i].trim()!="" ){
+
+				var menu4 = "<li id='Imgperson2"+notarrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+notarrdbid[i]+" ><p>"+notarr[i]+"</p></li>"
+		        document.getElementById("Box4").insertAdjacentHTML("BeforeEnd",menu4);	
+			}
+		}
+	}
+	
 	$(document).ready(function() {
 
 		person();
@@ -2530,13 +2526,14 @@ $.ajax({
 	function aa() {
 		$("#person0Table tbody tr td,#person1Table tbody tr td").on("click",
 				function() {
-					var text = $(this).text();
-
+					var text = $(this).text();	
+					
+					//$("input[name='person0']")
 					if (text && text != "") {
 						showEditMember();
 					}
+					
 				});
-		
 		
 		$("#person0All").click(function() {
 			   if($("#person0All").prop("checked")) {
@@ -2562,6 +2559,33 @@ $.ajax({
 			});
 		
 	}
+	
+	
+	function checkbox(){
+		$("#person0All").click(function() {
+			   if($("#person0All").prop("checked")) {
+			     $("input[name='person0']").each(function() {
+			         $(this).prop("checked", true);
+			     });
+			   } else {
+			     $("input[name='person0']").each(function() {
+			         $(this).prop("checked", false);
+			     });           
+			   }
+			});
+		$("#person1All").click(function() {
+			   if($("#person1All").prop("checked")) {
+			     $("input[name='person1']").each(function() {
+			         $(this).prop("checked", true);
+			     });
+			   } else {
+			     $("input[name='person1']").each(function() {
+			         $(this).prop("checked", false);
+			     });           
+			   }
+			});
+	}
+	
 	function showManage() {
 		closeAllHrContent();
 		$("#person").show();
@@ -2605,11 +2629,12 @@ $.ajax({
 		$("button.addMember").addClass("btn-primary");
 	}
 
-	function showEditMember() {
+	function showEditMember(data,tabledata) {
 		$("#Box4").empty();
 		$("#Box1").empty();
-		person_groupmenu();
-
+		
+		personjump(data,tabledata);
+		
 		closeAllHrContent();
 		$("#person").show();
 		$("#editMemberContent").show();
@@ -3362,20 +3387,20 @@ $.ajax({
 		$("#Box5").empty();
 		$("#Box66").empty();
 		
-		$
-		.ajax({
-			url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Person_STATE",
-			data : {
-				dbid : 0
-			},
-			type : "POST",
-			dataType : 'json',
+// 		$
+// 		.ajax({
+// 			url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Person_STATE",
+// 			data : {
+// 				dbid : 0
+// 			},
+// 			type : "POST",
+// 			dataType : 'json',
 
-			error : function(e) {
-				toastr.error("請重新整理");
-			},
-			success : function(data) {
-				console.log("查詢人員", data);
+// 			error : function(e) {
+// 				toastr.error("請重新整理");
+// 			},
+// 			success : function(data) {
+// 				console.log("查詢人員", data);
 	
 		
 // 		for(var i=0; i<data.person.length; i++){
@@ -3385,8 +3410,8 @@ $.ajax({
 // 	        var menu2 = "<li id='Imgperson"+data.group[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.group[i].dbid+" ><p>"+data.group[i].name+"</p></li>"
 // 	        document.getElementById("Box44").insertAdjacentHTML("BeforeEnd",menu2);
 				}
-			}
-	)};
+// 			}
+// 	)};
 	
 	
 
@@ -3448,7 +3473,7 @@ $.ajax({
 										      }],
 											lengthChange : false
 										});
-										group2();
+										
 										
 					var table = $('#managegroupTable').DataTable();
 										$('#managegroupTable tbody')
@@ -3466,85 +3491,24 @@ $.ajax({
 								document
 										.getElementById('up_dbid').value = table
 										.row(this).data().dbid;
-								document
-										.getElementById('up_name').value = table
-										.row(this).data().name;
+								
+								
 								
 								document
 										.getElementById('UPgroup').innerHTML = table
 										.row(this).data().name;
 								
-								var arr = table.row(this).data().have_person_username.split(',');
-								var arrdbid = table.row(this).data().have_person_dbid.split(',');
-								for (var i in arrdbid ) {
-									if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
-// 											alert("arr " +arr[i]);
-// 											alert("arrdbid " +arrdbid[i]);
-										
-										var menu3 = "<li id='Imgperson11"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
-								        document.getElementById("Box90").insertAdjacentHTML("BeforeEnd",menu3);	
-									}
-								}
+								document
+								.getElementById('up_name').value = table
+								.row(this).data().name;
 								
 								
-								var arr = table.row(this).data().have_function.split(',');
-								var arrdbid = table.row(this).data().have_function_dbid.split(',');
-					
-								for (var i in arrdbid ) {
-									if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
-// 											alert("arr " +arr[i]);
-// 											alert("arrdbid " +arrdbid[i]);
-										
-										var menu3 = "<li id='Imgperson11"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
-								        document.getElementById("Box9").insertAdjacentHTML("BeforeEnd",menu3);	
-									}
-								}
-								
-								
-								var arr = table.row(this).data().not_have_person_username.split(',');
-								var arrdbid = table.row(this).data().not_have_person_dbid.split(',');
-								for (var i in arrdbid ) {
-									if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
-// 											alert("arr " +arr[i]);
-// 											alert("arrdbid " +arrdbid[i]);
-										
-										var menu3 = "<li id='Imgperson11"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
-								        document.getElementById("Box09").insertAdjacentHTML("BeforeEnd",menu3);	
-									}
-								}
-								
-								
-								var arr = table.row(this).data().not_function.split(',');
-								var arrdbid = table.row(this).data().not_function_dbid.split(',');
-								for (var i in arrdbid ) {
-									if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
-// 											alert("arr " +arr[i]);
-// 											alert("arrdbid " +arrdbid[i]);
-										
-										var menu3 = "<li id='Imgperson11"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
-								        document.getElementById("Box0").insertAdjacentHTML("BeforeEnd",menu3);	
-									}
-								}
-								
-								showEditMembergroup();
-
+								showEditMembergroup(data,table.row(this).data());
 							});
-										
-									
-										for(var i=0; i<data.ALLperson.length; i++){
-									        var menu1 = "<li id='Imggroup"+data.ALLperson[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.ALLperson[i].dbid+" ><p>"+data.ALLperson[i].user_name+"</p></li>"
-									        document.getElementById("Box66").insertAdjacentHTML("BeforeEnd",menu1);
-										}
-										
-										for(var a=0; a<data.ALLfunction.length; a++){
-									        var menu2 = "<li id='Imggroupf"+data.ALLfunction[a].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.ALLfunction[a].dbid+" ><p>"+data.ALLfunction[a].Function_name+"</p></li>"
-									        document.getElementById("Box88").insertAdjacentHTML("BeforeEnd",menu2);
-										}
+							
 										
 					}
 				});
-
-		
 		
 
 		$("#managegroupTable").css("width", "100%");
@@ -3617,40 +3581,34 @@ $.ajax({
 		$('#Box9').empty();
 		$('#Box09').empty();
 		$('#Box90').empty();
-
+		
 		document.getElementById('in_name').value=""
-		
-		
-		select();
+			$
+			.ajax({
+				url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Group_STATE",
+				data : {
+					state : 0
+				},
+				type : "POST",
+				dataType : 'json',
 
-// 			$
-// 			.ajax({
-// 				url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/about_GroupInfo",
-// 				data : {
-// 					state : 0
-// 				},
-// 				type : "POST",
-// 				dataType : 'json',
-
-// 				error : function(e) {
-// 					toastr.error("請重新整理");
-// 				},
-// 				success : function(data) {
-// 					console.log("部門待新增人員", data);
-
-// 					for(var i=0; i<data.Person.length; i++){
-// 				        var menu1 = "<li id='Imggroup"+data.Person[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.Person[i].dbid+" ><p>"+data.Person[i].name+"</p></li>"
-// 				        document.getElementById("Box66").insertAdjacentHTML("BeforeEnd",menu1);
-// 					}
-// 					for(var i=0; i<data.Function.length; i++){
-// 				        var menu2 = "<li id='Imggroupf"+data.Function[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.Function[i].dbid+" ><p>"+data.Function[i].name+"</p></li>"
-// 				        document.getElementById("Box88").insertAdjacentHTML("BeforeEnd",menu2);
-// 					}
-// 				}
-// 			});
-		
-		
-		
+				error : function(e) {
+					toastr.error("請重新整理");
+				},
+				success : function(data) {
+					for(var i=0; i<data.ALLperson.length; i++){
+						
+				        var menu1 = "<li id='Imggroup"+data.ALLperson[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.ALLperson[i].dbid+" ><p>"+data.ALLperson[i].user_name+"</p></li>"
+				        document.getElementById("Box66").insertAdjacentHTML("BeforeEnd",menu1);
+					}
+					
+					for(var a=0; a<data.ALLfunction.length; a++){
+				        var menu2 = "<li id='Imggroupf"+data.ALLfunction[a].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.ALLfunction[a].dbid+" ><p>"+data.ALLfunction[a].Function_name+"</p></li>"
+				        document.getElementById("Box88").insertAdjacentHTML("BeforeEnd",menu2);
+				     
+					}				
+				}
+			});
 		
 		closeAllHrContent();
 		$("#groupContent").show();
@@ -3758,9 +3716,65 @@ $.ajax({
 		$("button.managegroup").removeClass("btn-success");
 		$("button.managegroup").addClass("btn-primary");
 	}
+	
+	function jump(data,tabledata){
+		
+		var arr = tabledata.have_person_username.split(',');
+		var arrdbid = tabledata.have_person_dbid.split(',');
+		for (var i in arrdbid ) {
+			if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
+//							alert("arr " +arr[i]);
+//							alert("arrdbid " +arrdbid[i]);
+				
+				var menu3 = "<li id='Imgperson11"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
+		        document.getElementById("Box90").insertAdjacentHTML("BeforeEnd",menu3);	
+			}
+		}
+		
+		
+		var arr = tabledata.have_function.split(',');
+		var arrdbid = tabledata.have_function_dbid.split(',');
+
+		for (var i in arrdbid ) {
+			if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
+//						alert("arr " +arr[i]);
+//						alert("arrdbid " +arrdbid[i]);
+				
+				var menu3 = "<li id='Imgperson11"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
+		        document.getElementById("Box9").insertAdjacentHTML("BeforeEnd",menu3);	
+			}
+		}
+		
+		
+		var arr = tabledata.not_have_person_username.split(',');
+		var arrdbid = tabledata.not_have_person_dbid.split(',');
+		for (var i in arrdbid ) {
+			if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
+//						alert("arr " +arr[i]);
+//						alert("arrdbid " +arrdbid[i]);
+				
+				var menu3 = "<li id='Imgperson11"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
+		        document.getElementById("Box09").insertAdjacentHTML("BeforeEnd",menu3);	
+			}
+		}
+		
+		
+		var arr = tabledata.not_function.split(',');
+		var arrdbid = tabledata.not_function_dbid.split(',');
+		for (var i in arrdbid ) {
+			if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
+//						alert("arr " +arr[i]);
+//						alert("arrdbid " +arrdbid[i]);
+				
+				var menu3 = "<li id='Imgperson11"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
+		        document.getElementById("Box0").insertAdjacentHTML("BeforeEnd",menu3);	
+			}
+		}
+	
+		}
 
 	//更新頁面
-	function showEditMembergroup() {
+	function showEditMembergroup(data,tabledata) {
 		
 		$('#Box77').empty();
 		$('#Box5').empty();
@@ -3770,8 +3784,9 @@ $.ajax({
 		$('#Box9').empty();
 		$('#Box90').empty();
 		$('#Box09').empty();
+
+		jump(data,tabledata);
 		
-		document.getElementById('up_name').value="";
 		
 		
 		closeAllHrContent();
