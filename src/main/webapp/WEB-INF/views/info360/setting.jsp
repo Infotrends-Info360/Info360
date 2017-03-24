@@ -1520,7 +1520,7 @@ function Drop(event){
 											<th style="display: none;">編號</th>
 											<th>群組名稱</th>
 											<th style="width: 140px">建立時間</th>
-											<th>排序</th>
+											<th style="width: 50px">排序</th>
 										</tr>
 									</thead>
 								</table>
