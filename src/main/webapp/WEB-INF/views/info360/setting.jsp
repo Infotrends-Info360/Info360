@@ -157,7 +157,7 @@ label.required:after {
 				<!-- 設定頁面內容頁 Start-->
 				<div class="panel-body" id="settingContent">
 					<div id="manageContent">
-						<div id="personul">
+						<div id="personul" style="display: none;">
 							<ul class="pagination">
 								<li onclick="showAddMember()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
