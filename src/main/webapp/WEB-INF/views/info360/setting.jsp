@@ -197,7 +197,7 @@ label.required:after {
                                 <div class="sk-circle12 sk-circle"></div>
                             </div>
                         </div>
-							<div class="col-lg-12 col-md-12" id="persondiv">
+							<div class="col-lg-12 col-md-12" id="persondiv" style="display: none;">
 							
 							<form id="person0_form">
 								<table class="table table-bordered table-hover"
