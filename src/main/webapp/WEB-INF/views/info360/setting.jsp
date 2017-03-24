@@ -130,6 +130,7 @@ label.required:after {
 				</div>
 			</div>
 		</div>
+		
 
 		<div class="col-lg-10 col-sm-9" id="person">
 			<div class="panel panel-success" style="height: 780px;">
@@ -156,7 +157,7 @@ label.required:after {
 				<!-- 設定頁面內容頁 Start-->
 				<div class="panel-body" id="settingContent">
 					<div id="manageContent">
-						<div>
+						<div id="personul">
 							<ul class="pagination">
 								<li onclick="showAddMember()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
@@ -168,7 +169,7 @@ label.required:after {
 										class="glyphicon glyphicon-trash"></i></a></li>
 							</ul>
 
-							<ul class="pagination" style="float: right;">
+							<ul class="pagination" style="float: right;" >
 								<li><input type="text" id="person0Search" placeholder="搜索"
 									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
 								</li>
@@ -177,8 +178,27 @@ label.required:after {
 							</ul>
 						</div>
 
+ 						
+
 						<div class="row ibox">
-							<div class="col-lg-12 col-md-12" type="">
+						<div class="spiner-example" id="personLoding">
+                            <div class="sk-spinner sk-spinner-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
+                            </div>
+                        </div>
+							<div class="col-lg-12 col-md-12" id="persondiv">
+							
 							<form id="person0_form">
 								<table class="table table-bordered table-hover"
 									id="person0Table">
@@ -203,7 +223,7 @@ label.required:after {
 					</div>
 
 					<div id="banContent" style="display: none;">
-						<div>
+						<div id="personul1">
 							<ul class="pagination">
 <!-- 								<li onclick="showAddMember()"><a href="#"><i -->
 <!-- 										class="fa fa-fw fa-plus"></i></a></li> -->
@@ -228,7 +248,24 @@ label.required:after {
 						</div>
 
 						<div class="row ibox">
-							<div class="col-lg-12 col-md-12">
+						<div class="spiner-example" id="personLoding1">
+                            		<div class="sk-spinner sk-spinner-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
+                            		</div>
+                        		</div>
+							<div class="col-lg-12 col-md-12" id="persondiv1">
+								
 								<table class="table table-bordered table-hover"
 									id="person1Table">
 									<thead>
@@ -331,6 +368,23 @@ label.required:after {
 				<div class="form-group col-sm-6"> 
 					<label for="inputEmail" class="col-sm-5 control-label">部門列表</label> 
 							<div id="Box2" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
+									<div class="spiner-example" id="Box22Loading">
+                            <div class="sk-spinner sk-spinner-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
+                            </div>
+                        </div>
+									
 									<ul id="Box22"> 
 									</ul>	
 								</div>
@@ -502,7 +556,7 @@ function Drop(event){
 				<!-- 設定頁面內容頁 Start-->
 				<div class="panel-body" id="settingContent">
 					<div id="managegroupContent" style="display: none;">
-						<div>
+						<div id="groupul">
 							<ul class="pagination">
 								<li onclick="showAddMembergroup()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
@@ -522,7 +576,24 @@ function Drop(event){
 						</div>
 
 						<div class="row ibox" id="group00">
+						<div class="spiner-example" id="groupLoading">
+                            		<div class="sk-spinner sk-spinner-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
+                            </div>
+                        </div>
 							<div class="col-lg-12 col-md-12" id="group0">
+								
 								<table class="table table-bordered table-hover"
 									id="managegroupTable">
 									<thead>
@@ -564,6 +635,22 @@ function Drop(event){
 				<div class="form-group col-sm-6"> 
 					<label for="inputEmail" class="col-sm-5 control-label">權限列表</label> 
 							<div id="Box8" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
+									<div class="spiner-example" id="Box88Loading">
+                            		<div class="sk-spinner sk-spinner-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
+                            		</div>
+                        			</div>
 									<ul id="Box88"> 
 									</ul>	
 								</div>
@@ -585,6 +672,22 @@ function Drop(event){
 				<div class="form-group col-sm-6"> 
 					<label for="inputEmail" class="col-sm-5 control-label">人員列表</label> 
 							<div id="Box6" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
+									<div class="spiner-example" id="Box66Loading">
+                            		<div class="sk-spinner sk-spinner-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
+                            		</div>
+                        			</div>
 									<ul id="Box66"> 
 									</ul>	
 								</div>
@@ -730,7 +833,26 @@ function Drop(event){
 						</div>
 
 						<div class="row ibox" id="agentreason00">
+						<div class="spiner-example" id="ARLoading">
+                            	<div class="sk-spinner sk-spinner-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
+                            	</div>
+                        		</div>
 							<div class="col-lg-12 col-md-12" id="agentreason0">
+								
+							
+							
 								<table class="table table-bordered table-hover"
 									id="manageAgentreasonTable">
 									<thead>
@@ -939,7 +1061,7 @@ function Drop(event){
 				<!-- 設定頁面內容頁 Start-->
 				<div class="panel-body" id="settingContent">
 					<div id="0Commonlink" style="display: none;">
-						<div>
+						<div id="commonlinkul">
 							<ul class="pagination">
 								<li onclick="showAddMembercomm()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
@@ -953,10 +1075,27 @@ function Drop(event){
 						</div>
 
 						<div class="row ibox">
+						
 							<div class="col-lg-3 col-md-3">
+							
 								<div id="tree"></div>
 							</div>
-
+							<div class="spiner-example" id="commonlinkLoading">
+                            <div class="sk-spinner sk-spinner-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
+                            </div>
+                        	</div>
 							<div class="col-lg-8 col-md-8" id="comm" style="display: none;">
 								<h2>請選擇節點</h2>
 							</div>
@@ -1184,7 +1323,7 @@ function Drop(event){
 				<!-- 設定頁面內容頁 Start-->
 				<div class="panel-body" id="settingContent">
 					<div id="manageAMContent" style="display: none;">
-						<div>
+						<div id="AMul">
 							<ul class="pagination">
 								<li onclick="showAddMemberAM()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
@@ -1203,7 +1342,24 @@ function Drop(event){
 						</div>
 
 						<div class="row ibox" id="AM00">
+						<div class="spiner-example" id="AMLoading">
+                            <div class="sk-spinner sk-spinner-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
+                            </div>
+                        	</div>
 							<div class="col-lg-12 col-md-12" id="AM0">
+							
 								<table class="table table-bordered table-hover"
 									id="manageTableAM">
 								<thead>
@@ -1214,13 +1370,13 @@ function Drop(event){
 											<th style="display: none;" >編號</th>
 											<th>清單名稱</th>
 											<th style="width:140px"> 建立時間</th>
-<!-- 											<th style="width: 50px">排序</th> -->
+											<th style="width: 50px">排序</th>
 										</tr>
 									</thead>
 									
 								</table>
-<!-- 								<input id="AMupdbid" value="" type="hidden"> -->
-<!-- 								<input id="AMdowdbid" value="" type="hidden"> -->
+								<input id="AMupdbid" value="" type="hidden">
+								<input id="AMdowdbid" value="" type="hidden">
 							</div>
 						</div>
 					</div>
@@ -1317,15 +1473,15 @@ function Drop(event){
 				<!-- 設定頁面內容頁 Start-->
 				<div class="panel-body" id="settingContent">
 					<div id="manageAGContent">
-						<div>
+						<div id="AGul">
 							<ul class="pagination">
 								<li onclick="showAddMemberAG()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
 								<li onclick="unlockAccountAG()"><a href="#"><i
 										class="glyphicon glyphicon-trash"></i></a></li>
 										<select class="selectpicker" style="width: 127px;" id="menu"
-						onchange="group()">
-					</select>
+										onchange="group()">
+										</select>
 							</ul>
 							<ul class="pagination" style="float: right;">
 								<li><input type="text" id="manageTableAGSearch"
@@ -1338,6 +1494,22 @@ function Drop(event){
 						</div>
 
 						<div class="row ibox" id="AG00">
+								<div class="spiner-example" id="AGLoading">
+                            	<div class="sk-spinner sk-spinner-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
+                            	</div>
+                        		</div>
 							<div class="col-lg-12 col-md-12" id="AG0">
 								<table class="table table-bordered table-hover"
 									id="manageTableAG">
@@ -1348,12 +1520,14 @@ function Drop(event){
 											<th style="display: none;">編號</th>
 											<th>群組名稱</th>
 											<th style="width: 140px">建立時間</th>
-<!-- 											<th>排序</th> -->
+											<th>排序</th>
 										</tr>
 									</thead>
 								</table>
 							</div>
 						</div>
+								<input id="AGupdbid" value="" type="hidden">
+								<input id="AGdowdbid" value="" type="hidden">
 					</div>
 
 					<!-- 新增  -->
@@ -1437,7 +1611,7 @@ function Drop(event){
 				<!-- 設定頁面內容頁 Start-->
 				<div class="panel-body" id="settingContent">
 					<div id="manageADContent" style="display: none;">
-						<div>
+						<div id="ADul">
 							<ul class="pagination">
 								<li onclick="showAddMemberAD()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
@@ -1445,7 +1619,7 @@ function Drop(event){
 										class="glyphicon glyphicon-trash"></i></a></li>
 										<select class="selectpicker" style="width: 127px;" id="menuAD"
 										onchange="groupAD()">
-					</select>
+										</select>
 							</ul>
 							<ul class="pagination" style="float: right;">
 								<li><input type="text" id="manageTableADSearch"
@@ -1458,6 +1632,22 @@ function Drop(event){
 						</div>
 
 						<div class="row ibox" id="AD00">
+						<div class="spiner-example" id="ADLoading">
+                            <div class="sk-spinner sk-spinner-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
+                            </div>
+                        </div>
 							<div class="col-lg-12 col-md-12" id="AD0">
 								<table class="table table-bordered table-hover"
 									id="manageTableAD">
@@ -1473,14 +1663,15 @@ function Drop(event){
 											<th>關聯</th>
 											<th>類型</th>
 											<th style="width:140px">建立時間</th>
-<!-- 											<th>排序</th> -->
+											<th style="width:50px">排序</th>
 										</tr>
 									</thead>
 								</table>
 							</div>
 						</div>
 					</div>
-
+								<input id="ADupdbid" value="" type="hidden">
+								<input id="ADdowdbid" value="" type="hidden">
 <!-- 					<div id="banADContent" style="display: none;"> -->
 <!-- 						<div> -->
 <!-- 							<ul class="pagination"> -->
@@ -2168,6 +2359,9 @@ function Drop(event){
 <!-- =====================================Person================================================================= -->
 <script>
 function person_groupmenu(){
+	$("#Box22").hide();
+	$("#Box22Loading").show();
+	
 	$("#updateDepartment").empty();
 	$("#inputDepartment").empty();
 	$("#Box3").empty();
@@ -2195,6 +2389,8 @@ $.ajax({
 // 	        document.getElementById("Box4").insertAdjacentHTML("BeforeEnd",menu2);
 	      
 	        	 }
+		$("#Box22").show();
+		$("#Box22Loading").hide();
 	}
 });
 }
@@ -2203,6 +2399,13 @@ var tabledata;
 	function person() {
 		person_groupmenu();
 		
+		
+		$("#personLoding").show();
+		$("#personLoding1").show();
+		$("#persondiv").hide();
+		$("#persondiv1").hide();
+		$("#personul").hide();
+		$("#personul1").hide();
 		
 		
 		$("#person1All").prop("checked", false);
@@ -2280,7 +2483,7 @@ var tabledata;
 												      ],
 											lengthChange : false
 										});
-			
+
 						var table = $('#person0Table').DataTable();					
 
 						var flag = true; 
@@ -2353,7 +2556,7 @@ var tabledata;
 												showEditMember(data,tabledata);
 											}
 			 								
-
+											
 										});
 						
 						
@@ -2371,26 +2574,11 @@ var tabledata;
 								return;
 							}
 					});
+						$("#personLoding").hide();
+						$("#persondiv").show();
+						$("#personul").show();
 						
-						
-						
-						
-// 						$("#person0Table tbody tr td,#person1Table tbody tr td").on("click",
-// 								function() {
-// 							alert(tabledata);
-// 									var text = $(this).text();	
-// 									if (text && text != "") {
-// 										showEditMember(data,tabledata);
-// 									}
-									
-// 								});
-						
-						
-						
-					
-						
-						
-					}
+					}	
 				});
 
 		$("#person0Table").css("width", "100%");
@@ -2454,7 +2642,7 @@ var tabledata;
 												      }],
 											lengthChange : false
 										});
-				
+
 						var table = $('#person1Table').DataTable();
 
 						$('#person1Table tbody')
@@ -2538,8 +2726,9 @@ var tabledata;
 					
 								});
 						
-					
-						
+				$("#personLoding1").hide();
+				$("#persondiv1").show();
+				$("#personul1").show();
 					}
 				});
 
@@ -2554,6 +2743,7 @@ var tabledata;
 			$("input[aria-controls='person1Table']").val(searchText);
 			$("input[aria-controls='person1Table']").trigger("keyup");
 		});
+		
 	}
 
 // 	function nono(){
@@ -3435,9 +3625,6 @@ var tabledata;
 		closeAllHrContent();
 		$("#groupContent").show();
 		$("#managegroupContent").show();
-
-
-		
 		$("button.group").removeClass("btn-success");
 		$("button.group").addClass("btn-primary");
 
@@ -3446,7 +3633,7 @@ var tabledata;
 	
 	
 	function groupperson(){
-		
+
 		$("#Box22").empty();
 		$("#Box3").empty();
 		$("#Box1").empty();
@@ -3479,11 +3666,13 @@ var tabledata;
 				}
 // 			}
 // 	)};
-	
-	
 
 	function select() {
-		
+		$("#groupLoading").show();
+	
+		$("#group0").hide();
+		$("#groupul").hide();
+	
 		$('#Box77').empty();
 		$('#Box5').empty();
 		$('#Box88').empty();
@@ -3587,11 +3776,12 @@ var tabledata;
 											groupflag = false;
 											return;
 										}
-										
-													
-									
-									
 														});
+									$("#groupLoading").hide();
+									$("#group0").show();
+									$("#groupul").show();
+									
+									
 					}
 				});
 		
@@ -3658,6 +3848,11 @@ var tabledata;
 
 	//新增畫面
 	function showAddMembergroup() {
+		$("#Box88").hide();
+		$("#Box66").hide();
+		$("#Box66Loading").show();
+		$("#Box88Loading").show();
+		
 		$('#Box77').empty();
 		$('#Box5').empty();
 		$('#Box88').empty();
@@ -3691,7 +3886,11 @@ var tabledata;
 				        var menu2 = "<li id='Imggroupf"+data.ALLfunction[a].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.ALLfunction[a].dbid+" ><p>"+data.ALLfunction[a].Function_name+"</p></li>"
 				        document.getElementById("Box88").insertAdjacentHTML("BeforeEnd",menu2);
 				     
-					}				
+					}
+					$("#Box66Loading").hide();
+					$("#Box88Loading").hide();
+					$("#Box66").show();
+					$("#Box88").show();			
 				}
 			});
 		
@@ -3733,8 +3932,6 @@ var tabledata;
 		}
 // 	alert("person :"+kk);
 // 	alert("function :"+ll);
-	
-		
 		$
 				.ajax({
 					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Insert_GroupInfo",
@@ -4068,6 +4265,12 @@ var tabledata;
 
 		Uinsertornot = false;
 		insertornot = false;
+		$('#commonlinkLoading').show();
+		$('#tree').hide();
+		$('#comm').hide();
+		$('#commonlinkul').hide();
+		
+		
 		
 		$('#nodeLINKlist').empty();
 		$('#nodeLINKlistU').empty();
@@ -4079,7 +4282,7 @@ var tabledata;
 
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/IMWebSocket/RESTful/Select_commonlink",
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Select_commonlink",
 
 					data : {},
 
@@ -4164,9 +4367,6 @@ var tabledata;
 									$('#pass').text(data.node.original.id);
 									$('#children').text(data.node.children_d);
 
-									$("#comm").hide();
-									$("#commTB").show();
-									
 								});
 
 						$('#tree').on(
@@ -4246,6 +4446,11 @@ var tabledata;
 // 								.insertAdjacentHTML("BeforeEnd", oo1);
 // 						document.getElementById("nodeLINKlistU")
 // 								.insertAdjacentHTML("BeforeEnd", oo1);
+						$('#commonlinkLoading').hide();
+						$('#tree').show();
+						$('#comm').show();
+						$('#commonlinkul').show();
+
 					},
 				});
 	};
@@ -4581,6 +4786,8 @@ var tabledata;
 	}
 
 	function select2() {
+		$("#ARLoading").show();
+		$("#agentreason0").hide();
 		
 		$("#agentreason0All").prop("checked", false);
 		$("#agentreason1All").prop("checked", false);
@@ -4718,7 +4925,8 @@ var tabledata;
 							}
 							
 										});	
-						
+						$("#ARLoading").hide();
+						$("#agentreason0").show();
 					}
 				});
 
@@ -5204,9 +5412,12 @@ var tabledata;
 	}
 
 	function AM() {
+		$("#AMLoading").show();
+		$("#AM0").hide();
+		$("#AMul").hide();
+		
 		
 		$("#AM0All").prop("checked", false);
-		
 		$("#manageTableAM tbody tr").empty();
 		$
 				.ajax({
@@ -5258,18 +5469,18 @@ var tabledata;
 										             return '<input  type="checkbox" name="AM0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
 										         }
 										      },
-// 										      {
-// 											         'targets': 3,
-// 											         'searchable': false,
-// 											         'orderable': false,
-// 											        'className': "  ",
-// 											         'render': function (data, type, full, meta){
+										      {
+											         'targets': 3,
+											         'searchable': false,
+											         'orderable': false,
+											        'className': "  ",
+											         'render': function (data, type, full, meta){
 											        	
-// 											        		 return '<label style="padding-left:5px" ondblclick="AM_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  ondblclick="AM_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
+											        		 return '<label style="padding-left:5px" ondblclick="AM_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  ondblclick="AM_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
 											        
-// 											         },
+											         },
 											
-// 											      }
+											      }
 										      ],
 											lengthChange : false
 										});
@@ -5291,12 +5502,12 @@ var tabledata;
 											.getElementById('up_dbidam').value = table
 											.row(this).data().dbid;
 											
-// 											document
-// 											.getElementById('AMupdbid').value = table
-// 											.row(this).data().dbid;
-// 											document
-// 											.getElementById('AMdowdbid').value = table
-// 											.row(this).data().dbid;
+											document
+											.getElementById('AMupdbid').value = table
+											.row(this).data().dbid;
+											document
+											.getElementById('AMdowdbid').value = table
+											.row(this).data().dbid;
 											document
 											.getElementById('UPAM').innerHTML = table
 											.row(this).data().menuname;
@@ -5320,7 +5531,10 @@ var tabledata;
 							}
 							
 										});
-						
+						$("#AMLoading").hide();
+						$("#AM0").show();
+						$("#AMul").show();
+
 					}
 				});
 
@@ -5371,8 +5585,6 @@ var tabledata;
 			});
 	}
 
-	//
-	//
 	//顯示 啟用表格
 	function showManage_AM() {
 		closeAllHrContent();
@@ -5520,64 +5732,64 @@ var tabledata;
 	}
 	
 	
-// 	function AM_up() {
-// // 		var deleteflag = document.getElementById('Delete_flagAM').value;
-// // 		var menuname = document.getElementById('Delete_idAM').value;
+	function AM_up() {
+// 		var deleteflag = document.getElementById('Delete_flagAM').value;
+// 		var menuname = document.getElementById('Delete_idAM').value;
 
 			  
-// 			  var AMupdbid = document.getElementById('AMupdbid').value;
+			  var AMupdbid = document.getElementById('AMupdbid').value;
 		
-// 		$
-// 				.ajax({
-// 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AMenu_Sort2",
-// 					data : {
-// 						dbid:AMupdbid
-// 					},
-// 					type : "POST",
-// 					dataType : 'json',
-// 					error : function(e) {
-// 						toastr.error("至頂");
-// 					},
-// 					success : function(data) {
-// 						AM();
-// 						toastr.success("上升排序成功");
-// 					}
-// 				});
+		$
+				.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AMenu_Sortup",
+					data : {
+						dbid:AMupdbid
+					},
+					type : "POST",
+					dataType : 'json',
+					error : function(e) {
+						toastr.error("至頂");
+					},
+					success : function(data) {
+						AM();
+						toastr.success("上升排序成功");
+					}
+				});
 			
 			  
-// 		closeAllHrContent();
-// 		$("#AMContent").show();
-// 		$("#manageAMContent").show();
-// 	}
-// 	function AM_dow() {
-// // 		var deleteflag = document.getElementById('Delete_flagAM').value;
-// // 		var menuname = document.getElementById('Delete_idAM').value;
+		closeAllHrContent();
+		$("#AMContent").show();
+		$("#manageAMContent").show();
+	}
+	function AM_dow() {
+// 		var deleteflag = document.getElementById('Delete_flagAM').value;
+// 		var menuname = document.getElementById('Delete_idAM').value;
 
 			  
-// 			  var AMdowdbid = document.getElementById('AMdowdbid').value;
+			  var AMdowdbid = document.getElementById('AMdowdbid').value;
 			 
-// 		$
-// 				.ajax({
-// 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AMenu_Sort",
-// 					data : {
-// 						dbid:AMdowdbid
-// 					},
-// 					type : "POST",
-// 					dataType : 'json',
-// 					error : function(e) {
-// 						toastr.error("最底層");
-// 					},
-// 					success : function(data) {
-// 						AM();
-// 						toastr.success("下降排序成功");
-// 					}
-// 				});
+		$
+				.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AMenu_Sortdown",
+					data : {
+						dbid:AMdowdbid
+					},
+					type : "POST",
+					dataType : 'json',
+					error : function(e) {
+						toastr.error("最底層");
+					},
+					success : function(data) {
+						AM();
+						toastr.success("下降排序成功");
+					}
+				});
 			
 			  
-// 		closeAllHrContent();
-// 		$("#AMContent").show();
-// 		$("#manageAMContent").show();
-// 	}
+		closeAllHrContent();
+		$("#AMContent").show();
+		$("#manageAMContent").show();
+	}
 	
 	
 	
@@ -5685,10 +5897,11 @@ var selected=[];
 		$("#banTableAG tboby tr").empty();
 	}
 	
-	
-
-
 	function group() {
+		$("#AG0").hide();
+		$("#AGul").hide();
+		$("#AGLoading").show();
+		
 		
 		$("#AG0All").prop("checked", false);
 		$("#AG1All").prop("checked", false);
@@ -5744,7 +5957,19 @@ var selected=[];
 //											        	 alert(JSON.stringify(full));
 										             return '<input type="checkbox" name="AG0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
 										         }
-										      }],
+										      },
+										      {
+											         'targets': 3,
+											         'searchable': false,
+											         'orderable': false,
+											        'className': "  ",
+											         'render': function (data, type, full, meta){
+											        	
+											        		 return '<label style="padding-left:5px" ondblclick="AG_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  ondblclick="AG_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
+											        
+											         },
+											
+											      }],
 											lengthChange : false
 										});
 						AG2();
@@ -5768,6 +5993,12 @@ var selected=[];
 											document
 											.getElementById('UPAG').innerHTML = table
 											.row(this).data().groupname;
+											document
+											.getElementById('AGupdbid').value = table
+											.row(this).data().dbid;
+											document
+											.getElementById('AGdowdbid').value = table
+											.row(this).data().dbid;
 											if(AGflag){
 												showEditMemberAG(data,table.row(this).data());
 											}
@@ -5801,11 +6032,15 @@ var selected=[];
 			$("input[aria-controls='manageTableAG']").val(searchText);
 			$("input[aria-controls='manageTableAG']").trigger("keyup");
 		});
-
-	
+		$("#AGul").show();
+		$("#AG0").show();
+		$("#AGLoading").hide();
 	}
 
 	function AG() {
+		$("#AGul").hide();
+		$("#AG0").hide();
+		$("#AGLoading").show();
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Flag_ActivityMenu",
@@ -5848,6 +6083,7 @@ var selected=[];
 						
 						
 						function group2() {
+							
 							
 							$("#AG0All").prop("checked", false);
 							$("#AG1All").prop("checked", false);
@@ -5904,7 +6140,20 @@ var selected=[];
 //																        	 alert(JSON.stringify(full));
 															             return '<input type="checkbox" name="AG0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
 															         }
-															      }],
+															      },
+															      {
+																         'targets': 3,
+																         'searchable': false,
+																         'orderable': false,
+																        'className': "  ",
+																         'render': function (data, type, full, meta){
+																        	
+																        		 return '<label style="padding-left:5px" ondblclick="AG_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  ondblclick="AG_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
+																        
+																         },
+																
+																      }
+															      ],
 																lengthChange : false
 															});
 											AG2();
@@ -5928,6 +6177,12 @@ var selected=[];
 																document
 																.getElementById('UPAG').innerHTML = table
 																.row(this).data().groupname;
+																document
+																.getElementById('AGupdbid').value = table
+																.row(this).data().dbid;
+																document
+																.getElementById('AGdowdbid').value = table
+																.row(this).data().dbid;
 															
 																if(AGflag){
 																	showEditMemberAG(data,table.row(this).data());
@@ -5948,6 +6203,9 @@ var selected=[];
 												}
 												
 															});
+											$("#AG0").show();
+											$("#AGul").show();
+											$("#AGLoading").hide();
 										}
 									});
 
@@ -5967,8 +6225,6 @@ var selected=[];
 					}
 
 				});
-		
-		
 	};
 
 	function AG2() {
@@ -6004,7 +6260,61 @@ var selected=[];
 			});
 	}
 
-	//
+	function AG_up() {
+
+		  var AGupdbid = document.getElementById('AGupdbid').value;
+
+	$
+			.ajax({
+				url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AGroup_Sortup",
+				data : {
+					dbid:AGupdbid
+				},
+				type : "POST",
+				dataType : 'json',
+				error : function(e) {
+					toastr.error("至頂");
+				},
+				success : function(data) {
+					group();
+					toastr.success("上升排序成功");
+				}
+			});
+		
+		  
+	closeAllHrContent();
+	$("#AGContent").show();
+	$("#manageAGContent").show();
+}
+function AG_dow() {
+//	var deleteflag = document.getElementById('Delete_flagAM').value;
+//	var menuname = document.getElementById('Delete_idAM').value;
+
+		  
+		  var AGdowdbid = document.getElementById('AGdowdbid').value;
+		 
+	$
+			.ajax({
+				url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AGroup_Sortdown",
+				data : {
+					dbid:AGdowdbid
+				},
+				type : "POST",
+				dataType : 'json',
+				error : function(e) {
+					toastr.error("最底層");
+				},
+				success : function(data) {
+					group();
+					toastr.success("下降排序成功");
+				}
+			});
+		
+		  
+	closeAllHrContent();
+	$("#AGContent").show();
+	$("#manageAGContent").show();
+}
 	//
 	//顯示 啟用表格
 	function showManage_AG() {
@@ -6247,6 +6557,10 @@ if(ActivityGroup_DBID_list.length){
 
 	function groupAD() {
 		
+		$("#ADLoading").show();
+		$("#AD0").hide();
+		$("#ADul").hide();
+
 		$("#titleflagD").empty();
 		
 		$("#AD1All").prop("checked", false);
@@ -6361,7 +6675,19 @@ if(ActivityGroup_DBID_list.length){
 
 																}
 														}
-												      }
+												      },
+												      {
+													         'targets': 6,
+													         'searchable': false,
+													         'orderable': false,
+													        'className': "  ",
+													         'render': function (data, type, full, meta){
+													        	
+													        		 return '<label style="padding-left:5px" ondblclick="AD_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  ondblclick="AD_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
+													        
+													         },
+													
+													      }
 										      ],
 											lengthChange : false
 										});
@@ -6388,6 +6714,12 @@ if(ActivityGroup_DBID_list.length){
 											document
 											.getElementById('UPAD').innerHTML = table
 											.row(this).data().codename;
+											document
+											.getElementById('ADupdbid').value = table
+											.row(this).data().dbid;
+											document
+											.getElementById('ADdowdbid').value = table
+											.row(this).data().dbid;
 											
 											if(ADflag){
 												showEditMemberAD(data,tabledata);
@@ -6408,6 +6740,9 @@ if(ActivityGroup_DBID_list.length){
 							}
 							
 										});
+						$("#ADLoading").hide();
+						$("#AD0").show();
+						$("#ADul").show();
 					}
 				});
 
@@ -6425,6 +6760,9 @@ if(ActivityGroup_DBID_list.length){
 	}
 	
 	function AD() {
+		$("#ADLoading").show();
+		$("#AD0").hide();
+		$("#ADul").hide();
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityGroup",
@@ -6567,7 +6905,19 @@ if(ActivityGroup_DBID_list.length){
 
 																				}
 																		}
-																      }
+																      }, 
+																      {
+																	         'targets': 6,
+																	         'searchable': false,
+																	         'orderable': false,
+																	        'className': "  ",
+																	         'render': function (data, type, full, meta){
+																	        	
+																	        		 return '<label style="padding-left:5px" ondblclick="AD_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  ondblclick="AD_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
+																	        
+																	         },
+																	
+																	      }
 														      ],
 															lengthChange : false
 														});
@@ -6594,6 +6944,13 @@ if(ActivityGroup_DBID_list.length){
 															document
 															.getElementById('UPAD').innerHTML = table
 															.row(this).data().codename;
+															document
+															.getElementById('ADupdbid').value = table
+															.row(this).data().dbid;
+															document
+															.getElementById('ADdowdbid').value = table
+															.row(this).data().dbid;
+															
 															if(ADflag){
 																showEditMemberAD(data,tabledata);
 															}
@@ -6626,8 +6983,9 @@ if(ActivityGroup_DBID_list.length){
 							$("input[aria-controls='manageTableAD']").trigger("keyup");
 						});
 
-						
-
+						$("#ADLoading").hide();
+						$("#AD0").show();
+						$("#ADul").show();
 					}
 				});
 		
@@ -6636,7 +6994,62 @@ if(ActivityGroup_DBID_list.length){
 		
 
 	}
+	function AD_up() {
 
+			  
+			  var ADupdbid = document.getElementById('ADupdbid').value;
+// 		alert(ADupdbid);
+		$
+				.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AData_Sortup",
+					data : {
+						dbid:ADupdbid
+					},
+					type : "POST",
+					dataType : 'json',
+					error : function(e) {
+						toastr.error("至頂");
+					},
+					success : function(data) {
+						groupAD();
+						toastr.success("上升排序成功");
+					}
+				});
+			
+			  
+		closeAllHrContent();
+		$("#ADContent").show();
+		$("#manageADContent").show();
+	}
+	function AD_dow() {
+// 		var deleteflag = document.getElementById('Delete_flagAM').value;
+// 		var menuname = document.getElementById('Delete_idAM').value;
+
+			  
+			  var ADdowdbid = document.getElementById('ADdowdbid').value;
+			 
+		$
+				.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AData_Sortdown",
+					data : {
+						dbid:ADdowdbid
+					},
+					type : "POST",
+					dataType : 'json',
+					error : function(e) {
+						toastr.error("最底層");
+					},
+					success : function(data) {
+						groupAD();
+						toastr.success("下降排序成功");
+					}
+				});
+			
+			  
+		closeAllHrContent();
+		$("#ADContent").show();
+		$("#manageADContent").show();
+	}
 	function AD2() {
 // 		$("#manageTableAD tbody tr td,#banTableAD tbody tr td").on("click",
 // 				function() {
