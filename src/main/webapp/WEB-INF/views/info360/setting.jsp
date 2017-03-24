@@ -201,7 +201,7 @@ label.required:after {
 							
 							<form id="person0_form">
 								<table class="table table-bordered table-hover"
-									id="person0Table" style="display: none;">
+									id="person0Table" >
 									<thead>
 										<tr>
 											<th class="no-sort"><input type="checkbox"
@@ -2359,6 +2359,12 @@ function Drop(event){
 <!-- =====================================Person================================================================= -->
 <script>
 function person_groupmenu(){
+	$("#persondiv").hide();
+	$("#persondiv1").hide();
+	$("#personul").hide();
+	$("#personul1").hide();
+	
+	
 	$("#Box22").hide();
 	$("#Box22Loading").show();
 	
@@ -3780,8 +3786,7 @@ var tabledata;
 									$("#groupLoading").hide();
 									$("#group0").show();
 									$("#groupul").show();
-									
-									
+
 					}
 				});
 		
