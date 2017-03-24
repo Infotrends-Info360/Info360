@@ -201,7 +201,7 @@ label.required:after {
 							
 							<form id="person0_form">
 								<table class="table table-bordered table-hover"
-									id="person0Table">
+									id="person0Table" style="display: none;">
 									<thead>
 										<tr>
 											<th class="no-sort"><input type="checkbox"
@@ -2780,12 +2780,6 @@ var tabledata;
 	
 	$(document).ready(function() {
 
-		$("#personLoding").show();
-		$("#personLoding1").show();
-		$("#persondiv").hide();
-		$("#persondiv1").hide();
-		$("#personul").hide();
-		$("#personul1").hide();
 		person();
 
 	});
