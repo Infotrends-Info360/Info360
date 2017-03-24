@@ -811,7 +811,7 @@ function Drop(event){
 				<!-- 設定頁面內容頁 Start-->
 				<div class="panel-body" id="settingContent">
 					<div id="manageAgentreasonContent" style="display: none;">
-						<div>
+						<div id="ARul">
 							<ul class="pagination">
 								<li onclick="showAddMemberAGR()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
@@ -4795,6 +4795,8 @@ var tabledata;
 	function select2() {
 		$("#ARLoading").show();
 		$("#agentreason0").hide();
+		$("#ARul").hide();
+		
 		
 		$("#agentreason0All").prop("checked", false);
 		$("#agentreason1All").prop("checked", false);
@@ -4933,6 +4935,7 @@ var tabledata;
 							
 										});	
 						$("#ARLoading").hide();
+						$("#ARul").show();
 						$("#agentreason0").show();
 					}
 				});
