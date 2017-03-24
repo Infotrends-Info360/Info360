@@ -2780,6 +2780,12 @@ var tabledata;
 	
 	$(document).ready(function() {
 
+		$("#personLoding").show();
+		$("#personLoding1").show();
+		$("#persondiv").hide();
+		$("#persondiv1").hide();
+		$("#personul").hide();
+		$("#personul1").hide();
 		person();
 
 	});
