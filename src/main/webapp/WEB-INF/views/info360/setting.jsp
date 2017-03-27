@@ -248,20 +248,20 @@ label.required:after {
 						</div>
 
 						<div class="row ibox">
-						<div class="spiner-example" id="personLoding1">
+								<div class="spiner-example" id="personLoding1">
                             		<div class="sk-spinner sk-spinner-fading-circle">
-                                <div class="sk-circle1 sk-circle"></div>
-                                <div class="sk-circle2 sk-circle"></div>
-                                <div class="sk-circle3 sk-circle"></div>
-                                <div class="sk-circle4 sk-circle"></div>
-                                <div class="sk-circle5 sk-circle"></div>
-                                <div class="sk-circle6 sk-circle"></div>
-                                <div class="sk-circle7 sk-circle"></div>
-                                <div class="sk-circle8 sk-circle"></div>
-                                <div class="sk-circle9 sk-circle"></div>
-                                <div class="sk-circle10 sk-circle"></div>
-                                <div class="sk-circle11 sk-circle"></div>
-                                <div class="sk-circle12 sk-circle"></div>
+                                	<div class="sk-circle1 sk-circle"></div>
+                                	<div class="sk-circle2 sk-circle"></div>
+                                	<div class="sk-circle3 sk-circle"></div>
+                                	<div class="sk-circle4 sk-circle"></div>
+                                	<div class="sk-circle5 sk-circle"></div>
+                                	<div class="sk-circle6 sk-circle"></div>
+                                	<div class="sk-circle7 sk-circle"></div>
+                                	<div class="sk-circle8 sk-circle"></div>
+                                	<div class="sk-circle9 sk-circle"></div>
+                                	<div class="sk-circle10 sk-circle"></div>
+                                	<div class="sk-circle11 sk-circle"></div>
+                                	<div class="sk-circle12 sk-circle"></div>
                             		</div>
                         		</div>
 							<div class="col-lg-12 col-md-12" id="persondiv1">
@@ -5486,7 +5486,7 @@ var tabledata;
 											        'className': "  ",
 											         'render': function (data, type, full, meta){
 											        	
-											        		 return '<label style="padding-left:5px" ondblclick="AM_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  ondblclick="AM_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
+											        		 return '<label style="padding-left:5px" onclick="AM_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  onclick="AM_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
 											        
 											         },
 											
@@ -5521,10 +5521,14 @@ var tabledata;
 											document
 											.getElementById('UPAM').innerHTML = table
 											.row(this).data().menuname;
+											
 											if(AMflag){
 												showEditMemberAM(data,table.row(this).data());
 											}
-					});
+								});
+					
+						
+						
 						
 						$('#manageTableAM tbody').on('click','td',function() {
 
@@ -5541,10 +5545,11 @@ var tabledata;
 							}
 							
 										});
+						
 						$("#AMLoading").hide();
 						$("#AM0").show();
 						$("#AMul").show();
-
+						
 					}
 				});
 
@@ -5743,12 +5748,9 @@ var tabledata;
 	
 	
 	function AM_up() {
-// 		var deleteflag = document.getElementById('Delete_flagAM').value;
-// 		var menuname = document.getElementById('Delete_idAM').value;
 
-			  
+setTimeout(function(){ 
 			  var AMupdbid = document.getElementById('AMupdbid').value;
-		
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AMenu_Sortup",
@@ -5770,12 +5772,14 @@ var tabledata;
 		closeAllHrContent();
 		$("#AMContent").show();
 		$("#manageAMContent").show();
+		
+		}, 10);
 	}
 	function AM_dow() {
 // 		var deleteflag = document.getElementById('Delete_flagAM').value;
 // 		var menuname = document.getElementById('Delete_idAM').value;
 
-			  
+			  setTimeout(function(){ 
 			  var AMdowdbid = document.getElementById('AMdowdbid').value;
 			 
 		$
@@ -5799,6 +5803,7 @@ var tabledata;
 		closeAllHrContent();
 		$("#AMContent").show();
 		$("#manageAMContent").show();
+				}, 10);
 	}
 	
 	
@@ -5975,7 +5980,7 @@ var selected=[];
 											        'className': "  ",
 											         'render': function (data, type, full, meta){
 											        	
-											        		 return '<label style="padding-left:5px" ondblclick="AG_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  ondblclick="AG_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
+											        		 return '<label style="padding-left:5px" onclick="AG_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  onclick="AG_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
 											        
 											         },
 											
@@ -6158,7 +6163,7 @@ var selected=[];
 																        'className': "  ",
 																         'render': function (data, type, full, meta){
 																        	
-																        		 return '<label style="padding-left:5px" ondblclick="AG_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  ondblclick="AG_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
+																        		 return '<label style="padding-left:5px" onclick="AG_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  onclick="AG_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
 																        
 																         },
 																
@@ -6271,7 +6276,7 @@ var selected=[];
 	}
 
 	function AG_up() {
-
+		  setTimeout(function(){ 
 		  var AGupdbid = document.getElementById('AGupdbid').value;
 
 	$
@@ -6295,12 +6300,13 @@ var selected=[];
 	closeAllHrContent();
 	$("#AGContent").show();
 	$("#manageAGContent").show();
+		  }, 10);
 }
 function AG_dow() {
 //	var deleteflag = document.getElementById('Delete_flagAM').value;
 //	var menuname = document.getElementById('Delete_idAM').value;
 
-		  
+	  setTimeout(function(){ 	  
 		  var AGdowdbid = document.getElementById('AGdowdbid').value;
 		 
 	$
@@ -6324,6 +6330,7 @@ function AG_dow() {
 	closeAllHrContent();
 	$("#AGContent").show();
 	$("#manageAGContent").show();
+	  }, 10);
 }
 	//
 	//顯示 啟用表格
@@ -6693,7 +6700,7 @@ if(ActivityGroup_DBID_list.length){
 													        'className': "  ",
 													         'render': function (data, type, full, meta){
 													        	
-													        		 return '<label style="padding-left:5px" ondblclick="AD_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  ondblclick="AD_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
+													        		 return '<label style="padding-left:5px" onclick="AD_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  onclick="AD_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
 													        
 													         },
 													
@@ -6923,7 +6930,7 @@ if(ActivityGroup_DBID_list.length){
 																	        'className': "  ",
 																	         'render': function (data, type, full, meta){
 																	        	
-																	        		 return '<label style="padding-left:5px" ondblclick="AD_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  ondblclick="AD_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
+																	        		 return '<label style="padding-left:5px" onclick="AD_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  onclick="AD_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
 																	        
 																	         },
 																	
@@ -7005,8 +7012,7 @@ if(ActivityGroup_DBID_list.length){
 
 	}
 	function AD_up() {
-
-			  
+		 setTimeout(function(){   
 			  var ADupdbid = document.getElementById('ADupdbid').value;
 // 		alert(ADupdbid);
 		$
@@ -7030,12 +7036,10 @@ if(ActivityGroup_DBID_list.length){
 		closeAllHrContent();
 		$("#ADContent").show();
 		$("#manageADContent").show();
+		 }, 10);
 	}
 	function AD_dow() {
-// 		var deleteflag = document.getElementById('Delete_flagAM').value;
-// 		var menuname = document.getElementById('Delete_idAM').value;
-
-			  
+		setTimeout(function(){   
 			  var ADdowdbid = document.getElementById('ADdowdbid').value;
 			 
 		$
@@ -7059,6 +7063,7 @@ if(ActivityGroup_DBID_list.length){
 		closeAllHrContent();
 		$("#ADContent").show();
 		$("#manageADContent").show();
+		}, 10);
 	}
 	function AD2() {
 // 		$("#manageTableAD tbody tr td,#banTableAD tbody tr td").on("click",
