@@ -5504,11 +5504,7 @@ var tabledata;
 						AM2();
 						var Amflag = true;
 						var table = $('#manageTableAM').DataTable();
-						
-						alert(
-								 'Length: '+
-								    table.data().length
-							);
+					
 
 						$('#manageTableAM tbody')
 								.on(
