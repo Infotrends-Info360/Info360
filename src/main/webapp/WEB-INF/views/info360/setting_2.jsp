@@ -1313,9 +1313,19 @@ function Drop(event){
 							onclick="closeAddMemberAM()"></i>
 					</button>
 					<button class="btn-sm btn-success editMember"
-						style="display: none;">
-						<span onclick="showEditMember()" id="UPAM"></span> <i
+						style="display: none;" id="b1">
+						<span onclick="showEditMemberAM()" id="UPAM"></span> <i
 							class="fa fa-times" onclick="closeEditMemberAM()"></i>
+					</button>
+					<button class="btn-sm btn-success editMember"
+						style="display: none;" id="b2">
+						<span onclick="showEditMemberAG()" id="UPAG"></span> <i
+							class="fa fa-times" onclick="closeEditMemberAG()"></i>
+					</button>
+					<button class="btn-sm btn-success editMember"
+						style="display: none;" id="b3">
+						<span onclick="showEditMemberAD()" id="UPAD"></span> <i
+							class="fa fa-times" onclick="closeEditMemberAD()"></i>
 					</button>
 				</div>
 				<!-- 服務代碼分類管理切換頁籤End -->
@@ -1412,7 +1422,8 @@ function Drop(event){
 					<!-- 更新  -->
 					<div id="editMemberAMContent" style="display: none;">
 						<div class="widget">
-						<div class="form-group col-sm-6">
+						<div id="first">
+						<div class="form-group col-sm-6" >
 								<label for="inputAccount" class="col-sm-3 control-label">分類名稱:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="up_menunameam">
@@ -1427,13 +1438,101 @@ function Drop(event){
 								</div>
 							</div>
 							
-
+							<div class="form-group col-sm-12">
+								<table class="table table-bordered table-hover"
+									id="manageTableAG">
+									<thead>
+										<tr>
+											<th style="width: 20px" class="no-sort"><input type="checkbox"
+												id="AG0All" ischecked=false></th>
+											<th style="display: none;">編號</th>
+											<th>群組名稱</th>
+											<th style="width: 140px">建立時間</th>
+											<th style="width: 50px">排序</th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+							
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendEditMemberAM()">更新</button>
 									<button class="btn btn-default" onclick="closeEditMemberAM()">取消</button>
 								</div>
 							</div>
+					</div>		
+							
+							
+							<!-- 第二層 -->
+					<div id="second">
+						<div class="widget">
+							<div class="form-group col-sm-6">
+								<label for="inputAccount" class="col-sm-3 control-label">群主名稱:</label>
+								<div class="col-sm-8">
+									<input type="" class="form-control" id="up_groupnameAG">
+								</div>
+							</div>
+
+									<input type="hidden" class="form-control" id="up_dbidAG">
+							
+							<table class="table table-bordered table-hover"
+									id="manageTableAD">
+									<thead>
+										<tr>
+											<th style="width:20px" class="no-sort"><input type="checkbox"
+												id="AD0All" ischecked=false></th>
+											<th style="display: none;">編號</th>
+											
+											<th>名稱</th>
+											<th>顏色</th>
+<!-- 											<th>狀態</th> -->
+											<th>關聯</th>
+											<th>類型</th>
+											<th style="width:140px">建立時間</th>
+											<th style="width:50px">排序</th>
+										</tr>
+									</thead>
+								</table>
+
+							<div class="form-group">
+								<div class="col-sm-offset-9 col-sm-3">
+									<button class="btn btn-primary" onclick="sendEditMemberAG()">更新</button>
+									<button class="btn btn-default" onclick="closeEditMemberAG()">取消</button>
+								</div>
+							</div>
+						</div>
+					</div>		
+							
+					<div id="third">
+					<div class="widget">
+							<div class="form-group col-sm-6">
+								<label for="inputAccount" class="col-sm-3 control-label">代碼名稱:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="up_codenameAD">
+								</div>
+							</div>
+							<div class="form-group col-sm-6">
+								<label for="inputName" class="col-sm-3 control-label">顏色代碼:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="up_colorAD"
+										placeholder="">
+								</div>
+							</div>
+									<input type="hidden" class="form-control" id="up_dbidAD"
+										placeholder="">
+
+							<div class="form-group">
+								<div class="col-sm-offset-9 col-sm-3">
+									<button class="btn btn-primary" onclick="sendEditMemberAD()">更新</button>
+									<button class="btn btn-default" onclick="closeEditMemberAD()">取消</button>
+								</div>
+							</div>
+						</div>
+					</div>
+							
+							
+							
+							
 						</div>
 					</div>
 					<!-- 更新END -->
@@ -5443,7 +5542,6 @@ var tabledata;
 					},
 					success : function(data) {
 						console.log("啟用清單", data);
-						
 
 						//        	alert(JSON.stringify(data.person));
 						$('#manageTableAM')
@@ -5479,8 +5577,7 @@ var tabledata;
 //											        	 alert(JSON.stringify(full));
 										             return '<input  type="checkbox" name="AM0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
 										         }
-										      }
-											,
+										      },
 										      {
 											         'targets': 3,
 											         'searchable': false,
@@ -5488,9 +5585,6 @@ var tabledata;
 											        'className': "  ",
 											         'render': function (data, type, full, meta){
 											        	
-											        	
-// 											        		 alert("length:  ");
-											        	 
 											        		 return '<label style="padding-left:5px" onclick="AM_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  onclick="AM_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
 											        
 											         },
@@ -5499,16 +5593,9 @@ var tabledata;
 										      ],
 											lengthChange : false
 										});
-						
-					
 						AM2();
 						var Amflag = true;
 						var table = $('#manageTableAM').DataTable();
-						
-						alert(
-								 'Length: '+
-								    table.data().length
-							);
 
 						$('#manageTableAM tbody')
 								.on(
@@ -5694,11 +5781,147 @@ var tabledata;
 
 	//更新頁面
 	function showEditMemberAM() {
+		
+		$("#AG0All").prop("checked", false);
+		$("#AG1All").prop("checked", false);
+		
+		$("#manageTableAG tbody tr").empty();
+		$("#banTableAG tboby tr").empty();
+		var dbid = document.getElementById("up_dbidam").value
+		$.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityMenu",
+					data : {
+						dbid : dbid
+					},
+					type : "POST",
+					dataType : 'json',
+
+					error : function(e) {
+						toastr.error("請重新整理");
+					},
+					success : function(data) {
+						console.log("啟用服務代碼群組", data);
+
+						//        	alert(JSON.stringify(data.person));
+						$('#manageTableAG')
+								.DataTable(
+										{
+											  "ordering": false,
+											"autoWidth": false,
+											destroy : true,
+											aaData : data.flag0_group,
+											aoColumns : [
+													{
+														className : "dt-body-center"
+													},
+// 													{
+// 														"data" : "dbid"
+// 													},
+													{
+														"data" : "groupname"
+													},
+													{
+														"data" : "createdatetime"
+													},{
+														"data" : "sort"
+													},
+
+											],'columnDefs': [{
+										         'targets': 0,
+										         'searchable': false,
+										         'orderable': false,
+										         'className': 'dt-body-center',
+										         'render': function (data, type, full, meta){
+//											        	 alert(JSON.stringify(full));
+										             return '<input type="checkbox" name="AG0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+										         }
+										      },
+										      {
+											         'targets': 3,
+											         'searchable': false,
+											         'orderable': false,
+											        'className': "  ",
+											         'render': function (data, type, full, meta){
+											        	
+											        		 return '<label style="padding-left:5px" onclick="AG_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  onclick="AG_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
+											        
+											         },
+											
+											      }],
+											lengthChange : false
+										});
+						AG2();
+						var AGflag = true;
+						var table = $('#manageTableAG').DataTable();
+						
+						$('#manageTableAG tbody')
+								.on(
+										'click',
+										'tr',
+										function() {
+											console.log("TableAG", table.row(
+													this).data());
+											document
+													.getElementById('up_groupnameAG').value = table
+													.row(this).data().groupname;
+											document 
+											.getElementById('up_dbidAG').value = table
+											.row(this).data().dbid;
+											
+											document
+											.getElementById('UPAG').innerHTML = table
+											.row(this).data().groupname;
+											document
+											.getElementById('AGupdbid').value = table
+											.row(this).data().dbid;
+											document
+											.getElementById('AGdowdbid').value = table
+											.row(this).data().dbid;
+											if(AGflag){
+												showEditMemberAG(data,table.row(this).data());
+											}
+										});
+						$('#manageTableAG tbody').on('click','td',function() {
+
+							var text = $(this).text();	
+							//$("input[name='person0']")
+//								alert(text);
+							if (text && text != "") {
+//									alert("if");
+								AGflag = true;
+								//aa(data,table.row(this).data());
+							}else{
+								AGflag = false;
+								return;
+							}
+							
+										});
+						
+					}
+				});
+
+		$("#manageTableAG").css("width", "100%");
+		$("#manageTableAG_filter").prop("style", "float:right;");
+		$("#manageTableAG_wrapper > div:nth-child(1)").hide();
+
+		$("#manageTableAGSearch").keyup(function() {
+			var searchText = $("#manageTableAGSearch").val();
+
+			$("input[aria-controls='manageTableAG']").val(searchText);
+			$("input[aria-controls='manageTableAG']").trigger("keyup");
+		});
+		
 		closeAllHrContent();
 		$("#AMContent").show();
 		$("#editMemberAMContent").show();
-
 		$("button.editMember").show();
+		$("#first").show();
+		$("#second").hide();
+		$("#third").hide();
+		$("#b2").hide();
+		$("#b3").hide();
+		
+		
 		$("button.editMember").removeClass("btn-success");
 		$("button.editMember").addClass("btn-primary");
 	}
@@ -6427,13 +6650,216 @@ function AG_dow() {
 
 	//更新頁面
 	function showEditMemberAG() {
-		closeAllHrContent();
-		$("#AGContent").show();
-		$("#editMemberAGContent").show();
+		
+		$("#AMContent").show();
+		$("#editMemberAMContent").show();
+		$("#first").hide();
+		$("#second").show();
+		$("#third").hide();
+		$("#b2").show();
+// 		$("#b3").hide();
+		
+		
+		$("#titleflagD").empty();
+		
+		$("#AD1All").prop("checked", false);
+		$("#AD0All").prop("checked", false);
+		
+		$("#manageTableAD tbody tr").empty();
+		$("#banTableAD tboby tr").empty();
 
-		$("button.editMember").show();
-		$("button.editMember").removeClass("btn-success");
-		$("button.editMember").addClass("btn-primary");
+		var dbid = document.getElementById("up_dbidAG").value
+		$
+				.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/FLAGDATA",
+					data : {
+						dbid : dbid
+					},
+					type : "POST",
+					dataType : 'json',
+
+					error : function(e) {
+						toastr.error("請重新整理");
+					},
+					success : function(data) {
+						
+ 						for (var i = 0; i < data.Title.length; i++) {
+							
+ 							var titleflagD = "<option value='"+data.Title[i].dbid+"'>"
+ 									+ data.Title[i].codename
+ 									+ "</option>"
+ 							document.getElementById("titleflagD")
+ 									.insertAdjacentHTML("BeforeEnd", titleflagD);
+ 						}						
+						
+						console.log("啟用服務代碼", data);
+						var tgroup = data.Title;
+						//        	alert(JSON.stringify(data.person));
+						$('#manageTableAD')
+								.DataTable(
+										{
+											"ordering": false,
+											"autoWidth": false,
+											destroy : true,
+											aaData : data.Title,
+											
+											aoColumns : [
+													{
+														className : "dt-body-center"
+													},
+// 													{
+// 														"data" : "dbid"
+// 													},
+													 {
+														"data" : "codename"
+													}, {
+														"data" : "color"
+													},
+													{
+//															"data" : "titlegroup"
+														className:"titlegroup"
+
+													}, 
+													{
+// 														"data" : "titleflag"
+														className:"titleflag"
+													},	
+													{
+														"data" : "createdatetime"
+													}
+// 													, {
+// 														"data" : "sort"
+// 													}
+
+											],'columnDefs': [{
+										         'targets': 0,
+										         'searchable': false,
+										         'orderable': false,
+										         'className': 'dt-body-center',
+										         'render': function (data, type, full, meta){
+//											        	 alert(JSON.stringify(full));
+										             return '<input type="checkbox" name="AD0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+										         }
+										      },{
+											         'targets': 4,
+											         'searchable': false,
+											         'orderable': false,
+											         'className': 'titleflag',
+											         'render': function (data, type, full, meta){
+//													        	 alert(JSON.stringify(tgroup));
+															if(full.titleflag==0){
+																 return '<span  ' + $('<div/>').text(data).html() + '">資料</span>';
+															}else{
+																
+											             return '<span  ' + $('<div/>').text(data).html() + '">標題</span>';
+															}
+													}
+											      },
+											      {
+												         'targets': 3,
+												         'searchable': false,
+												         'orderable': false,
+												         'className': 'titleflag',
+												         'render': function (data, type, full, meta){
+//													        	 alert(JSON.stringify(full));
+																if(full.titlegroup==0){
+																	 return '<span  ' + $('<div/>').text(data).html() + '"></span>';
+																}else{
+//																		alert(JSON.stringify(data.Title));
+																	for(var i = 0; i<tgroup.length;i++){
+																		if(tgroup[i].dbid==full.titlegroup){
+																			 return '<span  ' + $('<div/>').text(data).html() + '">'+tgroup[i].codename+'</span>';
+																		}																						
+																	}
+
+																}
+														}
+												      },
+												      {
+													         'targets': 6,
+													         'searchable': false,
+													         'orderable': false,
+													        'className': "  ",
+													         'render': function (data, type, full, meta){
+													        	
+													        		 return '<label style="padding-left:5px" onclick="AD_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  onclick="AD_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
+													        
+													         },
+													
+													      }
+										      ],
+											lengthChange : false
+										});
+						AD2();
+						var ADflag = true;
+						var table = $('#manageTableAD').DataTable();
+
+						$('#manageTableAD tbody')
+								.on(
+										'click',
+										'tr',
+										function() {
+											console.log("AD0", table.row(
+													this).data());
+											document
+													.getElementById('up_codenameAD').value = table
+													.row(this).data().codename;
+											document
+													.getElementById('up_colorAD').value = table
+													.row(this).data().color;
+											document
+											.getElementById('up_dbidAD').value = table
+											.row(this).data().dbid;
+											document
+											.getElementById('UPAD').innerHTML = table
+											.row(this).data().codename;
+											document
+											.getElementById('ADupdbid').value = table
+											.row(this).data().dbid;
+											document
+											.getElementById('ADdowdbid').value = table
+											.row(this).data().dbid;
+											
+											if(ADflag){
+												showEditMemberAD(data,tabledata);
+											}
+										});
+						$('#manageTableAD tbody').on('click','td',function() {
+
+							var text = $(this).text();	
+							//$("input[name='person0']")
+//								alert(text);
+							if (text && text != "") {
+//									alert("if");
+								ADflag = true;
+								//aa(data,table.row(this).data());
+							}else{
+								ADflag = false;
+								return;
+							}
+							
+										});
+						$("#ADLoading").hide();
+						$("#AD0").show();
+						$("#ADul").show();
+					}
+				});
+
+		$("#manageTableAD").css("width", "100%");
+		$("#manageTableAD_filter").prop("style", "float:right;");
+		$("#manageTableAD_wrapper > div:nth-child(1)").hide();
+
+		$("#manageTableADSearch").keyup(function() {
+			var searchText = $("#manageTableADSearch").val();
+
+			$("input[aria-controls='manageTableAD']").val(searchText);
+			$("input[aria-controls='manageTableAD']").trigger("keyup");
+		});
+		
+		
+		
+// 		$("button.editMember").removeClass("btn-success");
+// 		$("button.editMember").addClass("btn-primary");
 	}
 	//更新頁面關閉
 	function closeEditMemberAG() {
@@ -6501,7 +6927,6 @@ function AG_dow() {
 // 		var dbid = document.getElementById('Delete_idAG').value;
 	if(ActivityGroup_DBID_list.length){
 		
-	
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_ActivityGroup",
@@ -7212,13 +7637,39 @@ if(ActivityGroup_DBID_list.length){
 
 	//更新頁面
 	function showEditMemberAD() {
-		closeAllHrContent();
-		$("#ADContent").show();
+// 		closeAllHrContent();
+		$("#AMContent").show();
+		$("#editMemberAMContent").show();
+		$("#first").hide();
+		$("#second").hide();
+		$("#third").show();
+		$("#b2").show();
+		$("#b3").show();
 		$("#editMemberADContent").show();
-
 		$("button.editMember").show();
-		$("button.editMember").removeClass("btn-success");
-		$("button.editMember").addClass("btn-primary");
+		
+		var  up_dbidAG = $("#up_dbidAG").val();
+// 		$
+// 		.ajax({
+// 			url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_titlegroup_ActivityData",
+// 			data : {
+// 				dbid:up_dbidAG
+// 			},
+// 			type : "POST",
+// 			dataType : 'json',
+// 			error : function(e) {
+// 				toastr.error("最底層");
+// 			},
+// 			success : function(data) {
+// 				groupAD();
+// 				toastr.success("下降排序成功");
+// 			}
+// 		});
+		
+		
+		
+// 		$("button.editMember").removeClass("btn-success");
+// 		$("button.editMember").addClass("btn-primary");
 	}
 	//更新頁面關閉
 	function closeEditMemberAD() {
