@@ -3561,14 +3561,13 @@ var tabledata;
 		var dbid = selected.join();
 		
 		if(dbid.length!=0){
-			
-		
-		$
+					$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Delete_PersonInfo",
+					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Person_logicdelete",
 					data : {
 						
-						personDBID_list : dbid
+						personDBID_list : dbid,
+						state:3
 
 					},
 					type : "POST",
