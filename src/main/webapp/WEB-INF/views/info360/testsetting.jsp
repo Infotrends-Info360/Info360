@@ -68,7 +68,6 @@ label.required:after {
 #Box2,#Box3,#Box4,#Box5,#Box6{
     width:200px;
     height:100px;
-/*     padding:10px; */
     border:1px #ccc dashed;
     float:left;
     margin-right:10px;
@@ -100,16 +99,6 @@ label.required:after {
 										<li onclick=""><i class="fa fa-fw fa-file-text-o"></i><a
 											onclick="showAgentreason()">值機狀態管理</a></li>
 									</ul></li>
-								<!--                                     <li class="active"> -->
-								<!--                                         <span> -->
-								<!--                                             <i class="fa fa-fw fa-folder-open"></i> -->
-								<!--                                             管道管理 -->
-								<!--                                         </span> -->
-								<!--                                         <ul style="list-style-type:none;margin-left:20px;"> -->
-								<!--                                             <li><i class="fa fa-fw fa-file-text-o"></i>分派小組管理</li> -->
-								<!--                                             <li><i class="fa fa-fw fa-file-text-o"></i>Chat管道設定</li> -->
-								<!--                                         </ul> -->
-								<!--                                     </li> -->
 								<li><span> <i class="fa fa-fw fa-folder-open"></i>
 										案件管理
 								</span>
@@ -118,11 +107,8 @@ label.required:after {
 										<li><i class="fa fa-fw fa-file-text-o"></i><a
 											onclick="showCommonlink()">常用連結管理</a></li>
 										<li><i class="fa fa-fw fa-file-text-o"></i><a
-											onclick="showActivityMenu()">服務代碼分類管理</a></li>
-										<li><i class="fa fa-fw fa-file-text-o"></i><a
-											onclick="showActivityGroup()">服務代碼群組管理</a></li>
-										<li><i class="fa fa-fw fa-file-text-o"></i><a
-											onclick="showActivityData()">服務代碼管理</a></li>
+											onclick="showActivityMenu()">服務代碼管理</a></li>
+
 									</ul></li>
 							</ul>
 						</div>
@@ -178,8 +164,6 @@ label.required:after {
 							</ul>
 						</div>
 
- 						
-
 						<div class="row ibox">
 						<div class="spiner-example" id="personLoding">
                             <div class="sk-spinner sk-spinner-fading-circle">
@@ -225,13 +209,6 @@ label.required:after {
 					<div id="banContent" style="display: none;">
 						<div id="personul1">
 							<ul class="pagination">
-<!-- 								<li onclick="showAddMember()"><a href="#"><i -->
-<!-- 										class="fa fa-fw fa-plus"></i></a></li> -->
-<!-- 								<li onclick="confirmBan()"><a href="#"><i -->
-<!-- 										class="fa fa-fw fa-unlock-alt"></i></a></li>		 -->
-<!-- 								<li onclick="unlockAccount()"><a href="#"><i -->
-<!-- 										class="fa fa-fw fa-ban"></i></a></li> -->
-								
 								<li onclick="person_ok()"><a href="#"><i
 										class="glyphicon glyphicon-ok"></i></a></li>
 								<li onclick="personTrashBun()"><a href="#"><i
@@ -488,9 +465,7 @@ function Drop(event){
 										placeholder="">
 								</div>
 							</div>
-							
-							
-							
+
 				<div class="form-group col-sm-6">
 					<label for="inputEmail" class="col-sm-5 control-label">人員所屬部門</label>
 						<div id="Box1" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
@@ -503,17 +478,6 @@ function Drop(event){
 							<div id="Box4" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
 								</div>
 					</div>		
-							
-<!-- 							<div class="form-group col-sm-6"> -->
-<!-- 								<label for="inputDepartment" class="col-sm-2 control-label">部門</label>		 -->
-<!-- 								<div class="col-sm-6"> -->
-<!-- 									<select class="form-control" id="updateDepartment"> -->
-									
-<!-- 									</select>				 -->
-<!-- 								</div> -->
-								
-<!-- 							</div> -->
-
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendEditMember()">更新</button>
@@ -560,8 +524,7 @@ function Drop(event){
 							<ul class="pagination">
 								<li onclick="showAddMembergroup()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
-<!-- 								<li onclick="unlockAccountgroup()"><a href="#"><i -->
-<!-- 										class="fa fa-fw fa-unlock-alt"></i></a></li> -->
+
 								<li onclick="confirmBangroup()"><a href="#"><i
 										class="glyphicon glyphicon-trash"></i></a></li>
 							</ul>
@@ -601,8 +564,6 @@ function Drop(event){
 											<th class="no-sort" style="width:20px"><input type="checkbox"
 												id="group0All" ischecked=false ></th>
 											<th>部門名稱</th>
-<!-- 											<th>狀態</th> -->
-<!-- 											<th>編號</th> -->
 										</tr>
 									</thead>
 								</table>
@@ -694,13 +655,6 @@ function Drop(event){
 				</div>		
 
 					<div style="clear:both;"></div>
-					
-					
-					
-
-							
-							
-
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendAddMembergroup()">儲存</button>
@@ -792,10 +746,7 @@ function Drop(event){
 						onclick="showManage_Agentreason()">
 						<i class="fa fa-fw fa-user"></i>值機管理
 					</button>
-<!-- 					<button class="btn-sm btn-success ban" -->
-<!-- 						onclick="showBan_Agentreason()"> -->
-<!-- 						<i class="fa fa-fw fa-user"></i>停用列表 -->
-<!-- 					</button> -->
+
 					<button class="btn-sm btn-success addMember" style="display: none;">
 						<span onclick="showAddMemberAGR()">新增值機狀態</span> <i
 							class="fa fa-times" onclick="closeAddMemberAGR()"></i>
@@ -815,10 +766,6 @@ function Drop(event){
 							<ul class="pagination">
 								<li onclick="showAddMemberAGR()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
-<!-- 								<li onclick="unlockAccountAgentreason()"><a href="#"><i -->
-<!-- 										class="fa fa-fw fa-unlock-alt"></i></a></li> -->
-<!-- 								<li onclick="confirmBanAgentreason()"><a href="#"><i -->
-<!-- 										class="fa fa-fw fa-ban"></i></a></li> -->
 								<li onclick="AgentReasonB()"><a href="#"><i
 										class="glyphicon glyphicon-trash"></i></a></li>
 							</ul>
@@ -866,7 +813,6 @@ function Drop(event){
 											<th>告警顏色</th>
 											<th>告警時間</th>
 											<th>註解</th>
-<!-- 											<th>狀態</th> -->
 										</tr>
 									</thead>
 								</table>
@@ -907,20 +853,6 @@ function Drop(event){
 								</div>
 							</div>
 							
-<!-- 							<form><input type="text" id="color" name="color" value="#123456" /></form> -->
-
-<!-- 							<div id="colorpicker"></div> -->
-							
-<!-- 							<script type="text/javascript"> -->
-
-<!--   							$(document).ready(function() { -->
-
-<!--     						$('#colorpicker').farbtastic('#color'); -->
-
-<!--   							}); -->
-
-<!-- 						</script>  -->
-							
 							<div class="form-group col-sm-6">
 								<label for="inputAccount" class="col-sm-2 control-label">告警顏色:</label>
 								<div class="col-sm-8">
@@ -957,13 +889,9 @@ function Drop(event){
 					<!-- 更新  -->
 					<div id="editMemberAGRContent" style="display: none;">
 						<div class="widget">
-<!-- 							<div class="form-group col-sm-6"> -->
-<!-- 								<label for="inputAccount" -->
-<!-- 									class="col-sm-2 control-label ">編碼:</label> -->
-<!-- 								<div class="col-sm-8"> -->
+
 									<input type="hidden" class="form-control" id="Update_id" >
-<!-- 								</div> -->
-<!-- 							</div> -->
+
 							<div class="form-group col-sm-6">
 								<label for="inputFirstName" class="col-sm-2 control-label">名稱:</label>
 								<div class="col-sm-8">
@@ -1045,7 +973,6 @@ function Drop(event){
 						onclick="showCommonlink2()">
 						<i class="fa fa-fw fa-user"></i>常用連結管理
 					</button>
-					<!--                         <button class="btn-sm btn-success ban" onclick="showBan()"><i class="fa fa-fw fa-user"></i>停用列表</button> -->
 					<button class="btn-sm btn-success addMember" style="display: none;">
 						<span onclick="showAddMembercomm()">新增常用連結</span> <i
 							class="fa fa-times" onclick="closeAddMembercomm()"></i>
@@ -1107,10 +1034,7 @@ function Drop(event){
 									<thead>
 										<tr>
 											<td>名稱</td>
-<!-- 											<td>編號</td> -->
 											<td>路徑</td>
-<!-- 											<td>相關節點</td> -->
-<!-- 											<td>狀態</td> -->
 											<td>URL</td>
 											<td>建立者</td>
 										</tr>
@@ -1156,14 +1080,7 @@ function Drop(event){
 								</select>
 							</div>
 						</div>
-						
 
-<!-- 						<div class="form-group col-sm-6"> -->
-<!-- 							<label for="inputLastName" class="col-sm-3 control-label">建立者名稱:</label> -->
-<!-- 							<div class="col-sm-8"> -->
-								
-<!-- 							</div> -->
-<!-- 						</div> -->
 						<div class="form-group col-sm-6">
 							<label for="inputFirstName" class="col-sm-3 control-label">上層節點:</label>
 							<div class="col-sm-8"><span id="nodeLINKlist"></span>
@@ -1265,12 +1182,8 @@ function Drop(event){
 							</div>
 						</div>
 
-<!-- 						<div class="form-group col-sm-6"> -->
-<!-- 							<label for="inputLastName" class="col-sm-3 control-label">建立者名稱:</label> -->
-<!-- 							<div class="col-sm-8"> -->
 								<input type="hidden" class="form-control" id="nodeUSERu"
 									placeholder="" >
-<!-- 							</div> -->
 						</div>
 						
 						<div class="form-group col-sm-6">
@@ -1308,15 +1221,43 @@ function Drop(event){
 <!-- 					<button class="btn-sm btn-success ban" onclick="showBan_AM()"> -->
 <!-- 						<i class="fa fa-fw fa-user"></i>停用列表 -->
 <!-- 					</button> -->
-					<button class="btn-sm btn-success addMember" style="display: none;">
+					
+					<button class="btn-sm btn-success editMember"
+						style="display: none;" id="b1">
+						<span onclick="showEditMemberAM()" id="UPAM"></span> <i
+							class="fa fa-times" onclick="closeEditMemberAM()"></i>
+					</button>
+					<button class="btn-sm btn-success editMember"
+						style="display: none;" id="b2">
+						<span onclick="showEditMemberAG()" id="UPAG"></span> <i
+							class="fa fa-times" onclick="closeEditMemberAG()"></i>
+					</button>
+					<button class="btn-sm btn-success editMember"
+						style="display: none;" id="b3">
+						<span onclick="showEditMemberAD()" id="UPAD"></span> <i
+							class="fa fa-times" onclick="closeEditMemberAD()"></i>
+					</button>
+					<button class="btn-sm btn-success editMember"
+						style="display: none;" id="b4">
+						<span onclick="showEditMemberAD2()" id="UPAD2"></span> <i
+							class="fa fa-times" onclick="closeEditMemberAD2()"></i>
+					</button>
+					<button class="btn-sm btn-success addMember" style="display: none;" id="n1">
 						<span onclick="showAddMember()">新增分類</span> <i class="fa fa-times"
 							onclick="closeAddMemberAM()"></i>
 					</button>
-					<button class="btn-sm btn-success editMember"
-						style="display: none;">
-						<span onclick="showEditMember()" id="UPAM"></span> <i
-							class="fa fa-times" onclick="closeEditMemberAM()"></i>
-					</button>
+<!-- 					<button class="btn-sm btn-success addMember" style="display: none;"id="n2"> -->
+<!-- 						<span onclick="showAddMemberAG()">新增群組</span> <i -->
+<!-- 							class="fa fa-times" onclick="closeAddMemberAG()"></i> -->
+<!-- 					</button> -->
+<!-- 					<button class="btn-sm btn-success addMember" style="display: none;"id="n3"> -->
+<!-- 						<span onclick="showAddMemberAD()">新增代碼</span> <i -->
+<!-- 							class="fa fa-times" onclick="closeAddMemberAD()"></i> -->
+<!-- 					</button> -->
+<!-- 					<button class="btn-sm btn-success addMember" style="display: none;"id="n4"> -->
+<!-- 						<span onclick="showAddMemberAD2()">新增代碼</span> <i -->
+<!-- 							class="fa fa-times" onclick="closeAddMemberAD()"></i> -->
+<!-- 					</button> -->
 				</div>
 				<!-- 服務代碼分類管理切換頁籤End -->
 
@@ -1392,14 +1333,6 @@ function Drop(event){
 								</div>
 							</div>
 
-<!-- 							<div class="form-group col-sm-6"> -->
-<!-- 								<label for="inputAccount" class="col-sm-2 control-label">sort:</label> -->
-<!-- 								<div class="col-sm-8"> -->
-<!-- 									<input type="text" class="form-control" id="insert_sort" -->
-<!-- 										placeholder=""> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-					
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendAddMemberAM()">儲存</button>
@@ -1409,10 +1342,83 @@ function Drop(event){
 						</div>
 					</div>
 					<!-- 新增 END -->
+					<!-- 新增  -->
+					<div id="addMemberAGContent" style="display: none;">
+						<div class="widget">
+							<div class="form-group col-sm-6">
+								<label for="inputAccount" class="col-sm-3 control-label">群組名稱:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="in_groupname"
+										placeholder="">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-9 col-sm-3">
+									<button class="btn btn-primary" onclick="sendAddMemberAG()">儲存</button>
+									<button class="btn btn-default" onclick="closeAddMemberAG()">取消</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 新增 END -->
+					<!-- 新增  -->
+					<div id="addMemberADContent" style="display: none;">
+						<div class="widget">
+							<div class="form-group col-sm-6">
+								<label for="inputAccount" class="col-sm-3 control-label">代碼名稱:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="in_codename"
+										placeholder="">
+								</div>
+							</div>
+							<div class="form-group col-sm-6">
+								<label for="inputAccount" class="col-sm-3 control-label">顏色代碼</label>
+								<div class="col-sm-8">
+									<input type="number" class="form-control" id="in_color"
+										placeholder="" value="000000">
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<div class="col-sm-offset-9 col-sm-3">
+									<button class="btn btn-primary" onclick="sendAddMemberAD()">儲存</button>
+									<button class="btn btn-default" onclick="closeAddMemberAD()">取消</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 新增 END -->
+					<!-- 新增  -->
+					<div id="addMemberAD2Content" style="display: none;">
+						<div class="widget">
+							<div class="form-group col-sm-6">
+								<label for="inputAccount" class="col-sm-3 control-label">代碼名稱:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="in_codename2"
+										placeholder="">
+								</div>
+							</div>
+							<div class="form-group col-sm-6">
+								<label for="inputAccount" class="col-sm-3 control-label">顏色代碼</label>
+								<div class="col-sm-8">
+									<input type="number" class="form-control" id="in_color2"
+										placeholder="" value="000000">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-9 col-sm-3">
+									<button class="btn btn-primary" onclick="sendAddMemberAD2()">儲存</button>
+									<button class="btn btn-default" onclick="closeAddMemberAD()">取消</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 新增 END -->
 					<!-- 更新  -->
 					<div id="editMemberAMContent" style="display: none;">
 						<div class="widget">
-						<div class="form-group col-sm-6">
+						<div id="first">
+						<div class="form-group col-sm-6" >
 								<label for="inputAccount" class="col-sm-3 control-label">分類名稱:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="up_menunameam">
@@ -1427,13 +1433,182 @@ function Drop(event){
 								</div>
 							</div>
 							
+							<div class="form-group col-sm-12">
+							<div id="AGul">
+							<ul class="pagination" style="margin: 0px">
+								<li onclick="showAddMemberAG()"><a href="#"><i
+										class="fa fa-fw fa-plus"></i></a></li>
+								<li onclick="unlockAccountAG()"><a href="#"><i
+										class="glyphicon glyphicon-trash"></i></a></li>
+							</ul>
+							<ul class="pagination" style="float: right;margin: 0px">
+								<li><input type="text" id="manageTableAGSearch"
+									placeholder="搜索"
+									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
+								</li>
 
+								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+							</ul>
+						</div>
+								<table class="table table-bordered table-hover"
+									id="manageTableAG">
+									<thead>
+										<tr>
+											<th style="width: 20px" class="no-sort"><input type="checkbox"
+												id="AG0All" ischecked=false></th>
+											<th style="display: none;">編號</th>
+											<th>群組名稱</th>
+											<th style="width: 140px">建立時間</th>
+											<th style="width: 50px">排序</th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+							
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendEditMemberAM()">更新</button>
 									<button class="btn btn-default" onclick="closeEditMemberAM()">取消</button>
+								
+								</div>
+							</div> 
+					</div>		
+							
+							
+							<!-- 第二層 -->
+					<div id="second">
+								<label for="inputAccount" class="col-sm-2 control-label">群組名:</label>
+								<div class="col-sm-6">
+									<input type="" class="form-control" id="up_groupnameAG">
+								</div>
+							
+					<div class="form-group col-sm-12">
+							<div id="ADul">
+							<ul class="pagination" style="margin: 0px">
+								<li onclick="showAddMemberAD()"><a href="#"><i
+										class="fa fa-fw fa-plus"></i></a></li>
+								<li onclick="unlockAccountAD()"><a href="#"><i
+										class="glyphicon glyphicon-trash"></i></a></li>
+							</ul>
+							<ul class="pagination" style="float: right;margin: 0px">
+								<li><input type="text" id="manageTableADSearch"
+									placeholder="搜索"
+									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
+								</li>
+								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+							</ul>
+							<input type="hidden" class="form-control" id="up_dbidAG"></input>
+						 </div>
+								<table class="table table-bordered table-hover"
+									id="manageTableAD">
+									<thead>
+										<tr>
+											<th style="width:20px" class="no-sort"><input type="checkbox"
+												id="AD0All" ischecked=false></th>
+											<th style="display: none;">編號</th>
+											<th>名稱</th>
+											<th>顏色</th>
+											<th>類型</th>
+											<th style="width:140px">建立時間</th>
+											<th style="width:50px">排序</th>
+										</tr>
+									</thead>
+								</table>
+								<div class="form-group">
+									<div class="col-sm-offset-9 col-sm-3">
+									<button class="btn btn-primary" onclick="sendEditMemberAG()">更新</button>
+									<button class="btn btn-default" onclick="closeEditMemberAG()">取消</button>
+									</div>
+								</div>
+								</div>
+					</div>	
+						
+				<!-- 第三層 -->
+				<div id="third">
+						<div class="widget">
+							<div class="form-group col-sm-6">
+								<label for="inputAccount" class="col-sm-3 control-label">代碼名稱:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="up_codenameAD">
 								</div>
 							</div>
+							<div class="form-group col-sm-6">
+								<label for="inputName" class="col-sm-3 control-label">顏色代碼:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="up_colorAD"
+										placeholder="">
+								</div>
+							</div>
+									<input type="hidden" class="form-control" id="up_dbidAD" placeholder=""></input>
+										
+							<div id="ADul2">
+							<ul class="pagination">
+								<li onclick="showAddMemberAD2()"><a href="#"><i
+										class="fa fa-fw fa-plus"></i></a></li>
+								<li onclick="unlockAccountAD2()"><a href="#"><i
+										class="glyphicon glyphicon-trash"></i></a></li>
+							</ul>
+							<ul class="pagination" style="float: right;">
+								<li><input type="text" id="thirdTableADSearch"
+									placeholder="搜索"
+									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
+								</li>
+
+								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+							</ul>
+							</div>
+							
+							<table class="table table-bordered table-hover"
+									id="thirdTableAD">
+									<thead>
+										<tr>
+											<th style="width:20px" class="no-sort"><input type="checkbox"
+												id="AD0All" ischecked=false></th>
+											<th style="display: none;">編號</th>
+											<th>名稱</th>
+											<th>顏色</th>
+
+											<th style="width:140px">建立時間</th>
+											<th style="width:50px">排序</th>
+										</tr>
+									</thead>
+								</table>
+
+							<div class="form-group">
+								<div class="col-sm-offset-9 col-sm-3">
+									<button class="btn btn-primary" onclick="sendEditMemberAD()">更新</button>
+									<button class="btn btn-default" onclick="closeEditMemberAD()">取消</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				<!-- 第四層 -->
+					<div id="fourth">
+					<div class="widget">
+							<div class="form-group col-sm-6">
+								<label for="inputAccount" class="col-sm-3 control-label">代碼名稱:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="up_codenameAD2">
+								</div>
+							</div>
+							<div class="form-group col-sm-6">
+								<label for="inputName" class="col-sm-3 control-label">顏色代碼:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="up_colorAD2"
+										placeholder="">
+								</div>
+							</div>
+									<input type="hidden" class="form-control" id="up_dbidAD2"placeholder="">
+
+							<div class="form-group">
+								<div class="col-sm-offset-9 col-sm-3">
+									<button class="btn btn-primary" onclick="sendEditMemberAD()">更新</button>
+									<button class="btn btn-default" onclick="closeEditMemberAD()">取消</button>
+								</div>
+							</div>
+						</div>
+					</div>	
 						</div>
 					</div>
 					<!-- 更新END -->
@@ -1453,18 +1628,12 @@ function Drop(event){
 					<button class="btn-sm btn-primary manage" onclick="showManage_AG()">
 						<i class="fa fa-fw fa-user"></i>群組管理
 					</button>
-<!-- 					<button class="btn-sm btn-success ban" onclick="showBan_AG()"> -->
-<!-- 						<i class="fa fa-fw fa-user"></i>停用列表 -->
+					
+<!-- 					<button class="btn-sm btn-success editMember" -->
+<!-- 						style="display: none;"> -->
+<!-- 						<span onclick="showEditMemberAG()" id="UPAG"></span> <i -->
+<!-- 							class="fa fa-times" onclick="closeEditMemberAG()"></i> -->
 <!-- 					</button> -->
-					<button class="btn-sm btn-success addMember" style="display: none;">
-						<span onclick="showAddMemberAG()">新增群組</span> <i
-							class="fa fa-times" onclick="closeAddMemberAG()"></i>
-					</button>
-					<button class="btn-sm btn-success editMember"
-						style="display: none;">
-						<span onclick="showEditMemberAG()" id="UPAG"></span> <i
-							class="fa fa-times" onclick="closeEditMemberAG()"></i>
-					</button>
 					
 
 				</div>
@@ -1473,25 +1642,7 @@ function Drop(event){
 				<!-- 設定頁面內容頁 Start-->
 				<div class="panel-body" id="settingContent">
 					<div id="manageAGContent">
-						<div id="AGul">
-							<ul class="pagination">
-								<li onclick="showAddMemberAG()"><a href="#"><i
-										class="fa fa-fw fa-plus"></i></a></li>
-								<li onclick="unlockAccountAG()"><a href="#"><i
-										class="glyphicon glyphicon-trash"></i></a></li>
-										<select class="selectpicker" style="width: 127px;" id="menu"
-										onchange="group()">
-										</select>
-							</ul>
-							<ul class="pagination" style="float: right;">
-								<li><input type="text" id="manageTableAGSearch"
-									placeholder="搜索"
-									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
-								</li>
-
-								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
-							</ul>
-						</div>
+						
 
 						<div class="row ibox" id="AG00">
 								<div class="spiner-example" id="AGLoading">
@@ -1540,13 +1691,6 @@ function Drop(event){
 										placeholder="">
 								</div>
 							</div>
-<!-- 							<div class="form-group col-sm-6"> -->
-<!-- 								<label for="inputAccount" class="col-sm-2 control-label">sort:</label> -->
-<!-- 								<div class="col-sm-8"> -->
-<!-- 									<input type="text" class="form-control" id="in_sort" -->
-<!-- 										placeholder=""> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendAddMemberAG()">儲存</button>
@@ -1565,10 +1709,7 @@ function Drop(event){
 									<input type="" class="form-control" id="up_groupnameAG">
 								</div>
 							</div>
-
-									<input type="hidden" class="form-control" id="up_dbidAG">
-
-
+									<input type="hidden" class="form-control" id="up_dbidAG2">
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendEditMemberAG()">更新</button>
@@ -1592,18 +1733,12 @@ function Drop(event){
 					<button class="btn-sm btn-primary manage" onclick="showManage_AD()">
 						<i class="fa fa-fw fa-user"></i>代碼管理
 					</button>
-<!-- 					<button class="btn-sm btn-success ban" onclick="showBan_AD()"> -->
-<!-- 						<i class="fa fa-fw fa-user"></i>停用列表 -->
+					
+<!-- 					<button class="btn-sm btn-success editMember" -->
+<!-- 						style="display: none;"> -->
+<!-- 						<span onclick="showEditMemberAD()" id="UPAD"></span> <i -->
+<!-- 							class="fa fa-times" onclick="closeEditMemberAD()"></i> -->
 <!-- 					</button> -->
-					<button class="btn-sm btn-success addMember" style="display: none;">
-						<span onclick="showAddMemberAD()">新增代碼</span> <i
-							class="fa fa-times" onclick="closeAddMemberAD()"></i>
-					</button>
-					<button class="btn-sm btn-success editMember"
-						style="display: none;">
-						<span onclick="showEditMemberAD()" id="UPAD"></span> <i
-							class="fa fa-times" onclick="closeEditMemberAD()"></i>
-					</button>
 					
 				</div>
 				<!-- 服務代碼管理切換頁籤End -->
@@ -1659,8 +1794,6 @@ function Drop(event){
 											
 											<th>名稱</th>
 											<th>顏色</th>
-<!-- 											<th>狀態</th> -->
-											<th>關聯</th>
 											<th>類型</th>
 											<th style="width:140px">建立時間</th>
 											<th style="width:50px">排序</th>
@@ -1672,45 +1805,7 @@ function Drop(event){
 					</div>
 								<input id="ADupdbid" value="" type="hidden">
 								<input id="ADdowdbid" value="" type="hidden">
-<!-- 					<div id="banADContent" style="display: none;"> -->
-<!-- 						<div> -->
-<!-- 							<ul class="pagination"> -->
-						
-<!-- 								<li onclick="AD_ok22()"><a href="#"><i -->
-<!-- 										class="glyphicon glyphicon-ok"></i></a></li> -->
-<!-- 							</ul> -->
-<!-- 							<ul class="pagination" style="float: right;"> -->
-<!-- 								<li><input type="text" id="banTableADSearch" -->
-<!-- 									placeholder="搜索" -->
-<!-- 									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;"> -->
-<!-- 								</li> -->
 
-<!-- 								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li> -->
-<!-- 							</ul> -->
-<!-- 						</div> -->
-
-<!-- 						<div class="row ibox" id=AD11> -->
-<!-- 							<div class="col-lg-12 col-md-12" id="AD1"> -->
-<!-- 								<table class="table table-bordered table-hover" id="banTableAD"> -->
-<!-- 									<thead> -->
-<!-- 										<tr> -->
-<!-- 											<th class="no-sort"><input type="checkbox" -->
-<!-- 												id="AD1All" ischecked=false></th> -->
-<!-- 											<th style="display: none;">編號</th> -->
-											
-<!-- 											<th>名稱</th> -->
-<!-- 											<th>顏色</th> -->
-<!-- <!-- 											<th>狀態</th> -->
-<!-- 											<th>titlegroup</th> -->
-<!-- 											<th>titleflag</th> -->
-<!-- 											<th>停用時間</th> -->
-<!-- 											<th>排序</th> -->
-<!-- 										</tr> -->
-<!-- 									</thead> -->
-<!-- 								</table> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
 					<!-- 新增  -->
 					<div id="addMemberADContent" style="display: none;">
 						<div class="widget">
@@ -1746,13 +1841,6 @@ function Drop(event){
 									</select>
 								</div>
 							</div>
-<!-- 							<div class="form-group col-sm-6"> -->
-<!-- 								<label for="inputAccount" class="col-sm-3 control-label">sort:</label> -->
-<!-- 								<div class="col-sm-8"> -->
-<!-- 									<input type="text" class="form-control" id="in_sort" -->
-<!-- 										placeholder=""> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendAddMemberAD()">儲存</button>
@@ -1795,12 +1883,6 @@ function Drop(event){
 		</div>
 		<!-- ActivityData 結束 -->
 
-
-
-
-
-
-
 	</div>
 </body>
 
@@ -1823,7 +1905,6 @@ function Drop(event){
 						<input type="hidden" class="form-control" id="deletedbid"
 							placeholder="" >
 
-			
 					<div class="col-sm-6">
 					<label class="radio-inline">
      					 <input type="radio" name="personL" value="0">啟用
@@ -1835,7 +1916,6 @@ function Drop(event){
 					</label>
 					</div>
 
-					
 				</div>
 				<button type="button" class="btn btn-success" data-dismiss="modal"
 					onclick="showToastSuccess('鎖定')">確定</button>
@@ -1915,7 +1995,6 @@ function Drop(event){
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
-<!-- 					<label for="inputDepartment" class="col-sm-6 control-label">帳號:<span id="person3"></span></label> -->
 						<input type="hidden" class="form-control" id="personok_dbid"
 							placeholder="">
 				</div>
@@ -1932,8 +2011,6 @@ function Drop(event){
 
 <!-- ========================================================================================================= -->
 <!-- GROUP 開始-->
-
-<!-- Trigger the modal with a button -->
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
 	data-target="#confirmBangroup" style="display: none;"
 	id="confirmBanButtongroup">banDialog</button>
@@ -1948,7 +2025,6 @@ function Drop(event){
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
-<!-- 					<label for="inputDepartment" class="col-sm-5 control-label">編號:<span id="deletegroup"></span></label> -->
 					<div class="col-sm-3">
 						<input type="hidden" class="form-control"
 							id="deletedbid_GroupDelete" placeholder="">
@@ -1964,44 +2040,6 @@ function Drop(event){
 </div>
 <!-- 垃圾桶符號BUTTON END -->
 
-<!-- 鎖符號BUTTON -->
-<!-- Trigger the modal with a button -->
-<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" -->
-<!-- 	data-target="#unlockModalgroup" style="display: none;" -->
-<!-- 	id="unlockButtongroup">unlockDialog</button> -->
-<!-- <div id="unlockModalgroup" class="modal fade" role="dialog"> -->
-<!-- 	<div class="modal-dialog"> -->
-
-<!-- 		<!-- Modal content--> 
-<!-- 		<div class="modal-content"> -->
-<!-- 			<div class="modal-body"> -->
-<!-- 				<h3>是否解除/鎖定帳號？</h3> -->
-<!-- 			</div> -->
-<!-- 			<div class="modal-footer"> -->
-<!-- 				<div class="form-group col-sm-6"> -->
-<!-- 					<label for="inputDepartment" class="col-sm-3 control-label">帳號:</label> -->
-<!-- 					<div class="col-sm-6"> -->
-<!-- 						<input type="text" class="form-control" -->
-<!-- 							id="state_account_Groupluck" placeholder=""> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="form-group col-sm-6"> -->
-<!-- 					<label for="inputDepartment" class="col-sm-3 control-label">開關:</label> -->
-<!-- 					<div class="col-sm-6"> -->
-<!-- 						<select id="state_list_Groupluck"> -->
-<!-- 							<option value="0">開啟</option> -->
-<!-- 							<option value="1">鎖定</option> -->
-<!-- 						</select> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<button type="button" class="btn btn-success" data-dismiss="modal" -->
-<!-- 					onclick="GroupLuck('鎖定/解鎖')">確定</button> -->
-<!-- 				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- </div> -->
-<!-- 鎖符號BUTTON END -->
 <!-- GROUP 結束-->
 
 <!-- ====================================================================================================-->
@@ -2020,21 +2058,6 @@ function Drop(event){
 				<h3>是否確定停用帳號？</h3>
 			</div>
 			<div class="modal-footer">
-<!-- 				<div class="form-group col-sm-6"> -->
-<!-- 					<label for="inputAssignedDepartment" class="col-sm-6 control-label">名稱:<span id="agentreasonluck2"></span></label> -->
-<!-- 					<div class="col-sm-4"> -->
-<!-- 						<input type="hidden" class="form-control" id="D_id" placeholder=""> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 					<div class="form-group col-sm-6"> -->
-<!-- 					<label for="inputAssignedDepartment" class="col-sm-2 control-label">開關:</label> -->
-<!-- 					<div class="col-sm-4"> -->
-<!-- 						<select class="form-control" id="flag2"> -->
-<!-- 							<option value="0">啟用</option> -->
-<!-- 							<option value="1">停用</option> -->
-<!-- 						</select> -->
-<!-- 					</div> -->
-<!-- 					</div> -->
 				<button type="button" class="btn btn-success" data-dismiss="modal"
 					onclick="AgentreasonDelete('停用成功')">確定</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
@@ -2146,9 +2169,7 @@ function Drop(event){
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
-					
-<!-- 					<h3 id="delete_name">名稱:</h3> -->
-<!-- 					<h3 id="delete_number">編號:</h3> -->
+
 				</div>
 				<button type="button" class="btn btn-success" data-dismiss="modal"
 					onclick="deletefunctioncomm('刪除成功')">確定</button>
@@ -2175,14 +2196,6 @@ function Drop(event){
 				<h3>是否刪除？</h3>
 			</div>
 			<div class="modal-footer">
-<!-- 				<div class="form-group col-sm-6"> -->
-<!-- 					<label for="inputAssignedDepartment" class="col-sm-5 control-label">清單名稱:</label> -->
-<!-- 					<div class="col-sm-6"> -->
-<!-- 						<input type="text" class="form-control" id="Delete_idAM" -->
-<!-- 							placeholder=""> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-			
 				<button type="button" class="btn btn-success" data-dismiss="modal"
 					onclick="AMLuck('解鎖成功')">確定</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
@@ -2231,22 +2244,6 @@ function Drop(event){
 				<h3>是否刪除？</h3>
 			</div>
 			<div class="modal-footer">
-<!-- 				<div class="form-group col-sm-6"> -->
-<!-- 					<label for="inputAssignedDepartment" class="col-sm-2 control-label">群組名稱:</label> -->
-<!-- 					<div class="col-sm-4"> -->
-<!-- 						<input type="text" class="form-control" id="Delete_idAG" -->
-<!-- 							placeholder=""> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="form-group col-sm-6"> -->
-<!-- 					<label for="inputAssignedDepartment" class="col-sm-2 control-label">開關:</label> -->
-<!-- 					<div class="col-sm-4"> -->
-<!-- 						<select class="form-control" id="Delete_flagAG"> -->
-<!-- 							<option value="0">啟用</option> -->
-<!-- 							<option value="1">停用</option> -->
-<!-- 						</select> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
 				<button type="button" class="btn btn-success" data-dismiss="modal"
 					onclick="AGLuck('鎖定成功')">確定</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
@@ -2387,7 +2384,6 @@ function person_groupmenu(){
 	$("#updateDepartment").empty();
 	$("#inputDepartment").empty();
 	$("#Box3").empty();
-// 	$("#Box1").empty();
 	$("#Box4").empty();
 $.ajax({
 	url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Group_STATE",
@@ -2406,9 +2402,7 @@ $.ajax({
 		for(var i=0; i<data.group.length; i++){
 	        var menu = "<li id='Imgperson"+data.group[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.group[i].dbid+" ><p>"+data.group[i].name+"</p></li>"
 	        document.getElementById("Box22").insertAdjacentHTML("BeforeEnd",menu);
-	        
-// 	        var menu2 = "<li id='Imgperson"+data.group[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#1c84c6;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.group[i].dbid+" ><p>"+data.group[i].name+"</p></li>"
-// 	        document.getElementById("Box4").insertAdjacentHTML("BeforeEnd",menu2);
+
 	      
 	        	 }
 		$("#Box22").show();
@@ -2451,7 +2445,6 @@ var tabledata;
 					success : function(data) {
 						console.log("啟用人員", data);
 
-						//    		        	alert(JSON.stringify(data.person));
 						$('#person0Table')
 								.DataTable(
 										{
@@ -2531,15 +2524,11 @@ var tabledata;
 											document
 													.getElementById('updateEmployNumber').value = table
 													.row(this).data().employee_id;
-// 											document
-// 													.getElementById('person1').innerHTML = table
-// 													.row(this).data().account;
+
 											document
 													.getElementById('deletedbid').value = table
 													.row(this).data().dbid;
-// 											document
-// 													.getElementById('person2').innerHTML = table
-// 													.row(this).data().account;
+
 											document
 													.getElementById('state_account').value = table
 													.row(this).data().dbid;
@@ -2564,16 +2553,9 @@ var tabledata;
 
 
 											aa(data,table.row(this).data());
-// 											alert("trtr");
 											dataa = data;
 											tabledata = table.row(this).data();
-// 											alert("123  "+tabledata);
 
-// 											var text = $("#person0Table tbody tr td").text();	
-// 											alert(text);
-// 											if (text && text != "") {
-// 												showEditMember(data,tabledata);
-// 											}
 											if(flag){
 												showEditMember(data,tabledata);
 											}
@@ -2585,12 +2567,9 @@ var tabledata;
 						$('#person0Table tbody').on('click','td',function() {
 
 							var text = $(this).text();	
-							//$("input[name='person0']")
-// 							alert(text);
+
 							if (text && text != "") {
-// 								alert("if");
 								flag = true;
-								//aa(data,table.row(this).data());
 							}else{
 								flag = false;
 								return;
@@ -2689,15 +2668,11 @@ var tabledata;
 									document
 											.getElementById('updateEmployNumber').value = table
 											.row(this).data().employee_id;
-//										document
-//												.getElementById('person1').innerHTML = table
-//												.row(this).data().account;
+
 									document
 											.getElementById('deletedbid').value = table
 											.row(this).data().dbid;
-//										document
-//												.getElementById('person2').innerHTML = table
-//												.row(this).data().account;
+
 									document
 											.getElementById('state_account').value = table
 											.row(this).data().dbid;
@@ -3390,6 +3365,23 @@ var tabledata;
 
 		$("#hrTabControlButton button").removeClass("btn-primary");
 		$("#hrTabControlButton button").addClass("btn-success");
+		
+		
+		$("#first").hide();
+		$("#second").hide();
+		$("#third").hide();
+		$("#fourth").hide();
+		$("#b2").hide();
+		$("#b3").hide();
+		$("#b4").hide();
+		
+		$("#n1").hide();
+		$("#n2").hide();
+		$("#n3").hide();
+		$("#n4").hide();
+		$("#addMemberAD2Content").hide();
+  
+		
 	}
 
 	// 解鎖對話視窗
@@ -3561,13 +3553,14 @@ var tabledata;
 		var dbid = selected.join();
 		
 		if(dbid.length!=0){
-					$
+			
+		
+		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Person_logicdelete",
+					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Delete_PersonInfo",
 					data : {
 						
-						personDBID_list : dbid,
-						state:3
+						personDBID_list : dbid
 
 					},
 					type : "POST",
@@ -3712,7 +3705,6 @@ var tabledata;
 					success : function(data) {
 						console.log("啟用部門", data);
 
-						//	        	alert(JSON.stringify(data.person));
 						$('#managegroupTable')
 								.DataTable(
 										{
@@ -3748,9 +3740,6 @@ var tabledata;
 								document
 										.getElementById('deletedbid_GroupDelete').value = table
 										.row(this).data().dbid;
-// 								document
-// 										.getElementById('deletegroup').innerHTML = table
-// 										.row(this).data().name;
 								document
 										.getElementById('up_dbid').value = table
 										.row(this).data().dbid;
@@ -3766,18 +3755,14 @@ var tabledata;
 								.row(this).data().name;
 								if(groupflag){
 									showEditMembergroup(data,table.row(this).data());
-								}
-// 								
+								}							
 							});
 							
 									
 									$('#managegroupTable tbody').on('click','td',function() {
 
 										var text = $(this).text();	
-										//$("input[name='person0']")
-//											alert(text);
 										if (text && text != "") {
-//												alert("if");
 											groupflag = true;
 										}else{
 											groupflag = false;
@@ -3806,13 +3791,6 @@ var tabledata;
 	}
 
 	function group2(data,tabledata) {
-// 		$("#managegroupTable tbody tr td,#bangroupTable tbody tr td").on(
-// 				"click", function() {
-// 					var text = $(this).text();
-// 					if (text && text != "") {
-// 						showEditMembergroup(data,tabledata);
-// 					}
-// 				});
 		
 		
 		$("#group0All").click(function() {
@@ -3936,8 +3914,6 @@ var tabledata;
 		var hh = arr[a].value;
 		ll += arr[a].value+",";
 		}
-// 	alert("person :"+kk);
-// 	alert("function :"+ll);
 		$
 				.ajax({
 					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Insert_GroupInfo",
@@ -4011,8 +3987,6 @@ var tabledata;
 		var arrdbid = tabledata.have_person_dbid.split(',');
 		for (var i in arrdbid ) {
 			if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
-//							alert("arr " +arr[i]);
-//							alert("arrdbid " +arrdbid[i]);
 				
 				var menu3 = "<li id='Imgperson11"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
 		        document.getElementById("Box90").insertAdjacentHTML("BeforeEnd",menu3);	
@@ -4025,8 +3999,6 @@ var tabledata;
 
 		for (var i in arrdbid ) {
 			if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
-//						alert("arr " +arr[i]);
-//						alert("arrdbid " +arrdbid[i]);
 				
 				var menu3 = "<li id='Imgperson11"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
 		        document.getElementById("Box9").insertAdjacentHTML("BeforeEnd",menu3);	
@@ -4038,8 +4010,6 @@ var tabledata;
 		var arrdbid = tabledata.not_have_person_dbid.split(',');
 		for (var i in arrdbid ) {
 			if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
-//						alert("arr " +arr[i]);
-//						alert("arrdbid " +arrdbid[i]);
 				
 				var menu3 = "<li id='Imgperson11"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
 		        document.getElementById("Box09").insertAdjacentHTML("BeforeEnd",menu3);	
@@ -4051,8 +4021,6 @@ var tabledata;
 		var arrdbid = tabledata.not_function_dbid.split(',');
 		for (var i in arrdbid ) {
 			if(arrdbid[i].trim()!="" && arr[i].trim()!="" ){
-//						alert("arr " +arr[i]);
-//						alert("arrdbid " +arrdbid[i]);
 				
 				var menu3 = "<li id='Imgperson11"+arrdbid[i]+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+arrdbid[i]+" ><p>"+arr[i]+"</p></li>"
 		        document.getElementById("Box0").insertAdjacentHTML("BeforeEnd",menu3);	
@@ -4194,7 +4162,6 @@ var tabledata;
 	}
 
 	function GroupDelete(message) {
-// 		var deletedbid = document.getElementById('deletedbid_GroupDelete').value;
 		
 		var selected=[];
 	    $("[name=group0]:checkbox:checked").each(function(){
@@ -4253,19 +4220,6 @@ var tabledata;
 		$("button.Commonlink").addClass("btn-primary");
 		selectcomm();
 	}
-	
-// 	function showCommonlink2() {
-// 		$("button.editMember").hide();
-// 		closeAllHrContent();
-// 		$("#CommonlinkContent").show();
-
-// 		$("#0Commonlink").show();
-// 		$("#comm").show();
-
-// 		$("button.Commonlink").removeClass("btn-success");
-// 		$("button.Commonlink").addClass("btn-primary");
-		
-// 	}
 
 	function selectcomm() {
 
@@ -4336,23 +4290,15 @@ var tabledata;
 						
 							$(this).jstree("open_all")
 						});
-
-						//	 			$('#tree').bind('select_node.jstree', function(e,data) { 
-						//	 			    window.location.href = data.instance.get_node(data.node, true).children('a').attr('href');
-						//	 			});
 						comm2();
 						$("#tree").on(
 								"select_node.jstree",
 								function(evt, data) {
-									
-// 									alert(data.node.parent);
 									if(data.node.parent=="#"){
 										return false;
 									}	
 									$('#commname')
 											.text(data.node.original.text);
-// 									$('#delete_name').text(
-// 											"名稱: " + data.node.original.text);
 									$('#Update_myModalLabel').text(
 											"更新的節點名稱: "
 													+ data.node.original.text);
@@ -4365,8 +4311,6 @@ var tabledata;
 													data.selected[0], "/", 0));
 									$('#createuser').text(
 											data.node.original.createuser);
-// 									$('#delete_number').text(
-// 											"編號:" + data.node.original.id);
 
 									$('#type').text(data.node.original.parent);
 									
@@ -4379,18 +4323,10 @@ var tabledata;
 								"select_node.jstree",
 								function(e, data) {
 									console.log("QQ", data.node);
-// 									console.log("children_d.length",
-// 											data.node.children_d.length);
 									cot = data.node.parents.length;
-// 									console.log("parents.length",
-// 											data.node.parents.length);
 									Upcot = data.node.children_d.length;
 									
-									abc= data.node.a_attr.href
-									
-// 									console.log("type", data.node.type);
-// 									console.log("id", data.node.id);
-// 									console.log("text", data.node.text);
+									abc= data.node.a_attr.href;
 								
 									document.getElementById('nodeNAMEu').value = data.node.text;
 									document.getElementById('nodeURLu').value = data.node.a_attr.href;
@@ -4405,7 +4341,6 @@ var tabledata;
 		
 									
 									if (abc=="") {
-// 												alert("空值");
 												document.getElementById('file2').value=1
 												$("#urllink2").hide();
 												document.getElementById('file').value=1
@@ -4418,40 +4353,19 @@ var tabledata;
 									}
 									if (cot <= 3&&data.node.children.length!=0) {
 										insertornot = true;
-										//		alert("Insert");
 									}
 									if (Upcot == 0) {
 										Uinsertornot = true;
-										//		alert("Update");
 									}
 
 								});
-// 						var oo1 = "<option value="+0+">#</option>";
-// 						var one = "<option  id='UPlist'></option>";
-// 						var two = "<option  id='INlist'></option>";
+
 						var color = "<option>black</option><option>blue</option><option>yellow</option><option>red</option>";
 						document.getElementById("insert_color")
 								.insertAdjacentHTML("BeforeEnd", color);
 						document.getElementById("update_color")
 								.insertAdjacentHTML("BeforeEnd", color);
-// 						document.getElementById("nodeLINKlist")
-// 								.insertAdjacentHTML("BeforeEnd", two);
-// 						document.getElementById("nodeLINKlistU")
-// 								.insertAdjacentHTML("BeforeEnd", one);
-// 						for (var i = 0; i <= data.count - 1; i++) {
 
-// 							var str = "<option value='"+data.Tree[i].id+"'>"
-// 									+ data.Tree[i].text + "</option>";
-// 							document.getElementById("nodeLINKlist")
-// 									.insertAdjacentHTML("BeforeEnd", str);
-// 							document.getElementById("nodeLINKlistU")
-// 									.insertAdjacentHTML("BeforeEnd", str);
-
-// 						}
-// 						document.getElementById("nodeLINKlist")
-// 								.insertAdjacentHTML("BeforeEnd", oo1);
-// 						document.getElementById("nodeLINKlistU")
-// 								.insertAdjacentHTML("BeforeEnd", oo1);
 						$('#commonlinkLoading').hide();
 						$('#tree').show();
 						$('#comm').show();
@@ -4524,9 +4438,6 @@ var tabledata;
 			var nodeLINK = document.getElementById('nodeUSER').value;
 			var nodeNAME = document.getElementById('nodeNAME').value;
 			var nodeURL = document.getElementById('nodeURL').value;
-// 			var nodeUSER = document.getElementById('nodeUSER').value;
-
-
 			var color = document.getElementById('insert_color').value;
 			var myMap = new Map();
 
@@ -4557,7 +4468,6 @@ var tabledata;
 			var nodeLINK = "0"
 			var nodeNAME = document.getElementById('nodeNAME').value;
 			var nodeURL = document.getElementById('nodeURL').value;
-// 			var nodeUSER = document.getElementById('nodeUSER').value;
 			var color = document.getElementById('insert_color').value;
 			var myMap = new Map();
 
@@ -4616,9 +4526,7 @@ var tabledata;
 	
 	//更新頁面
 	function showEditMembercomm() {
-		
 		$('#nodeLINKlistU').empty();
-	
 		var nodeLINKu = document.getElementById('nodeUSERu').value;
 
 		$
@@ -4661,9 +4569,7 @@ var tabledata;
 		$("button.manage").removeClass("btn-success");
 		$("button.manage").addClass("btn-primary");
 	}
-	//
-	//
-	//
+	
 	function sendEditMembercomm() {
 		   if (!validateCmU()) {
                return;
@@ -4676,7 +4582,6 @@ var tabledata;
 			var nodeLINKu = document.getElementById('nodeUSERu').value;
 			var nodeNAMEu = document.getElementById('nodeNAMEu').value;
 			var nodeURLu = document.getElementById('nodeURLu').value;
-// 			var nodeUSERu = document.getElementById('nodeUSERu').value;
 			var color = document.getElementById('update_color').value;
 			var myMap = new Map();
 
@@ -4817,8 +4722,6 @@ var tabledata;
 					},
 					success : function(data) {
 						console.log("啟用值機", data);
-
-						//	        	alert(JSON.stringify(data.person));
 						$('#manageAgentreasonTable')
 								.DataTable(
 										{
@@ -4857,22 +4760,8 @@ var tabledata;
 												         'orderable': false,
 												         'className': 'dt-body-center',
 												         'render': function (data, type, full, meta){
-//													        	 alert(JSON.stringify(full));
 												             return '<input type="checkbox" name="agentreason0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
 												         }}, 
-// 												         {
-// 													         'targets': 8,
-// 													         'searchable': false,
-// 													         'orderable': false,
-// 													        'className': "  ",
-// 													         'render': function (data, type, full, meta){
-// 													        	 if(full.flag!=null&&full.flag!=""){
-// 													        		 return '<label class="label label-danger">'+full.flag+'</label>';
-// 													        	 }else{
-// 													        		 return '<label>'+full.flag+'</label>';
-// 													        	 }
-// 													         }
-// 												         }
 													],
 											lengthChange : false
 										});
@@ -4921,12 +4810,8 @@ var tabledata;
 						$('#manageAgentreasonTable tbody').on('click','td',function() {
 
 							var text = $(this).text();	
-							//$("input[name='person0']")
-//								alert(text);
 							if (text && text != "") {
-//									alert("if");
 								ARflag = true;
-								//aa(data,table.row(this).data());
 							}else{
 								ARflag = false;
 								return;
@@ -4957,14 +4842,6 @@ var tabledata;
 	}
 
 	function agentreason2() {
-// 		$(
-// 				"#manageAgentreasonTable tbody tr td,#banAgentreasonTable tbody tr td")
-// 				.on("click", function() {
-// 					var text = $(this).text();
-// 					if (text && text != "") {
-// 						showEditMemberAgentreason();
-// 					}
-// 				});
 		
 		$("#agentreason0All").click(function() {
 			   if($("#agentreason0All").prop("checked")) {
@@ -4990,9 +4867,7 @@ var tabledata;
 			   }
 			});
 	}
-
-	//
-	//
+	
 	//顯示 啟用表格
 	function showManage_Agentreason() {
 		closeAllHrContent();
@@ -5004,18 +4879,7 @@ var tabledata;
 		$("button.manageAgentreason").addClass("btn-primary");
 
 	}
-	//顯示 停用表格
-// 	function showBan_Agentreason() {
-// 		closeAllHrContent();
-
-// 		$("#AgentreasonContent").show();
-// 		$("#banAgentreasonContent").show();
-
-// 		$("button.ban").removeClass("btn-success");
-// 		$("button.ban").addClass("btn-primary");
-
-// 	}
-	//
+	
 	//新增畫面
 	function showAddMemberAGR() {
 		document.getElementById('Insert_statusname_tw').value="";
@@ -5061,7 +4925,6 @@ var tabledata;
 		var statusname_cn = document.getElementById('Insert_statusname_cn').value;
 		var statusname_en = document.getElementById('Insert_statusname_en').value;
 		var statusname_tw = document.getElementById('Insert_statusname_tw').value;
-// 		var createuserid = document.getElementById('Insert_createuserid').value;
 
 		$
 				.ajax({
@@ -5075,7 +4938,6 @@ var tabledata;
 						statusname_cn : statusname_cn,
 						statusname_en : statusname_en,
 						statusname_tw : statusname_tw
-// 						createuserid : createuserid
 					},
 					type : "POST",
 					dataType : 'json',
@@ -5236,8 +5098,6 @@ var tabledata;
 	}
 
 	function AgentreasonDelete(message) {
-// 		var dbid = document.getElementById('D_id').value;
-// 		var flag = document.getElementById('flag2').value;
 		
 		var selected=[];
 	    $("[name=agentreason0]:checkbox:checked").each(function(){
@@ -5338,7 +5198,6 @@ var tabledata;
 		      });
 		  var Agentreason_DBID_list = selected.join();
 		
-// 		var dbid = document.getElementById('AgentReasondbid').value;
 	if(Agentreason_DBID_list.length!=0){
 		$
 				.ajax({
@@ -5376,7 +5235,7 @@ var tabledata;
 		      });
 		  var Agentreason_DBID_list = selected.join();
 		  if(Agentreason_DBID_list.length!=0){
-// 		var dbid = document.getElementById('AgentReasondbid').value;
+			  
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_agentreason",
@@ -5396,7 +5255,6 @@ var tabledata;
 				});
 		  }else{
 				toastr.error("請選擇啟用項目");
-
 		  }
 		
 		closeAllHrContent();
@@ -5442,7 +5300,6 @@ var tabledata;
 					},
 					success : function(data) {
 						console.log("啟用清單", data);
-						
 
 						//        	alert(JSON.stringify(data.person));
 						$('#manageTableAM')
@@ -5456,18 +5313,11 @@ var tabledata;
 													{
 														className : "dt-body-center"
 													},
-// 													{
-// 														"data" : "dbid"
-// 													},
 													{
 														"data" : "menuname"
 													},{
 														"data" : "createdatetime"
 													},
-// 													{
-// 														"data" : "sort"
-// 													},
-													
 
 											],'columnDefs': [{
 										         'targets': 0,
@@ -5475,11 +5325,9 @@ var tabledata;
 										         'orderable': false,
 										         'className': 'dt-body-center',
 										         'render': function (data, type, full, meta){
-//											        	 alert(JSON.stringify(full));
 										             return '<input  type="checkbox" name="AM0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
 										         }
-										      }
-											,
+										      },
 										      {
 											         'targets': 3,
 											         'searchable': false,
@@ -5487,23 +5335,16 @@ var tabledata;
 											        'className': "  ",
 											         'render': function (data, type, full, meta){
 											        	
-											        	
-// 											        		 alert("length:  ");
-											        	 
 											        		 return '<label style="padding-left:5px" onclick="AM_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  onclick="AM_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
-											        
 											         },
 											
 											      }
 										      ],
 											lengthChange : false
 										});
-						
-					
 						AM2();
 						var Amflag = true;
 						var table = $('#manageTableAM').DataTable();
-					
 
 						$('#manageTableAM tbody')
 								.on(
@@ -5513,12 +5354,11 @@ var tabledata;
 											console.log("AM", table.row(
 													this).data());
 											document
-													.getElementById('up_menunameam').value = table
-													.row(this).data().menuname;
+											.getElementById('up_menunameam').value = table
+											.row(this).data().menuname;
 											document
 											.getElementById('up_dbidam').value = table
 											.row(this).data().dbid;
-											
 											document
 											.getElementById('AMupdbid').value = table
 											.row(this).data().dbid;
@@ -5533,19 +5373,13 @@ var tabledata;
 												showEditMemberAM(data,table.row(this).data());
 											}
 								});
-					
-						
-						
-						
+
 						$('#manageTableAM tbody').on('click','td',function() {
 
 							var text = $(this).text();	
-							//$("input[name='person0']")
-//								alert(text);
+
 							if (text && text != "") {
-//									alert("if");
 								AMflag = true;
-								//aa(data,table.row(this).data());
 							}else{
 								AMflag = false;
 								return;
@@ -5575,13 +5409,6 @@ var tabledata;
 	}
 
 	function AM2() {
-// 		$("#manageTableAM tbody tr td,#banTableAM tbody tr td").on("click",
-// 				function() {
-// 					var text = $(this).text();
-// 					if (text && text != "") {
-// 						showEditMemberAM();
-// 					}
-// 				});
 
 		$("#AM0All").click(function() {
 			   if($("#AM0All").prop("checked")) {
@@ -5610,26 +5437,14 @@ var tabledata;
 	//顯示 啟用表格
 	function showManage_AM() {
 		closeAllHrContent();
-
+		
 		$("#AMContent").show();
 		$("#manageAMContent").show();
-
 		$("button.manageAM").removeClass("btn-success");
 		$("button.manageAM").addClass("btn-primary");
 
 	}
-	//顯示 停用表格
-// 	function showBan_AM() {
-// 		closeAllHrContent();
 
-// 		$("#AMContent").show();
-// 		$("#banAMContent").show();
-
-// 		$("button.ban").removeClass("btn-success");
-// 		$("button.ban").addClass("btn-primary");
-
-// 	}
-	//
 	//新增畫面
 	function showAddMemberAM() {
 		
@@ -5639,8 +5454,7 @@ var tabledata;
 		$("#addMemberAMContent").show();
 
 		$("button.addMember").show();
-		$("button.addMember").removeClass("btn-success");
-		$("button.addMember").addClass("btn-primary");
+		
 	}
 
 	//關閉新增畫面
@@ -5659,8 +5473,6 @@ var tabledata;
 	function sendAddMemberAM() {
 		closeAddMember();
 		var menuname = document.getElementById('insert_menuname').value;
-		//var deleteflag = document.getElementById('insert_deleteflag').value;
-// 		var sort = document.getElementById('insert_sort').value;
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_ActivityMenu",
@@ -5687,16 +5499,534 @@ var tabledata;
 		$("#manageAMContent").show();
 	}
 
-	//更新頁面
+	//更新頁面  activitymenu更新頁面
 	function showEditMemberAM() {
+ 		closeAllHrContent();
+		$("#AMContent").show();
+		$("#editMemberAMContent").show();
+		$("#first").show();
+		$("#b1").show();
+		$("#AGul").show();
+		
+		menugroup();
+	}
+	//first新增畫面
+	function showAddMemberAG() {
+		document.getElementById('in_groupname').value="";
+		closeAllHrContent();
+		$("#AMContent").show();
+		$("#addMemberAGContent").show();
+
+		$("button.addMember").show();
+		$("button.addMember").removeClass("btn-success");
+		$("button.addMember").addClass("btn-primary");
+	}
+
+	//first新增畫面
+	function closeAddMemberAG() {
 		closeAllHrContent();
 		$("#AMContent").show();
 		$("#editMemberAMContent").show();
-
-		$("button.editMember").show();
-		$("button.editMember").removeClass("btn-success");
-		$("button.editMember").addClass("btn-primary");
+		$("#first").show();
+		$("#b1").show();
+		showEditMemberAM();
 	}
+	function menugroup(){
+		$("#AG0All").prop("checked", false);
+		$("#AG1All").prop("checked", false);
+
+		var dbid = document.getElementById("up_dbidam").value
+		$.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityMenu",
+					data : {
+						dbid : dbid
+					},
+					type : "POST",
+					dataType : 'json',
+
+					error : function(e) {
+						toastr.error("請重新整理");
+					},
+					success : function(data) {
+						console.log("啟用服務代碼群組", data);
+
+						$('#manageTableAG')
+								.DataTable(
+										{
+											  "ordering": false,
+											"autoWidth": false,
+											destroy : true,
+											aaData : data.flag0_group,
+											aoColumns : [
+													{
+														className : "dt-body-center"
+													},
+													{
+														"data" : "groupname"
+													},
+													{
+														"data" : "createdatetime"
+													},{
+														"data" : "sort"
+													},
+
+											],'columnDefs': [{
+										         'targets': 0,
+										         'searchable': false,
+										         'orderable': false,
+										         'className': 'dt-body-center',
+										         'render': function (data, type, full, meta){
+										             return '<input type="checkbox" name="AG0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+										         }
+										      },
+										      {
+											         'targets': 3,
+											         'searchable': false,
+											         'orderable': false,
+											        'className': "  ",
+											         'render': function (data, type, full, meta){
+											        	
+											        		 return '<label style="padding-left:5px" onclick="AG_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  onclick="AG_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
+											        
+											         },
+											
+											      }],
+											lengthChange : false
+										});
+						var AGflag = true;
+						var table = $('#manageTableAG').DataTable();
+						
+						$('#manageTableAG tbody')
+								.on(
+										'click',
+										'tr',
+										function() {
+											console.log("TableAG", table.row(
+													this).data());
+											document
+													.getElementById('up_groupnameAG').value = table
+													.row(this).data().groupname;
+											document 
+											.getElementById('up_dbidAG').value = table
+											.row(this).data().dbid;
+											
+											document
+											.getElementById('UPAG').innerHTML = table
+											.row(this).data().groupname;
+											document
+											.getElementById('AGupdbid').value = table
+											.row(this).data().dbid;
+											document
+											.getElementById('AGdowdbid').value = table
+											.row(this).data().dbid;
+											if(AGflag){
+												showEditMemberAG(data,table.row(this).data());
+											}
+										});
+						$('#manageTableAG tbody').on('click','td',function() {
+
+							var text = $(this).text();	
+							if (text && text != "") {
+								AGflag = true;
+							}else{
+								AGflag = false;
+								return;
+							}	
+										});
+					}
+				});
+
+		$("#manageTableAG").css("width", "100%");
+		$("#manageTableAG_filter").prop("style", "float:right;");
+		$("#manageTableAG_wrapper > div:nth-child(1)").hide();
+
+		$("#manageTableAGSearch").keyup(function() {
+			var searchText = $("#manageTableAGSearch").val();
+
+			$("input[aria-controls='manageTableAG']").val(searchText);
+			$("input[aria-controls='manageTableAG']").trigger("keyup");
+		});
+	}
+	
+	//更新頁面  activitygroup更新頁面
+	function showEditMemberAG() {
+ 		closeAllHrContent();
+		$("#AMContent").show();
+		$("#editMemberAMContent").show();
+		$("#second").show();
+		$("#b1").show();
+		$("#b2").show();
+		titlegroup();
+
+	}
+	function closeEditMemberAG() {
+		closeAllHrContent();
+		$("#AMContent").show();
+		$("#editMemberAMContent").show();
+		$("#first").show();
+		$("#b1").show();
+	}
+	//新增畫面
+	function showAddMemberAD() {
+
+		document.getElementById("in_codename").value="";
+		closeAllHrContent();
+		$("#AMContent").show();
+		$("#addMemberADContent").show();
+		$("#b1").show();
+		$("#b2").show();
+		$("button.addMember").show();
+	}
+
+	//關閉新增畫面
+	function closeAddMemberAD() {
+		closeAllHrContent();
+		$("#AMContent").show();
+		$("#editMemberAMContent").show();
+		$("#second").show();
+		$("#b1").show();
+		$("#b2").show();
+	}
+	
+	
+	
+	function titlegroup(){
+		
+		$("#AD1All").prop("checked", false);
+		$("#AD0All").prop("checked", false);
+
+		var dbid = document.getElementById("up_dbidAG").value
+
+		$
+		.ajax({
+			url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/FLAGDATA",
+			data : {
+				dbid : dbid
+			},
+			type : "POST",
+			dataType : 'json',
+
+			error : function(e) {
+				toastr.error("請重新整理");
+			},
+			success : function(data) {
+				console.log("啟用服務代碼", data);
+				var tgroup = data.Title;
+				$('#manageTableAD')
+						.DataTable(
+								{
+									"ordering": false,
+									"autoWidth": false,
+									destroy : true,
+									aaData : data.Title,
+									
+									aoColumns : [
+											{
+												className : "dt-body-center"
+											},
+											 {
+												"data" : "codename"
+											}, {
+												"data" : "color"
+											},
+										 
+											{
+												className:"titleflag"
+											},	
+											{
+												"data" : "createdatetime"
+											}
+
+									],'columnDefs': [{
+								         'targets': 0,
+								         'searchable': false,
+								         'orderable': false,
+								         'className': 'dt-body-center',
+								         'render': function (data, type, full, meta){
+								             return '<input type="checkbox" name="AD0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+								         }
+								      },{
+									         'targets': 3,
+									         'searchable': false,
+									         'orderable': false,
+									         'className': 'titleflag',
+									         'render': function (data, type, full, meta){
+													if(full.titleflag==0){
+														 return '<span  ' + $('<div/>').text(data).html() + '">資料</span>';
+													}else{
+														
+									             return '<span  ' + $('<div/>').text(data).html() + '">標題</span>';
+													}
+											}
+									      },
+										      {
+											         'targets': 5,
+											         'searchable': false,
+											         'orderable': false,
+											        'className': "  ",
+											         'render': function (data, type, full, meta){
+											        		 return '<label style="padding-left:5px" onclick="AD_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  onclick="AD_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
+											         },
+											
+											      }
+								      ],
+									lengthChange : false
+								});
+				AD2();
+				var ADflag = true;
+				var table = $('#manageTableAD').DataTable();
+
+				$('#manageTableAD tbody')
+						.on(
+								'click',
+								'tr',
+								function() {
+									console.log("AD0", table.row(
+											this).data());
+
+									document
+									.getElementById('up_dbidAD').value = table
+									.row(this).data().dbid;
+									document
+									.getElementById('UPAD').innerHTML = table
+									.row(this).data().codename;
+									document
+									.getElementById('ADupdbid').value = table
+									.row(this).data().dbid;
+									document
+									.getElementById('ADdowdbid').value = table
+									.row(this).data().dbid;
+									document
+									.getElementById('up_codenameAD').value = table
+									.row(this).data().codename;
+							document
+									.getElementById('up_colorAD').value = table
+									.row(this).data().color;
+
+									if(ADflag){
+										showEditMemberAD(data,tabledata);
+									}
+								});
+				$('#manageTableAD tbody').on('click','td',function() {
+
+					var text = $(this).text();	
+
+					if (text && text != "") {
+						ADflag = true;
+					}else{
+						ADflag = false;
+						return;
+					}
+					
+								});
+
+			}
+		});
+
+$("#manageTableAD").css("width", "100%");
+$("#manageTableAD_filter").prop("style", "float:right;");
+$("#manageTableAD_wrapper > div:nth-child(1)").hide();
+
+$("#manageTableADSearch").keyup(function() {
+	var searchText = $("#manageTableADSearch").val();
+
+	$("input[aria-controls='manageTableAD']").val(searchText);
+	$("input[aria-controls='manageTableAD']").trigger("keyup");
+});
+	}
+	
+	//更新頁面 activitydata_title更新頁面
+	function showEditMemberAD() {
+		closeAllHrContent();
+		$("#AMContent").show();
+		$("#editMemberAMContent").show();
+		$("#third").show();
+		$("#b1").show();
+		$("#b2").show();
+		$("#b3").show();
+		
+		titledata();
+	}
+	function closeEditMemberAD() {
+		closeAllHrContent();
+		$("#AMContent").show();
+		$("#editMemberAMContent").show();
+		$("#second").show();
+		$("#b1").show();
+		$("#b2").show();
+	}
+	//新增畫面
+	function showAddMemberAD2() {
+		document.getElementById("in_codename").value="";
+		closeAllHrContent();
+		$("#AMContent").show();
+		$("#addMemberAD2Content").show();
+		$("#b1").show();
+		$("#b2").show();
+		$("#b3").show();
+
+		$("button.addMember").show();
+		$("button.addMember").removeClass("btn-success");
+		$("button.addMember").addClass("btn-primary");
+	}
+
+	//關閉新增畫面
+	function closeAddMemberAD2() {
+		closeAllHrContent();
+		$("#AMContent").show();
+		$("#editMemberAMContent").show();
+		$("#second").show();
+		$("#b1").show();
+		$("#b2").show();
+	}
+
+	function titledata(){
+		var up_dbid = document.getElementById('up_dbidAD').value;
+		$
+		.ajax({
+			url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_titlegroup_ActivityData",
+			data : {
+				titlegroup:up_dbid
+			},
+			type : "POST",
+			dataType : 'json',
+			error : function(e) {
+			},
+			success : function(data) {
+				console.log("titlegroup",data);
+				var tgroup = data.titlegroup;
+				$('#thirdTableAD')
+						.DataTable(
+								{
+									"ordering": false,
+									"autoWidth": false,
+									destroy : true,
+									aaData : data.titlegroup,
+									
+									aoColumns : [
+											{
+												className : "dt-body-center"
+											},
+											 {
+												"data" : "codename"
+											}, {
+												"data" : "color"
+											},
+											{
+												"data" : "createdatetime"
+											}
+
+
+									],'columnDefs': [{
+								         'targets': 0,
+								         'searchable': false,
+								         'orderable': false,
+								         'className': 'dt-body-center',
+								         'render': function (data, type, full, meta){
+//									        	 alert(JSON.stringify(full));
+								             return '<input type="checkbox" name="AD0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+								         }
+								      },
+									  
+										      {
+											         'targets': 4,
+											         'searchable': false,
+											         'orderable': false,
+											        'className': "  ",
+											         'render': function (data, type, full, meta){
+											        	
+											        		 return '<label style="padding-left:5px" onclick="AD_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  onclick="AD_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
+											         },
+											
+											      }
+								      ],
+									lengthChange : false
+								});
+				AD2();
+				var ADflag = true;
+				var table = $('#thirdTableAD').DataTable();
+
+				$('#thirdTableAD tbody')
+						.on(
+								'click',
+								'tr',
+								function() {
+									console.log("titlegroup", table.row(
+											this).data());
+									
+									document
+									.getElementById('up_dbidAD2').value = table
+									.row(this).data().dbid;
+									document
+									.getElementById('UPAD2').innerHTML = table
+									.row(this).data().codename;
+									document
+									.getElementById('ADupdbid').value = table
+									.row(this).data().dbid;
+									document
+									.getElementById('ADdowdbid').value = table
+									.row(this).data().dbid;
+									
+									document
+									.getElementById('up_codenameAD2').value = table
+									.row(this).data().dbid;
+									document
+									.getElementById('up_colorAD2').value = table
+									.row(this).data().color;
+									
+									
+									if(ADflag){
+										showEditMemberAD2();	
+											}
+								});
+				$('#thirdTableAD tbody').on('click','td',function() {
+					var text = $(this).text();	
+					if (text && text != "") {
+						ADflag = true;
+					}else{
+						ADflag = false;
+						return;
+					}
+					
+								});
+			}
+		});
+
+$("#thirdTableAD").css("width", "100%");
+$("#thirdTableAD_filter").prop("style", "float:right;");
+$("#thirdTableAD_wrapper > div:nth-child(1)").hide();
+
+$("#thirdTableADSearch").keyup(function() {
+	var searchText = $("#thirdTableADSearch").val();
+
+	$("input[aria-controls='thirdTableAD']").val(searchText);
+	$("input[aria-controls='thirdTableAD']").trigger("keyup");
+});
+	}
+	
+	function showEditMemberAD2() {
+		closeAllHrContent();
+		$("#AMContent").show();
+		$("#editMemberAMContent").show();
+		$("#fourth").show();
+		$("#b1").show();
+		$("#b2").show();
+		$("#b3").show();
+		$("#b4").show();
+	}
+	//更新頁面關閉
+	function closeEditMemberAD2() {
+		closeAllHrContent();
+		$("#AMContent").show();
+		$("#editMemberAMContent").show();
+		$("#third").show();
+		$("#b1").show();
+		$("#b2").show();
+		$("#b3").show();
+	}
+	
+	
+	
 	//更新頁面關閉
 	function closeEditMemberAM() {
 		closeAllHrContent();
@@ -5783,8 +6113,6 @@ setTimeout(function(){
 		}, 10);
 	}
 	function AM_dow() {
-// 		var deleteflag = document.getElementById('Delete_flagAM').value;
-// 		var menuname = document.getElementById('Delete_idAM').value;
 
 			  setTimeout(function(){ 
 			  var AMdowdbid = document.getElementById('AMdowdbid').value;
@@ -5818,8 +6146,6 @@ setTimeout(function(){
 	
 
 	function AMLuck(message) {
-// 		var deleteflag = document.getElementById('Delete_flagAM').value;
-// 		var menuname = document.getElementById('Delete_idAM').value;
 var selected=[];
 	    $("[name=AM0]:checkbox:checked").each(function(){
 	      selected.push($(this).val());
@@ -5861,8 +6187,6 @@ var selected=[];
 	
 	
 	function AMOK2(message) {
-// 		var deleteflag = document.getElementById('Delete_flagAM').value;
-// 		var menuname = document.getElementById('Delete_idAM').value;
 var selected=[];
 	    $("[name=AM0]:checkbox:checked").each(function(){
 	      selected.push($(this).val());
@@ -5905,358 +6229,10 @@ var selected=[];
 
 <!-- =====================================ActivityGroup================================================================= -->
 <script>
-	function showActivityGroup() {
-		$("button.editMember").hide();
 
-		closeAllHrContent();
-		$("#AGContent").show();
-		$("#manageAGContent").show();
 
-		$("button.Agentreason").removeClass("btn-success");
-		$("button.Agentreason").addClass("btn-primary");
-		AG();
-		$("#manageTableAG tbody tr").empty();
-		$("#banTableAG tboby tr").empty();
-	}
-	
-	function group() {
-		$("#AG0").hide();
-		$("#AGul").hide();
-		$("#AGLoading").show();
-		
-		
-		$("#AG0All").prop("checked", false);
-		$("#AG1All").prop("checked", false);
-		
-		$("#manageTableAG tbody tr").empty();
-		$("#banTableAG tboby tr").empty();
-		var dbid = document.getElementById("menu").value
-		$
-				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityMenu",
-					data : {
-						dbid : dbid
-					},
-					type : "POST",
-					dataType : 'json',
-
-					error : function(e) {
-						toastr.error("請重新整理");
-					},
-					success : function(data) {
-						console.log("啟用服務代碼群組", data);
-
-						//        	alert(JSON.stringify(data.person));
-						$('#manageTableAG')
-								.DataTable(
-										{
-											  "ordering": false,
-											"autoWidth": false,
-											destroy : true,
-											aaData : data.flag0_group,
-											aoColumns : [
-													{
-														className : "dt-body-center"
-													},
-// 													{
-// 														"data" : "dbid"
-// 													},
-													{
-														"data" : "groupname"
-													},
-													{
-														"data" : "createdatetime"
-													},{
-														"data" : "sort"
-													},
-
-											],'columnDefs': [{
-										         'targets': 0,
-										         'searchable': false,
-										         'orderable': false,
-										         'className': 'dt-body-center',
-										         'render': function (data, type, full, meta){
-//											        	 alert(JSON.stringify(full));
-										             return '<input type="checkbox" name="AG0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
-										         }
-										      },
-										      {
-											         'targets': 3,
-											         'searchable': false,
-											         'orderable': false,
-											        'className': "  ",
-											         'render': function (data, type, full, meta){
-											        	
-											        		 return '<label style="padding-left:5px" onclick="AG_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  onclick="AG_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
-											        
-											         },
-											
-											      }],
-											lengthChange : false
-										});
-						AG2();
-						var AGflag = true;
-						var table = $('#manageTableAG').DataTable();
-						
-						$('#manageTableAG tbody')
-								.on(
-										'click',
-										'tr',
-										function() {
-											console.log("TableAG", table.row(
-													this).data());
-											document
-													.getElementById('up_groupnameAG').value = table
-													.row(this).data().groupname;
-											document 
-											.getElementById('up_dbidAG').value = table
-											.row(this).data().dbid;
-											
-											document
-											.getElementById('UPAG').innerHTML = table
-											.row(this).data().groupname;
-											document
-											.getElementById('AGupdbid').value = table
-											.row(this).data().dbid;
-											document
-											.getElementById('AGdowdbid').value = table
-											.row(this).data().dbid;
-											if(AGflag){
-												showEditMemberAG(data,table.row(this).data());
-											}
-										});
-						$('#manageTableAG tbody').on('click','td',function() {
-
-							var text = $(this).text();	
-							//$("input[name='person0']")
-//								alert(text);
-							if (text && text != "") {
-//									alert("if");
-								AGflag = true;
-								//aa(data,table.row(this).data());
-							}else{
-								AGflag = false;
-								return;
-							}
-							
-										});
-						
-					}
-				});
-
-		$("#manageTableAG").css("width", "100%");
-		$("#manageTableAG_filter").prop("style", "float:right;");
-		$("#manageTableAG_wrapper > div:nth-child(1)").hide();
-
-		$("#manageTableAGSearch").keyup(function() {
-			var searchText = $("#manageTableAGSearch").val();
-
-			$("input[aria-controls='manageTableAG']").val(searchText);
-			$("input[aria-controls='manageTableAG']").trigger("keyup");
-		});
-		$("#AGul").show();
-		$("#AG0").show();
-		$("#AGLoading").hide();
-	}
-
-	function AG() {
-		$("#AGul").hide();
-		$("#AG0").hide();
-		$("#AGLoading").show();
-		$
-				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Flag_ActivityMenu",
-					data : {
-						deleteflag : 0
-					},
-
-					type : "POST",
-					dataType : 'json',
-
-					error : function(e) {
-						toastr.error("請重新整理");
-					},
-					success : function(data) {
-						$('#menu').empty();
-
-// 						var menu1 = "<option id=''></option>"
-// 						document.getElementById("menu").insertAdjacentHTML(
-// 								"BeforeEnd", menu1);
-						
-				
-							var menu = "<option id='abc' value='"+data.activitymenu[0].dbid+"'>"
-									+ data.activitymenu[0].menuname
-									+ "</option>"
-							document.getElementById("menu").insertAdjacentHTML(
-									"BeforeEnd", menu);
-					
-						
-						
-						for (var i = 1; i < data.activitymenu.length; i++) {
-							var menu = "<option value='"+data.activitymenu[i].dbid+"'>"
-									+ data.activitymenu[i].menuname
-									+ "</option>"
-							document.getElementById("menu").insertAdjacentHTML(
-									"BeforeEnd", menu);
-						}
-
-						console.log("服務代碼清單", data);
-						group2();
-						
-						
-						function group2() {
-							
-							
-							$("#AG0All").prop("checked", false);
-							$("#AG1All").prop("checked", false);
-							
-							$("#manageTableAG tbody tr").empty();
-							$("#banTableAG tboby tr").empty();
-							var dbid = document.getElementById("abc").value
-							$
-									.ajax({
-										url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityMenu",
-										data : {
-											dbid : dbid
-										},
-										type : "POST",
-										dataType : 'json',
-
-										error : function(e) {
-											toastr.error("請重新整理");
-										},
-										success : function(data) {
-											console.log("啟用服務代碼群組", data);
-
-											//        	alert(JSON.stringify(data.person));
-											$('#manageTableAG')
-													.DataTable(
-															{
-																  "ordering": false,
-																"autoWidth": false,
-																destroy : true,
-																aaData : data.flag0_group,
-																aoColumns : [
-																		{
-																			className : "dt-body-center"
-																		},
-//					 													{
-//					 														"data" : "dbid"
-//					 													},
-																		{
-																			"data" : "groupname"
-																		},
-																		{
-																			"data" : "createdatetime"
-																		}
-// 																		,{
-// 																			"data" : "sort"
-// 																		},
-
-																],'columnDefs': [{
-															         'targets': 0,
-															         'searchable': false,
-															         'orderable': false,
-															         'className': 'dt-body-center',
-															         'render': function (data, type, full, meta){
-//																        	 alert(JSON.stringify(full));
-															             return '<input type="checkbox" name="AG0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
-															         }
-															      },
-															      {
-																         'targets': 3,
-																         'searchable': false,
-																         'orderable': false,
-																        'className': "  ",
-																         'render': function (data, type, full, meta){
-																        	
-																        		 return '<label style="padding-left:5px" onclick="AG_up()" class="glyphicon glyphicon-triangle-top"></label><label style="padding-left:5px"  onclick="AG_dow()" class="glyphicon glyphicon-triangle-bottom"></label>';
-																        
-																         },
-																
-																      }
-															      ],
-																lengthChange : false
-															});
-											AG2();
-											var AGflag = true;
-											var table = $('#manageTableAG').DataTable();
-
-											$('#manageTableAG tbody')
-													.on(
-															'click',
-															'tr',
-															function() {
-																console.log("TableAG", table.row(
-																		this).data());
-																document
-																		.getElementById('up_groupnameAG').value = table
-																		.row(this).data().groupname;
-																document 
-																.getElementById('up_dbidAG').value = table
-																.row(this).data().dbid;
-																
-																document
-																.getElementById('UPAG').innerHTML = table
-																.row(this).data().groupname;
-																document
-																.getElementById('AGupdbid').value = table
-																.row(this).data().dbid;
-																document
-																.getElementById('AGdowdbid').value = table
-																.row(this).data().dbid;
-															
-																if(AGflag){
-																	showEditMemberAG(data,table.row(this).data());
-																}
-															});
-											$('#manageTableAG tbody').on('click','td',function() {
-
-												var text = $(this).text();	
-												//$("input[name='person0']")
-//													alert(text);
-												if (text && text != "") {
-//														alert("if");
-													AGflag = true;
-													//aa(data,table.row(this).data());
-												}else{
-													AGflag = false;
-													return;
-												}
-												
-															});
-											$("#AG0").show();
-											$("#AGul").show();
-											$("#AGLoading").hide();
-										}
-									});
-
-							$("#manageTableAG").css("width", "100%");
-							$("#manageTableAG_filter").prop("style", "float:right;");
-							$("#manageTableAG_wrapper > div:nth-child(1)").hide();
-
-							$("#manageTableAGSearch").keyup(function() {
-								var searchText = $("#manageTableAGSearch").val();
-
-								$("input[aria-controls='manageTableAG']").val(searchText);
-								$("input[aria-controls='manageTableAG']").trigger("keyup");
-							});
-
-						
-						}
-					}
-
-				});
-	};
 
 	function AG2() {
-// 		$("#manageTableAG tbody tr td,#banTableAG tbody tr td").on("click",
-// 				function() {
-// 					var text = $(this).text();
-// 					if (text && text != "") {
-// 						showEditMemberAG();
-// 					}
-// 				});
 		
 		$("#AG1All").click(function() {
 			   if($("#AG1All").prop("checked")) {
@@ -6351,46 +6327,13 @@ function AG_dow() {
 		$("button.manageAG").addClass("btn-primary");
 
 	}
-	//顯示 停用表格
-// 	function showBan_AG() {
-// 		closeAllHrContent();
 
-// 		$("#AGContent").show();
-// 		$("#banAGContent").show();
 
-// 		$("button.ban").removeClass("btn-success");
-// 		$("button.ban").addClass("btn-primary");
-
-// 	}
-	//
-	//新增畫面
-	function showAddMemberAG() {
-		document.getElementById('in_groupname').value="";
-		closeAllHrContent();
-		$("#AGContent").show();
-		$("#addMemberAGContent").show();
-
-		$("button.addMember").show();
-		$("button.addMember").removeClass("btn-success");
-		$("button.addMember").addClass("btn-primary");
-	}
-
-	//關閉新增畫面
-	function closeAddMemberAG() {
-		closeAllHrContent();
-		$("button.addMember").hide();
-
-		$("#AGContent").show();
-		$("#manageAGContent").show();
-
-		$("button.manage").removeClass("btn-success");
-		$("button.manage").addClass("btn-primary");
-	}
 
 	//新增功能
 	function sendAddMemberAG() {
 		closeAddMember();
-		var dbid = document.getElementById("menu").value
+		var dbid = document.getElementById("up_dbidam").value
 		var in_groupname = document.getElementById('in_groupname').value;
 // 		var in_sort = document.getElementById('in_sort').value;
 
@@ -6415,31 +6358,11 @@ function AG_dow() {
 					}
 
 				});
-		closeAllHrContent();
-		$("#AGContent").show();
-		$("#manageAGContent").show();
+		showEditMemberAM();
 	}
 
-	//更新頁面
-	function showEditMemberAG() {
-		closeAllHrContent();
-		$("#AGContent").show();
-		$("#editMemberAGContent").show();
-
-		$("button.editMember").show();
-		$("button.editMember").removeClass("btn-success");
-		$("button.editMember").addClass("btn-primary");
-	}
 	//更新頁面關閉
-	function closeEditMemberAG() {
-		closeAllHrContent();
-		$("button.editMember").hide();
-		$("#AGContent").show();
-		$("#manageAGContent").show();
-
-		$("button.manage").removeClass("btn-success");
-		$("button.manage").addClass("btn-primary");
-	}
+	
 
 	function sendEditMemberAG() {
 
@@ -6492,11 +6415,8 @@ function AG_dow() {
 			  
 			  var ActivityGroup_DBID_list = selected.join();
 			  
-// 		var flag = document.getElementById('Delete_flagAG').value;
-// 		var dbid = document.getElementById('Delete_idAG').value;
 	if(ActivityGroup_DBID_list.length){
 		
-	
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_ActivityGroup",
@@ -6532,9 +6452,7 @@ function AG_dow() {
 		      });
 			  
 			  var ActivityGroup_DBID_list = selected.join();
-			  
-// 		var flag = document.getElementById('Delete_flagAG').value;
-// 		var dbid = document.getElementById('Delete_idAG').value;
+
 if(ActivityGroup_DBID_list.length){
 		$
 				.ajax({
@@ -6565,19 +6483,6 @@ if(ActivityGroup_DBID_list.length){
 
 <!-- ===============================================ActivityData===============================================================  -->
 <script>
-	function showActivityData() {
-		$("button.editMember").hide();
-
-		closeAllHrContent();
-		$("#ADContent").show();
-		$("#manageADContent").show();
-
-		$("button.Agentreason").removeClass("btn-success");
-		$("button.Agentreason").addClass("btn-primary");
-		AD();
-		$("#manageTableAD tbody tr").empty();
-		$("#banTableAD tboby tr").empty();
-	}
 
 	function groupAD() {
 		
@@ -7012,11 +6917,6 @@ if(ActivityGroup_DBID_list.length){
 						$("#ADul").show();
 					}
 				});
-		
-		
-		
-		
-
 	}
 	function AD_up() {
 		 setTimeout(function(){   
@@ -7073,14 +6973,7 @@ if(ActivityGroup_DBID_list.length){
 		}, 10);
 	}
 	function AD2() {
-// 		$("#manageTableAD tbody tr td,#banTableAD tbody tr td").on("click",
-// 				function() {
-// 					var text = $(this).text();
-// 					if (text && text != "") {
-// 						showEditMemberAD();
-// 					}
-// 				});
-		
+
 		$("#AD0All").click(function() {
 			   if($("#AD0All").prop("checked")) {
 			     $("input[name='AD0']").each(function() {
@@ -7130,60 +7023,30 @@ if(ActivityGroup_DBID_list.length){
 
 	}
 	//
-	//新增畫面
-	function showAddMemberAD() {
-		
-		
-		
-		document.getElementById("in_codename").value="";
-		closeAllHrContent();
-		$("#ADContent").show();
-		$("#addMemberADContent").show();
-
-		$("button.addMember").show();
-		$("button.addMember").removeClass("btn-success");
-		$("button.addMember").addClass("btn-primary");
-	}
-
-	//關閉新增畫面
-	function closeAddMemberAD() {
-		closeAllHrContent();
-		$("button.addMember").hide();
-
-		$("#ADContent").show();
-		$("#manageADContent").show();
-
-		$("button.manage").removeClass("btn-success");
-		$("button.manage").addClass("btn-primary");
-	}
 
 	//新增功能
-	function sendAddMemberAD() {
+	function sendAddMemberAD2() {
 		closeAddMember();
-		var in_activitygroupsid = document.getElementById("menuAD").value;
-		var in_codename = document.getElementById("in_codename").value;
-		var in_color = document.getElementById("in_color").value;
-		var in_titleflag = document.getElementById("in_titleflag").value;
-		var in_titlegroup = document.getElementById("titleflagD").value;
+		var in_activitygroupsid = document.getElementById("up_dbidAG").value;
+		var in_codename2 = document.getElementById("in_codename2").value;
+		var in_color2 = document.getElementById("in_color2").value;
+		var in_titleflag = 0;
+		var in_titlegroup = document.getElementById("up_dbidAD").value;
 		
 		if(in_titleflag==1){
 			in_titlegroup=0;
 		}
-		
-		
-		//var in_deleteflag = document.getElementById("in_deleteflag").value;
-// 		var in_sort = document.getElementById("in_sort").value;
 
 		$
 				.ajax({
 					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_ActivityData",
 					data : {
 						activitygroupsid : in_activitygroupsid,
-						codename : in_codename,
-						color : in_color,
+						codename : in_codename2,
+						color : in_color2,
 						titleflag : in_titleflag,
-						titlegroup : in_titlegroup,
-						deleteflag : 0
+						deleteflag : 0,
+						titlegroup:in_titlegroup
 						
 
 					},
@@ -7200,31 +7063,49 @@ if(ActivityGroup_DBID_list.length){
 					}
 
 				});
-		closeAllHrContent();
-		$("#ADContent").show();
-		$("#manageADContent").show();
+		showEditMemberAD();
 	}
+	
+	//新增功能
+	function sendAddMemberAD() {
+		closeAddMember();
+		var in_activitygroupsid = document.getElementById("up_dbidAG").value;
+		var in_codename = document.getElementById("in_codename").value;
+		var in_color = document.getElementById("in_color").value;
+		var in_titleflag = 1;
+		
+		if(in_titleflag==1){
+			in_titlegroup=0;
+		}
 
-	//更新頁面
-	function showEditMemberAD() {
-		closeAllHrContent();
-		$("#ADContent").show();
-		$("#editMemberADContent").show();
+		$
+				.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_ActivityData",
+					data : {
+						activitygroupsid : in_activitygroupsid,
+						codename : in_codename,
+						color : in_color,
+						titleflag : in_titleflag,
+						deleteflag : 0
+					},
 
-		$("button.editMember").show();
-		$("button.editMember").removeClass("btn-success");
-		$("button.editMember").addClass("btn-primary");
+					type : "POST",
+					dataType : 'json',
+
+					error : function(e) {
+						toastr.error("新增錯誤");
+					},
+					success : function(data) {
+						toastr.success("新增成功");
+					}
+
+				});
+		showEditMemberAG();
 	}
-	//更新頁面關閉
-	function closeEditMemberAD() {
-		closeAllHrContent();
-		$("button.editMember").hide();
-		$("#ADContent").show();
-		$("#manageADContent").show();
+	
 
-		$("button.manage").removeClass("btn-success");
-		$("button.manage").addClass("btn-primary");
-	}
+
+
 
 	function sendEditMemberAD() {
 

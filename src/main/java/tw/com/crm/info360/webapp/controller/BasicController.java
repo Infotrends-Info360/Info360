@@ -158,6 +158,35 @@ public class BasicController {
 
 		return "info360/setting";
 	}
+	
+	/**
+	 * 「設定」測試頁面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "testsetting")
+	public String showTestSetting(Model model) {
+		// 取得設定參數
+		getProperties();
+
+		String IMWebSocket_protocol = properties.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
+
+		String Info360_Setting_protocol = properties.getProperty("Info360_Setting.protocol");
+		String Info360_Setting_hostname = properties.getProperty("Info360_Setting.hostname");
+		String Info360_Setting_port = properties.getProperty("Info360_Setting.port");
+
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
+
+		model.addAttribute("Info360_Setting_protocol", Info360_Setting_protocol);
+		model.addAttribute("Info360_Setting_hostname", Info360_Setting_hostname);
+		model.addAttribute("Info360_Setting_port", Info360_Setting_port);
+
+		return "info360/testsetting";
+	}
 
 	/**
 	 * 「忘記密碼」頁面
