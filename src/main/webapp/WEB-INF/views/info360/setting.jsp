@@ -1469,8 +1469,9 @@ function Drop(event){
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendEditMemberAM()">更新</button>
 									<button class="btn btn-default" onclick="closeEditMemberAM()">取消</button>
+								
 								</div>
-							</div>
+							</div> 
 					</div>		
 							
 							
