@@ -86,7 +86,7 @@
 
 										</select>
 
-										<button class="btn-success" onclick="showCaseInfo()">註記</button>
+										<button class="btn-success" onclick="queryActivityMenu()">註記</button>
 									</div>
 								</div>
 							</div>
@@ -407,10 +407,11 @@
 <script>
 	var agentId = parent.UserID_g;
 	var userData;
+	var isLeaveRoom = false; // 判斷是否已結束通話 
+	var currentContactId; // 目前使用的contactId
 
 	$(document).ready(function() {
 		// 案件資訊處理人
-		console.log(parent.UserName_g);
 		$("#caseUserName").val(parent.UserName_g);
 
 		// 載入常用連結
@@ -484,6 +485,8 @@
 				// 因客戶資料不一定會傳入，因此需先判斷是否有內容
 				if (userData.CustomerData) {
 					var customerData = userData.CustomerData;
+					var contactId = userData.SetContactLog[0].contactID;
+					currentContactId = contactId;
 
 					// 當客戶資料存在時，預先將第一筆資料顯示於左側
 					for ( var key in customerData[0]) {
@@ -546,6 +549,7 @@
 				"count");
 		var customerData = userData.CustomerData;
 		var contactId = userData.SetContactLog[count].contactID;
+		currentContactId = contactId;
 
 		for ( var key in customerData[count]) {
 			var id = key;
@@ -724,9 +728,7 @@
 		$("#caseInfoButton").show();
 		$("#caseInfo").show();
 
-		// 搜尋案件資訊選單
-		var level1DbId = $("#caseSelection option:selected").val();
-		Query_ActivityMenu(1, level1DbId);
+		checkFinishButton();
 	}
 
 	function showLink(linkIndex) {
@@ -934,6 +936,19 @@
 	/** 
 	 * 案件資訊專區
 	 */
+
+	function queryActivityMenu() {
+		// 搜尋案件資訊選單
+		var level1DbId = $("#caseSelection option:selected").val();
+		Query_ActivityMenu(1, level1DbId);
+
+		// 重整已勾選資料
+		$("#selectActivityData").html("");
+
+		// 切換至案件資訊頁
+		showCaseInfo();
+	}
+
 	function Query_ActivityMenu(level, dbId) {
 		$
 				.ajax({
@@ -992,7 +1007,6 @@
 
 									$ul.append($li);
 
-									//console.log($("#caseInfo" + index));
 									if (0 == $("#caseInfo" + index).length) {
 										var caseInfoDiv = '<div class="tab-pane" id="caseInfo' + index + '"><div style="height: 600px; overflow-y: scroll;"></div></div>'
 
@@ -1027,7 +1041,7 @@
 					success : function(data) {
 						var targetTable = $("#caseInfo" + tabIndex + " > div");
 						targetTable.html("");
-						console.log(data);
+						//console.log(data);
 						// 重新將acitivitydata與flag組成巢狀結構
 						var titleList = [];
 
@@ -1054,8 +1068,6 @@
 							}
 						}
 
-						console.log("titleList");
-						console.log(titleList);
 						// 根據巢狀結構建立對應的表格
 						for ( var index in titleList) {
 							var $table = '<table class="table table-striped table-bordered table-hover" style="width:100%">';
@@ -1070,7 +1082,7 @@
 							var $tbody = '<tr>';
 
 							for ( var key in dataList) {
-								$tbody += '<td sytle="width:20%">';
+								$tbody += '<td style="width:20%">';
 								$tbody += '<input class="activityLog" type="checkbox" value="'
 										+ dataList[key].codename
 										+ '" dbid ="'
@@ -1078,8 +1090,14 @@
 										+ '" onclick="getCheckedData();">';
 								$tbody += dataList[key].codename + '</td>';
 
-								if (dataCount % 5 == 4
-										|| key == dataList.length - 1) {
+								if (dataCount % 5 == 4) {
+									$tbody += "</tr>";
+								} else if (key == dataList.length - 1) {
+									var restTd = 4 - (dataCount % 5);
+
+									for (i = 0; i < restTd; i++) {
+										$tbody += '<td></td>';
+									}
 									$tbody += "</tr>";
 								}
 
@@ -1117,12 +1135,21 @@
 
 							$("#selectActivityData").append(activitydata);
 						});
+
+		checkFinishButton();
 	}
 
 	function unckeckItem(dbid) {
 		$(".selectData[dbid=" + dbid + "]").remove();
 		$(".activityLog[dbid=" + dbid + "]").prop("checked", false);
+
+		checkFinishButton();
 	}
+
+	// 備註輸入時判斷
+	$("#theComment").keyup(function() {
+		checkFinishButton();
+	});
 
 	// 將「案件資訊」選取結果與備註欄發送至Server
 	function insertRptActivityLog() {
@@ -1171,13 +1198,29 @@
 
 	// 通話結束，自動點選案件資訊，根據設定決定是否選取第一層清單
 	function showCaseInfoTab() {
+		isLeaveRoom = true;
+		var caseInfoButton = $("#caseInfoButton").css("display");
+
+		// 自動點選案件資訊左側Tab，並且切換右方功能頁至案件資訊
 		$("#caseInfoTab").trigger("click");
+		showCaseInfo();
 
-		// 新增掛線後才可使用服務完成 20170324 Billy
-		$("#finishButton").prop("disabled", false);
+		if (parent.autoSelectCaseInfo && "none" == caseInfoButton) {
+			queryActivityMenu();
+		}
+	}
 
-		if (parent.autoSelectCaseInfo) {
-			showCaseInfo();
+	// 新增服務完成按鈕驗證機制 20170329 Billy
+	function checkFinishButton() {
+		var selectedActivityData = $("#selectActivityData").html().trim();
+		var theComment = $("#theComment").val().trim();
+
+		if (isLeaveRoom && selectedActivityData.length != 0
+				&& theComment.length != 0) {
+			// 新增掛線後才可使用服務完成 20170324 Billy
+			$("#finishButton").prop("disabled", false);
+		} else {
+			$("#finishButton").prop("disabled", true);
 		}
 	}
 
@@ -1212,6 +1255,7 @@
 		var id = $("#inputAgentId").val();
 
 		console.log("start : " + start + "; end : " + end + "; id :" + id);
+		console.log("currentContactId : " + currentContactId);
 
 		$('#queryTable').DataTable().destroy();
 		$('#queryTable tbody').html("");
@@ -1222,7 +1266,8 @@
 					data : {
 						startdate : start,
 						enddate : end,
-						agentid : id
+						agentid : id,
+						contactid : currentContactId
 					},
 					type : "POST",
 					dataType : 'json',
@@ -1232,7 +1277,6 @@
 
 					},
 					success : function(data) {
-						console.log(data);
 						var queryData = data.data;
 
 						for ( var index in queryData) {
@@ -1341,8 +1385,6 @@
 
 					},
 					success : function(data) {
-						console.log(data);
-
 						generateDetailData(data);
 						showHistoryDetail(date);
 					}
