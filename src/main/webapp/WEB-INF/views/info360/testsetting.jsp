@@ -1309,9 +1309,9 @@ function Drop(event){
 												id="AM0All" ischecked=false ></th>
 												
 											<th style="display: none;" >編號</th>
-											<th>清單名稱</th>
-											<th style="width:140px"> 建立時間</th>
-											<th style="width: 50px">排序</th>
+											<th >清單名稱</th>
+											<th style="width:170px"> 建立時間</th>
+											<th style="width: 60px">排序</th>
 										</tr>
 									</thead>
 									
@@ -1435,13 +1435,13 @@ function Drop(event){
 							
 							<div class="form-group col-sm-12">
 							<div id="AGul">
-							<ul class="pagination" style="margin: 0px">
+							<ul class="pagination" >
 								<li onclick="showAddMemberAG()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
 								<li onclick="unlockAccountAG()"><a href="#"><i
 										class="glyphicon glyphicon-trash"></i></a></li>
 							</ul>
-							<ul class="pagination" style="float: right;margin: 0px">
+							<ul class="pagination" style="float: right;">
 								<li><input type="text" id="manageTableAGSearch"
 									placeholder="搜索"
 									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
@@ -1458,8 +1458,8 @@ function Drop(event){
 												id="AG0All" ischecked=false></th>
 											<th style="display: none;">編號</th>
 											<th>群組名稱</th>
-											<th style="width: 140px">建立時間</th>
-											<th style="width: 50px">排序</th>
+											<th style="width:170px">建立時間</th>
+											<th style="width: 60px">排序</th>
 										</tr>
 									</thead>
 								</table>
@@ -1484,13 +1484,13 @@ function Drop(event){
 							
 					<div class="form-group col-sm-12">
 							<div id="ADul">
-							<ul class="pagination" style="margin: 0px">
+							<ul class="pagination">
 								<li onclick="showAddMemberAD()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
 								<li onclick="unlockAccountAD()"><a href="#"><i
 										class="glyphicon glyphicon-trash"></i></a></li>
 							</ul>
-							<ul class="pagination" style="float: right;margin: 0px">
+							<ul class="pagination" style="float: right;">
 								<li><input type="text" id="manageTableADSearch"
 									placeholder="搜索"
 									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
@@ -1507,10 +1507,10 @@ function Drop(event){
 												id="AD0All" ischecked=false></th>
 											<th style="display: none;">編號</th>
 											<th>名稱</th>
-											<th>顏色</th>
-											<th>類型</th>
-											<th style="width:140px">建立時間</th>
-											<th style="width:50px">排序</th>
+											<th style="width:100px">顏色</th>
+											<th style="width:50px">類型</th>
+											<th style="width:170px">建立時間</th>
+											<th style="width:60px">排序</th>
 										</tr>
 									</thead>
 								</table>
@@ -1566,10 +1566,9 @@ function Drop(event){
 												id="AD0All" ischecked=false></th>
 											<th style="display: none;">編號</th>
 											<th>名稱</th>
-											<th>顏色</th>
-
-											<th style="width:140px">建立時間</th>
-											<th style="width:50px">排序</th>
+											<th style="width:100px">顏色</th>
+											<th style="width:170px">建立時間</th>
+											<th style="width:60px">排序</th>
 										</tr>
 									</thead>
 								</table>
