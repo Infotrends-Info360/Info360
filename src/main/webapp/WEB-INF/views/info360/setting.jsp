@@ -4254,18 +4254,18 @@ var tabledata;
 		selectcomm();
 	}
 	
-// 	function showCommonlink2() {
-// 		$("button.editMember").hide();
-// 		closeAllHrContent();
-// 		$("#CommonlinkContent").show();
+	function showCommonlink2() {
+		$("button.editMember").hide();
+		closeAllHrContent();
+		$("#CommonlinkContent").show();
 
-// 		$("#0Commonlink").show();
-// 		$("#comm").show();
+		$("#0Commonlink").show();
+		$("#comm").show();
 
-// 		$("button.Commonlink").removeClass("btn-success");
-// 		$("button.Commonlink").addClass("btn-primary");
+		$("button.Commonlink").removeClass("btn-success");
+		$("button.Commonlink").addClass("btn-primary");
 		
-// 	}
+	}
 
 	function selectcomm() {
 
@@ -4382,16 +4382,11 @@ var tabledata;
 // 									console.log("children_d.length",
 // 											data.node.children_d.length);
 									cot = data.node.parents.length;
-// 									console.log("parents.length",
-// 											data.node.parents.length);
+
 									Upcot = data.node.children_d.length;
 									
 									abc= data.node.a_attr.href
-									
-// 									console.log("type", data.node.type);
-// 									console.log("id", data.node.id);
-// 									console.log("text", data.node.text);
-								
+
 									document.getElementById('nodeNAMEu').value = data.node.text;
 									document.getElementById('nodeURLu').value = data.node.a_attr.href;
 									
@@ -4424,6 +4419,10 @@ var tabledata;
 										Uinsertornot = true;
 										//		alert("Update");
 									}
+									$('#tree').show();
+									$('#comm').hide();
+									$('#commTB').show();
+									$('#commonlinkul').show();
 
 								});
 // 						var oo1 = "<option value="+0+">#</option>";
@@ -4485,8 +4484,7 @@ var tabledata;
 	function showAddMembercomm() {
 		document.getElementById('nodeNAME').value=""
 		document.getElementById('nodeURL').value=""
-		
-		
+
 		var nodeid =  document.getElementById('nodeUSER').value
 	
 		closeAllHrContent();
@@ -4921,12 +4919,8 @@ var tabledata;
 						$('#manageAgentreasonTable tbody').on('click','td',function() {
 
 							var text = $(this).text();	
-							//$("input[name='person0']")
-//								alert(text);
 							if (text && text != "") {
-//									alert("if");
 								ARflag = true;
-								//aa(data,table.row(this).data());
 							}else{
 								ARflag = false;
 								return;
