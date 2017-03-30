@@ -21,7 +21,7 @@
 </head>
 
 <body class="full-height-layout gray-bg" style="overflow-x: hidden">
-	<!--右侧部分开始-->
+	<!--右侧部分開始-->
 	<div id="page-wrapper" class="gray-bg dashbard-1">
 		<!--<div class="border-bottom">-->
 
@@ -234,7 +234,7 @@
 					<h3 class="modal-title">登入失敗</h3>
 				</div>
 				<div class="modal-body">
-					<h3>帳號或密碼錯誤，請點選確定重新登入</h3>
+					<h3 id="loginFailedMessage">帳號或密碼錯誤，請點選確定重新登入</h3>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-success" data-dismiss="modal"
@@ -256,7 +256,8 @@
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" id="closeWaitingDialogButton">&times;</button>
+					<button type="button" class="close" data-dismiss="modal"
+						id="closeWaitingDialogButton">&times;</button>
 					<h3 class="modal-title text-center">註冊中請稍候</h3>
 				</div>
 				<div class="modal-body">
@@ -342,7 +343,7 @@
 
 		// 20170223 Lin
 		var notreadyreason_dbid_g = 0; //not ready Reason - 於皆換成NOTREADY狀態時傳入StatusEnum.updateState()方法中
-
+		var webSocketTimeout = 5000; // ws連線超時設定值
 		var StatusEnum = {
 			LOGIN : {
 				statusname : 'LOGIN',
@@ -506,7 +507,7 @@
 			var Info360_Setting_port = "${Info360_Setting_port}" || "8080";
 
 			$("#waitingDialogButton").trigger("click");
-			
+
 			$.ajax({
 				url : Info360_Setting_protocol + "//"
 						+ Info360_Setting_hostname + ":" + Info360_Setting_port
@@ -542,7 +543,7 @@
 						$('#loginDialog').on('hidden.bs.modal', function() {
 							window.location.href = 'console';
 						})
-						
+
 						$("#loginDialogButton").trigger("click");
 					} else {
 						// 驗證通過
@@ -585,9 +586,20 @@
 			var port = "${websocket_port}" || "8888";
 			ws = new WebSocket(protocol + '//' + hostname + ':' + port);
 
+			var wsTimeout = setTimeout(function() {
+				$("#loginFailedMessage").html("Web Socket連線失敗，請重新登入。");
+				
+				$('#loginDialog').on('hidden.bs.modal', function() {
+					window.location.href = 'console';
+				})
+
+				$("#loginDialogButton").trigger("click");
+			}, webSocketTimeout);
+
 			ws.onopen = function() {
 				console.log('websocket 打開成功');
-
+				clearTimeout(wsTimeout);
+				
 				// Step-2 連線後登入
 				doLogin();
 			};
@@ -1180,7 +1192,8 @@
 			// 發送消息給layim
 			layim.getMessage(obj);
 
-			$("#layim-group" + roomId).trigger("click");
+			// 取消自動點選新訊息視窗功能
+			//$("#layim-group" + roomId).trigger("click");
 		}
 
 		// 傳送群組訊息至layim視窗上
@@ -1300,7 +1313,16 @@
 				}
 			}
 
-			$("#layim-group" + roomId).trigger("click");
+			if ("" != roomId) {
+				$("#layim-group" + roomId).trigger("click");
+			}
+
+			if (6 == order) {
+				$('a[data-id="/info360/query"]').children().show();
+			} else if (7 == order) {
+				console.log(order + " is selected");
+				$('a[data-id="/info360/setting"]').children().show();
+			}
 		}
 
 		function showCloseDialog() {
@@ -1429,7 +1451,9 @@
 								var type = res.data.type;
 								console.log(res);
 								RoomID_g = res.data.id;
-
+								
+								// 新增layim 訊息切換背景顏色控制，參照layim.js內 "chatChange-color"
+								$(".layim-chatlist-group" + RoomID_g).removeClass('layui-anim-blue'); 
 								chatList
 										.forEach(function(entry) {
 											if (res.data.id == entry.id) {

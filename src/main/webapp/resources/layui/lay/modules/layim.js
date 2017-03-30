@@ -1062,6 +1062,10 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     var thatChat = thisChat();
     if(thatChat.data.type + thatChat.data.id !== data.type + data.id){
       elem.addClass('layui-anim layer-anim-06');
+      
+      /* Billy add chatChange-color*/
+      elem.addClass('layui-anim-blue');
+      
       setTimeout(function(){
         elem.removeClass('layui-anim layer-anim-06')
       }, 300);

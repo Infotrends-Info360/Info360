@@ -1,6 +1,6 @@
 /*
  *
- *   H+ - ��銝駁�I獢
+ *   H+ - 嚙踝蕭�����蕭謋���斯
  *   version 4.0
  *
 */
@@ -7213,7 +7213,7 @@ body.rtls.top-navigation .footer.fixed {
 
 /*
  *
- *   SKIN 1 - H+ - ��銝駁�I獢
+ *   SKIN 1 - H+ - 嚙踝蕭�����蕭謋���斯
  *   NAME - Blue light
  *
 */
@@ -7362,7 +7362,7 @@ body.skin-1 {
 
 /*
  *
- *   SKIN 3 - H+ - ��銝駁�I獢
+ *   SKIN 3 - H+ - 嚙踝蕭�����蕭謋���斯
  *   NAME - Yellow/purple
  *
 */
@@ -7896,4 +7896,12 @@ body{
    /*min-width:600px; /* suppose you want minimun width of 1000px */
    /*width: auto !important;  /* Firefox will set width as auto */
    /*width:600px;             /* As IE ignores !important it will set width as 1000px; */
+}
+
+.layui-layim-chat>.layui-layer-setwin>a.layui-layer-close1 {
+	display: none; /* 控制 Layim Chat 對話框的關閉按鈕*/
+}
+
+.layui-anim-blue {
+	background-color: skyblue; /* 控制 Layim Chat 非目前對話框新訊息背景顏色控制*/
 }
