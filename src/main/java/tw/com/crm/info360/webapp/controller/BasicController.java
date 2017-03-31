@@ -129,6 +129,28 @@ public class BasicController {
 
 		return "info360/query";
 	}
+	
+	/**
+	 * 「案件搜尋」測試頁面
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "testquery")
+	public String showtestQuery(Model model) {
+		// 取得設定參數
+		getProperties();
+
+		String IMWebSocket_protocol = properties.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
+
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
+
+		return "info360/testquery";
+	}
 
 	/**
 	 * 「設定」頁面
