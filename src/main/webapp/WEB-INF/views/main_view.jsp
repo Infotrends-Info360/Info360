@@ -858,7 +858,7 @@
 						console.log("ringTimeout");
 
 						// 20170314_sam
-						// 將請求畫面去掉
+// 						// 將請求畫面去掉
 						if ($('#inviteDialog').hasClass("in")) {
 							$("#inviteCloseButton").trigger("click");
 						}
@@ -883,7 +883,7 @@
 						// 						}
 					}
 					//20170223 Lin
-
+	
 					if ("removeUserinroom" == obj.Event) {
 						var fromUserID = obj.fromUserID;
 						var roomID = obj.roomID
@@ -921,6 +921,9 @@
 						// 						}
 						// end of 20170313_sam
 
+					}
+					else if ("clientServerd" == obj.Event){
+						alert("obj.text: " + obj.text);
 					}
 				} else if ("{" != e.data.substring(0, 1)) {
 					console.log(e);
