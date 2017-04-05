@@ -103,6 +103,7 @@
 						<div class="col-lg-3 col-md-3">
 							<div class="input-group">
 								<span class="input-group-addon">處理人</span> 
+								<input type="hidden" value="" id="contactid">
 								<select  id="allperson" style="height:30px">
 								
 								</select>
@@ -317,7 +318,7 @@
 		var start = $('#datepicker [name="start"]').val();
 		var end = $('#datepicker [name="end"]').val();
 		var id = $("#allperson").val();
-
+		var contactid = $("#contactid").val();
 		console.log("start : " + start + "; end : " + end + "; id :" + id);
 
 		$('#queryTable').DataTable().destroy();
@@ -329,7 +330,8 @@
 					data : {
 						startdate : start,
 						enddate : end,
-						agentid : id
+						agentid : id,
+						contactid:contactid
 					},
 					type : "POST",
 					dataType : 'json',
@@ -699,15 +701,13 @@
 		});
 	}
 	function creatjson(){
-// 		alert("JSON");
 		var MappingValue = $('#mapping_div input');
 		var arr = $.makeArray(MappingValue);
-		var text = '{ "inputperson" : [{' ;
+		var text = '{' ;
 		for(var i=0;i<arr.length;i++){
 		var value = arr[i].value;
 		var name = arr[i].id;
 
-// 		alert(name);
 		if(arr.length==i+1){
 			
 			text +=  '"'+name+'"'+':'+'"'+value+'"'; 
@@ -719,9 +719,31 @@
 		
 		
 		}
-		text += '}]}';
-	alert(text);
+		text += '}';
+// 	alert(text);
+	console.log("text",text);
+	
+	$.ajax({
+		url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_contactdata",
+		data : {
+			contactid :0,
+			inputcontactdata:text
+		},
+		type : "POST",
+		dataType : 'json',
+
+		error : function(e) {
+			toastr.error("請重新整理");
+		},
+		success : function(data) {
+			console.log("contactid",data);
+		}
+	});
+	
 	}
+	
+
+	
 </script>
 
 </html>
