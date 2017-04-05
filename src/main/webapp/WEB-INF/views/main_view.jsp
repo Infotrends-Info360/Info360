@@ -505,13 +505,14 @@
 			var Info360_Setting_hostname = "${Info360_Setting_hostname}"
 					|| "ws.crm.com.tw";
 			var Info360_Setting_port = "${Info360_Setting_port}" || "8080";
-
+			
 			$("#waitingDialogButton").trigger("click");
 
 			$.ajax({
-				url : Info360_Setting_protocol + "//"
+				url :   Info360_Setting_protocol + "//"
 						+ Info360_Setting_hostname + ":" + Info360_Setting_port
-						+ "/Info360_Setting/RESTful/Login",
+						+ "/Info360_Setting/RESTful/Login",		
+						
 				data : {
 					account : userName,
 					password : password
@@ -922,9 +923,11 @@
 						// end of 20170313_sam
 
 					}
-					else if ("clientServerd" == obj.Event){
+					
+					// 20170331_sam
+					if ("clientServerd" == obj.Event){
 						alert("obj.text: " + obj.text);
-					}
+					}// end of 20170331_sam
 				} else if ("{" != e.data.substring(0, 1)) {
 					console.log(e);
 
