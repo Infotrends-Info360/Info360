@@ -2385,7 +2385,7 @@ function person_groupmenu(){
 	$("#Box3").empty();
 	$("#Box4").empty();
 $.ajax({
-	url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Group_STATE",
+	url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Group_STATE",
 	data : {
 		state : 0
 	},
@@ -2430,7 +2430,7 @@ var tabledata;
 		$("#person1Table tboby tr").empty();
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Person_STATE",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Person_STATE",
 					data : {
 						state : 0
 					},
@@ -2594,7 +2594,7 @@ var tabledata;
 
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Person_STATE",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Person_STATE",
 					data : {
 						state : 1
 					},
@@ -2925,7 +2925,7 @@ var tabledata;
 
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Insert_PersonInfo",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_PersonInfo",
 					data : {
 						first_name : in_first_name,
 						last_name : in_last_name,
@@ -3131,7 +3131,7 @@ var tabledata;
 			 
 			$
 				.ajax({
-				url : '${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Update_PersonInfo',
+				url : '${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Update_PersonInfo',
 				data : {
 					max_count :up_updateMaxcount,
 					first_name : up_first_name,
@@ -3180,7 +3180,7 @@ var tabledata;
 		 
 		$
 			.ajax({
-			url : '${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Update_PersonInfo',
+			url : '${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Update_PersonInfo',
 			data : {
 				max_count :up_updateMaxcount,
 				first_name : up_first_name,
@@ -3437,7 +3437,7 @@ var tabledata;
         if(personDBID_list.length!=0){
 		$
 	 			.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Person_logicdelete",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Person_logicdelete",
 					data : {
 						state : state,
 						personDBID_list : personDBID_list
@@ -3476,7 +3476,7 @@ var tabledata;
         	
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Person_logicdelete",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Person_logicdelete",
 					data : {
 
 						state : 1,
@@ -3516,7 +3516,7 @@ var tabledata;
 		 
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Person_logicdelete",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Person_logicdelete",
 					data : {
 						state : 0,
 						personDBID_list : dbid
@@ -3556,7 +3556,7 @@ var tabledata;
 		
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Delete_PersonInfo",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Delete_PersonInfo",
 					data : {
 						
 						personDBID_list : dbid
@@ -3642,7 +3642,7 @@ var tabledata;
 		
 // 		$
 // 		.ajax({
-// 			url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Person_STATE",
+// 			url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Person_STATE",
 // 			data : {
 // 				dbid : 0
 // 			},
@@ -3691,7 +3691,7 @@ var tabledata;
 		$("#bangroupTable tboby tr").empty();
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Group_STATE",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Group_STATE",
 					data : {
 						state : 0
 					},
@@ -3848,7 +3848,7 @@ var tabledata;
 		document.getElementById('in_name').value=""
 			$
 			.ajax({
-				url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Group_STATE",
+				url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Group_STATE",
 				data : {
 					state : 0
 				},
@@ -3915,7 +3915,7 @@ var tabledata;
 		}
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Insert_GroupInfo",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_GroupInfo",
 					data : {
 						state : 0,
 						name : in_name,
@@ -4096,7 +4096,7 @@ var tabledata;
 		
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Update_GroupInfo",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Update_GroupInfo",
 					data : {
 						state : 0,
 						name:up_name,
@@ -4170,7 +4170,7 @@ var tabledata;
 		  if(groupDBID_list.length!=0){
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Delete_GroupInfo",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Delete_GroupInfo",
 					data : {
 						groupDBID_list : groupDBID_list
 					},
