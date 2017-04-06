@@ -104,6 +104,7 @@
 							<div class="input-group">
 								<span class="input-group-addon">處理人</span> 
 								<input type="hidden" value="" id="contactid">
+								<input type="hidden" value="" id="json">
 								<select  id="allperson" style="height:30px">
 								
 								</select>
@@ -284,6 +285,7 @@
 <script src="resources/js/plugins/toastr/toastr.min.js"></script>
 
 <script type="text/javascript">
+	var jj=false;
 	var agentId = parent.UserID_g;
 
 	$(document).ready(function() {
@@ -311,6 +313,30 @@
 	// 案件搜尋
 	function search() {
 
+	if(jj==true){
+		var MappingValue = $('#mapping_div input');
+		var arr = $.makeArray(MappingValue);
+		var text = '{' ;
+		
+		for(var i=0;i<arr.length;i++){
+		var value = arr[i].value;
+		var name = arr[i].id;
+
+			if(arr.length==i+1){
+		
+				text +=  '"'+name+'"'+':'+'"'+value+'"'; 
+			}else{
+				text +=  '"'+name+'"'+':'+'"'+value+'"'+',';
+			}
+			text += '}';
+		
+			}
+// 		alert(text);
+		
+		document.getElementById('json').value = text;
+
+	}
+
 		document.getElementById('searchButton').disabled=true;
 		$('#queryTableLoading').show();
 		$('#queryTable').hide();
@@ -318,8 +344,10 @@
 		var start = $('#datepicker [name="start"]').val();
 		var end = $('#datepicker [name="end"]').val();
 		var id = $("#allperson").val();
-		var contactid = $("#contactid").val();
-		console.log("start : " + start + "; end : " + end + "; id :" + id);
+		var inputcontactdata = document.getElementById('json').value;
+
+		
+		console.log("start : " + start + "; end : " + end + "; id :" + id );
 
 		$('#queryTable').DataTable().destroy();
 		$('#queryTable tbody').html("");
@@ -331,7 +359,7 @@
 						startdate : start,
 						enddate : end,
 						agentid : id,
-						contactid:contactid
+						inputcontactdata:inputcontactdata
 					},
 					type : "POST",
 					dataType : 'json',
@@ -402,7 +430,7 @@
 						$('#queryTableLoading').hide();
 					}
 				});
-		creatjson();
+		
 
 	}
 
@@ -673,6 +701,7 @@
 				for (var i = 0; i < data.mapping.length; i++) {
 					var mapping = "<div class='col-lg-4 col-md-4'><div class='input-group'><span class='input-group-addon'>"+data.mapping[i].chiname+"</span> <input type='text' name='mappingval' class='form-control' placeholder="+data.mapping[i].chiname+" id="+data.mapping[i].engname+"></div></div>"
 					document.getElementById("mapping_div").insertAdjacentHTML("BeforeEnd", mapping);
+				jj = true;
 				}
 				
 			}
@@ -700,49 +729,63 @@
 			}
 		});
 	}
-	function creatjson(){
-		var MappingValue = $('#mapping_div input');
-		var arr = $.makeArray(MappingValue);
-		var text = '{' ;
-		for(var i=0;i<arr.length;i++){
-		var value = arr[i].value;
-		var name = arr[i].id;
-
-		if(arr.length==i+1){
+// 	function creatjson(){
+// 			document.getElementById('json').value="";
+// 			document.getElementById('contactid').value="";
+		
+// 		var jj = false;
+// 		var MappingValue = $('#mapping_div input');
+// 		var arr = $.makeArray(MappingValue);
+// 		var text = '{' ;
+		
+// 		for(var i=0;i<arr.length;i++){
+// 		var value = arr[i].value;
+// 		var name = arr[i].id;
+		
+		
+// 			if(arr.length==i+1){
+		
+// 				text +=  '"'+name+'"'+':'+'"'+value+'"'; 
+// 				if(value!=""){
+// 					jj = true;				
+// 				}
+// 			}else{
+// 				text +=  '"'+name+'"'+':'+'"'+value+'"'+',';
+// 				if(value!=""){
+// 					jj = true;	
+// 				}
+// 			}
+// 			text += '}';
+		
+// 			}
+		
+// //	 	alert(text);
+// 		if(jj==true){
+// 			console.log("text",text);
+// 			document.getElementById('json').value=text;
 			
-			text +=  '"'+name+'"'+':'+'"'+value+'"'; 
 
-		}else{
-			text +=  '"'+name+'"'+':'+'"'+value+'"'+','; 
+// 			var text = document.getElementById('json').value
+// 			$.ajax({
+// 				url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_contactdata",
+// 				data : {
+// 					contactid :0,
+// 					inputcontactdata:text
+// 				},
+// 				type : "POST",
+// 				dataType : 'json',
 
-		}
+// 				error : function(e) {
+// 					toastr.error("請確認輸入值");
+// 				},
+// 				success : function(data) {
+// 					console.log("contactid",data);
+// 					document.getElementById('contactid').value=data.contactid[0].contactid;
+// 				}
+// 			});
+// 		}
 		
-		
-		}
-		text += '}';
-// 	alert(text);
-	console.log("text",text);
-	
-	$.ajax({
-		url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_contactdata",
-		data : {
-			contactid :0,
-			inputcontactdata:text
-		},
-		type : "POST",
-		dataType : 'json',
-
-		error : function(e) {
-			toastr.error("請重新整理");
-		},
-		success : function(data) {
-			console.log("contactid",data);
-		}
-	});
-	
-	}
-	
-
+// 	}
 	
 </script>
 
