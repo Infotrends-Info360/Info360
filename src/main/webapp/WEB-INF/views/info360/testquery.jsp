@@ -312,8 +312,10 @@
 
 	// 案件搜尋
 	function search() {
+		var MappingValue = $('#mapping_div input');
+		var arr = $.makeArray(MappingValue);
+		if(arr.length>0){
 
-	if(jj==true){
 		var MappingValue = $('#mapping_div input');
 		var arr = $.makeArray(MappingValue);
 		var text = '{' ;
@@ -328,14 +330,14 @@
 			}else{
 				text +=  '"'+name+'"'+':'+'"'+value+'"'+',';
 			}
-			text += '}';
-		
+			
 			}
-// 		alert(text);
+		text += '}';
+		alert(text);
 		
 		document.getElementById('json').value = text;
-
-	}
+		}
+	
 
 		document.getElementById('searchButton').disabled=true;
 		$('#queryTableLoading').show();
@@ -701,9 +703,8 @@
 				for (var i = 0; i < data.mapping.length; i++) {
 					var mapping = "<div class='col-lg-4 col-md-4'><div class='input-group'><span class='input-group-addon'>"+data.mapping[i].chiname+"</span> <input type='text' name='mappingval' class='form-control' placeholder="+data.mapping[i].chiname+" id="+data.mapping[i].engname+"></div></div>"
 					document.getElementById("mapping_div").insertAdjacentHTML("BeforeEnd", mapping);
-				jj = true;
+			
 				}
-				
 			}
 		});
 	}
