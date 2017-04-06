@@ -509,9 +509,7 @@
 			$("#waitingDialogButton").trigger("click");
 
 			$.ajax({
-				url :   Info360_Setting_protocol + "//"
-						+ Info360_Setting_hostname + ":" + Info360_Setting_port
-						+ "/Info360_Setting/RESTful/Login",		
+				url :   "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Login",
 						
 				data : {
 					account : userName,
