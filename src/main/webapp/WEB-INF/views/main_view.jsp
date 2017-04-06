@@ -500,12 +500,6 @@
 
 		// 帳號密碼驗證
 		function loginValidate() {
-			var Info360_Setting_protocol = "${Info360_Setting_protocol}"
-					|| "http:";
-			var Info360_Setting_hostname = "${Info360_Setting_hostname}"
-					|| "ws.crm.com.tw";
-			var Info360_Setting_port = "${Info360_Setting_port}" || "8080";
-			
 			$("#waitingDialogButton").trigger("click");
 
 			$.ajax({
