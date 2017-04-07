@@ -7902,6 +7902,6 @@ body{
 	display: none; /* 控制 Layim Chat 對話框的關閉按鈕*/
 }
 
-.layui-anim-blue {
-	background-color: skyblue; /* 控制 Layim Chat 非目前對話框新訊息背景顏色控制*/
+.layui-anim-incoming-chat {
+	background-color: #FF8888; /* 控制 Layim Chat 非目前對話框新訊息背景顏色控制*/
 }

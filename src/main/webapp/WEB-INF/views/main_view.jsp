@@ -581,7 +581,7 @@
 
 			var wsTimeout = setTimeout(function() {
 				$("#loginFailedMessage").html("Web Socket連線失敗，請重新登入。");
-				
+
 				$('#loginDialog').on('hidden.bs.modal', function() {
 					window.location.href = 'console';
 				})
@@ -592,7 +592,7 @@
 			ws.onopen = function() {
 				console.log('websocket 打開成功');
 				clearTimeout(wsTimeout);
-				
+
 				// Step-2 連線後登入
 				doLogin();
 			};
@@ -755,6 +755,17 @@
 						$("#" + currentChatTab + "Tab > a").html(ClientName_g);
 						$("#" + currentChatTab + "Tab").show();
 
+						// 新增上方chatTab與layim連動事件 Billy 20170406
+						$("a.J_menuTab").on(
+								"click",
+								function() {
+									var id = $(this).attr("data-id");
+									if ("chat" == id.substr(0, 4)) {
+										$("#" + id.substr(0, 5) + "Tab > a")
+												.trigger("click");
+									}
+								});
+
 						// maxCount機制
 						currRoomCount_g++ // here
 						if (currRoomCount_g == maxCount) {
@@ -851,7 +862,7 @@
 						console.log("ringTimeout");
 
 						// 20170314_sam
-// 						// 將請求畫面去掉
+						// 						// 將請求畫面去掉
 						if ($('#inviteDialog').hasClass("in")) {
 							$("#inviteCloseButton").trigger("click");
 						}
@@ -876,7 +887,7 @@
 						// 						}
 					}
 					//20170223 Lin
-	
+
 					if ("removeUserinroom" == obj.Event) {
 						var fromUserID = obj.fromUserID;
 						var roomID = obj.roomID
@@ -1449,9 +1460,10 @@
 								var type = res.data.type;
 								console.log(res);
 								RoomID_g = res.data.id;
-								
+
 								// 新增layim 訊息切換背景顏色控制，參照layim.js內 "chatChange-color"
-								$(".layim-chatlist-group" + RoomID_g).removeClass('layui-anim-blue'); 
+								$(".layim-chatlist-group" + RoomID_g)
+										.removeClass('layui-anim-incoming-chat');
 								chatList
 										.forEach(function(entry) {
 											if (res.data.id == entry.id) {

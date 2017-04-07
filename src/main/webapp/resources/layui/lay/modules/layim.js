@@ -1064,7 +1064,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       elem.addClass('layui-anim layer-anim-06');
       
       /* Billy add chatChange-color*/
-      elem.addClass('layui-anim-blue');
+      elem.addClass('layui-anim-incoming-chat');
       
       setTimeout(function(){
         elem.removeClass('layui-anim layer-anim-06')

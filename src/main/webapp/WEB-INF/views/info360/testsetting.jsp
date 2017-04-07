@@ -1246,18 +1246,18 @@ function Drop(event){
 						<span onclick="showAddMember()">新增分類</span> <i class="fa fa-times"
 							onclick="closeAddMemberAM()"></i>
 					</button>
-<!-- 					<button class="btn-sm btn-success addMember" style="display: none;"id="n2"> -->
-<!-- 						<span onclick="showAddMemberAG()">新增群組</span> <i -->
-<!-- 							class="fa fa-times" onclick="closeAddMemberAG()"></i> -->
-<!-- 					</button> -->
-<!-- 					<button class="btn-sm btn-success addMember" style="display: none;"id="n3"> -->
-<!-- 						<span onclick="showAddMemberAD()">新增代碼</span> <i -->
-<!-- 							class="fa fa-times" onclick="closeAddMemberAD()"></i> -->
-<!-- 					</button> -->
-<!-- 					<button class="btn-sm btn-success addMember" style="display: none;"id="n4"> -->
-<!-- 						<span onclick="showAddMemberAD2()">新增代碼</span> <i -->
-<!-- 							class="fa fa-times" onclick="closeAddMemberAD()"></i> -->
-<!-- 					</button> -->
+					<button class="btn-sm btn-success addMember" style="display: none;"id="n2">
+						<span onclick="showAddMemberAG()">新增群組</span> <i
+							class="fa fa-times" onclick="closeAddMemberAG()"></i>
+					</button>
+					<button class="btn-sm btn-success addMember" style="display: none;"id="n3">
+						<span onclick="showAddMemberAD()">新增代碼</span> <i
+							class="fa fa-times" onclick="closeAddMemberAD()"></i>
+					</button>
+					<button class="btn-sm btn-success addMember" style="display: none;"id="n4">
+						<span onclick="showAddMemberAD2()">新增代碼</span> <i
+							class="fa fa-times" onclick="closeAddMemberAD2()"></i>
+					</button>
 				</div>
 				<!-- 服務代碼分類管理切換頁籤End -->
 
@@ -1416,89 +1416,82 @@ function Drop(event){
 					<!-- 新增 END -->
 					<!-- 更新  -->
 					<div id="editMemberAMContent" style="display: none;">
-						<div class="widget">
-						<div id="first">
-						<div class="form-group col-sm-6" >
-								<label for="inputAccount" class="col-sm-3 control-label">分類名稱:</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="up_menunameam">
-								</div>
-							</div>
-							<div class="form-group col-sm-6">
-<!-- 								<label for="inputAccount" -->
-<!-- 									class="col-sm-2 control-label required">編號:</label> -->
-								<div class="col-sm-8">
-									<input type="hidden" class="form-control" id="up_dbidam"
-										>
-								</div>
-							</div>
-							
-							<div class="form-group col-sm-12">
-							<div id="AGul">
-							<ul class="pagination" >
-								<li onclick="showAddMemberAG()"><a href="#"><i
-										class="fa fa-fw fa-plus"></i></a></li>
-								<li onclick="unlockAccountAG()"><a href="#"><i
-										class="glyphicon glyphicon-trash"></i></a></li>
-							</ul>
-							<ul class="pagination" style="float: right;">
-								<li><input type="text" id="manageTableAGSearch"
-									placeholder="搜索"
-									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
-								</li>
+							<div id="first">
+								<div class="widget">
+									<div class="form-group col-sm-6" >
+										<label for="inputAccount" class="col-sm-3 control-label">分類名稱:</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="up_menunameam">
+										</div>
+									</div>
+									<input type="hidden" class="form-control" id="up_dbidam">
 
-								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
-							</ul>
-						</div>
-								<table class="table table-bordered table-hover"
-									id="manageTableAG">
-									<thead>
-										<tr>
-											<th style="width: 20px" class="no-sort"><input type="checkbox"
-												id="AG0All" ischecked=false></th>
-											<th style="display: none;">編號</th>
-											<th>群組名稱</th>
-											<th style="width:170px">建立時間</th>
-											<th style="width: 60px">排序</th>
-										</tr>
-									</thead>
-								</table>
+								<div class="form-group col-sm-12">
+									<div id="AGul">
+										<ul class="pagination" >
+											<li onclick="showAddMemberAG()"><a href="#"><i
+												class="fa fa-fw fa-plus"></i></a></li>
+											<li onclick="unlockAccountAG()"><a href="#"><i
+												class="glyphicon glyphicon-trash"></i></a></li>
+										</ul>
+										<ul class="pagination" style="float: right;">
+											<li><input type="text" id="manageTableAGSearch"
+												placeholder="搜索"
+												style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
+											</li>
+											<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+										</ul>
+									</div>
+									<table class="table table-bordered table-hover"
+										id="manageTableAG">
+										<thead>
+											<tr>
+												<th style="width: 20px" class="no-sort"><input type="checkbox"
+													id="AG0All" ischecked=false></th>
+												<th style="display: none;">編號</th>
+												<th>群組名稱</th>
+												<th style="width:170px">建立時間</th>
+												<th style="width: 60px">排序</th>
+											</tr>
+										</thead>
+									</table>
+								</div>
+							
+								<div class="form-group">
+									<div class="col-sm-offset-9 col-sm-3">
+										<button class="btn btn-primary" onclick="sendEditMemberAM()">更新</button>
+										<button class="btn btn-default" onclick="closeEditMemberAM()">取消</button>
+									</div>
+								</div> 
 							</div>
-							
-							<div class="form-group">
-								<div class="col-sm-offset-9 col-sm-3">
-									<button class="btn btn-primary" onclick="sendEditMemberAM()">更新</button>
-									<button class="btn btn-default" onclick="closeEditMemberAM()">取消</button>
-								
-								</div>
-							</div> 
-					</div>		
-							
-							
-							<!-- 第二層 -->
+						</div>		
+				<!-- 第二層 -->
 					<div id="second">
-								<label for="inputAccount" class="col-sm-2 control-label">群組名:</label>
-								<div class="col-sm-6">
-									<input type="" class="form-control" id="up_groupnameAG">
+						<div class="widget">
+								<div class="form-group col-sm-6" >
+										<label for="inputAccount" class="col-sm-2 control-label">群組名:</label>
+										<div class="col-sm-8">
+										<input type="" class="form-control" id="up_groupnameAG">
+										</div>
 								</div>
-							
-					<div class="form-group col-sm-12">
+
+						<div class="form-group col-sm-12">
 							<div id="ADul">
-							<ul class="pagination">
-								<li onclick="showAddMemberAD()"><a href="#"><i
-										class="fa fa-fw fa-plus"></i></a></li>
-								<li onclick="unlockAccountAD()"><a href="#"><i
-										class="glyphicon glyphicon-trash"></i></a></li>
-							</ul>
-							<ul class="pagination" style="float: right;">
-								<li><input type="text" id="manageTableADSearch"
-									placeholder="搜索"
-									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
-								</li>
-								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
-							</ul>
-							<input type="hidden" class="form-control" id="up_dbidAG"></input>
-						 </div>
+									<ul class="pagination">
+										<li onclick="showAddMemberAD()"><a href="#"><i
+											class="fa fa-fw fa-plus"></i></a></li>
+										<li onclick="unlockAccountAD()"><a href="#"><i
+											class="glyphicon glyphicon-trash"></i></a></li>
+									</ul>
+									<ul class="pagination" style="float: right;">
+										<li><input type="text" id="manageTableADSearch"
+											placeholder="搜索"
+											style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
+										</li>
+										<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+									</ul>
+								<input type="hidden" class="form-control" id="up_dbidAG"></input>
+						 	</div>
 								<table class="table table-bordered table-hover"
 									id="manageTableAD">
 									<thead>
@@ -1521,58 +1514,57 @@ function Drop(event){
 									</div>
 								</div>
 								</div>
+						</div>
 					</div>	
 						
 				<!-- 第三層 -->
-				<div id="third">
+					<div id="third">
 						<div class="widget">
-							<div class="form-group col-sm-6">
-								<label for="inputAccount" class="col-sm-3 control-label">代碼名稱:</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="up_codenameAD">
+								<div class="form-group col-sm-6">
+										<label for="inputAccount" class="col-sm-3 control-label">代碼名稱:</label>
+										<div class="col-sm-8">
+										<input type="text" class="form-control" id="up_codenameAD">
+										</div>
 								</div>
-							</div>
-							<div class="form-group col-sm-6">
-								<label for="inputName" class="col-sm-3 control-label">顏色代碼:</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="up_colorAD"
+								<div class="form-group col-sm-6">
+										<label for="inputName" class="col-sm-3 control-label">顏色代碼:</label>
+										<div class="col-sm-8">
+										<input type="text" class="form-control" id="up_colorAD"
 										placeholder="">
+										</div>
 								</div>
-							</div>
 									<input type="hidden" class="form-control" id="up_dbidAD" placeholder=""></input>
 										
-							<div id="ADul2">
-							<ul class="pagination">
-								<li onclick="showAddMemberAD2()"><a href="#"><i
+								<div id="ADul2">
+									<ul class="pagination">
+										<li onclick="showAddMemberAD2()"><a href="#"><i
 										class="fa fa-fw fa-plus"></i></a></li>
-								<li onclick="unlockAccountAD2()"><a href="#"><i
+										<li onclick="unlockAccountAD2()"><a href="#"><i
 										class="glyphicon glyphicon-trash"></i></a></li>
-							</ul>
-							<ul class="pagination" style="float: right;">
-								<li><input type="text" id="thirdTableADSearch"
-									placeholder="搜索"
-									style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
-								</li>
-
-								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
-							</ul>
-							</div>
+									</ul>
+									<ul class="pagination" style="float: right;">
+										<li><input type="text" id="thirdTableADSearch"
+										placeholder="搜索"
+										style="background-color: #FFFFFF; border: 1px solid #DDDDDD; color: inherit; float: left; line-height: 1.42857; margin-left: -1px; padding: 4px 10px; position: relative; text-decoration: none;">
+										</li>
+										<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
+									</ul>
+								</div>
 							
-							<table class="table table-bordered table-hover"
-									id="thirdTableAD">
-									<thead>
-										<tr>
-											<th style="width:20px" class="no-sort"><input type="checkbox"
-												id="AD0All" ischecked=false></th>
-											<th style="display: none;">編號</th>
-											<th>名稱</th>
-											<th style="width:100px">顏色</th>
-											<th style="width:170px">建立時間</th>
-											<th style="width:60px">排序</th>
-										</tr>
-									</thead>
+								<table class="table table-bordered table-hover"
+										id="thirdTableAD">
+										<thead>
+											<tr>
+												<th style="width:20px" class="no-sort"><input type="checkbox"
+													id="AD0All" ischecked=false></th>
+												<th style="display: none;">編號</th>
+												<th>名稱</th>
+												<th style="width:100px">顏色</th>
+												<th style="width:170px">建立時間</th>
+												<th style="width:60px">排序</th>
+											</tr>
+										</thead>
 								</table>
-
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendEditMemberAD()">更新</button>
@@ -1584,32 +1576,32 @@ function Drop(event){
 					
 				<!-- 第四層 -->
 					<div id="fourth">
-					<div class="widget">
+						<div class="widget">
 							<div class="form-group col-sm-6">
-								<label for="inputAccount" class="col-sm-3 control-label">代碼名稱:</label>
-								<div class="col-sm-8">
+									<label for="inputAccount" class="col-sm-3 control-label">代碼名稱:</label>
+									<div class="col-sm-8">
 									<input type="text" class="form-control" id="up_codenameAD2">
-								</div>
+									</div>
 							</div>
 							<div class="form-group col-sm-6">
-								<label for="inputName" class="col-sm-3 control-label">顏色代碼:</label>
-								<div class="col-sm-8">
+									<label for="inputName" class="col-sm-3 control-label">顏色代碼:</label>
+									<div class="col-sm-8">
 									<input type="text" class="form-control" id="up_colorAD2"
 										placeholder="">
-								</div>
+									</div>
 							</div>
 									<input type="hidden" class="form-control" id="up_dbidAD2"placeholder="">
-
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
-									<button class="btn btn-primary" onclick="sendEditMemberAD()">更新</button>
-									<button class="btn btn-default" onclick="closeEditMemberAD()">取消</button>
+									<button class="btn btn-primary" onclick="sendEditMemberAD2()">更新</button>
+									<button class="btn btn-default" onclick="closeEditMemberAD2()">取消</button>
 								</div>
 							</div>
 						</div>
-					</div>	
-						</div>
 					</div>
+						
+				</div>
+			</div>
 					<!-- 更新END -->
 
 				</div>
@@ -3552,36 +3544,32 @@ var tabledata;
 		var dbid = selected.join();
 		
 		if(dbid.length!=0){
-			
-		
-		$
-				.ajax({
-					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Delete_PersonInfo",
-					data : {
-						
-						personDBID_list : dbid
+			$
+			.ajax({
+				url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Person_logicdelete",
+				data : {
+					
+					personDBID_list : dbid,
+					state:3
 
-					},
-					type : "POST",
-					dataType : 'json',
+				},
+				type : "POST",
+				dataType : 'json',
 
-					error : function(e) {
-						toastr.error("失敗");
-					},
-					success : function(data) {
-						person();
-						toastr.success(message);
-					}
+				error : function(e) {
+					toastr.error("失敗");
+				},
+				success : function(data) {
+					person();
+					toastr.success(message);
+				}
 
-				});
-		}else{
-			toastr.error("請選擇要刪除的欄位");
-		}
+			});
+	}else{
+		toastr.error("請選擇要刪除的欄位");
 	}
+}
 	
-
-	
-
 	/* 表格全選控制 */
 	$("#manageCheck").on(
 			"change",
@@ -5451,8 +5439,8 @@ var tabledata;
 		closeAllHrContent();
 		$("#AMContent").show();
 		$("#addMemberAMContent").show();
-
-		$("button.addMember").show();
+		$("#n1").show();$("#n2").hide();$("#n3").hide();$("#n4").hide();
+// 		$("button.addMember").show();
 		
 	}
 
@@ -5516,9 +5504,7 @@ var tabledata;
 		$("#AMContent").show();
 		$("#addMemberAGContent").show();
 
-		$("button.addMember").show();
-		$("button.addMember").removeClass("btn-success");
-		$("button.addMember").addClass("btn-primary");
+		$("#n2").show();
 	}
 
 	//first新增畫面
@@ -5674,7 +5660,7 @@ var tabledata;
 		$("#addMemberADContent").show();
 		$("#b1").show();
 		$("#b2").show();
-		$("button.addMember").show();
+		$("#n3").show();
 	}
 
 	//關閉新增畫面
@@ -5685,6 +5671,7 @@ var tabledata;
 		$("#second").show();
 		$("#b1").show();
 		$("#b2").show();
+		titlegroup();
 	}
 	
 	
@@ -5863,10 +5850,7 @@ $("#manageTableADSearch").keyup(function() {
 		$("#b1").show();
 		$("#b2").show();
 		$("#b3").show();
-
-		$("button.addMember").show();
-		$("button.addMember").removeClass("btn-success");
-		$("button.addMember").addClass("btn-primary");
+		$("#n4").show();
 	}
 
 	//關閉新增畫面
@@ -5877,6 +5861,7 @@ $("#manageTableADSearch").keyup(function() {
 		$("#second").show();
 		$("#b1").show();
 		$("#b2").show();
+		$("#b3").show();
 	}
 
 	function titledata(){
@@ -5968,7 +5953,7 @@ $("#manageTableADSearch").keyup(function() {
 									
 									document
 									.getElementById('up_codenameAD2').value = table
-									.row(this).data().dbid;
+									.row(this).data().codename;
 									document
 									.getElementById('up_colorAD2').value = table
 									.row(this).data().color;
@@ -6152,9 +6137,7 @@ var selected=[];
 	    $("[name=AM1]:checkbox:checked").each(function(){
 		      selected.push($(this).val());
 		      });
-			  
 			  var ActivityMenu_DBID_list = selected.join();
-			  
 			  if(ActivityMenu_DBID_list.length!=0){
 
 		$
@@ -6389,9 +6372,7 @@ function AG_dow() {
 						toastr.success("更新成功");
 					}
 				});
-		closeAllHrContent();
-		$("#AGContent").show();
-		$("#manageAGContent").show();
+		showEditMemberAM();
 	}
 
 	//解鎖對話視窗
@@ -7133,12 +7114,42 @@ if(ActivityGroup_DBID_list.length){
 					},
 					success : function(data) {
 						groupAD();
-						toastr.error("更新成功");
+						toastr.success("更新成功");
 					}
 				});
-		closeAllHrContent();
-		$("#ADContent").show();
-		$("#manageADContent").show();
+		showEditMemberAG();
+	}
+	function sendEditMemberAD2() {
+
+		closeEditMember();
+		var up_codename = document.getElementById("up_codenameAD2").value;
+		var up_color = document.getElementById("up_colorAD2").value;
+		var up_dbid = document.getElementById("up_dbidAD2").value;
+// 		var up_sort = document.getElementById("up_sortAD").value;
+
+		$
+				.ajax({
+					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Update_ActivityData",
+					data : {
+						codename : up_codename,
+						color : up_color,
+						dbid : up_dbid
+			
+
+					},
+
+					type : "POST",
+					dataType : 'json',
+
+					error : function(e) {
+						toastr.error("更新錯誤");
+					},
+					success : function(data) {
+						groupAD();
+						toastr.success("更新成功");
+					}
+				});
+		showEditMemberAD();
 	}
 
 	//解鎖對話視窗

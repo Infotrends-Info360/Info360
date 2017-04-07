@@ -581,6 +581,9 @@
 		console.log(JSON.stringify(msg));
 		parent.ws.send(JSON.stringify(msg));
 
+		// 新增選取客資後馬上搜尋一個月內的案件資訊 Billy 20170406
+		quickSearchByTime(30);
+		
 		closeCustomerData();
 	}
 
