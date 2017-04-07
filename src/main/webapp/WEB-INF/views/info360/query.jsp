@@ -313,7 +313,7 @@
 
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query",
 					data : {
 						startdate : start,
 						enddate : end,
@@ -427,7 +427,7 @@
 	function queryDetail(id, date) {
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/detailQuery",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/detailQuery",
 					data : {
 						ixnid : id
 					},
@@ -560,7 +560,7 @@
 
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_CaseComments",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_CaseComments",
 					data : {
 						ixnid : ixnid, //room id
 						contactid : ContactID, //連絡人ID
