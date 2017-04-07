@@ -4006,7 +4006,6 @@ var tabledata;
 	}
 	
 	function jump(data,tabledata){
-		
 		var arr = tabledata.have_person_username.split(',');
 		var arrdbid = tabledata.have_person_dbid.split(',');
 		for (var i in arrdbid ) {

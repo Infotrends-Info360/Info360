@@ -106,7 +106,6 @@
 								<input type="hidden" value="" id="contactid">
 								<input type="hidden" value="" id="json">
 								<select  id="allperson" style="height:30px">
-								
 								</select>
 <!-- 								<input type="text" -->
 <!-- 									class="form-control" placeholder="請輸入處理人" id="inputAgentId"> -->
@@ -152,7 +151,7 @@
 					-->
 					<!-- 搜尋條件區 End -->
 
-					<div class="row ibox" style="height: 660px; overflow-y: scroll;">
+					<div class="row ibox" style="height: 630px; overflow-y: scroll;">
 						<div class="col-lg-12 col-md-12">
 						
 						<div class="sk-spinner sk-spinner-fading-circle" id="queryTableLoading">
@@ -315,9 +314,6 @@
 		var MappingValue = $('#mapping_div input');
 		var arr = $.makeArray(MappingValue);
 		if(arr.length>0){
-
-		var MappingValue = $('#mapping_div input');
-		var arr = $.makeArray(MappingValue);
 		var text = '{' ;
 		
 		for(var i=0;i<arr.length;i++){
@@ -348,7 +344,8 @@
 		var id = $("#allperson").val();
 		var inputcontactdata = document.getElementById('json').value;
 
-		
+		alert("sday  "+start);
+		alert("eday  "+end);
 		console.log("start : " + start + "; end : " + end + "; id :" + id );
 
 		$('#queryTable').DataTable().destroy();
@@ -723,10 +720,15 @@
 			},
 			success : function(data) {
 				console.log("allperson",data)
+// 				var a ="";
+				var first = "<option value=''>全部</option>"
+					document.getElementById("allperson").insertAdjacentHTML("BeforeEnd", first);
+				
 				for (var i = 0; i < data.allperson.length; i++) {
 					var allperson = "<option value="+data.allperson[i].dbid+">"+data.allperson[i].username+"</option>"
 					document.getElementById("allperson").insertAdjacentHTML("BeforeEnd", allperson);
 				}
+				
 			}
 		});
 	}
