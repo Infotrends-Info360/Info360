@@ -333,7 +333,7 @@
     	
       	 function state(){
       		  $.ajax({                              
-      	          url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Query_Group_STATE",
+      	          url:"${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Group_STATE",
       		         data:{
       		        	state:0
       		        	 },
@@ -363,7 +363,7 @@
       	     		console.log("啟用部門",data);	
       		     	
       	     	 $.ajax({                              
-      	          url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Query_Group_STATE",
+      	          url:"${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Group_STATE",
       		         data:{
       		        	state:1
       		        	 },
@@ -500,7 +500,7 @@
             var in_name = document.getElementById('in_name').value;
     	//	var in_state = document.getElementById('inputState').value;
     		$.ajax({                              
-    	          url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Insert_GroupInfo",
+    	          url:"${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_GroupInfo",
     		         data:{
     		        	 	state:0,
     			        	name:in_name,
@@ -530,7 +530,7 @@
         	var up_name = document.getElementById('up_name').value;	
         	var up_state =  document.getElementById('up_state').value;
 	    	$.ajax({                              
-                url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Update_GroupInfo",
+                url:"${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Update_GroupInfo",
       	         data:{
       	        	state:up_state,
     	        	name:up_name,
@@ -607,7 +607,7 @@
         function showToastSuccess(message) {
         	var deletedbid = document.getElementById('deletedbid').value;
             $.ajax({                              
-                url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Delete_GroupInfo",
+                url:"${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Delete_GroupInfo",
         	         data:{
         	        	 dbid:deletedbid
         	        	 },
@@ -628,7 +628,7 @@
         	var state = document.getElementById('state_list').value;
             var name = document.getElementById('state_account').value;
             $.ajax({                              
-                url:"http://ws.crm.com.tw:8080/Info360_Setting/RESTful/Group_logicdelete",
+                url:"${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Group_logicdelete",
         	         data:{
         	        	 state:state,
         	        	 name:name

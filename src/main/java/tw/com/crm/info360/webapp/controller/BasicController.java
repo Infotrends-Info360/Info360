@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class BasicController {
 
-	private static Properties properties;
+	private static Properties properties; 
 
 	/**
 	 * 預設「歡迎頁面、登入頁」
@@ -74,6 +74,16 @@ public class BasicController {
 		String Info360_Setting_hostname = properties.getProperty("Info360_Setting.hostname");
 		String Info360_Setting_port = properties.getProperty("Info360_Setting.port");
 
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
 		model.addAttribute("websocket_hostname", websocket_hostname);
 		model.addAttribute("websocket_protocol", websocket_protocol);
 		model.addAttribute("websocket_port", websocket_port);
@@ -101,6 +111,16 @@ public class BasicController {
 		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
 		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
 
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
 		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
@@ -123,6 +143,16 @@ public class BasicController {
 		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
 		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
 
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
 		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
@@ -145,6 +175,16 @@ public class BasicController {
 		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
 		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
 
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
 		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
@@ -169,7 +209,17 @@ public class BasicController {
 		String Info360_Setting_protocol = properties.getProperty("Info360_Setting.protocol");
 		String Info360_Setting_hostname = properties.getProperty("Info360_Setting.hostname");
 		String Info360_Setting_port = properties.getProperty("Info360_Setting.port");
+		
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
 
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
 		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
@@ -177,6 +227,8 @@ public class BasicController {
 		model.addAttribute("Info360_Setting_protocol", Info360_Setting_protocol);
 		model.addAttribute("Info360_Setting_hostname", Info360_Setting_hostname);
 		model.addAttribute("Info360_Setting_port", Info360_Setting_port);
+		
+
 
 		return "info360/setting";
 	}
@@ -199,6 +251,16 @@ public class BasicController {
 		String Info360_Setting_hostname = properties.getProperty("Info360_Setting.hostname");
 		String Info360_Setting_port = properties.getProperty("Info360_Setting.port");
 
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
 		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
@@ -254,6 +316,16 @@ public class BasicController {
 		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
 		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
 
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
 		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
@@ -295,6 +367,16 @@ public class BasicController {
 		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
 		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
 
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
 		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
@@ -336,6 +418,16 @@ public class BasicController {
 		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
 		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
 
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
 		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
@@ -377,6 +469,16 @@ public class BasicController {
 		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
 		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
 
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
 		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
@@ -418,6 +520,16 @@ public class BasicController {
 		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
 		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
 
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
 		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
 		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
 		model.addAttribute("IMWebSocket_port", IMWebSocket_port);

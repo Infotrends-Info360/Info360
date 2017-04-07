@@ -2377,7 +2377,7 @@ function person_groupmenu(){
 	$("#Box3").empty();
 	$("#Box4").empty();
 $.ajax({
-	url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Group_STATE",
+	url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Group_STATE",
 	data : {
 		state : 0
 	},
@@ -2422,7 +2422,7 @@ var tabledata;
 		$("#person1Table tboby tr").empty();
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Person_STATE",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Person_STATE",
 					data : {
 						state : 0
 					},
@@ -2586,7 +2586,7 @@ var tabledata;
 
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Person_STATE",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Person_STATE",
 					data : {
 						state : 1
 					},
@@ -2917,7 +2917,7 @@ var tabledata;
 
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Insert_PersonInfo",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_PersonInfo",
 					data : {
 						first_name : in_first_name,
 						last_name : in_last_name,
@@ -3123,7 +3123,7 @@ var tabledata;
 			 
 			$
 				.ajax({
-				url : '${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Update_PersonInfo',
+				url : '${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Update_PersonInfo',
 				data : {
 					max_count :up_updateMaxcount,
 					first_name : up_first_name,
@@ -3172,7 +3172,7 @@ var tabledata;
 		 
 		$
 			.ajax({
-			url : '${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Update_PersonInfo',
+			url : '${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Update_PersonInfo',
 			data : {
 				max_count :up_updateMaxcount,
 				first_name : up_first_name,
@@ -3429,7 +3429,7 @@ var tabledata;
         if(personDBID_list.length!=0){
 		$
 	 			.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Person_logicdelete",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Person_logicdelete",
 					data : {
 						state : state,
 						personDBID_list : personDBID_list
@@ -3468,7 +3468,7 @@ var tabledata;
         	
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Person_logicdelete",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Person_logicdelete",
 					data : {
 
 						state : 1,
@@ -3508,7 +3508,7 @@ var tabledata;
 		 
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Person_logicdelete",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Person_logicdelete",
 					data : {
 						state : 0,
 						personDBID_list : dbid
@@ -3546,7 +3546,7 @@ var tabledata;
 		if(dbid.length!=0){
 			$
 			.ajax({
-				url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Person_logicdelete",
+				url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Person_logicdelete",
 				data : {
 					
 					personDBID_list : dbid,
@@ -3630,7 +3630,7 @@ var tabledata;
 		
 // 		$
 // 		.ajax({
-// 			url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Person_STATE",
+// 			url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Person_STATE",
 // 			data : {
 // 				dbid : 0
 // 			},
@@ -3679,7 +3679,7 @@ var tabledata;
 		$("#bangroupTable tboby tr").empty();
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Group_STATE",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Group_STATE",
 					data : {
 						state : 0
 					},
@@ -3836,7 +3836,7 @@ var tabledata;
 		document.getElementById('in_name').value=""
 			$
 			.ajax({
-				url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Query_Group_STATE",
+				url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Group_STATE",
 				data : {
 					state : 0
 				},
@@ -3903,7 +3903,7 @@ var tabledata;
 		}
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Insert_GroupInfo",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_GroupInfo",
 					data : {
 						state : 0,
 						name : in_name,
@@ -4084,7 +4084,7 @@ var tabledata;
 		
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Update_GroupInfo",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Update_GroupInfo",
 					data : {
 						state : 0,
 						name:up_name,
@@ -4158,7 +4158,7 @@ var tabledata;
 		  if(groupDBID_list.length!=0){
 		$
 				.ajax({
-					url : "${Info360_Setting_protocol}//${Info360_Setting_hostname}:${Info360_Setting_port}/Info360_Setting/RESTful/Delete_GroupInfo",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Delete_GroupInfo",
 					data : {
 						groupDBID_list : groupDBID_list
 					},
@@ -4229,7 +4229,7 @@ var tabledata;
 
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Select_commonlink",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Select_commonlink",
 
 					data : {},
 
@@ -4430,7 +4430,7 @@ var tabledata;
 
 			$
 					.ajax({
-						url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_commonlink",
+						url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_commonlink",
 
 						data : {
 							"parnetid" : nodeLINK,
@@ -4460,7 +4460,7 @@ var tabledata;
 
 			$
 					.ajax({
-						url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_commonlink",
+						url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_commonlink",
 
 						data : {
 							"parnetid" : nodeLINK,
@@ -4518,7 +4518,7 @@ var tabledata;
 
 		$
 		.ajax({
-			url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Select_commonlink",
+			url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Select_commonlink",
 
 			data : {
 				"nodeid" : nodeLINKu
@@ -4574,7 +4574,7 @@ var tabledata;
 
 			$
 					.ajax({
-						url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Update_commonlink",
+						url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Update_commonlink",
 
 						data : {
 							"parnetid" : nodeLINKu,
@@ -4639,7 +4639,7 @@ var tabledata;
 
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Delete_commonlink",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Delete_commonlink",
 
 					data : {
 						"nodeid" : nodeIDd,
@@ -4697,7 +4697,7 @@ var tabledata;
 		$("#banAgentreasonTable tboby tr").empty();
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Select_agentreason",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Select_agentreason",
 					data : {
 						flag : 0
 					},
@@ -4915,7 +4915,7 @@ var tabledata;
 
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_agentreason",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_agentreason",
 					data : {
 						flag : 0,
 						alarmcolor : alarmcolor,
@@ -5017,7 +5017,7 @@ var tabledata;
 
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Update_agentreason",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Update_agentreason",
 					data : {
 						flag : 0,
 						dbid : dbid,
@@ -5100,7 +5100,7 @@ var tabledata;
 			
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_agentreason",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/LogicDelete_agentreason",
 					data : {
 						flag : 1,
 						Agentreason_DBID_list : Agentreason_DBID_list
@@ -5149,7 +5149,7 @@ var tabledata;
 		 if(Agentreason_DBID_list.length!=0){
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_agentreason",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/LogicDelete_agentreason",
 					data : {
 						flag : flag,
 						Agentreason_DBID_list : Agentreason_DBID_list
@@ -5188,7 +5188,7 @@ var tabledata;
 	if(Agentreason_DBID_list.length!=0){
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Delete_AgentReason",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Delete_AgentReason",
 					data : {
 						Agentreason_DBID_list : Agentreason_DBID_list
 					},
@@ -5225,7 +5225,7 @@ var tabledata;
 			  
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_agentreason",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/LogicDelete_agentreason",
 					data : {
 						flag : 0,
 						Agentreason_DBID_list : Agentreason_DBID_list
@@ -5275,7 +5275,7 @@ var tabledata;
 		$("#manageTableAM tbody tr").empty();
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Flag_ActivityMenu",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Flag_ActivityMenu",
 					data : {
 						deleteflag : 0
 					},
@@ -5462,7 +5462,7 @@ var tabledata;
 		var menuname = document.getElementById('insert_menuname').value;
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_ActivityMenu",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_ActivityMenu",
 					data : {
 						menuname : menuname,
 						deleteflag : 0
@@ -5522,7 +5522,7 @@ var tabledata;
 
 		var dbid = document.getElementById("up_dbidam").value
 		$.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityMenu",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_ActivityMenu",
 					data : {
 						dbid : dbid
 					},
@@ -5685,7 +5685,7 @@ var tabledata;
 
 		$
 		.ajax({
-			url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/FLAGDATA",
+			url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/FLAGDATA",
 			data : {
 				dbid : dbid
 			},
@@ -5868,7 +5868,7 @@ $("#manageTableADSearch").keyup(function() {
 		var up_dbid = document.getElementById('up_dbidAD').value;
 		$
 		.ajax({
-			url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_titlegroup_ActivityData",
+			url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_titlegroup_ActivityData",
 			data : {
 				titlegroup:up_dbid
 			},
@@ -6031,7 +6031,7 @@ $("#thirdTableADSearch").keyup(function() {
 
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Update_ActivityMenu",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Update_ActivityMenu",
 					data : {
 						dbid : dbid,
 						menuname : menuname
@@ -6074,7 +6074,7 @@ setTimeout(function(){
 			  var AMupdbid = document.getElementById('AMupdbid').value;
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AMenu_Sortup",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/AMenu_Sortup",
 					data : {
 						dbid:AMupdbid
 					},
@@ -6103,7 +6103,7 @@ setTimeout(function(){
 			 
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AMenu_Sortdown",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/AMenu_Sortdown",
 					data : {
 						dbid:AMdowdbid
 					},
@@ -6142,7 +6142,7 @@ var selected=[];
 
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_activitymenu",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/LogicDelete_activitymenu",
 					data : {
 						ActivityMenu_DBID_list : ActivityMenu_DBID_list,
 						deleteflag : 1
@@ -6181,7 +6181,7 @@ var selected=[];
 			  if(ActivityMenu_DBID_list.length!=0){
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_activitymenu",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/LogicDelete_activitymenu",
 					data : {
 						ActivityMenu_DBID_list : ActivityMenu_DBID_list,
 						deleteflag : 0
@@ -6246,7 +6246,7 @@ var selected=[];
 
 	$
 			.ajax({
-				url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AGroup_Sortup",
+				url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/AGroup_Sortup",
 				data : {
 					dbid:AGupdbid
 				},
@@ -6276,7 +6276,7 @@ function AG_dow() {
 		 
 	$
 			.ajax({
-				url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AGroup_Sortdown",
+				url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/AGroup_Sortdown",
 				data : {
 					dbid:AGdowdbid
 				},
@@ -6321,7 +6321,7 @@ function AG_dow() {
 
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_ActivityGroup",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_ActivityGroup",
 					data : {
 						activitymenuid : dbid,
 						groupname : in_groupname
@@ -6355,7 +6355,7 @@ function AG_dow() {
 		var up_dbid = document.getElementById('up_dbidAG').value;
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Update_ActivityGroup",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Update_ActivityGroup",
 					data : {
 						groupname : up_groupname,
 						dbid : up_dbid
@@ -6399,7 +6399,7 @@ function AG_dow() {
 		
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_ActivityGroup",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/LogicDelete_ActivityGroup",
 					data : {
 						deleteflag : 1,
 						ActivityGroup_DBID_list : ActivityGroup_DBID_list,
@@ -6436,7 +6436,7 @@ function AG_dow() {
 if(ActivityGroup_DBID_list.length){
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_ActivityGroup",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/LogicDelete_ActivityGroup",
 					data : {
 						deleteflag : 0,
 						ActivityGroup_DBID_list : ActivityGroup_DBID_list,
@@ -6481,7 +6481,7 @@ if(ActivityGroup_DBID_list.length){
 		var dbid = document.getElementById("menuAD").value
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/FLAGDATA",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/FLAGDATA",
 					data : {
 						dbid : dbid
 					},
@@ -6674,7 +6674,7 @@ if(ActivityGroup_DBID_list.length){
 		$("#ADul").hide();
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityGroup",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_ActivityGroup",
 					data : {
 						dbid : 0
 					},
@@ -6711,7 +6711,7 @@ if(ActivityGroup_DBID_list.length){
 						var dbid = document.getElementById("ADfirst").value
 						$
 								.ajax({
-									url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/FLAGDATA",
+									url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/FLAGDATA",
 									data : {
 										dbid : dbid
 									},
@@ -6904,7 +6904,7 @@ if(ActivityGroup_DBID_list.length){
 // 		alert(ADupdbid);
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AData_Sortup",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/AData_Sortup",
 					data : {
 						dbid:ADupdbid
 					},
@@ -6931,7 +6931,7 @@ if(ActivityGroup_DBID_list.length){
 			 
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/AData_Sortdown",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/AData_Sortdown",
 					data : {
 						dbid:ADdowdbid
 					},
@@ -7019,7 +7019,7 @@ if(ActivityGroup_DBID_list.length){
 
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_ActivityData",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_ActivityData",
 					data : {
 						activitygroupsid : in_activitygroupsid,
 						codename : in_codename2,
@@ -7060,7 +7060,7 @@ if(ActivityGroup_DBID_list.length){
 
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_ActivityData",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_ActivityData",
 					data : {
 						activitygroupsid : in_activitygroupsid,
 						codename : in_codename,
@@ -7097,7 +7097,7 @@ if(ActivityGroup_DBID_list.length){
 
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Update_ActivityData",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Update_ActivityData",
 					data : {
 						codename : up_codename,
 						color : up_color,
@@ -7178,7 +7178,7 @@ if(ActivityGroup_DBID_list.length){
 			  if(ActivityData_DBID_list.length){
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_ActivityData",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/LogicDelete_ActivityData",
 					data : {
 						deleteflag : 1,
 						ActivityData_DBID_list : ActivityData_DBID_list
@@ -7217,7 +7217,7 @@ if(ActivityGroup_DBID_list.length){
 			  if(ActivityData_DBID_list.length){
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/LogicDelete_ActivityData",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/LogicDelete_ActivityData",
 					data : {
 						deleteflag : 0,
 						ActivityData_DBID_list : ActivityData_DBID_list

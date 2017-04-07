@@ -597,7 +597,7 @@
 	function selectCommonLink() {
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Select_commonlink",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Select_commonlink",
 					data : {
 
 					},
@@ -973,7 +973,7 @@
 	function Query_ActivityMenu(level, dbId) {
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_ActivityMenu",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_ActivityMenu",
 					data : {
 						dbid : dbId
 					},
@@ -1050,7 +1050,7 @@
 	function Flag_Data(dbId, tabIndex) {
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/FLAGDATA",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/FLAGDATA",
 					data : {
 						dbid : dbId
 					},
@@ -1191,7 +1191,7 @@
 
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_rpt_activitylog",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_rpt_activitylog",
 					data : {
 						interactionid : interactionId,
 						activitydataids : activitydataids,
@@ -1287,7 +1287,7 @@
 
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query",
 					data : {
 						startdate : start,
 						enddate : end,
@@ -1401,7 +1401,7 @@
 	function queryDetail(id, date) {
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/detailQuery",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/detailQuery",
 					data : {
 						ixnid : id
 					},
@@ -1532,7 +1532,7 @@
 
 		$
 				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Insert_CaseComments",
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_CaseComments",
 					data : {
 						ixnid : ixnid, //room id
 						contactid : ContactID, //連絡人ID
