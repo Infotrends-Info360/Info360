@@ -51,7 +51,6 @@
 						<tbody>
 							<tr>
 								<td type="button" onclick="quickSearchByTime(0)">今天</td>
-							</tr>
 							<tr>
 								<td type="button" onclick="quickSearchByTime(7)">本週</td>
 							</tr>
@@ -284,7 +283,7 @@
 <script src="resources/js/plugins/toastr/toastr.min.js"></script>
 
 <script type="text/javascript">
-	var jj=false;
+	var loading = true; 
 	var agentId = parent.UserID_g;
 
 	$(document).ready(function() {
@@ -308,33 +307,37 @@
 		allperson();
 		
 	});
-
+	
 	// 案件搜尋
 	function search() {
+		loading = false;
+		var vl = 0;
 		var MappingValue = $('#mapping_div input');
 		var arr = $.makeArray(MappingValue);
-		if(arr.length>0){
-		var text = '{' ;
+
+		for(var i=0;i<arr.length;i++){
+			var value = arr[i].value;
+			 if (!value || value == '' ) {
+	         }else{
+	        	 var vl = 1;
+	         }
+		}
 		
+		if(arr.length>0 && vl!=0){
+		var text = '{' ;
 		for(var i=0;i<arr.length;i++){
 		var value = arr[i].value;
 		var name = arr[i].id;
-
-			if(arr.length==i+1){
-		
-				text +=  '"'+name+'"'+':'+'"'+value+'"'; 
-			}else{
-				text +=  '"'+name+'"'+':'+'"'+value+'"'+',';
-			}
-			
+				if(arr.length==i+1){
+					text +=  '"'+name+'"'+':'+'"'+value+'"'; 
+				}else{
+					text +=  '"'+name+'"'+':'+'"'+value+'"'+',';
+				}
 			}
 		text += '}';
-		alert(text);
-		
 		document.getElementById('json').value = text;
 		}
 	
-
 		document.getElementById('searchButton').disabled=true;
 		$('#queryTableLoading').show();
 		$('#queryTable').hide();
@@ -343,9 +346,7 @@
 		var end = $('#datepicker [name="end"]').val();
 		var id = $("#allperson").val();
 		var inputcontactdata = document.getElementById('json').value;
-
-		alert("sday  "+start);
-		alert("eday  "+end);
+// 		alert("inputcontactdata: "+inputcontactdata);
 		console.log("start : " + start + "; end : " + end + "; id :" + id );
 
 		$('#queryTable').DataTable().destroy();
@@ -426,6 +427,7 @@
 						$("#queryTable").css("width", "100%");
 						$('#queryTable').show();
 						document.getElementById('searchButton').disabled=false;
+						loading = true;
 						$('#queryTableLoading').hide();
 					}
 				});
@@ -435,6 +437,7 @@
 
 	// 快速選取指定時間
 	function quickSearchByTime(days) {
+		if(loading){
 		var endDate = new Date();
 		var year = endDate.getFullYear();
 		var month = endDate.getMonth() + 1;
@@ -464,6 +467,8 @@
 		$('#datepicker [name="end"]').datepicker("update", endDateStr);
 
 		search();
+		}else{
+		}
 	}
 
 	function queryDetail(id, date) {
