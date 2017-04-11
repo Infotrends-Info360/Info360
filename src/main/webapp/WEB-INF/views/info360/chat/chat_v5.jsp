@@ -147,8 +147,11 @@
 							</div>
 							<div class="col-lg-3 col-md-3">
 								<div class="input-group">
-									<span class="input-group-addon">處理人</span> <input type="text"
-										class="form-control" placeholder="請輸入處理人" id="inputAgentId">
+									<span class="input-group-addon">處理人</span>
+									<select  id="allperson" style="height:30px">
+									</select> 
+<!-- 									<input type="text" -->
+<!-- 										class="form-control" placeholder="請輸入處理人" id="inputAgentId"> -->
 								</div>
 							</div>
 							<!-- 
@@ -454,6 +457,8 @@
 		$("#queryTable").css("width", "100%");
 
 		quickSearchByTime(7);
+		allperson();
+
 	});
 
 	// 取得左側客戶資料
@@ -1274,7 +1279,7 @@
 
 		var start = $('#datepicker [name="start"]').val();
 		var end = $('#datepicker [name="end"]').val();
-		var id = $("#inputAgentId").val();
+		var id = $("#allperson").val();
 
 		console.log("start : " + start + "; end : " + end + "; id :" + id);
 		console.log("currentContactId : " + currentContactId);
@@ -1567,6 +1572,32 @@
 		} else {
 			return addZeroLeft("0" + str, length);
 		}
+	}
+	function allperson(){
+		$.ajax({
+			url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_Allperson",
+			data : {
+				state : 0
+			},
+			type : "POST",
+			dataType : 'json',
+
+			error : function(e) {
+				toastr.error("請重新整理");
+			},
+			success : function(data) {
+				console.log("allperson",data)
+// 				var a ="";
+				var first = "<option value=''>全部</option>"
+					document.getElementById("allperson").insertAdjacentHTML("BeforeEnd", first);
+				
+				for (var i = 0; i < data.allperson.length; i++) {
+					var allperson = "<option value="+data.allperson[i].dbid+">"+data.allperson[i].username+"</option>"
+					document.getElementById("allperson").insertAdjacentHTML("BeforeEnd", allperson);
+				}
+				
+			}
+		});
 	}
 </script>
 
