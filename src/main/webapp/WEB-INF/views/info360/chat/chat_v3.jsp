@@ -1575,7 +1575,7 @@
 	}
 	function allperson(){
 		$.ajax({
-			url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_Allperson",
+			url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Allperson",
 			data : {
 				state : 0
 			},

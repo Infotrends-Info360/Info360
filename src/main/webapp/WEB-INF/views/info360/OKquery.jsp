@@ -51,6 +51,7 @@
 						<tbody>
 							<tr>
 								<td type="button" onclick="quickSearchByTime(0)">今天</td>
+							</tr>
 							<tr>
 								<td type="button" onclick="quickSearchByTime(7)">本週</td>
 							</tr>
@@ -101,13 +102,8 @@
 						</div>
 						<div class="col-lg-3 col-md-3">
 							<div class="input-group">
-								<span class="input-group-addon">處理人</span> 
-								<input type="hidden" value="" id="contactid">
-								<input type="hidden" value="" id="json">
-								<select  id="allperson" style="height:30px">
-								</select>
-<!-- 								<input type="text" -->
-<!-- 									class="form-control" placeholder="請輸入處理人" id="inputAgentId"> -->
+								<span class="input-group-addon">處理人</span> <input type="text"
+									class="form-control" placeholder="請輸入處理人" id="inputAgentId">
 							</div>
 						</div>
 						<!-- 
@@ -121,14 +117,9 @@
 						 -->
 						<div class="col-lg-3 col-md-3">
 							<button class="btn-sm btn-success" onclick="search()"
-								id="searchButton" >搜尋</button>
+								id="searchButton">搜尋</button>
 							<button class="btn-sm btn-danger">取消</button>
 						</div>
-						
-						
-						<div id="mapping_div">
-						</div>
-						
 					</div>
 					<!-- 
 					<div class="row ibox">
@@ -150,7 +141,7 @@
 					-->
 					<!-- 搜尋條件區 End -->
 
-					<div class="row ibox" style="height: 630px; overflow-y: scroll;">
+					<div class="row ibox" style="height: 660px; overflow-y: scroll;">
 						<div class="col-lg-12 col-md-12">
 						
 						<div class="sk-spinner sk-spinner-fading-circle" id="queryTableLoading">
@@ -167,6 +158,7 @@
                                 <div class="sk-circle11 sk-circle"></div>
                                 <div class="sk-circle12 sk-circle"></div>
                         </div>
+						
 						
 							<table class="table table-striped table-bordered table-hover"
 								id="queryTable">
@@ -283,7 +275,6 @@
 <script src="resources/js/plugins/toastr/toastr.min.js"></script>
 
 <script type="text/javascript">
-	var loading = true; 
 	var agentId = parent.UserID_g;
 
 	$(document).ready(function() {
@@ -303,51 +294,19 @@
 		$("#queryTable").css("width", "100%");
 
 		quickSearchByTime(7);
-		addmapping();
-		allperson();
-		
 	});
-	
+
 	// 案件搜尋
 	function search() {
-		loading = false;
-		var vl = 0;
-		var MappingValue = $('#mapping_div input');
-		var arr = $.makeArray(MappingValue);
-
-		for(var i=0;i<arr.length;i++){
-			var value = arr[i].value;
-			 if (!value || value == '' ) {
-	         }else{
-	        	 var vl = 1;
-	         }
-		}
-		
-		if(arr.length>0 && vl!=0){
-		var text = '{' ;
-		for(var i=0;i<arr.length;i++){
-		var value = arr[i].value;
-		var name = arr[i].id;
-				if(arr.length==i+1){
-					text +=  '"'+name+'"'+':'+'"'+value+'"'; 
-				}else{
-					text +=  '"'+name+'"'+':'+'"'+value+'"'+',';
-				}
-			}
-		text += '}';
-		document.getElementById('json').value = text;
-		}
-	
 		document.getElementById('searchButton').disabled=true;
 		$('#queryTableLoading').show();
 		$('#queryTable').hide();
 		
 		var start = $('#datepicker [name="start"]').val();
 		var end = $('#datepicker [name="end"]').val();
-		var id = $("#allperson").val();
-		var inputcontactdata = document.getElementById('json').value;
-// 		alert("inputcontactdata: "+inputcontactdata);
-		console.log("start : " + start + "; end : " + end + "; id :" + id );
+		var id = $("#inputAgentId").val();
+
+		console.log("start : " + start + "; end : " + end + "; id :" + id);
 
 		$('#queryTable').DataTable().destroy();
 		$('#queryTable tbody').html("");
@@ -358,8 +317,7 @@
 					data : {
 						startdate : start,
 						enddate : end,
-						agentid : id,
-						inputcontactdata:inputcontactdata
+						agentid : id
 					},
 					type : "POST",
 					dataType : 'json',
@@ -421,23 +379,20 @@
 								"width" : "175px",
 								"targets" : 4
 							} ],
-							"fixedColumns" : true,
+							"fixedColumns" : true
 						};
+
 						$('#queryTable').DataTable(opt);
 						$("#queryTable").css("width", "100%");
-						$('#queryTable').show();
 						document.getElementById('searchButton').disabled=false;
-						loading = true;
+						$('#queryTable').show();
 						$('#queryTableLoading').hide();
 					}
 				});
-		
-
 	}
 
 	// 快速選取指定時間
 	function quickSearchByTime(days) {
-		if(loading){
 		var endDate = new Date();
 		var year = endDate.getFullYear();
 		var month = endDate.getMonth() + 1;
@@ -467,8 +422,6 @@
 		$('#datepicker [name="end"]').datepicker("update", endDateStr);
 
 		search();
-		}else{
-		}
 	}
 
 	function queryDetail(id, date) {
@@ -686,115 +639,6 @@
 			return addZeroLeft("0" + str, length);
 		}
 	}
-	
-	function addmapping(){
-		$.ajax({
-			url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Service_Mapping",
-			data : {
-				searchflag : 1,
-				typeid:"A"
-			},
-			type : "POST",
-			dataType : 'json',
-
-			error : function(e) {
-				toastr.error("請重新整理");
-			},
-			success : function(data) {
-				console.log("mapping",data);
-				for (var i = 0; i < data.mapping.length; i++) {
-					var mapping = "<div class='col-lg-4 col-md-4'><div class='input-group'><span class='input-group-addon'>"+data.mapping[i].chiname+"</span> <input type='text' name='mappingval' class='form-control' placeholder="+data.mapping[i].chiname+" id="+data.mapping[i].engname+"></div></div>"
-					document.getElementById("mapping_div").insertAdjacentHTML("BeforeEnd", mapping);
-			
-				}
-			}
-		});
-	}
-	
-	function allperson(){
-		$.ajax({
-			url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Allperson",
-			data : {
-				state : 0
-			},
-			type : "POST",
-			dataType : 'json',
-
-			error : function(e) {
-				toastr.error("請重新整理");
-			},
-			success : function(data) {
-				console.log("allperson",data)
-// 				var a ="";
-				var first = "<option value=''>全部</option>"
-					document.getElementById("allperson").insertAdjacentHTML("BeforeEnd", first);
-				
-				for (var i = 0; i < data.allperson.length; i++) {
-					var allperson = "<option value="+data.allperson[i].dbid+">"+data.allperson[i].username+"</option>"
-					document.getElementById("allperson").insertAdjacentHTML("BeforeEnd", allperson);
-				}
-				
-			}
-		});
-	}
-// 	function creatjson(){
-// 			document.getElementById('json').value="";
-// 			document.getElementById('contactid').value="";
-		
-// 		var jj = false;
-// 		var MappingValue = $('#mapping_div input');
-// 		var arr = $.makeArray(MappingValue);
-// 		var text = '{' ;
-		
-// 		for(var i=0;i<arr.length;i++){
-// 		var value = arr[i].value;
-// 		var name = arr[i].id;
-		
-		
-// 			if(arr.length==i+1){
-		
-// 				text +=  '"'+name+'"'+':'+'"'+value+'"'; 
-// 				if(value!=""){
-// 					jj = true;				
-// 				}
-// 			}else{
-// 				text +=  '"'+name+'"'+':'+'"'+value+'"'+',';
-// 				if(value!=""){
-// 					jj = true;	
-// 				}
-// 			}
-// 			text += '}';
-		
-// 			}
-		
-// //	 	alert(text);
-// 		if(jj==true){
-// 			console.log("text",text);
-// 			document.getElementById('json').value=text;
-			
-
-// 			var text = document.getElementById('json').value
-// 			$.ajax({
-// 				url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_contactdata",
-// 				data : {
-// 					contactid :0,
-// 					inputcontactdata:text
-// 				},
-// 				type : "POST",
-// 				dataType : 'json',
-
-// 				error : function(e) {
-// 					toastr.error("請確認輸入值");
-// 				},
-// 				success : function(data) {
-// 					console.log("contactid",data);
-// 					document.getElementById('contactid').value=data.contactid[0].contactid;
-// 				}
-// 			});
-// 		}
-		
-// 	}
-	
 </script>
 
 </html>
