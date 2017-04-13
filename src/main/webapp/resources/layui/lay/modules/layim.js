@@ -272,8 +272,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
          ,'{{# layui.each(d.base.tool, function(index, item){ }}'
         ,'<span class="layui-icon" title="完成" layim-event="closeThisChat" onclick="showCloseDialog()">&#x1006;</span>'
         
-//        ,'<span class="layui-icon" title="轉接">&#xe609;</span>'
-//        ,'<span class="layui-icon" title="三方">&#xe613;</span>'
+        ,'<span class="layui-icon" title="轉接(三方)" onclick="showTransferDialog()">&#xe609;</span>'
         
                      
         ,'<span class="layui-icon layim-tool-{{item.alias}}" title="{{item.title}}" layim-event="extend" lay-filter="{{ item.alias }}">{{item.icon}}</span>'
