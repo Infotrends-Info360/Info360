@@ -3085,7 +3085,10 @@ var tabledata;
 		closeAllHrContent();
 		$("button.addMember").hide();
 		$("#person").show();
+		$("#persondiv").show();
+		$("#personul").show();
 		$("#manageContent").show();
+
 		$("button.manage").removeClass("btn-success");
 		$("button.manage").addClass("btn-primary");
 	}

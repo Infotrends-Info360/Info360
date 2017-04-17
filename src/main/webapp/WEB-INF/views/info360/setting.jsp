@@ -12,7 +12,6 @@
 
 
 
-
 <!--   	<script src="resources/js/plugins/jquery-ui/jquery-ui.min.js"></script> -->
 <script src="resources/jstree/jquery.min.js"></script>
 <link href="resources/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
@@ -340,6 +339,9 @@ label.required:after {
 										placeholder="">
 								</div>
 							</div>
+							
+							
+						
 							<div class="form-group col-sm-6">
 								<label for="inputDepartment" class="col-sm-2 control-label">最大接通數</label>
 								<div class="col-sm-8">
@@ -2335,6 +2337,8 @@ function Drop(event){
 
 <!-- 全局js -->
 
+<script src="resources/js/md5.min.js"></script>
+
 <script src="resources/js/bootstrap.min.js?v=3.3.6"></script>
 
 <!-- Data Tables -->
@@ -2630,7 +2634,6 @@ var tabledata;
 					success : function(data) {
 						console.log("停用人員", data);
 
-						//    		        	alert(JSON.stringify(data.person));
 						$('#person1Table')
 								.DataTable(
 										{
@@ -2943,6 +2946,8 @@ var tabledata;
 		var in_user_name = document.getElementById('inputName').value;
 		var in_emailaddress = document.getElementById('inputEmail').value;
 		var in_password = document.getElementById('inputPassword').value;
+		var hash = md5(in_password);
+
 		var in_employee_id = document.getElementById('inputEmployNumber').value;
 		var in_group_dbid = hh;
 		var in_account = document.getElementById('inputAccount').value;
@@ -2957,7 +2962,7 @@ var tabledata;
 						last_name : in_last_name,
 						user_name : in_user_name,
 						emailaddress : in_emailaddress,
-						password : in_password,
+						password : hash,
 						employee_id : in_employee_id,
 						group_dbid : in_group_dbid,
 						account : in_account,
@@ -3119,9 +3124,13 @@ var tabledata;
 		closeAllHrContent();
 		$("button.addMember").hide();
 		$("#person").show();
+		$("#persondiv").show();
+		$("#personul").show();
 		$("#manageContent").show();
+		
 		$("button.manage").removeClass("btn-success");
 		$("button.manage").addClass("btn-primary");
+		
 	}
 
 	function closeEditMember() {
@@ -3129,6 +3138,7 @@ var tabledata;
 		$("button.editMember").hide();
 		$("#person").show();
 		$("#manageContent").show();
+		
 		$("button.manage").removeClass("btn-success");
 		$("button.manage").addClass("btn-primary");
 	}
@@ -3889,7 +3899,7 @@ var tabledata;
 					}
 					
 					for(var a=0; a<data.ALLfunction.length; a++){
-				        var menu2 = "<li id='Imggroupf"+data.ALLfunction[a].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.ALLfunction[a].dbid+" ><p>"+data.ALLfunction[a].Function_name+"</p></li>"
+				        var menu2 = "<li id='Imggroupf"+data.ALLfunction[a].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.ALLfunction[a].dbid+" ><p>"+data.ALLfunction[a].name+"</p></li>"
 				        document.getElementById("Box88").insertAdjacentHTML("BeforeEnd",menu2);
 				     
 					}
