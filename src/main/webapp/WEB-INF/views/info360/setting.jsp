@@ -88,7 +88,13 @@ label.required:after {
 					<div class="ibox">
 						<div class="fa-tree-list">
 						
+<!-- 						<ul > -->
+<!-- 								<li><span> <i class="fa fa-fw fa-folder-open"></i> -->
+<!-- 										使用者管理 -->
+<!-- 								</span> -->
+<!-- 							</ul> -->
 						<div class="fa-tree-list" id="AuthorityTree">
+							
 							<ul id="Authority">
 							</ul>
 						</div>
@@ -2358,95 +2364,175 @@ function Drop(event){
 
 
 $(document).ready(function() {
-	$
-	.ajax({
-		url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Authority_person",
-		data : {
-			dbid : parent.UserID_g
-		},
-		type : "POST",
-		dataType : 'json',
-
-		error : function(e) {
-			toastr.error("請重新整理");
-
-		},
-		success : function(data) {
-			console.log(data)
-			
-			for(var i=0; i<data.Function.length; i++){
-		        var Authority = "<li onclick=''><i class='fa fa-fw fa-file-text-o'></i><a onclick="+data.Function[i].Programpath+"()>"+data.Function[i].Name+"</a></li>"			
-// 		        				 <li onclick=""><i class="fa fa-fw fa-file-text-o"></i><a onclick="showPerson()">人員管理</a></li>
-		        document.getElementById("Authority").insertAdjacentHTML("BeforeEnd",Authority);
-			}
-			$('#AuthorityTree').jstree({
-				 "types" : {
-				      "default" : {
-				        "icon" : "fa fa-fw fa-file-text-o"
-				      },
-				      "demo" : {
-				        "icon" : "glyphicon glyphicon-piggy-bank"
-				      }
-				    },
-			    "plugins" : [ "wholerow","types" ]
-
-			});
-		}
-	});
-	
-	
-	
 // 	$
 // 	.ajax({
 // 		url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Authority_person",
-
 // 		data : {
 // 			dbid : parent.UserID_g
-// 			},
+// 		},
 // 		type : "POST",
 // 		dataType : 'json',
+
 // 		error : function(e) {
 // 			toastr.error("請重新整理");
+
 // 		},
 // 		success : function(data) {
-// 			console.log("AuthorityTree",data);
-// 			$('#AuthorityTree').jstree("destroy").empty();
-
-// 			$('#AuthorityTree').jstree({
-// 				'core' : {
-// 					'data' : data.Tree,
-// 				},
-				
-// 				 "types" : {
-// 		              "#" : {
-// 		                  valid_children : ['root'],
-// 		              },
-// 		              "root" : {
-// 		                  valid_children : ['default', 'file'],
-// 		              	  "icon" : "resources/Home-icon.png"
-
-// 		              },
-// 		              "default" : {
-// 		                  valid_children : ['default', 'file'],
-// 		                  'icon': 'jstree-folder'
-// 		              },
-// 		              "file" : {
-// 		                  "icon" : "jstree-file",
-
-// 		              },
-// 		        	},
-
-// 					"plugins" : [ "themes", "json_data", "ui","types" ],
-// 				});
+// 			console.log(data)
+			
+// 			for(var i=0; i<data.Function.length; i++){
+// 		        var Authority = "<li onclick=''><i class='fa fa-fw fa-file-text-o'></i><a onclick="+data.Function[i].Programpath+"()>"+data.Function[i].Name+"</a></li>"			
+// // 		        				 <li onclick=""><i class="fa fa-fw fa-file-text-o"></i><a onclick="showPerson()">人員管理</a></li>
+// 		        document.getElementById("Authority").insertAdjacentHTML("BeforeEnd",Authority);
 // 			}
-// 	})
+// 			$('#AuthorityTree').jstree({
+// 				 "types" : {
+// 				      "default" : {
+// 				        "icon" : "fa fa-fw fa-file-text-o"
+// 				      },
+// 				      "demo" : {
+// 				        "icon" : "glyphicon glyphicon-piggy-bank"
+// 				      }
+// 				    },
+// 			    "plugins" : [ "wholerow","types" ]
+
+// 			});
+// 		}
+// 	});
 	
 	
 	
+	$
+	.ajax({
+		url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Authority_person",
+
+		data : {
+			dbid : parent.UserID_g
+			},
+		type : "POST",
+		dataType : 'json',
+		error : function(e) {
+			toastr.error("請重新整理");
+		},
+		success : function(data) {
+			console.log("AuthorityTree",data);
+			$('#AuthorityTree').jstree("destroy").empty();
+
+			$('#AuthorityTree').jstree({
+				'core' : {
+					'data' : data.Function,
+				},
+				
+				 "types" : {
+		              "#" : {
+		                  valid_children : ['root'],
+		              },
+		              "root" : {
+		                  valid_children : ['default', 'file'],
+		              	  "icon" : "fa fa-fw fa-folder-open"
+		              },
+		              "default" : {
+		                  valid_children : ['default', 'file'],
+		                  'icon': 'fa fa-fw fa-file-text-o'
+		              },
+
+		        	},
+
+					"plugins" : [ "themes", "json_data", "ui","types" ,"wholerow"],
+				});
+
+			
+			  $('#AuthorityTree').on('select_node.jstree', function (e, data) {
+					console.log("AuthorityTree", data.node.original);
+					    
+					if(data.node.original.parent!=0){
+						var Authority_DBID = data.node.original.id
+						if(Authority_DBID==1){
+							showPerson();
+							notifyMe();
+						}else if(Authority_DBID==2){
+							showGroup();
+							notifyMe();
+						}else if(Authority_DBID==10004){
+							showAgentreason();
+							notifyMe();
+						}else if(Authority_DBID==10008){
+							showCommonlink();
+							notifyMe();
+						}else if(Authority_DBID==10009){
+							showActivityMenu();
+							notifyMe();
+						}else if(Authority_DBID==10010){
+							showActivityGroup();
+							notifyMe();
+						}else if(Authority_DBID==10011){
+							showActivityData();
+							notifyMe();
+						}
+						
+						function notifyMe() {
+							  // Let's check if the browser supports notifications
+							  if (!("Notification" in window)) {
+							    alert("This browser does not support desktop notification");
+							  }
+
+							  // Let's check whether notification permissions have already been granted
+							  else if (Notification.permission === "granted") {
+							    // If it's okay let's create a notification
+							    var notification = new Notification("Hi 您有新訊息!");
+							  }
+
+							  // Otherwise, we need to ask the user for permission
+							  else if (Notification.permission !== "denied") {
+							    Notification.requestPermission(function (permission) {
+							      // If the user accepts, let's create a notification
+							      if (permission === "granted") {
+							        var notification = new Notification("Hi 您有新訊息!!");
+							      }
+							    });
+							  }
+
+							  // At last, if the user has denied notifications, and you 
+							  // want to be respectful there is no need to bother them any more.
+							  setTimeout(function() {
+									 notification.close()
+							      }, 500);
+							}
+						
+						
+// 						document.addEventListener('DOMContentLoaded', function () {
+// 							  if (Notification.permission !== "granted")
+// 							    Notification.requestPermission();
+// 							});
+
+// 							window.notifyMe = function() {
+// 							  if (!Notification) {
+// 							    //alert('Desktop notifications not available in your browser. Try Chromium.'); 
+// 							    return;
+// 							  }
+
+// 							  if (Notification.permission !== "granted")
+// 							    Notification.requestPermission();
+// 							  else {
+// 							    var notification = new Notification('Notification');
+// 							    notification.onclick = function () {
+// 							        window.focus();
+// 							    };
+
+// 							      setTimeout(function() {
+// 							          notification.close()
+// 							      }, 1000);
+
+// 							  }
+
+// 							}
+						
+					}
+				});
+		
+		}
+	})
 	
-	
-	
-	person();
 
 });
 
