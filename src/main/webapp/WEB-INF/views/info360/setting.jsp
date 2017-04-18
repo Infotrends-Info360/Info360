@@ -2449,83 +2449,51 @@ $(document).ready(function() {
 						var Authority_DBID = data.node.original.id
 						if(Authority_DBID==1){
 							showPerson();
-							notifyMe();
+// 							notifyMe();
 						}else if(Authority_DBID==2){
 							showGroup();
-							notifyMe();
+// 							notifyMe();
 						}else if(Authority_DBID==10004){
 							showAgentreason();
-							notifyMe();
+// 							notifyMe();
 						}else if(Authority_DBID==10008){
 							showCommonlink();
-							notifyMe();
+// 							notifyMe();
 						}else if(Authority_DBID==10009){
 							showActivityMenu();
-							notifyMe();
+// 							notifyMe();
 						}else if(Authority_DBID==10010){
 							showActivityGroup();
-							notifyMe();
+// 							notifyMe();
 						}else if(Authority_DBID==10011){
 							showActivityData();
-							notifyMe();
+// 							notifyMe();
 						}
 						
-						function notifyMe() {
-							  // Let's check if the browser supports notifications
-							  if (!("Notification" in window)) {
-							    alert("This browser does not support desktop notification");
-							  }
-
-							  // Let's check whether notification permissions have already been granted
-							  else if (Notification.permission === "granted") {
-							    // If it's okay let's create a notification
-							    var notification = new Notification("Hi 您有新訊息!");
-							  }
-
-							  // Otherwise, we need to ask the user for permission
-							  else if (Notification.permission !== "denied") {
-							    Notification.requestPermission(function (permission) {
-							      // If the user accepts, let's create a notification
-							      if (permission === "granted") {
-							        var notification = new Notification("Hi 您有新訊息!!");
-							      }
-							    });
-							  }
-
-							  // At last, if the user has denied notifications, and you 
-							  // want to be respectful there is no need to bother them any more.
-							  setTimeout(function() {
-									 notification.close()
-							      }, 500);
-							}
-						
-						
-// 						document.addEventListener('DOMContentLoaded', function () {
-// 							  if (Notification.permission !== "granted")
-// 							    Notification.requestPermission();
-// 							});
-
-// 							window.notifyMe = function() {
-// 							  if (!Notification) {
-// 							    //alert('Desktop notifications not available in your browser. Try Chromium.'); 
-// 							    return;
+// 						function notifyMe() {
+// 							  // Let's check if the browser supports notifications
+// 							  if (!("Notification" in window)) {
+// 							    alert("This browser does not support desktop notification");
 // 							  }
 
-// 							  if (Notification.permission !== "granted")
-// 							    Notification.requestPermission();
-// 							  else {
-// 							    var notification = new Notification('Notification');
-// 							    notification.onclick = function () {
-// 							        window.focus();
-// 							    };
+// 							  // Let's check whether notification permissions have already been granted
+// 							  else if (Notification.permission === "granted") {
+// 							    // If it's okay let's create a notification
+// 							    var notification = new Notification("Hi 您有新訊息!");
+// 							  }
 
-// 							      setTimeout(function() {
-// 							          notification.close()
-// 							      }, 1000);
-
+// 							  // Otherwise, we need to ask the user for permission
+// 							  else if (Notification.permission !== "denied") {
+// 							    Notification.requestPermission(function (permission) {
+// 							      // If the user accepts, let's create a notification
+// 							      if (permission === "granted") {
+// 							        var notification = new Notification("Hi 您有新訊息!!");
+// 							      }
+// 							    });
 // 							  }
 
 // 							}
+
 						
 					}
 				});
