@@ -352,6 +352,8 @@
 	</div>
 
 	<!-- 全局js -->
+		<script src="resources/js/md5.min.js"></script>
+	
 	<script src="resources/js/jquery.min.js?v=2.1.4"></script>
 	<script src="resources/js/jquery-ui-1.10.4.min.js"></script>
 	<script src="resources/js/bootstrap.min.js?v=3.3.6"></script>
@@ -403,7 +405,9 @@
 		var layim; // Layim
 
 		var userName = '${userName}';
-		var password = '${password}';
+		var password = md5('${password}');
+// 		var password = '${password}';
+
 
 		var waittingClientIDList_g = []; //20170220 Lin
 		var waittingAgentIDList_g = []; //20170223 Lin

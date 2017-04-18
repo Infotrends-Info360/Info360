@@ -87,43 +87,38 @@ label.required:after {
 				<div class="panel-body">
 					<div class="ibox">
 						<div class="fa-tree-list">
-							<ul style="list-style-type: none; margin-left: 0px;">
-								<li><span> <i class="fa fa-fw fa-folder-open"></i>
-										使用者管理
-								</span>
-									<ul style="list-style-type: none; margin-left: 20px;">
-										<li onclick=""><i class="fa fa-fw fa-file-text-o"></i><a
-											onclick="showPerson()">人員管理</a></li>
-										<li onclick=""><i class="fa fa-fw fa-file-text-o"></i><a
-											onclick="showGroup()">部門權限管理</a></li>
-										<li onclick=""><i class="fa fa-fw fa-file-text-o"></i><a
-											onclick="showAgentreason()">值機狀態管理</a></li>
-									</ul></li>
-								<!--                                     <li class="active"> -->
-								<!--                                         <span> -->
-								<!--                                             <i class="fa fa-fw fa-folder-open"></i> -->
-								<!--                                             管道管理 -->
-								<!--                                         </span> -->
-								<!--                                         <ul style="list-style-type:none;margin-left:20px;"> -->
-								<!--                                             <li><i class="fa fa-fw fa-file-text-o"></i>分派小組管理</li> -->
-								<!--                                             <li><i class="fa fa-fw fa-file-text-o"></i>Chat管道設定</li> -->
-								<!--                                         </ul> -->
-								<!--                                     </li> -->
-								<li><span> <i class="fa fa-fw fa-folder-open"></i>
-										案件管理
-								</span>
-
-									<ul style="list-style-type: none; margin-left: 20px;">
-										<li><i class="fa fa-fw fa-file-text-o"></i><a
-											onclick="showCommonlink()">常用連結管理</a></li>
-										<li><i class="fa fa-fw fa-file-text-o"></i><a
-											onclick="showActivityMenu()">服務代碼分類管理</a></li>
-										<li><i class="fa fa-fw fa-file-text-o"></i><a
-											onclick="showActivityGroup()">服務代碼群組管理</a></li>
-										<li><i class="fa fa-fw fa-file-text-o"></i><a
-											onclick="showActivityData()">服務代碼管理</a></li>
-									</ul></li>
+						
+						<div class="fa-tree-list" id="AuthorityTree">
+							<ul id="Authority">
 							</ul>
+						</div>
+<!-- 							<ul style="list-style-type: none; margin-left: 0px;"> -->
+<!-- 								<li><span> <i class="fa fa-fw fa-folder-open"></i> -->
+<!-- 										使用者管理 -->
+<!-- 								</span> -->
+<!-- 									<ul style="list-style-type: none; margin-left: 20px;"> -->
+<!-- 										<li onclick=""><i class="fa fa-fw fa-file-text-o"></i><a -->
+<!-- 											onclick="showPerson()">人員管理</a></li> -->
+<!-- 										<li onclick=""><i class="fa fa-fw fa-file-text-o"></i><a -->
+<!-- 											onclick="showGroup()">部門權限管理</a></li> -->
+<!-- 										<li onclick=""><i class="fa fa-fw fa-file-text-o"></i><a -->
+<!-- 											onclick="showAgentreason()">值機狀態管理</a></li> -->
+<!-- 									</ul></li> -->
+<!-- 								<li><span> <i class="fa fa-fw fa-folder-open"></i> -->
+<!-- 										案件管理 -->
+<!-- 								</span> -->
+
+<!-- 									<ul style="list-style-type: none; margin-left: 20px;"> -->
+<!-- 										<li><i class="fa fa-fw fa-file-text-o"></i><a -->
+<!-- 											onclick="showCommonlink()">常用連結管理</a></li> -->
+<!-- 										<li><i class="fa fa-fw fa-file-text-o"></i><a -->
+<!-- 											onclick="showActivityMenu()">服務代碼分類管理</a></li> -->
+<!-- 										<li><i class="fa fa-fw fa-file-text-o"></i><a -->
+<!-- 											onclick="showActivityGroup()">服務代碼群組管理</a></li> -->
+<!-- 										<li><i class="fa fa-fw fa-file-text-o"></i><a -->
+<!-- 											onclick="showActivityData()">服務代碼管理</a></li> -->
+<!-- 									</ul></li> -->
+<!-- 							</ul> -->
 						</div>
 					</div>
 				</div>
@@ -131,7 +126,7 @@ label.required:after {
 		</div>
 		
 
-		<div class="col-lg-10 col-sm-9" id="person">
+		<div class="col-lg-10 col-sm-9" id="person" style="display: none;">
 			<div class="panel panel-success" style="height: 780px;">
 				<!-- 人員管理切換頁籤Start -->
 				<div id="hrTabControlButton" style="margin: 1px 0px 0px 1px;">
@@ -1930,8 +1925,6 @@ function Drop(event){
 </div>
 <!-- Person_ok END -->
 
-
-
 <!-- ========================================================================================================= -->
 <!-- GROUP 開始-->
 
@@ -2363,6 +2356,104 @@ function Drop(event){
 <!-- =====================================Person================================================================= -->
 <script>
 
+
+$(document).ready(function() {
+	$
+	.ajax({
+		url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Authority_person",
+		data : {
+			dbid : parent.UserID_g
+		},
+		type : "POST",
+		dataType : 'json',
+
+		error : function(e) {
+			toastr.error("請重新整理");
+
+		},
+		success : function(data) {
+			console.log(data)
+			
+			for(var i=0; i<data.Function.length; i++){
+		        var Authority = "<li onclick=''><i class='fa fa-fw fa-file-text-o'></i><a onclick="+data.Function[i].Programpath+"()>"+data.Function[i].Name+"</a></li>"			
+// 		        				 <li onclick=""><i class="fa fa-fw fa-file-text-o"></i><a onclick="showPerson()">人員管理</a></li>
+		        document.getElementById("Authority").insertAdjacentHTML("BeforeEnd",Authority);
+			}
+			$('#AuthorityTree').jstree({
+				 "types" : {
+				      "default" : {
+				        "icon" : "fa fa-fw fa-file-text-o"
+				      },
+				      "demo" : {
+				        "icon" : "glyphicon glyphicon-piggy-bank"
+				      }
+				    },
+			    "plugins" : [ "wholerow","types" ]
+
+			});
+		}
+	});
+	
+	
+	
+// 	$
+// 	.ajax({
+// 		url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Authority_person",
+
+// 		data : {
+// 			dbid : parent.UserID_g
+// 			},
+// 		type : "POST",
+// 		dataType : 'json',
+// 		error : function(e) {
+// 			toastr.error("請重新整理");
+// 		},
+// 		success : function(data) {
+// 			console.log("AuthorityTree",data);
+// 			$('#AuthorityTree').jstree("destroy").empty();
+
+// 			$('#AuthorityTree').jstree({
+// 				'core' : {
+// 					'data' : data.Tree,
+// 				},
+				
+// 				 "types" : {
+// 		              "#" : {
+// 		                  valid_children : ['root'],
+// 		              },
+// 		              "root" : {
+// 		                  valid_children : ['default', 'file'],
+// 		              	  "icon" : "resources/Home-icon.png"
+
+// 		              },
+// 		              "default" : {
+// 		                  valid_children : ['default', 'file'],
+// 		                  'icon': 'jstree-folder'
+// 		              },
+// 		              "file" : {
+// 		                  "icon" : "jstree-file",
+
+// 		              },
+// 		        	},
+
+// 					"plugins" : [ "themes", "json_data", "ui","types" ],
+// 				});
+// 			}
+// 	})
+	
+	
+	
+	
+	
+	
+	person();
+
+});
+
+
+
+
+
 function showPerson() {
 	$("button.editMember").hide();
 
@@ -2771,9 +2862,6 @@ var tabledata;
 		
 	}
 
-// 	function nono(){
-// 		a
-// 	}
 	function personjump(data,tabledata){
 // 		alert(tabledata)
 
@@ -2803,11 +2891,7 @@ var tabledata;
 		}
 	}
 	
-	$(document).ready(function() {
-
-		person();
-
-	});
+	
 	function aa(data,tabledata) {
 // 		$("#person0Table tbody tr td,#person1Table tbody tr td").on("click",
 // 				function() {
@@ -3159,6 +3243,7 @@ var tabledata;
 			var up_user_name = $('#updateName').val();
 			var up_emailaddress = $('#updateEmail').val();
 			var up_password = $('#updatePassword').val();
+			var hash = md5(up_password);
 			var up_employee_id = $('#updateEmployNumber').val();
 			var up_account = $('#updateAccount').val();
 //	 		var up_state = $('#updateState').val();
@@ -3174,7 +3259,7 @@ var tabledata;
 					last_name : up_last_name,
 					user_name : up_user_name,
 					emailaddress : up_emailaddress,
-					password : up_password,
+					password : hash,
 					employee_id : up_employee_id,
 					group_dbid : "",
 					account : up_account,
@@ -3208,6 +3293,8 @@ var tabledata;
 		var up_user_name = $('#updateName').val();
 		var up_emailaddress = $('#updateEmail').val();
 		var up_password = $('#updatePassword').val();
+		var hash = md5(up_password);
+
 		var up_employee_id = $('#updateEmployNumber').val();
 		var up_account = $('#updateAccount').val();
 // 		var up_state = $('#updateState').val();
@@ -3223,7 +3310,7 @@ var tabledata;
 				last_name : up_last_name,
 				user_name : up_user_name,
 				emailaddress : up_emailaddress,
-				password : up_password,
+				password : hash,
 				employee_id : up_employee_id,
 				GP_DBID_list: kk,
 				account : up_account,
@@ -3596,9 +3683,6 @@ var tabledata;
 			toastr.error("請選擇要刪除的欄位");
 		}
 	}
-	
-
-	
 
 	/* 表格全選控制 */
 	$("#manageCheck").on(
