@@ -814,9 +814,10 @@ function addlayim() {
 			// ,isgroup: false //是否開啟群組
 			// ,min: true //是否始終最小化主面板（默認false）
 			,
-			chatLog : './demo/chatlog.html' // 聊天記錄位址
-			,
-			find : './demo/find.html',
+//			chatLog : './demo/chatlog.html' // 聊天記錄位址
+//			,
+//			find : './demo/find.html',
+			notice: true,
 			copyright : true
 		// 是否授權
 		});

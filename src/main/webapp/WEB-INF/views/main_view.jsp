@@ -1902,14 +1902,14 @@
 										//,isgroup: false //是否开启群组
 										,
 										min : true //是否始终最小化主面板，默认false
-										//,notice: true //是否开启桌面消息提醒，默认false
-										//,voice: false //声音提醒，默认开启，声音文件为：default.wav
-										,
-										msgbox : 'layui/demo/msgbox.html' //消息盒子页面地址，若不开启，剔除该项即可
-										,
-										find : 'layui/demo/find.html' //发现页面地址，若不开启，剔除该项即可
-										,
-										chatLog : 'layui/demo/chatLog.html' //聊天记录页面地址，若不开启，剔除该项即可
+										,notice: true //是否开启桌面消息提醒，默认false
+										,voice: true //声音提醒，默认开启，声音文件为：default.wav
+// 										,
+// 										msgbox : 'layui/demo/msgbox.html' //消息盒子页面地址，若不开启，剔除该项即可
+// 										,
+// 										find : 'layui/demo/find.html' //发现页面地址，若不开启，剔除该项即可
+// 										,
+// 										chatLog : 'layui/demo/chatLog.html' //聊天记录页面地址，若不开启，剔除该项即可
 
 									});
 							//监听在线状态的切换事件
