@@ -910,7 +910,16 @@
 									"display", "inline-block");
 							$("#statusButton button.status-paperWork").css(
 									"display", "none");
-
+							
+							
+							// 將顯示NOTREADY原因調為預設值"未就緒" 20170420_sam
+							var statusName = "未就緒";
+							$("#statusButton button.status-notready").html(statusName);
+							// 已選取的未就緒選項需隱藏
+							$("#statusList li").show();
+							$('a[notReady="notReady"]').parent().hide();
+							// end of 將顯示NOTREADY原因調為預設值"未就緒" 20170420_sam
+							
 							//控制可選取按鈕
 							$("#statusList li.agentReady").show();
 						} else if ("start" == startORend
