@@ -177,9 +177,7 @@ label.required:after {
 								<li><a href="#"><i class="fa fa-fw fa-refresh"></i></a></li>
 							</ul>
 						</div>
-
- 						
-
+						
 						<div class="row ibox">
 						<div class="spiner-example" id="personLoding">
                             <div class="sk-spinner sk-spinner-fading-circle">
@@ -225,13 +223,7 @@ label.required:after {
 					<div id="banContent" style="display: none;">
 						<div id="personul1">
 							<ul class="pagination">
-<!-- 								<li onclick="showAddMember()"><a href="#"><i -->
-<!-- 										class="fa fa-fw fa-plus"></i></a></li> -->
-<!-- 								<li onclick="confirmBan()"><a href="#"><i -->
-<!-- 										class="fa fa-fw fa-unlock-alt"></i></a></li>		 -->
-<!-- 								<li onclick="unlockAccount()"><a href="#"><i -->
-<!-- 										class="fa fa-fw fa-ban"></i></a></li> -->
-								
+
 								<li onclick="person_ok()"><a href="#"><i
 										class="glyphicon glyphicon-ok"></i></a></li>
 								<li onclick="personTrashBun()"><a href="#"><i
@@ -281,7 +273,6 @@ label.required:after {
 										
 										</tr>
 									</thead>
-
 								</table>
 							</div>
 						</div>
@@ -340,9 +331,7 @@ label.required:after {
 										placeholder="">
 								</div>
 							</div>
-							
-							
-						
+
 							<div class="form-group col-sm-6">
 								<label for="inputDepartment" class="col-sm-2 control-label">最大接通數</label>
 								<div class="col-sm-8">
@@ -2361,47 +2350,9 @@ function Drop(event){
 
 <!-- =====================================Person================================================================= -->
 <script>
-
+var timeout = 500;
 
 $(document).ready(function() {
-// 	$
-// 	.ajax({
-// 		url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Authority_person",
-// 		data : {
-// 			dbid : parent.UserID_g
-// 		},
-// 		type : "POST",
-// 		dataType : 'json',
-
-// 		error : function(e) {
-// 			toastr.error("請重新整理");
-
-// 		},
-// 		success : function(data) {
-// 			console.log(data)
-			
-// 			for(var i=0; i<data.Function.length; i++){
-// 		        var Authority = "<li onclick=''><i class='fa fa-fw fa-file-text-o'></i><a onclick="+data.Function[i].Programpath+"()>"+data.Function[i].Name+"</a></li>"			
-// // 		        				 <li onclick=""><i class="fa fa-fw fa-file-text-o"></i><a onclick="showPerson()">人員管理</a></li>
-// 		        document.getElementById("Authority").insertAdjacentHTML("BeforeEnd",Authority);
-// 			}
-// 			$('#AuthorityTree').jstree({
-// 				 "types" : {
-// 				      "default" : {
-// 				        "icon" : "fa fa-fw fa-file-text-o"
-// 				      },
-// 				      "demo" : {
-// 				        "icon" : "glyphicon glyphicon-piggy-bank"
-// 				      }
-// 				    },
-// 			    "plugins" : [ "wholerow","types" ]
-
-// 			});
-// 		}
-// 	});
-	
-	
-	
 	$
 	.ajax({
 		url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Authority_person",
@@ -2449,64 +2400,75 @@ $(document).ready(function() {
 						var Authority_DBID = data.node.original.id
 						if(Authority_DBID==1){
 							showPerson();
-// 							notifyMe();
+							notifyMe();
 						}else if(Authority_DBID==2){
 							showGroup();
-// 							notifyMe();
 						}else if(Authority_DBID==10004){
 							showAgentreason();
-// 							notifyMe();
 						}else if(Authority_DBID==10008){
 							showCommonlink();
-// 							notifyMe();
 						}else if(Authority_DBID==10009){
 							showActivityMenu();
-// 							notifyMe();
 						}else if(Authority_DBID==10010){
 							showActivityGroup();
-// 							notifyMe();
 						}else if(Authority_DBID==10011){
 							showActivityData();
-// 							notifyMe();
 						}
-						
-// 						function notifyMe() {
-// 							  // Let's check if the browser supports notifications
-// 							  if (!("Notification" in window)) {
-// 							    alert("This browser does not support desktop notification");
-// 							  }
 
-// 							  // Let's check whether notification permissions have already been granted
-// 							  else if (Notification.permission === "granted") {
-// 							    // If it's okay let's create a notification
-// 							    var notification = new Notification("Hi 您有新訊息!");
-// 							  }
 
-// 							  // Otherwise, we need to ask the user for permission
-// 							  else if (Notification.permission !== "denied") {
-// 							    Notification.requestPermission(function (permission) {
-// 							      // If the user accepts, let's create a notification
-// 							      if (permission === "granted") {
-// 							        var notification = new Notification("Hi 您有新訊息!!");
-// 							      }
-// 							    });
-// 							  }
+						function notifyMe() {
+							  // 首先讓我們確定瀏覽器支援 Notification
+							  if (!("Notification" in window)) {
+							    alert("這個瀏覽器不支援 Notification");
+							  }
 
-// 							}
+							  // 再檢查使用者是否已經授權執行 Notification
+							  else if (Notification.permission === "granted") {
+							    // 如果已經授權就可以直接新增 Notification 了!
+							    var notification = new Notification("安安你好!");
+							  }
+
+							  // 否則，我們會需要詢問使用者是否開放權限
+							  else if (Notification.permission !== 'denied') {
+							    Notification.requestPermission(function (permission) {
+							      // 如果使用者同意了就來新增一個 Notification 打聲招呼吧
+							      if (permission === "granted") {
+							        var notification = new Notification("安安~");
+							      }
+							    });
+							  }
+
+							  // 如果使用者還是不同意授權執行 Notification
+							 
+							  // 最好還是進行適當的處理以避免繼續打擾使用者
+								setTimeout(function() { notification.close() }, 500);
+
+						}
+
 
 						
 					}
 				});
-		
+			  
+// 			  var wsTimeout = setTimeout(function() {
+// 					$("#loginFailedMessage").html("Web Socket連線失敗，請重新登入。");
+
+// 					$('#loginDialog').on('hidden.bs.modal', function() {
+// 						window.location.href = 'console';
+// 					})
+
+// 					$("#loginDialogButton").trigger("click");
+// 				}, webSocketTimeout);
+			  
+			
+			  
+			  
+			  
 		}
 	})
 	
 
 });
-
-
-
-
 
 function showPerson() {
 	$("button.editMember").hide();
@@ -2520,8 +2482,6 @@ function showPerson() {
 	$("#persondiv").hide();
 	person();
 }
-
-
 
 function person_groupmenu(){
 	$("#persondiv").hide();
@@ -2555,10 +2515,6 @@ $.ajax({
 		for(var i=0; i<data.group.length; i++){
 	        var menu = "<li id='Imgperson"+data.group[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.group[i].dbid+" ><p>"+data.group[i].name+"</p></li>"
 	        document.getElementById("Box22").insertAdjacentHTML("BeforeEnd",menu);
-	        
-// 	        var menu2 = "<li id='Imgperson"+data.group[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#1c84c6;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.group[i].dbid+" ><p>"+data.group[i].name+"</p></li>"
-// 	        document.getElementById("Box4").insertAdjacentHTML("BeforeEnd",menu2);
-	      
 	        	 }
 		$("#Box22").show();
 		$("#Box22Loading").hide();
@@ -2569,16 +2525,13 @@ var dataa;
 var tabledata;
 	function person() {
 		person_groupmenu();
-		
-		
+
 		$("#personLoding").show();
 		$("#personLoding1").show();
 		$("#persondiv").hide();
 		$("#persondiv1").hide();
 		$("#personul").hide();
 		$("#personul1").hide();
-		
-		
 		$("#person1All").prop("checked", false);
 		$("#person0All").prop("checked", false);
 		

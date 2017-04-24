@@ -681,6 +681,7 @@
 
 			// 當收到服務端的消息時
 			ws.onmessage = function(e) {
+
 				// e.data 是服務端發來的資料
 				if ("{" == e.data.substring(0, 1) && e.data.length > 2) {
 					var obj = jQuery.parseJSON(e.data);
@@ -749,7 +750,7 @@
 					if ("findAgentEvent" == obj.Event) {
 						ClientName_g = obj.fromName;
 						ClientID_g = obj.from;
-
+						notifyMe_phone();
 						$("#inviteNumber").html(ClientName_g);
 						$("#inviteDialogButton").trigger("click");
 					}
@@ -870,6 +871,7 @@
 							console.log("sendmessage");
 							getclientmessagelayim(obj.text, obj.roomID,
 									obj.UserName);
+							notifyMe();
 						}
 					}
 
@@ -962,6 +964,7 @@
 					//20170223 Lin
 
 					if ("removeUserinroom" == obj.Event) {
+
 						var fromUserID = obj.fromUserID;
 						var roomID = obj.roomID
 						// 20170313_sam
@@ -1635,7 +1638,6 @@
 
 			// 發送消息給layim
 			layim.getMessage(obj);
-
 			// 取消自動點選新訊息視窗功能
 			//$("#layim-group" + roomId).trigger("click");
 		}
@@ -1674,10 +1676,12 @@
 			console.log(myMessagetoRoomJson);
 
 			ws.send(JSON.stringify(myMessagetoRoomJson));
+
 		}
 
 		//送出私訊
 		function send(aSendto, aMessage) {
+
 			if (aSendto === undefined)
 				aSendto = document.getElementById('sendto').value;
 			if (aMessage === undefined)
@@ -2008,6 +2012,58 @@
 							// 開啟傳送layim參數
 							layimswitch = true;
 						});
+		
+		function notifyMe() {
+			  // Let's check if the browser supports notifications
+			  if (!("Notification" in window)) {
+			    alert("This browser does not support desktop notification");
+			  }
+
+			  // Let's check whether notification permissions have already been granted
+			  else if (Notification.permission === "granted") {
+			    // If it's okay let's create a notification
+			    var notification = new Notification("Hi 您有新訊息!");
+			  }
+
+			  // Otherwise, we need to ask the user for permission
+			  else if (Notification.permission !== "denied") {
+			    Notification.requestPermission(function (permission) {
+			      // If the user accepts, let's create a notification
+			      if (permission === "granted") {
+			        var notification = new Notification("Hi 您有新訊息!!");
+			      }
+			    });
+			  }
+				setTimeout(function() { notification.close() }, 3000);
+			  // At last, if the user has denied notifications, and you 
+			  // want to be respectful there is no need to bother them any more.
+			}
+		
+		
+		function notifyMe_phone() {
+			  // Let's check if the browser supports notifications
+			  if (!("Notification" in window)) {
+			    alert("This browser does not support desktop notification");
+			  }
+
+			  // Let's check whether notification permissions have already been granted
+			  else if (Notification.permission === "granted") {
+			    // If it's okay let's create a notification
+			    var notification = new Notification("Hi 您有新的通話!");
+			  }
+
+			  // Otherwise, we need to ask the user for permission
+			  else if (Notification.permission !== "denied") {
+			    Notification.requestPermission(function (permission) {
+			      // If the user accepts, let's create a notification
+			      if (permission === "granted") {
+			        var notification = new Notification("Hi 您有新的通話!!");
+			      }
+			    });
+			  }
+				setTimeout(function() { notification.close() }, 3000);
+			}
+		
 	</script>
 
 </body>

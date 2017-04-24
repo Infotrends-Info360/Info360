@@ -362,6 +362,7 @@
 			if(user!=null && ""!=user){
 				var data = 'user=' + user;
 				var me = this;
+// 				alert("URL: ${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/GetKPI");
 				$
 						.ajax({
 							url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/GetKPI",
