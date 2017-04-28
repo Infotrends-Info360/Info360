@@ -355,8 +355,8 @@
 	</div>
 
 	<!-- 全局js -->
-		<script src="resources/js/md5.min.js"></script>
-	
+	<script src="resources/js/md5.min.js"></script>
+
 	<script src="resources/js/jquery.min.js?v=2.1.4"></script>
 	<script src="resources/js/jquery-ui-1.10.4.min.js"></script>
 	<script src="resources/js/bootstrap.min.js?v=3.3.6"></script>
@@ -410,8 +410,7 @@
 
 		var userName = '${userName}';
 		var password = md5('${password}');
-// 		var password = '${password}';
-
+		// 		var password = '${password}';
 
 		var waittingClientIDList_g = []; //20170220 Lin
 		var waittingAgentIDList_g = []; //20170223 Lin
@@ -974,6 +973,7 @@
 
 						var fromUserID = obj.fromUserID;
 						var roomID = obj.roomID
+						var roomMembers = obj.roomMembers;
 						// 20170313_sam
 						// 只收他人傳來的系統訊息
 						if (fromUserID != UserID_g) {
@@ -989,8 +989,17 @@
 							}
 						}
 
-						if (fromUserID == UserID_g) {
+						// 20170418  聊天房間若是所有人皆離開時清除layim群聊並切換至該客資頁籤 Billy
+						if ('[]' == roomMembers) {
 							// 清除layim群聊清單
+							console.log("聊天室已無成員，removeList : " + roomID);
+							var chatRoomMsg = obj.chatRoomMsg; // 接收系統訊息
+							var closedRoomMsg = chatRoomMsg.closedRoomMsg;
+
+							if (closedRoomMsg != undefined) {
+								toastr.error(closedRoomMsg);
+							}
+							
 							layim.removeList({
 								type : 'group',
 								id : roomID
