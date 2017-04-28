@@ -78,6 +78,8 @@
 										class="fa fa-fw fa-plus"></i></a></li>
 								<li onclick="confirmBangroup()"><a href="#"><i
 										class="glyphicon glyphicon-trash"></i></a></li>
+								<li onclick="changeGroupNameButton()"><a href="#"><i
+										class="glyphicon glyphicon-edit"></i></a></li>
 							</ul>
 							<ul class="pagination" style="float: right;">
 								<li><input type="text" id="managegroupTableSearch"
@@ -232,9 +234,9 @@
 						
 
 							<div class="form-group col-sm-12">
-								<label for="inputDepartment" class="col-sm-2 control-label">部門名稱:</label>
+<!-- 								<label for="inputDepartment" class="col-sm-2 control-label">部門名稱:</label> -->
 								<div class="col-sm-6">
-									<input type="text" class="form-control" id="up_name"
+									<input type="hidden" class="form-control" id="up_name"
 										placeholder="">
 								</div>
 							</div>
@@ -381,6 +383,39 @@
 </body>
 
 <!-- 彈跳對話視窗-->
+
+<!-- 鉛筆符號BUTTON -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+	data-target="#ChangeGroupName" style="display: none;"
+	id="changeGroupNameButton">banDialog</button>
+
+<!-- 垃圾桶符號BUTTON -->
+<div id="ChangeGroupName" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-body">
+				<h5>編輯名稱</h5>
+				<input type="text" value="" id="changeName">
+			</div>
+			<div class="modal-footer">
+				<div class="form-group col-sm-6">
+					<div class="col-sm-3">
+						<input type="hidden" class="form-control"
+							id="deletedbid_GroupDelete" placeholder="">
+					</div>
+				</div>
+				<button type="button" class="btn btn-success" data-dismiss="modal"
+					onclick="GroupDelete('更新成功')">確定</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+			</div>
+		</div>
+
+	</div>
+</div>
+<!-- 鉛筆桶符號BUTTON END -->
+
+
 <!-- 垃圾桶符號BUTTON -->
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
 	data-target="#confirmBangroup" style="display: none;"
@@ -543,10 +578,13 @@ function select() {
 							document
 									.getElementById('up_dbid').value = table
 									.row(this).data().dbid;
-
+							
 							document
 									.getElementById('UPgroup').innerHTML = table
 									.row(this).data().name;
+							document
+							.getElementById('changeName').innerHTML = table
+							.row(this).data().name;
 							
 							document
 							.getElementById('up_name').value = table
@@ -963,7 +1001,11 @@ function unlockAccountgroup() {
 	$("#unlockButtongroup").trigger("click");
 
 }
+//解鎖對話視窗
+function changeGroupNameButton() {
+	$("#changeGroupNameButton").trigger("click");
 
+}
 //停用對話視窗
 function confirmBangroup() {
 	$("#confirmBanButtongroup").trigger("click");
