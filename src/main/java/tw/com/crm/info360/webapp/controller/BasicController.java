@@ -78,6 +78,8 @@ public class BasicController {
 		String RESTful_hostname = properties.getProperty("RESTful.hostname");
 		String RESTful_port = properties.getProperty("RESTful.port");
 		String RESTful_project = properties.getProperty("RESTful.project");
+		
+		String Info_notification = properties.getProperty("Info.notification");
 
 		model.addAttribute("RESTful_protocol", RESTful_protocol);
 		model.addAttribute("RESTful_hostname", RESTful_hostname);
@@ -91,6 +93,8 @@ public class BasicController {
 		model.addAttribute("Info360_Setting_protocol", Info360_Setting_protocol);
 		model.addAttribute("Info360_Setting_hostname", Info360_Setting_hostname);
 		model.addAttribute("Info360_Setting_port", Info360_Setting_port);
+		
+		model.addAttribute("Info_notification", Info_notification);
 
 		return "main_view"; // 頁面導向 /WEB-INF/views/ 搜索檔案類型.jsp
 	}
@@ -271,7 +275,283 @@ public class BasicController {
 
 		return "info360/testsetting";
 	}
+	
+	/**
+	 * 「設定」人員頁面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "personsetting")
+	public String showpersonsetting(Model model) {
+		// 取得設定參數
+		getProperties();
 
+		String IMWebSocket_protocol = properties.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
+
+		String Info360_Setting_protocol = properties.getProperty("Info360_Setting.protocol");
+		String Info360_Setting_hostname = properties.getProperty("Info360_Setting.hostname");
+		String Info360_Setting_port = properties.getProperty("Info360_Setting.port");
+
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
+
+		model.addAttribute("Info360_Setting_protocol", Info360_Setting_protocol);
+		model.addAttribute("Info360_Setting_hostname", Info360_Setting_hostname);
+		model.addAttribute("Info360_Setting_port", Info360_Setting_port);
+
+		return "info360/personsetting";
+	}
+
+	
+	/**
+	 * 「設定」部門頁面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "groupsetting")
+	public String showgroupsetting(Model model) {
+		// 取得設定參數
+		getProperties();
+
+		String IMWebSocket_protocol = properties.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
+
+		String Info360_Setting_protocol = properties.getProperty("Info360_Setting.protocol");
+		String Info360_Setting_hostname = properties.getProperty("Info360_Setting.hostname");
+		String Info360_Setting_port = properties.getProperty("Info360_Setting.port");
+
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
+
+		model.addAttribute("Info360_Setting_protocol", Info360_Setting_protocol);
+		model.addAttribute("Info360_Setting_hostname", Info360_Setting_hostname);
+		model.addAttribute("Info360_Setting_port", Info360_Setting_port);
+
+		return "info360/groupsetting";
+	}
+	
+	/**
+	 * 「設定」值機頁面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "agentreasonsetting")
+	public String showagentreasonsetting(Model model) {
+		// 取得設定參數
+		getProperties();
+
+		String IMWebSocket_protocol = properties.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
+
+		String Info360_Setting_protocol = properties.getProperty("Info360_Setting.protocol");
+		String Info360_Setting_hostname = properties.getProperty("Info360_Setting.hostname");
+		String Info360_Setting_port = properties.getProperty("Info360_Setting.port");
+
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
+
+		model.addAttribute("Info360_Setting_protocol", Info360_Setting_protocol);
+		model.addAttribute("Info360_Setting_hostname", Info360_Setting_hostname);
+		model.addAttribute("Info360_Setting_port", Info360_Setting_port);
+
+		return "info360/agentreasonsetting";
+	}
+	
+	
+	/**
+	 * 「設定」常用連結頁面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "commonlinksetting")
+	public String showcommonlinksetting(Model model) {
+		// 取得設定參數
+		getProperties();
+
+		String IMWebSocket_protocol = properties.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
+
+		String Info360_Setting_protocol = properties.getProperty("Info360_Setting.protocol");
+		String Info360_Setting_hostname = properties.getProperty("Info360_Setting.hostname");
+		String Info360_Setting_port = properties.getProperty("Info360_Setting.port");
+
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
+
+		model.addAttribute("Info360_Setting_protocol", Info360_Setting_protocol);
+		model.addAttribute("Info360_Setting_hostname", Info360_Setting_hostname);
+		model.addAttribute("Info360_Setting_port", Info360_Setting_port);
+
+		return "info360/commonlinksetting";
+	}
+	
+	/**
+	 * 「設定」服務代碼分類頁面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "activitymenusetting")
+	public String showactivitymenusetting(Model model) {
+		// 取得設定參數
+		getProperties();
+
+		String IMWebSocket_protocol = properties.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
+
+		String Info360_Setting_protocol = properties.getProperty("Info360_Setting.protocol");
+		String Info360_Setting_hostname = properties.getProperty("Info360_Setting.hostname");
+		String Info360_Setting_port = properties.getProperty("Info360_Setting.port");
+
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
+
+		model.addAttribute("Info360_Setting_protocol", Info360_Setting_protocol);
+		model.addAttribute("Info360_Setting_hostname", Info360_Setting_hostname);
+		model.addAttribute("Info360_Setting_port", Info360_Setting_port);
+
+		return "info360/activitymenusetting";
+	}
+	
+	/**
+	 * 「設定」服務代碼群組頁面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "activitygroupsetting")
+	public String showactivitygroupsetting(Model model) {
+		// 取得設定參數
+		getProperties();
+
+		String IMWebSocket_protocol = properties.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
+
+		String Info360_Setting_protocol = properties.getProperty("Info360_Setting.protocol");
+		String Info360_Setting_hostname = properties.getProperty("Info360_Setting.hostname");
+		String Info360_Setting_port = properties.getProperty("Info360_Setting.port");
+
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
+
+		model.addAttribute("Info360_Setting_protocol", Info360_Setting_protocol);
+		model.addAttribute("Info360_Setting_hostname", Info360_Setting_hostname);
+		model.addAttribute("Info360_Setting_port", Info360_Setting_port);
+
+		return "info360/activitygroupsetting";
+	}
+	
+	
+	/**
+	 * 「設定」服務代碼頁面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "activitydatasetting")
+	public String showactivitydatasetting(Model model) {
+		// 取得設定參數
+		getProperties();
+
+		String IMWebSocket_protocol = properties.getProperty("IMWebSocket.protocol");
+		String IMWebSocket_hostname = properties.getProperty("IMWebSocket.hostname");
+		String IMWebSocket_port = properties.getProperty("IMWebSocket.port");
+
+		String Info360_Setting_protocol = properties.getProperty("Info360_Setting.protocol");
+		String Info360_Setting_hostname = properties.getProperty("Info360_Setting.hostname");
+		String Info360_Setting_port = properties.getProperty("Info360_Setting.port");
+
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+		
+		model.addAttribute("IMWebSocket_protocol", IMWebSocket_protocol);
+		model.addAttribute("IMWebSocket_hostname", IMWebSocket_hostname);
+		model.addAttribute("IMWebSocket_port", IMWebSocket_port);
+
+		model.addAttribute("Info360_Setting_protocol", Info360_Setting_protocol);
+		model.addAttribute("Info360_Setting_hostname", Info360_Setting_hostname);
+		model.addAttribute("Info360_Setting_port", Info360_Setting_port);
+
+		return "info360/activitydatasetting";
+	}
+	
 	/**
 	 * 「忘記密碼」頁面
 	 * @return

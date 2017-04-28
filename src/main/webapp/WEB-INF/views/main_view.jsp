@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html onmouseenter="document.getElementById('InfoFocus').value = 0 "onmouseleave="document.getElementById('InfoFocus').value = 1">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>info360主頁</title>
@@ -21,6 +21,7 @@
 </head>
 
 <body class="full-height-layout gray-bg" style="overflow-x: hidden">
+<input value="" id="InfoFocus" type="hidden"></input>
 	<!--右侧部分開始-->
 	<div id="page-wrapper" class="gray-bg dashbard-1">
 		<!--<div class="border-bottom">-->
@@ -100,6 +101,7 @@
 								<li><a onclick="openTab(0)">儀表板</a></li>
 								<li><a onclick="openTab(6)">案件搜尋</a></li>
 								<li><a onclick="openTab(7)">設定</a></li>
+<!-- 								<li><a onclick="openTab(9)">personsetting</a></li> -->
 								<!-- <li><a onclick="openTab(8)">修改密碼</a></li> -->
 								<li><a onclick="logout()">登出</a></li>
 								<hr>
@@ -127,10 +129,11 @@
 							class="J_menuItem" href="chat5" id="chat5"></a> <a
 							class="J_menuItem" href="/info360/query">案件搜尋</a> <a
 							class="J_menuItem" href="/info360/setting">設定</a> <a
-							class="J_menuItem" href="/info360/password">修改密碼</a> <a
+							class="J_menuItem" href="/info360/password">修改密碼</a>
+<!-- 							<a class="J_menuItem" href="/info360/personsetting">設定</a> -->
+							 <a
 							href="login.html">登出</a>
-
-
+							
 					</div>
 					<!-- 實際觸發開啟頁籤區域 -->
 				</ul>
@@ -391,6 +394,7 @@
 	<!-- 	<script src="resources/js/info360/websocket-agent.js"></script> -->
 
 	<script>
+		
 		var ws; // websocket
 		var UserName_g; // 使用者名稱全域變數
 		var UserID_g; // 使用者ID全域變數
@@ -871,7 +875,10 @@
 							console.log("sendmessage");
 							getclientmessagelayim(obj.text, obj.roomID,
 									obj.UserName);
-							notifyMe();
+							var Focus = document.getElementById('InfoFocus').value
+							if(Focus == 1){
+								notifyMe(); 
+							}
 						}
 					}
 
@@ -1820,6 +1827,10 @@
 				console.log(order + " is selected");
 				$('a[data-id="/info360/setting"]').children().show();
 			}
+// 			else if (9 == order) {
+// 				console.log(order + " is selected");
+// 				$('a[data-id="/info360/personsetting"]').children().show();
+// 			}
 		}
 
 		function showTransferDialog() {
@@ -2034,11 +2045,10 @@
 			      }
 			    });
 			  }
-				setTimeout(function() { notification.close() }, 3000);
+				setTimeout(function() { notification.close() }, "${Info_notification}");
 			  // At last, if the user has denied notifications, and you 
 			  // want to be respectful there is no need to bother them any more.
 			}
-		
 		
 		function notifyMe_phone() {
 			  // Let's check if the browser supports notifications
@@ -2061,9 +2071,30 @@
 			      }
 			    });
 			  }
-				setTimeout(function() { notification.close() }, 3000);
+				setTimeout(function() { notification.close() }, "${Info_notification}");
 			}
 		
+
+// 		function InfoFocus(){
+// 			var FocusInfo = 1;
+		
+// 			$(window).on("blur focus", function(e) {
+// 				var InfoFocus = true;	
+// 			    var prevType = $(this).data("prevType");
+// 			    if (prevType != e.type) {   //  reduce double fire issues
+// 			        switch (e.type) {
+// 			            case "blur":
+// 			                break;
+// 			            case "focus":
+// 			            	FocusInfo = 0;
+// 			                break;
+// 			        }
+// 			    }
+// 			    $(this).data("prevType", e.type);
+// 			})
+// 		}
+	
+		        
 	</script>
 
 </body>
