@@ -690,7 +690,8 @@
 				if ("{" == e.data.substring(0, 1) && e.data.length > 2) {
 					var obj = jQuery.parseJSON(e.data);
 					console.log(obj);
-
+					// 防呆機制
+					obj.Event = obj.Event.toLowerCase();
 					// 接收到有人登入的訊息
 					if ("userjoin" == obj.Event) {
 						alert("userjoin matched");
@@ -737,7 +738,7 @@
 					}
 
 					// 20170321_sam
-					if ("userjoinAgain" == obj.Event) {
+					if ("userjoinagain" == obj.Event) {
 						alert("userjoinAgain matched");
 // 						alert(obj.text);
 						// 更新畫面
@@ -753,7 +754,7 @@
 					// end of 20170321_sam
 
 					// 接收到Client邀請chat的event
-					if ("findAgentEvent" == obj.Event) {
+					if ("findagentevent" == obj.Event) {
 						alert("findAgentEvent matched");
 						// 已經此塊程式碼移至"senduserdata' == obj.Event下,以精簡流程
 					}
@@ -812,7 +813,7 @@
 					}
 
 					// 接受成功加入Layim清單
-					if ("AcceptEvent" == obj.Event) {
+					if ("acceptevent" == obj.Event) {
 						alert("AcceptEvent matched");						
 						// 拿取資料 + 為之後建立roomList做準備
 						RoomID_g = obj.roomID; // 之後要改成local variable
@@ -872,13 +873,13 @@
 
 					//20170223 Lin
 					// 接收拒絕事件
-					if ("RejectEvent" == obj.Event) {
+					if ("rejectevent" == obj.Event) {
 						alert("RejectEvent matched");
 					}
 					//20170223 Lin
 
 					// 接受訊息控制
-					if ("messagetoRoom" == obj.Event) {
+					if ("messagetoroom" == obj.Event) {
 						alert("messagetoRoom matched");
 						// 判斷是否有開啟layim與是否為自己傳送的訊息
 						if (true == layimswitch && obj.id != UserID_g) {
@@ -895,7 +896,7 @@
 
 					//20170223 Lin
 					//接收更新狀態後取得的DBID
-					if ("updateStatus" == obj.Event) {
+					if ("updatestatus" == obj.Event) {
 						alert("updateStatus matched - obj.currStatusEnum: " + obj.currStatusEnum + " - " + obj.startORend); // 重要資訊
 						// 20170313_sam
 						// 						alert("obj.startORend: " + obj.startORend + " - " + obj.currStatusEnum);
@@ -961,7 +962,7 @@
 						// 						StatusEnum.updateDbid(obj);
 					}
 					//通知響鈴結束
-					if ("ringTimeout" == obj.Event) {
+					if ("ringtimeout" == obj.Event) {
 						alert("ringTimeout matched");
 						console.log("ringTimeout");
 
@@ -992,7 +993,7 @@
 					}
 					//20170223 Lin
 
-					if ("removeUserinroom" == obj.Event) {
+					if ("removeuserinroom" == obj.Event) {
 						alert("removeUserinroom matched");
 						
 						var fromUserID = obj.fromUserID;
@@ -1046,13 +1047,13 @@
 					}
 
 					// 20170331_sam
-					if ("clientServerd" == obj.Event) {
+					if ("clientserverd" == obj.Event) {
 						alert("clientServerd matched");
 						alert("obj.text: " + obj.text);
 					}// end of 20170331_sam
 
 					// 20170411 刷新好友名單 Billy
-					if ("refreshAgentList" == obj.Event) {
+					if ("refreshagentlist" == obj.Event) {
 						alert("refreshAgentList matched");
 						var agentList = obj.agentList;
 
@@ -1120,7 +1121,7 @@
 					// End of 20170411 刷新好友名單 Billy
 
 					// 20170411 私訊功能 Billy
-					if ("privateMsg" == obj.Event) {
+					if ("privatemsg" == obj.Event) {
 						alert("privateMsg matched");
 						console.log("privateMessage : ");
 
@@ -1133,7 +1134,7 @@
 					// End of 20170411 私訊功能 Billy
 
 					// 20170412 轉接三方回應功能 Billy
-					if ("inviteAgentThirdParty" == obj.Event) {
+					if ("inviteagentthirdparty" == obj.Event) {
 						alert("inviteAgentThirdParty matched");
 						var fromAgentName = obj.fromAgentName;
 						var inviteType = obj.inviteType;
@@ -1156,12 +1157,12 @@
 						$("#inviteThirdPartyDialogButton").trigger("click");
 					}
 
-					if ("addUserInRoom" == obj.Event) {
+					if ("adduserinroom" == obj.Event) {
 						alert("addUserInRoom matched");						
 					}
 
 					// 當接收轉接三方後開啟聊天視窗
-					if ("responseThirdParty" == obj.Event) {
+					if ("responsethirdparty" == obj.Event) {
 						alert("responseThirdParty matched");
 						var response = obj.response;
 						var inviteType = obj.inviteType;
@@ -1494,7 +1495,7 @@
 			var mem2 = new myRoomMemberJsonObj(UserID_g);
 			memberListToJoin.push(mem1);
 			memberListToJoin.push(mem2);
-			addRoomForMany("none", memberListToJoin); // "none"是一個keyword, 會影響websocket server的邏輯判斷處理
+			acceptEventHelper("none", memberListToJoin); // "none"是一個keyword, 會影響websocket server的邏輯判斷處理
 
 			//20170220 Lin
 			// 將此clientID從waittingClientIDList_g中去除
@@ -1608,25 +1609,14 @@
 		// 將多人同時加入房間
 		// aMemberListToJoin船入格式如下:
 		// [{"ID":"c8013217-2b20-46c4-ba2d-848fa430775e"},{"ID":"773bc9f4-3462-4360-8b11-e35be56b820a"}]
-		function addRoomForMany(aRoomID, aMemberListToJoin) {
+		function acceptEventHelper(aRoomID, aMemberListToJoin) {
 			if (aRoomID === undefined)
 				aRoomID = RoomID_g; // 開發過渡期使用,之後會修掉
 
-			console.log("addRoomForMany() - aMemberListToJoin"
+			console.log("acceptEventHelper() - aMemberListToJoin"
 					+ aMemberListToJoin);
 			// 向websocket送出加入群組指令
-			var now = new Date();
-			var msg = {
-				type : "addRoomForMany",
-				roomID : aRoomID,
-				memberListToJoin : aMemberListToJoin,
-				ACtype : "Agent",
-				UserName : UserName_g,
-				channel : "chat",
-				date : now.getHours() + ":" + now.getMinutes() + ":"
-						+ now.getSeconds()
-			};
-
+			var msg = new acceptEventJson(UserID_g, aRoomID, aMemberListToJoin);
 			// 發送消息
 			ws.send(JSON.stringify(msg));
 		}
