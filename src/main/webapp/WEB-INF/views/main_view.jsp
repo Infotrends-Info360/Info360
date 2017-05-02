@@ -1054,7 +1054,7 @@
 
 					// 20170411 刷新好友名單 Billy
 					if ("refreshagentlist" == obj.Event) {
-						alert("refreshAgentList matched");
+						alert("refreshAgentList matched"); 
 						var agentList = obj.agentList;
 
 						clearAgentList();
@@ -1063,7 +1063,7 @@
 
 						for (key in agentList) {
 							var userName = agentList[key].username;
-							var userId = agentList[key].userid;
+							var userId = agentList[key].userID; // 特別注意: userID已統一整理成同樣文字
 							var ready = agentList[key].ready;
 
 							if (UserID_g != userId) {
