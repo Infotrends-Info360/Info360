@@ -9,6 +9,7 @@
 <meta name="keywords" content="Info360文字客服">
 <meta name="description" content="Info360文字客服">
 
+<script type="text/javascript" src="resources/js/info360/websocket-util.js"></script>
 <link rel="shortcut icon" href="resources/favicon.ico">
 <link href="resources/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
 <link href="resources/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
@@ -692,6 +693,7 @@
 
 					// 接收到有人登入的訊息
 					if ("userjoin" == obj.Event) {
+						alert("userjoin matched");
 						// 20170321_sam
 						if (obj.isLoggedIn) {
 							alert(obj.isLoggedInText);
@@ -1360,17 +1362,7 @@
 			var now = new Date();
 
 			// 向websocket送出登入指令
-			var msg = {
-				type : "login",
-				id : UserID_g,
-				UserName : UserName_g,
-				// 				MaxCount : '3', //需從驗證登入頁面取得個人的max count並塞入
-				maxCount : "" + maxCount,
-				ACtype : "Agent",
-				channel : "chat",
-				date : now.getHours() + ":" + now.getMinutes() + ":"
-						+ now.getSeconds()
-			};
+			var msg = new loginJson(UserID_g, UserName_g,  "Agent", "" + maxCount);
 			// 發送消息
 			ws.send(JSON.stringify(msg));
 

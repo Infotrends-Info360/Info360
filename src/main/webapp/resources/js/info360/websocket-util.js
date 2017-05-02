@@ -1,33 +1,4 @@
 /********** util *************/
-function switchStatus(aStatus){
-	switch(aStatus) {
-    case StatusEnum.LOGOUT:
-//        alert('StatusEnum.LOGOUT matched');
-        document.getElementById("Status").innerHTML = StatusEnum.LOGOUT;
-		// 顯現對話視窗
-		document.getElementById("chatDialogue").classList.add("hidden");
-		document.getElementById("chatDialogueReverse").classList.remove("hidden");
-		// 啟用openChat功能
-		document.getElementById("openChat").disabled = false;
-		document.getElementById("closeChat").disabled = true;
-
-        break;
-    case StatusEnum.WAIT_AGENT:
-        // code block
-        break;
-    case StatusEnum.JOIN_ROOM:
-        //code block
-        break;
-    case StatusEnum.FIND_AGENT:
-    	//code block
-    	break;
-//    case StatusEnum.:
-//    	//code block
-//    	break;
-    default:
-        break;
-}
-}
 
 // IE8 does not support trim() - this is a polyfill for IE8 
 if(typeof String.prototype.trim !== 'function') {
@@ -37,26 +8,31 @@ if(typeof String.prototype.trim !== 'function') {
 }
 
 
-
-
 /********** bean *************/
-//配合Object.create()使用,可收inheritance的效果
-function messagetoRoomJson(aType, aACtype, aText, aId, aUserName, aRoomID, aChannel, aDate) {  // Method which will display type of Animal
-	this.type = aType;
-	this.ACtype = aACtype;
-	this.text = aText;
-	this.id = aId;
-	this.UserName = aUserName;
-	this.roomID = aRoomID;
+//目的: 將Json請求字串物件化 (持續進行中)
+
+function senduserdataJson(aUserID,aSendto){
+	this.type = "senduserdata";
+	this.userID = aUserID;
+	this.sendto = aSendto;
+	this.lang = "chiname";
+	this.searchtype = "A";
 	this.channel = "chat";
-	this.channel = aChannel;
-	this.date = aDate;
-}			
+}
+
+function loginJson(aUserID, aUserName, aACtype, aMaxCount){
+	this.type = "login";
+	this.userID = aUserID;
+	this.UserName = aUserName;
+	this.maxCount = aMaxCount;
+	this.ACtype = aACtype;
+	this.channel = "chat";
+}
 
 function updateStatusJson(aACType, aID, aUserName, aStatus, aReason, aStartORend, aDbid, aRoomID, aClientID, aReason_dbid){
-	this.type = "updateStatus";
+	this.type = "updatestatus";
 	this.ACtype = aACType;
-	this.id = aID;
+	this.userID = aID;
 	this.UserName = aUserName;
 	this.status = aStatus;
 	this.reason = aReason;
@@ -70,20 +46,138 @@ function updateStatusJson(aACType, aID, aUserName, aStatus, aReason, aStartORend
 	this.date = "" + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
 }
 
+function acceptEventJson(aUserID, aRoomID, aMemberListToJoin){
+	this.type = "acceptevent";
+	this.userID = aUserID;
+	this.roomID = aRoomID;
+	this.memberListToJoin = aMemberListToJoin;
+	this.channel = "chat";
+}
+
+function messagetoRoomJson(aUserID, aText, aRoomID){
+	this.type = "messagetoroom";
+	this.userID = aUserID;
+	this.id = aUserID;
+	this.roomID = aRoomID;
+	this.text = aText;
+	this.channel = "chat";
+}
+
+function leaveRoomJson(aUserID, aRoomID){
+	this.type = "leaveroom";
+	this.userID = aUserID;
+	this.roomID = aRoomID;
+	this.channel = "chat";
+}
+
+function exitJson(aUserID, aWaittingAgent_g, aWaittingAgentID_g, aWaittingClientIDList, aWaittingAgentIDList){
+	this.type = "exit";
+//	this.id = aUserID;
+	this.userID = aUserID;
+	this.channel = "chat";
+	// Client使用
+	this.waittingAgent = aWaittingAgent_g;
+	// Client使用
+	this.waittingAgentID = aWaittingAgentID_g;
+	
+	// Agent使用
+	this.waittingClientIDList = aWaittingClientIDList;
+	// Agent使用
+	this.waittingAgentIDList = aWaittingAgentIDList;
+} 
+
+function sendCommentJson(aUserID, aInteractionid, aActivitydataids, aComment){
+	this.type = "sendcomment";
+	this.userID = aUserID;
+	this.interactionid = aInteractionid;
+	this.activitydataids = aActivitydataids;
+	this.comment = aComment;
+}
+
+function refreshAgentListJson(aUserID){
+	this.type = "refreshagentlist";
+	this.userID = aUserID;
+}
+
+function rejectEventJson(aUserID, aSendto){
+	this.type = "rejectevent";
+	this.userID = aUserID;
+	this.sendto = aSendto;
+	this.channel = "chat";
+}
+//var msg = {
+//		type : "RejectEvent",
+////		ACtype : "Agent",
+//		userID : parent.UserID_g,
+//		id : parent.UserID_g,
+////		UserName : parent.UserName_g,
+//		sendto : currClientID,
+//		channel : "chat",
+//		// Event: "RejectEvent",
+//		date : now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds()
+//	};
+// 以上已整理
+
+function findAgentJson(aUserID){
+	this.type = "findagent"; 
+	this.userID = aUserID;
+	this.channel = "chat";
+}
+
+function entrylogJson(aContactID, aUserID){
+	this.type = "entrylog";
+	this.contactid = aContactID;
+//	this.userid = aUserID;
+	this.userID = aUserID;
+	this.ipaddress = '127.0.0.1';
+	this.browser = 'IE';
+	this.platfrom = 'Windows';
+	this.channel = 'Web'; // 使用管道
+	this.language = 'chiname';
+	this.enterkey = 'Phone';  
+}
+
+function RoomInfo(aRoomID, aUserdata, aText){
+	this.roomID = aRoomID;
+	this.userID = "";
+	this.userdata = aUserdata;
+	this.text = aText;
+	this.close = false;
+	this.isAfterCallWorkDone = false;
+}
+
+//function messagetoRoomJson(aType, aACtype, aText, aId, aUserName, aRoomID, aChannel, aDate) {  // Method which will display type of Animal
+//	this.type = aType;
+//	this.userID = "";
+//	this.ACtype = aACtype;
+//	this.text = aText;
+//	this.id = aId;
+//	this.UserName = aUserName;
+//	this.roomID = aRoomID;
+//	this.channel = "chat";
+//	this.channel = aChannel;
+//	this.date = aDate;
+//}		
+
+
+
+
 // addRoomForMany
 function myRoomMemberJsonObj(aID){
 	this.ID = aID;
+//	this.userID = "";
 }
+
 
 // reference:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
 // Animal properties and method encapsulation
- var Animal = {
-		type: "Invertebrates", // Default value of properties
-		displayType : function() { // Method which will display type of Animal
-			console.log(this.type);
-		}
- }
+// var Animal = {
+//		type: "Invertebrates", // Default value of properties
+//		displayType : function() { // Method which will display type of Animal
+//			console.log(this.type);
+//		}
+// }
 //
 // // Create new animal type called animal1
 // var animal1 = Object.create(Animal);
@@ -94,6 +188,15 @@ function myRoomMemberJsonObj(aID){
 // fish.type = "Fishes";
 // fish.displayType(); // Output:Fishes
 
+
+
+/******** debugging *********/
+function seeAllKV(obj){
+	Object.keys(obj).forEach(function (key) {
+	    var val = obj[key];
+	    console.log(key + " : " + val);
+	});
+}
 
 
 
@@ -189,14 +292,6 @@ SinglyList.prototype.remove = function(position) {
 };
 
 
-/********** enum *************/
-var StatusEnum = Object.freeze({
-	LOGOUT: 'LOGOUT', 
-	WAIT_AGENT: 'WAIT_AGENT', 
-	JOIN_ROOM: 'JOIN_ROOM',
-	FIND_AGENT: 'FIND_AGENT'
-		
-});
 
 
 
