@@ -1391,24 +1391,13 @@
 		// 登出
 		function logout() {
 			// 向websocket送出登出指令
-			var now = new Date();
-			var msg = {
-				type : "Exit",
-				// text: message,
-				id : UserID_g,
-				UserName : UserName_g,
-				channel : "chat",
-				waittingClientIDList : waittingClientIDList_g, //20170220 Lin
-				waittingAgentIDList : waittingAgentIDList_g, //20170223 Lin
-				date : now.getHours() + ":" + now.getMinutes() + ":"
-						+ now.getSeconds()
-			};
-
+			var msg = new exitJson(UserID_g, null, null, waittingClientIDList_g, waittingAgentIDList_g);
 			// 發送消息
 			ws.send(JSON.stringify(msg));
 
 			// 清空waittingClientIDList_g 20170220 Lin
 			waittingClientIDList_g = [];
+			waittingAgentIDList_g = [];
 		}
 
 		//Agent準備就緒
