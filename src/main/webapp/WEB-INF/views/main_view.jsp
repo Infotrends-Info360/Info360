@@ -1359,8 +1359,6 @@
 
 		// 登入
 		function doLogin() {
-			var now = new Date();
-
 			// 向websocket送出登入指令
 			var msg = new loginJson(UserID_g, UserName_g,  "Agent", "" + maxCount);
 			// 發送消息
