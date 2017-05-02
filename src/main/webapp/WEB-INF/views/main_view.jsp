@@ -1692,14 +1692,12 @@
 
 		// 傳送群組訊息至layim視窗上
 		function sendtoRoomonlay(text) {
-			var myMessagetoRoomJson = new messagetoRoomJson("messagetoRoom",
-					"Client", text, UserID_g, UserName_g, RoomID_g, "chat", "");
-
+			var msg = new messagetoRoomJson(UserID_g, text, RoomID_g);
 			// 發送消息給WebSocket	
 			console.log("sendtoRoomonlay");
-			console.log(myMessagetoRoomJson);
+			console.log(msg);
 
-			ws.send(JSON.stringify(myMessagetoRoomJson));
+			ws.send(JSON.stringify(msg));
 
 		}
 
