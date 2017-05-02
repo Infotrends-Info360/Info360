@@ -1784,7 +1784,7 @@
 				if (interactionId == entry.id) {
 					// 
 					$("#" + entry.chatTab).trigger("click");
-					$(".page-tabs-content > .active > i").trigger("click");
+// 					$(".page-tabs-content > .active > i").trigger("click");
 
 					chatList.splice($.inArray(entry, chatList), 1);
 					chatTab.push(entry.chatTab)

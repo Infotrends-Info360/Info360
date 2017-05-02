@@ -12,6 +12,7 @@
 
 <title>Chat頁面-03</title>
 
+<script type="text/javascript" src="resources/js/info360/websocket-util.js"></script>
 <link href="resources/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
 <link href="resources/css/font-awesome.css?v=4.4.0" rel="stylesheet">
 <link href="resources/css/animate.css" rel="stylesheet">
@@ -191,21 +192,20 @@
 
 						<div class="row ibox" style="height: 660px; overflow-y: scroll;">
 							<div class="col-lg-12 col-md-12">
-								<div class="sk-spinner sk-spinner-fading-circle"
-									id="queryTableLoading">
-									<div class="sk-circle1 sk-circle"></div>
-									<div class="sk-circle2 sk-circle"></div>
-									<div class="sk-circle3 sk-circle"></div>
-									<div class="sk-circle4 sk-circle"></div>
-									<div class="sk-circle5 sk-circle"></div>
-									<div class="sk-circle6 sk-circle"></div>
-									<div class="sk-circle7 sk-circle"></div>
-									<div class="sk-circle8 sk-circle"></div>
-									<div class="sk-circle9 sk-circle"></div>
-									<div class="sk-circle10 sk-circle"></div>
-									<div class="sk-circle11 sk-circle"></div>
-									<div class="sk-circle12 sk-circle"></div>
-								</div>
+							<div class="sk-spinner sk-spinner-fading-circle" id="queryTableLoading">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
+                       		</div>
 								<table class="table table-striped table-bordered table-hover"
 									id="queryTable">
 									<thead>
@@ -458,7 +458,6 @@
 
 		quickSearchByTime(7);
 		allperson();
-
 	});
 
 	// 取得左側客戶資料
@@ -589,7 +588,7 @@
 
 		// 新增選取客資後馬上搜尋一個月內的案件資訊 Billy 20170406
 		quickSearchByTime(30);
-
+		
 		closeCustomerData();
 	}
 
@@ -973,6 +972,7 @@
 	}
 
 	function Query_ActivityMenu(level, dbId) {
+// 	alert("MenudbId: "+dbId);
 		$
 				.ajax({
 					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_ActivityMenu",
@@ -1256,31 +1256,24 @@
 	// 20170313_sam
 	// 更新ACW結束時間 
 	function sendComment(aInteractionid, aActivitydataids, aComment) {
-		// 		alert("sendComment()");
-		function sendCommentJson(aInteractionid, aActivitydataids, aComment) {
-			this.type = "sendComment";
-			this.interactionid = aInteractionid;
-			this.activitydataids = aActivitydataids;
-			this.comment = aComment;
-		}
+		// 		alert("sendComment()"); 
 		// 寄送請求至WS
-		var mySendCommentJson = new sendCommentJson(aInteractionid,
-				aActivitydataids, aComment);
-		parent.ws.send(JSON.stringify(mySendCommentJson));
+		var msg = new sendCommentJson(agentId, aInteractionid, aActivitydataids, aComment);
+		parent.ws.send(JSON.stringify(msg));
 	}
 	// end of 20170313_sam
 
 	/* 搜尋功能專區 */
 	// 案件搜尋
 	function search() {
-		document.getElementById('searchButton').disabled = true;
+		document.getElementById('searchButton').disabled=true;
 		$('#queryTableLoading').show();
 		$('#queryTable').hide();
-
+		
 		var start = $('#datepicker [name="start"]').val();
 		var end = $('#datepicker [name="end"]').val();
 		var id = $("#allperson").val();
-
+		
 		console.log("start : " + start + "; end : " + end + "; id :" + id);
 		console.log("currentContactId : " + currentContactId);
 
@@ -1360,7 +1353,7 @@
 
 						$('#queryTable').DataTable(opt);
 						$("#queryTable").css("width", "100%");
-						document.getElementById('searchButton').disabled = false;
+						document.getElementById('searchButton').disabled=false;
 						$('#queryTable').show();
 						$('#queryTableLoading').hide();
 					}

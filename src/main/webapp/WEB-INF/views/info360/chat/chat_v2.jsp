@@ -12,6 +12,7 @@
 
 <title>Chat頁面-02</title>
 
+<script type="text/javascript" src="resources/js/info360/websocket-util.js"></script>
 <link href="resources/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
 <link href="resources/css/font-awesome.css?v=4.4.0" rel="stylesheet">
 <link href="resources/css/animate.css" rel="stylesheet">
@@ -584,9 +585,6 @@
 		console.log("updateClientContactID :");
 		console.log(JSON.stringify(msg));
 		parent.ws.send(JSON.stringify(msg));
-		
-		// 新增選取客資後馬上搜尋一個月內的案件資訊 Billy 20170406
-		quickSearchByTime(30);
 
 		// 新增選取客資後馬上搜尋一個月內的案件資訊 Billy 20170406
 		quickSearchByTime(30);
@@ -974,11 +972,12 @@
 	}
 
 	function Query_ActivityMenu(level, dbId) {
+// 	alert("MenudbId: "+dbId);
 		$
-		.ajax({
-			url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_ActivityMenu",
-			data : {
-				dbid : dbId
+				.ajax({
+					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_ActivityMenu",
+					data : {
+						dbid : dbId
 					},
 					type : "POST",
 					dataType : 'json',
@@ -1257,17 +1256,10 @@
 	// 20170313_sam
 	// 更新ACW結束時間 
 	function sendComment(aInteractionid, aActivitydataids, aComment) {
-		// 		alert("sendComment()");
-		function sendCommentJson(aInteractionid, aActivitydataids, aComment) {
-			this.type = "sendComment";
-			this.interactionid = aInteractionid;
-			this.activitydataids = aActivitydataids;
-			this.comment = aComment;
-		}
+		// 		alert("sendComment()"); 
 		// 寄送請求至WS
-		var mySendCommentJson = new sendCommentJson(aInteractionid,
-				aActivitydataids, aComment);
-		parent.ws.send(JSON.stringify(mySendCommentJson));
+		var msg = new sendCommentJson(agentId, aInteractionid, aActivitydataids, aComment);
+		parent.ws.send(JSON.stringify(msg));
 	}
 	// end of 20170313_sam
 
@@ -1281,7 +1273,7 @@
 		var start = $('#datepicker [name="start"]').val();
 		var end = $('#datepicker [name="end"]').val();
 		var id = $("#allperson").val();
-
+		
 		console.log("start : " + start + "; end : " + end + "; id :" + id);
 		console.log("currentContactId : " + currentContactId);
 
@@ -1600,7 +1592,6 @@
 			}
 		});
 	}
-
 </script>
 
 </html>

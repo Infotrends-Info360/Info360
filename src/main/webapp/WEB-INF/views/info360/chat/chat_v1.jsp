@@ -12,6 +12,7 @@
 
 <title>Chat頁面-01</title>
 
+<script type="text/javascript" src="resources/js/info360/websocket-util.js"></script>
 <link href="resources/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
 <link href="resources/css/font-awesome.css?v=4.4.0" rel="stylesheet">
 <link href="resources/css/animate.css" rel="stylesheet">
@@ -1255,17 +1256,10 @@
 	// 20170313_sam
 	// 更新ACW結束時間 
 	function sendComment(aInteractionid, aActivitydataids, aComment) {
-		// 		alert("sendComment()");
-		function sendCommentJson(aInteractionid, aActivitydataids, aComment) {
-			this.type = "sendComment";
-			this.interactionid = aInteractionid;
-			this.activitydataids = aActivitydataids;
-			this.comment = aComment;
-		}
+		// 		alert("sendComment()"); 
 		// 寄送請求至WS
-		var mySendCommentJson = new sendCommentJson(aInteractionid,
-				aActivitydataids, aComment);
-		parent.ws.send(JSON.stringify(mySendCommentJson));
+		var msg = new sendCommentJson(agentId, aInteractionid, aActivitydataids, aComment);
+		parent.ws.send(JSON.stringify(msg));
 	}
 	// end of 20170313_sam
 
