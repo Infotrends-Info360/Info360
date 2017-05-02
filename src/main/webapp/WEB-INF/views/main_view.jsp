@@ -1504,18 +1504,7 @@
 		function rejectEvent() {
 			var Eventfrom = ClientID_g;
 			// 向websocket送出拒絕交談指令
-			var now = new Date();
-			var msg = {
-				type : "RejectEvent",
-				ACtype : "Agent",
-				id : UserID_g,
-				UserName : UserName_g,
-				sendto : Eventfrom,
-				channel : "chat",
-				// Event: "RejectEvent",
-				date : now.getHours() + ":" + now.getMinutes() + ":"
-						+ now.getSeconds()
-			};
+			var msg = new rejectEventJson(UserID_g, Eventfrom);
 			// 發送消息
 			ws.send(JSON.stringify(msg));
 
