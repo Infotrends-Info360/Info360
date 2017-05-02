@@ -738,7 +738,8 @@
 
 					// 20170321_sam
 					if ("userjoinAgain" == obj.Event) {
-						alert(obj.text);
+						alert("userjoinAgain matched");
+// 						alert(obj.text);
 						// 更新畫面
 						$("#statusButton button.status-ready").css("display",
 								"none");
@@ -753,11 +754,7 @@
 
 					// 接收到Client邀請chat的event
 					if ("findAgentEvent" == obj.Event) {
-						ClientName_g = obj.fromName;
-						ClientID_g = obj.from;
-						notifyMe_phone();
-						$("#inviteNumber").html(ClientName_g);
-						$("#inviteDialogButton").trigger("click");
+						// 已經此塊程式碼移至"senduserdata' == obj.Event下,以精簡流程
 					}
 
 					// 取得狀態 (此方法不再使用)
@@ -791,6 +788,7 @@
 					// 					}
 
 					if ("senduserdata" == obj.Event) {
+						alert("senduserdata matched");
 						console.log("onMessage - senduserdata event");
 
 						// 接收到Agent or Client加入列表的訊息
@@ -801,10 +799,21 @@
 							this.clientID = obj.userdata.id
 						});
 						//20170220 Lin
+						
+						
+						// 開啟邀請通話視窗
+						alert("findAgentEvent matched");
+						ClientName_g = obj.clientName;
+						ClientID_g = obj.clientID;
+						notifyMe_phone();
+						$("#inviteNumber").html(ClientName_g);
+						$("#inviteDialogButton").trigger("click");
+						
 					}
 
 					// 接受成功加入Layim清單
 					if ("AcceptEvent" == obj.Event) {
+						alert("AcceptEvent matched");						
 						// 拿取資料 + 為之後建立roomList做準備
 						RoomID_g = obj.roomID; // 之後要改成local variable
 						var myRoomID = obj.roomID;
@@ -864,12 +873,13 @@
 					//20170223 Lin
 					// 接收拒絕事件
 					if ("RejectEvent" == obj.Event) {
-
+						alert("RejectEvent matched");
 					}
 					//20170223 Lin
 
 					// 接受訊息控制
 					if ("messagetoRoom" == obj.Event) {
+						alert("messagetoRoom matched");
 						// 判斷是否有開啟layim與是否為自己傳送的訊息
 						if (true == layimswitch && obj.id != UserID_g) {
 							// 將收到訊息顯示到layim上
@@ -886,6 +896,7 @@
 					//20170223 Lin
 					//接收更新狀態後取得的DBID
 					if ("updateStatus" == obj.Event) {
+						alert("updateStatus matched - obj.currStatusEnum: " + obj.currStatusEnum + " - " + obj.startORend); // 重要資訊
 						// 20170313_sam
 						// 						alert("obj.startORend: " + obj.startORend + " - " + obj.currStatusEnum);
 						// 						alert("obj.currStatusEnum: " + obj.currStatusEnum);
@@ -951,6 +962,7 @@
 					}
 					//通知響鈴結束
 					if ("ringTimeout" == obj.Event) {
+						alert("ringTimeout matched");
 						console.log("ringTimeout");
 
 						// 20170314_sam
@@ -981,7 +993,8 @@
 					//20170223 Lin
 
 					if ("removeUserinroom" == obj.Event) {
-
+						alert("removeUserinroom matched");
+						
 						var fromUserID = obj.fromUserID;
 						var roomID = obj.roomID
 						var roomMembers = obj.roomMembers;
@@ -1034,11 +1047,13 @@
 
 					// 20170331_sam
 					if ("clientServerd" == obj.Event) {
+						alert("clientServerd matched");
 						alert("obj.text: " + obj.text);
 					}// end of 20170331_sam
 
 					// 20170411 刷新好友名單 Billy
 					if ("refreshAgentList" == obj.Event) {
+						alert("refreshAgentList matched");
 						var agentList = obj.agentList;
 
 						clearAgentList();
@@ -1106,6 +1121,7 @@
 
 					// 20170411 私訊功能 Billy
 					if ("privateMsg" == obj.Event) {
+						alert("privateMsg matched");
 						console.log("privateMessage : ");
 
 						// 判斷是否有開啟layim與是否為發送給自己的訊息
@@ -1118,6 +1134,7 @@
 
 					// 20170412 轉接三方回應功能 Billy
 					if ("inviteAgentThirdParty" == obj.Event) {
+						alert("inviteAgentThirdParty matched");
 						var fromAgentName = obj.fromAgentName;
 						var inviteType = obj.inviteType;
 						var clientId = obj.userdata.Tel1;
@@ -1140,10 +1157,12 @@
 					}
 
 					if ("addUserInRoom" == obj.Event) {
+						alert("addUserInRoom matched");						
 					}
 
 					// 當接收轉接三方後開啟聊天視窗
 					if ("responseThirdParty" == obj.Event) {
+						alert("responseThirdParty matched");
 						var response = obj.response;
 						var inviteType = obj.inviteType;
 						var invitedAgentId = obj.invitedAgentID
