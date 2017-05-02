@@ -105,17 +105,15 @@ function rejectEventJson(aUserID, aSendto){
 	this.sendto = aSendto;
 	this.channel = "chat";
 }
-//var msg = {
-//		type : "RejectEvent",
-////		ACtype : "Agent",
-//		userID : parent.UserID_g,
-//		id : parent.UserID_g,
-////		UserName : parent.UserName_g,
-//		sendto : currClientID,
-//		channel : "chat",
-//		// Event: "RejectEvent",
-//		date : now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds()
-//	};
+
+function messageJson(aUserID, aMsg, aSendto){
+	this.type = "message";
+	this.userID = aUserID;
+	this.text = aMsg;
+	this.sendto = aSendto;
+	this.channel = "chat";
+}
+
 // 以上已整理
 
 function findAgentJson(aUserID){

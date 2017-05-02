@@ -1123,12 +1123,13 @@
 					// 20170411 私訊功能 Billy
 					if ("privatemsg" == obj.Event) {
 						alert("privateMsg matched");
-						console.log("privateMessage : ");
-
-						// 判斷是否有開啟layim與是否為發送給自己的訊息
-						if (true == layimswitch && obj.sendto == UserID_g) {
-							getPrivateMessageLayim(obj.text, obj.UserID,
-									obj.UserName)
+						console.log("obj.fromUserID: " + obj.fromUserID);					
+						console.log("obj.fromUserName: " + obj.fromUserName);
+							
+						// 判斷是否有開啟layim與是否為他人發送給自己的訊息
+						if (true == layimswitch && obj.fromUserID != UserID_g) {
+							console.log("here01");
+							getPrivateMessageLayim(obj.text, obj.fromUserID, obj.userName);
 						}
 					}
 					// End of 20170411 私訊功能 Billy
@@ -1934,19 +1935,10 @@
 
 								if (To.type === 'group') {
 									// 傳送群組訊息至layim視窗上
-									sendtoRoomonlay(data.mine.content);
+// 									sendtoRoomonlay(data.mine.content);
 								} else if (To.type === 'friend') {
 									// 向websocket送出私訊指令
-									var now = new Date();
-									var msg = {
-										type : "message",
-										text : data.mine.content,
-										sendto : To.id,
-										channel : "chat",
-										date : now.getHours() + ":"
-												+ now.getMinutes() + ":"
-												+ now.getSeconds()
-									};
+									var msg = new messageJson(UserID_g, data.mine.content, To.id);
 									// 發送消息
 									ws.send(JSON.stringify(msg));
 								}
