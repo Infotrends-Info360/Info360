@@ -754,6 +754,7 @@
 
 					// 接收到Client邀請chat的event
 					if ("findAgentEvent" == obj.Event) {
+						alert("findAgentEvent matched");
 						// 已經此塊程式碼移至"senduserdata' == obj.Event下,以精簡流程
 					}
 
@@ -802,7 +803,6 @@
 						
 						
 						// 開啟邀請通話視窗
-						alert("findAgentEvent matched");
 						ClientName_g = obj.clientName;
 						ClientID_g = obj.clientID;
 						notifyMe_phone();
