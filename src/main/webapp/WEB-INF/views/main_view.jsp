@@ -1773,17 +1773,7 @@
 			if (aRoomID === undefined)
 				aRoomID = $("#closeRoomId").text();
 			// 向websocket送出離開群組指令
-			var now = new Date();
-			var msg = {
-				type : "leaveRoom",
-				roomID : aRoomID,
-				id : aUserID,
-				UserName : userName,
-				channel : "chat",
-				date : now.getHours() + ":" + now.getMinutes() + ":"
-						+ now.getSeconds()
-			};
-
+			var msg = new leaveRoomJson(aUserID, aRoomID);
 			// 發送消息
 			ws.send(JSON.stringify(msg));
 		}
