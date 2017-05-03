@@ -1727,12 +1727,16 @@
 		}
 
 		function closeCurrentTab(interactionId) {
+			console.log(" closeCurrentTab - interactionId: " + interactionId);			
+			console.log(" closeCurrentTab - chatList: " , chatList);			
 			// 刪除目前使用Chat清單
 			chatList.forEach(function(entry) {
+				console.log(" closeCurrentTab - entry.id: " + entry.id);
 				if (interactionId == entry.id) {
-					// 
+					console.log(" closeCurrentTab - interactionId = entry.id: " + entry.id);
+					console.log(" closeCurrentTab - entry.chatTab " + entry.chatTab);
 					$("#" + entry.chatTab).trigger("click");
-// 					$(".page-tabs-content > .active > i").trigger("click");
+					$(".page-tabs-content > .active > i").trigger("click");
 
 					chatList.splice($.inArray(entry, chatList), 1);
 					chatTab.push(entry.chatTab)

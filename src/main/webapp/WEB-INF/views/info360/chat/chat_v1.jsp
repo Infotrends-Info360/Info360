@@ -1177,6 +1177,7 @@
 	// 將「案件資訊」選取結果與備註欄發送至Server
 	function insertRptActivityLog() {
 		var interactionId = "${interactionId}";
+		console.log("insertRptActivityLog - interactionId: " +interactionId);
 		var theComment = $("#theComment").val() || "";
 		var activitydataids = "";
 		var dbid = [];
@@ -1210,7 +1211,8 @@
 
 						// 20170313_sam
 						// 更新ACW結束時間 
-						sendComment(interactionId, activitydataids, theComment);
+						console.log("Insert_rpt_activitylog - interactionId: " + "${interactionId}");
+						sendComment("${interactionId}", activitydataids, theComment);
 
 						// 關閉目前使用頁籤
 						var interactionId = "${interactionId}";
@@ -1256,9 +1258,10 @@
 	// 20170313_sam
 	// 更新ACW結束時間 
 	function sendComment(aInteractionid, aActivitydataids, aComment) {
-		// 		alert("sendComment()"); 
+		alert("sendComment() - aInteractionid: " + aInteractionid); 
 		// 寄送請求至WS
 		var msg = new sendCommentJson(agentId, aInteractionid, aActivitydataids, aComment);
+		alert("JSON.stringify(msg): " + JSON.stringify(msg));
 		parent.ws.send(JSON.stringify(msg));
 	}
 	// end of 20170313_sam
