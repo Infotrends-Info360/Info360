@@ -1269,10 +1269,8 @@
 	// 20170313_sam
 	// 更新ACW結束時間 
 	function sendComment(aInteractionid, aActivitydataids, aComment) {
-		alert("sendComment() - aInteractionid: " + aInteractionid); 
 		// 寄送請求至WS
 		var msg = new sendCommentJson(agentId, aInteractionid, aActivitydataids, aComment);
-		alert("JSON.stringify(msg): " + JSON.stringify(msg));
 		parent.ws.send(JSON.stringify(msg));
 	}
 	// end of 20170313_sam

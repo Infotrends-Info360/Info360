@@ -694,7 +694,7 @@
 					obj.Event = obj.Event.toLowerCase();
 					// 接收到有人登入的訊息
 					if ("userjoin" == obj.Event) {
-						alert("userjoin matched");
+						console.log("userjoin matched");
 						// 20170321_sam
 						if (obj.isLoggedIn) {
 							alert(obj.isLoggedInText);
@@ -739,8 +739,8 @@
 
 					// 20170321_sam
 					if ("userjoinagain" == obj.Event) {
-						alert("userjoinAgain matched");
-// 						alert(obj.text);
+						console.log("userjoinAgain matched");
+// 						console.log(obj.text);
 						// 更新畫面
 						$("#statusButton button.status-ready").css("display",
 								"none");
@@ -755,7 +755,7 @@
 
 					// 接收到Client邀請chat的event
 					if ("findagentevent" == obj.Event) {
-						alert("findAgentEvent matched");
+						console.log("findAgentEvent matched");
 						// 已經此塊程式碼移至"senduserdata' == obj.Event下,以精簡流程
 					}
 
@@ -790,7 +790,7 @@
 					// 					}
 
 					if ("senduserdata" == obj.Event) {
-						alert("senduserdata matched");
+						console.log("senduserdata matched");
 						console.log("onMessage - senduserdata event");
 
 						// 接收到Agent or Client加入列表的訊息
@@ -814,7 +814,7 @@
 
 					// 接受成功加入Layim清單
 					if ("acceptevent" == obj.Event) {
-						alert("AcceptEvent matched");						
+						console.log("AcceptEvent matched");						
 						// 拿取資料 + 為之後建立roomList做準備
 						RoomID_g = obj.roomID; // 之後要改成local variable
 						var myRoomID = obj.roomID;
@@ -874,13 +874,13 @@
 					//20170223 Lin
 					// 接收拒絕事件
 					if ("rejectevent" == obj.Event) {
-						alert("RejectEvent matched");
+						console.log("RejectEvent matched");
 					}
 					//20170223 Lin
 
 					// 接受訊息控制
 					if ("messagetoroom" == obj.Event) {
-						alert("messagetoRoom matched");
+						console.log("messagetoRoom matched");
 						// 判斷是否有開啟layim與是否為自己傳送的訊息
 						if (true == layimswitch && obj.id != UserID_g) {
 							// 將收到訊息顯示到layim上
@@ -897,7 +897,7 @@
 					//20170223 Lin
 					//接收更新狀態後取得的DBID
 					if ("updatestatus" == obj.Event) {
-						alert("updateStatus matched - obj.currStatusEnum: " + obj.currStatusEnum + " - " + obj.startORend); // 重要資訊
+						console.log("updateStatus matched - obj.currStatusEnum: " + obj.currStatusEnum + " - " + obj.startORend); // 重要資訊
 						// 20170313_sam
 						// 						alert("obj.startORend: " + obj.startORend + " - " + obj.currStatusEnum);
 						// 						alert("obj.currStatusEnum: " + obj.currStatusEnum);
@@ -963,7 +963,7 @@
 					}
 					//通知響鈴結束
 					if ("ringtimeout" == obj.Event) {
-						alert("ringTimeout matched");
+						console.log("ringTimeout matched");
 						console.log("ringTimeout");
 
 						// 20170314_sam
@@ -994,7 +994,7 @@
 					//20170223 Lin
 
 					if ("removeuserinroom" == obj.Event) {
-						alert("removeUserinroom matched");
+						console.log("removeUserinroom matched");
 						
 						var fromUserID = obj.fromUserID;
 						var roomID = obj.roomID
@@ -1048,13 +1048,13 @@
 
 					// 20170331_sam
 					if ("clientserverd" == obj.Event) {
-						alert("clientServerd matched");
-						alert("obj.text: " + obj.text);
+						console.log("clientServerd matched");
+						console.log("obj.text: " + obj.text);
 					}// end of 20170331_sam
 
 					// 20170411 刷新好友名單 Billy
 					if ("refreshagentlist" == obj.Event) {
-						alert("refreshAgentList matched"); 
+						console.log("refreshAgentList matched"); 
 						var agentList = obj.agentList;
 
 						clearAgentList();
@@ -1122,7 +1122,7 @@
 
 					// 20170411 私訊功能 Billy
 					if ("privatemsg" == obj.Event) {
-						alert("privateMsg matched");
+						console.log("privateMsg matched");
 						console.log("obj.fromUserID: " + obj.fromUserID);					
 						console.log("obj.fromUserName: " + obj.fromUserName);
 							
@@ -1136,7 +1136,7 @@
 
 					// 20170412 轉接三方回應功能 Billy
 					if ("inviteagentthirdparty" == obj.Event) {
-						alert("inviteAgentThirdParty matched");
+						console.log("inviteAgentThirdParty matched");
 						var fromAgentName = obj.fromAgentName;
 						var inviteType = obj.inviteType;
 						var clientId = obj.userdata.Tel1;
@@ -1159,12 +1159,12 @@
 					}
 
 					if ("adduserinroom" == obj.Event) {
-						alert("addUserInRoom matched");						
+						console.log("addUserInRoom matched");						
 					}
 
 					// 當接收轉接三方後開啟聊天視窗
 					if ("responsethirdparty" == obj.Event) {
-						alert("responseThirdParty matched");
+						console.log("responseThirdParty matched");
 						var response = obj.response;
 						var inviteType = obj.inviteType;
 						var invitedAgentId = obj.invitedAgentID
