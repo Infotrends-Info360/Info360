@@ -362,10 +362,10 @@
 			if(user!=null && ""!=user){
 				var data = 'user=' + user;
 				var me = this;
-// 				alert("URL: ${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/GetKPI");
+				console.log("call " + "${BackendService_protocol}//${BackendService_hostname}:${BackendService_port}/${BackendService_project}/RESTful/GetKPI");
 				$
 						.ajax({
-							url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/GetKPI",
+							url : "${BackendService_protocol}//${BackendService_hostname}:${BackendService_port}/${BackendService_project}/RESTful/GetKPI",
 							type : "POST",
 							dataType : 'json',
 							data : data,

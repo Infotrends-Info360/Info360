@@ -775,7 +775,7 @@
 
 // 			var text = document.getElementById('json').value
 // 			$.ajax({
-// 				url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Query_contactdata",
+// 				url : "",
 // 				data : {
 // 					contactid :0,
 // 					inputcontactdata:text

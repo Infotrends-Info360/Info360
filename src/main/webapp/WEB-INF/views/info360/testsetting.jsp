@@ -7131,8 +7131,8 @@ if(ActivityGroup_DBID_list.length){
 // 		var up_sort = document.getElementById("up_sortAD").value;
 
 		$
-				.ajax({
-					url : "${IMWebSocket_protocol}//${IMWebSocket_hostname}:${IMWebSocket_port}/IMWebSocket/RESTful/Update_ActivityData",
+				.ajax({  
+					url : "",
 					data : {
 						codename : up_codename,
 						color : up_color,
