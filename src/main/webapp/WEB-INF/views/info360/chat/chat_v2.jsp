@@ -1177,6 +1177,7 @@
 	// 將「案件資訊」選取結果與備註欄發送至Server
 	function insertRptActivityLog() {
 		var interactionId = "${interactionId}";
+		console.log("insertRptActivityLog - interactionId: " +interactionId);
 		var theComment = $("#theComment").val() || "";
 		var activitydataids = "";
 		var dbid = [];
@@ -1190,33 +1191,45 @@
 				activitydataids += "," + dbid[i];
 			}
 		});
+		
+		// 20170503_sam
+		// 更新ACW結束時間 
+		console.log("Insert_rpt_activitylog - interactionId: " + "${interactionId}");
+		sendComment(interactionId, activitydataids, theComment);
 
-		$
-				.ajax({
-					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_rpt_activitylog",
-					data : {
-						interactionid : interactionId,
-						activitydataids : activitydataids,
-						comment : theComment
-					},
-					type : "POST",
-					dataType : 'json',
-					error : function(e) {
-						console.log("請重新整理");
-					},
-					success : function(data) {
-						console.log("Insert_rpt_activitylog success");
-						console.log(data);
+		// 關閉目前使用頁籤
+		parent.closeCurrentTab(interactionId);		
+		// end of 20170503_sam
 
-						// 20170313_sam
-						// 更新ACW結束時間 
-						sendComment(interactionId, activitydataids, theComment);
+		// 20170503_sam
+		// 以下省略,將sendComment服務代碼DB寫入交由後端統一寫入
+// 		$
+// 				.ajax({
+// 					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_rpt_activitylog",
+// 					data : {
+// 						interactionid : interactionId,
+// 						activitydataids : activitydataids,
+// 						comment : theComment
+// 					},
+// 					type : "POST",
+// 					dataType : 'json',
+// 					error : function(e) {
+// 						console.log("請重新整理");
+// 					},
+// 					success : function(data) {
+// 						console.log("Insert_rpt_activitylog success");
+// 						console.log(data);
 
-						// 關閉目前使用頁籤
-						var interactionId = "${interactionId}";
-						parent.closeCurrentTab(interactionId);
-					}
-				});
+// 						// 20170313_sam
+// 						// 更新ACW結束時間 
+// 						console.log("Insert_rpt_activitylog - interactionId: " + "${interactionId}");
+// 						sendComment("${interactionId}", activitydataids, theComment);
+
+// 						// 關閉目前使用頁籤
+// 						var interactionId = "${interactionId}";
+// 						parent.closeCurrentTab(interactionId);
+// 					}
+// 				});
 	}
 
 	// 通話結束，自動點選案件資訊，根據設定決定是否選取第一層清單
@@ -1256,9 +1269,10 @@
 	// 20170313_sam
 	// 更新ACW結束時間 
 	function sendComment(aInteractionid, aActivitydataids, aComment) {
-		// 		alert("sendComment()"); 
+		alert("sendComment() - aInteractionid: " + aInteractionid); 
 		// 寄送請求至WS
 		var msg = new sendCommentJson(agentId, aInteractionid, aActivitydataids, aComment);
+		alert("JSON.stringify(msg): " + JSON.stringify(msg));
 		parent.ws.send(JSON.stringify(msg));
 	}
 	// end of 20170313_sam
