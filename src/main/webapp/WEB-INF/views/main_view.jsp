@@ -1536,18 +1536,8 @@
 			var userData = currentThirdPartyInvite.userdata;
 			var text = currentThirdPartyInvite.text;
 
-			var msg = {
-				type : "responseThirdParty",
-				ACtype : "Agent",
-				roomID : roomId,
-				fromAgentID : fromAgentId,
-				invitedAgentID : invitedAgentId,
-				response : "accept",
-				inviteType : inviteType,
-				userdata : userData,
-				text : text,
-				channel : "chat",
-			};
+			var msg = new thirdPartyJson(roomId, UserID_g, fromAgentId, invitedAgentId, inviteType, userData, text, "accept");
+			msg.convertToResponse();
 
 			console.log("acceptThirdPartyEvent()");
 			console.log(msg);
@@ -1564,18 +1554,8 @@
 			var userData = currentThirdPartyInvite.userdata;
 			var text = currentThirdPartyInvite.text;
 
-			var msg = {
-				type : "responseThirdParty",
-				ACtype : "Agent",
-				roomID : roomId,
-				fromAgentID : fromAgentId,
-				invitedAgentID : invitedAgentId,
-				response : "reject",
-				inviteType : inviteType,
-				userdata : userData,
-				text : text,
-				channel : "chat",
-			};
+			var msg = new thirdPartyJson(roomId, UserID_g, fromAgentId, invitedAgentId, inviteType, userData, text, "reject");
+			msg.convertToResponse();
 
 			console.log("rejectThirdPartyEvent()");
 			console.log(msg);
@@ -1723,19 +1703,8 @@
 					userData = chatList[key].currentUserData;
 				}
 			}
-
-			var msg = {
-				type : "inviteAgentThirdParty",
-				ACtype : "Agent",
-				roomID : RoomID_g,
-				fromAgentID : UserID_g,
-				invitedAgentID : invitedAgentId,
-				fromAgentName : UserName_g,
-				inviteType : type,
-				userdata : userData,
-				text : text,
-				channel : "chat"
-			};
+			var msg = new thirdPartyJson(RoomID_g, UserID_g, UserID_g, invitedAgentId, type, userData, text);
+			msg.convertToInvite();
 
 			currentThirdPartyInvite = msg;
 
@@ -1935,7 +1904,7 @@
 
 								if (To.type === 'group') {
 									// 傳送群組訊息至layim視窗上
-// 									sendtoRoomonlay(data.mine.content);
+									sendtoRoomonlay(data.mine.content);
 								} else if (To.type === 'friend') {
 									// 向websocket送出私訊指令
 									var msg = new messageJson(UserID_g, data.mine.content, To.id);

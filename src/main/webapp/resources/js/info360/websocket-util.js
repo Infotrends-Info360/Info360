@@ -106,6 +106,71 @@ function rejectEventJson(aUserID, aSendto){
 	this.channel = "chat";
 }
 
+//邀請與回應共用此物件
+function thirdPartyJson(aRoomID, aUserID, aFromAgentID, aInvitedAgentID, aInviteType, aUserdata, aText, aResponse){
+	this.type = null; // you must specify wich type you're gonna use
+	this.roomID = aRoomID;
+	this.userID = aUserID;
+	this.fromAgentID = aFromAgentID;
+	this.invitedAgentID = aInvitedAgentID;
+	this.inviteType = aInviteType;
+	this.userdata =aUserdata;
+	this.text = aText;
+	this.response = aResponse; // 回應專用
+	this.channel = "chat";
+	
+	this.convertToInvite = function() {
+		this.type = "inviteAgentThirdParty";
+	};
+	
+	this.convertToResponse = function() {
+		this.type = "responseThirdParty";
+	};	
+	
+}
+
+//function inviteAgentThirdPartyJson(aRoomID, aUserID, aFromAgentID, aInvitedAgentID, aInviteType, aUserdata, aText){
+//	this.type = "inviteAgentThirdParty";
+//	this.roomID = aRoomID;
+//	this.userID = aUserID;
+//	this.fromAgentID = aFromAgentID;
+//	this.invitedAgentID = aInvitedAgentID;
+//	this.inviteType = aInviteType;
+//	this.userdata =aUserdata;
+//	this.text = aText;
+//	this.channel = "chat";
+//}
+//
+//
+//function responseThirdPartyJson(aUserID, aRoomID, aFromAgentID, aInvitedAgentID, aResponse, aInviteType, aUserdata, aText){
+//	this.type = "responseThirdParty";
+//	this.userID = aUserID;
+//	this.roomID = aRoomID;
+//	this.fromAgentID = aFromAgentID;
+//	this.invitedAgentID = aInvitedAgentID;
+//	this.inviteType = aInviteType;
+//	this.userdata = aUserdata;
+//	this.text = aText;
+//	this.channel = "chat";
+//}
+
+
+//var responseThirdPartyMsg = {
+//		type : "responseThirdParty",
+////		ACtype : "Agent", 
+//		userID : parent.UserID_g,
+//		roomID : aRoomID, 
+//		fromAgentID : aFromAgentID, 
+//		invitedAgentID : parent.UserID_g,
+//		response: aResponse,
+//		inviteType: aInviteType,
+//		userdata : userdata,
+//		text: text,
+//		channel : "chat"
+////		fromAgentName : UserName
+//	};
+
+// 尚未使用
 function messageJson(aUserID, aMsg, aSendto){
 	this.type = "message";
 	this.userID = aUserID;
