@@ -59,12 +59,12 @@
 						<i class="fa fa-fw fa-user"></i>停用列表
 					</button>
 					<button class="btn-sm btn-success addMember" style="display: none;">
-						<span onclick="showAddMember()">新增人員</span> <i class="fa fa-times"
+						<span onclick="backShowAddMember()">新增人員</span> <i class="fa fa-times"
 							onclick="closeAddMember()"></i>
 					</button>
 					<button class="btn-sm btn-success editMember"
 						style="display: none;">
-						<span onclick="showEditMember()" id="UPpeople"></span> <i
+						<span onclick="backShowEditMember()" id="UPpeople"></span> <i
 							class="fa fa-times" onclick="closeEditMember()"></i>
 					</button>
 				</div>
@@ -262,41 +262,30 @@
 										placeholder="">
 								</div>
 							</div>
-							
-				<div class="form-group col-sm-6">
-					<label for="inputEmail" class="col-sm-5 control-label">人員所屬部門</label>
-						<div id="Box3" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
-							<ul id="Box33" >
+							<div class="form-group col-sm-12">
+	 							<div class="">
+	                                <div class="form-group"> 
+										<label for="inputEmail" class="col-sm-5 control-label">部門列表</label> 
+										<div style="overflow: auto; width: 100%; height: 300px; border: 1px silver solid">	
+										<table class="table table-striped">
+			                                <thead>
+			                                    <tr>
+			                                       <th class="no-sort" style="width:20px"><input type="checkbox"
+													id="addHaveGroupAll" ischecked=false ></th>
+			                                        <th>部門名稱</th>
+			                                    </tr>
+			                                </thead>
+			                                <tbody id="addHaveGroup">
+			                                    
+			                                </tbody>
+			                            </table>
+										</div>
+									</div>	
 
-							</ul>	
-							</div>
-						<div style="clear:both;"></div>
-				</div>
-
-				<div class="form-group col-sm-6"> 
-					<label for="inputEmail" class="col-sm-5 control-label">部門列表</label> 
-							<div id="Box2" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
-									<div class="spiner-example" id="Box22Loading">
-                            <div class="sk-spinner sk-spinner-fading-circle">
-                                <div class="sk-circle1 sk-circle"></div>
-                                <div class="sk-circle2 sk-circle"></div>
-                                <div class="sk-circle3 sk-circle"></div>
-                                <div class="sk-circle4 sk-circle"></div>
-                                <div class="sk-circle5 sk-circle"></div>
-                                <div class="sk-circle6 sk-circle"></div>
-                                <div class="sk-circle7 sk-circle"></div>
-                                <div class="sk-circle8 sk-circle"></div>
-                                <div class="sk-circle9 sk-circle"></div>
-                                <div class="sk-circle10 sk-circle"></div>
-                                <div class="sk-circle11 sk-circle"></div>
-                                <div class="sk-circle12 sk-circle"></div>
-                            </div>
-                        </div>
-									
-									<ul id="Box22"> 
-									</ul>	
+									<button class="btn btn-primary" onclick="insertGroupButton()">剔除</button>
+<!-- 									<button class="btn btn-primary" onclick="backGroup()">剔除</button> -->
 								</div>
-				</div>		
+	                        </div>		
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendAddMember()">儲存</button>
@@ -376,18 +365,16 @@
 										placeholder="">
 								</div>
 							</div>
-							
-							
-							
-											<div class="form-group col-sm-6">
-					 							<div class="panel-body">
-					                                <div class="form-group col-sm-12"> 
+											<div class="form-group col-sm-12">
+					 							<div class="">
+					                                <div class="form-group"> 
 														<label for="inputEmail" class="col-sm-5 control-label">部門列表</label> 
 														<div style="overflow: auto; width: 100%; height: 300px; border: 1px silver solid">	
 														<table class="table table-striped">
 							                                <thead>
 							                                    <tr>
-							                                        <th></th>
+							                                       <th class="no-sort" style="width:20px"><input type="checkbox"
+																	id="HaveGroupAll" ischecked=false ></th>
 							                                        <th>部門名稱</th>
 							                                    </tr>
 							                                </thead>
@@ -395,16 +382,14 @@
 							                                    
 							                                </tbody>
 							                            </table>
-							                            <button class="btn btn-primary" onclick="backGroup()">剔除</button>
 														</div>
 													</div>	
 
 													<button class="btn btn-primary" onclick="addGroupButton()">新增</button>
-													<button class="btn btn-default" onclick="">取消</button>       
+													<button class="btn btn-primary" onclick="backGroup()">剔除</button>
+													<button class="btn btn-default" onclick="closeEditMember()">取消</button>       
 												</div>
-					                        </div>
-					
-					
+					                        </div>					
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendEditMember()">更新</button>
@@ -418,8 +403,41 @@
 				</div>
 				<!-- 設定頁面內容頁 End-->
 			</div>
-			
-			
+<!-- 新增			 -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+	data-target="#insertGroup" id="insertGroupButton" style="display: none;" ></button>
+<div id="insertGroup" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-body">
+			<h3 class="btn btn-w-m btn-primary">人員列表</h3><p>
+					<div>
+						<table class="table table-striped" style="border:3px #cccccc solid;" cellpadding="10" border='1'>
+							    <thead>
+							        <tr>
+										<th class="no-sort" style="width:20px"><input type="checkbox"
+												id="addNotHaveGroupAll" ischecked=false ></th>
+							            <th>部門名稱</th>
+
+							       </tr>
+							    </thead>
+							      <tbody id="addNotHaveGroup">
+							                                    
+							    </tbody>
+						</table>
+					</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" data-dismiss="modal"
+					onclick="backInsertGroup()">確定</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+			</div>
+		</div>
+	</div>
+</div>			
+
+<!-- 更新			 -->
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
 	data-target="#addGroup" id="addGroupButton" style="display: none;" ></button>
 <div id="addGroup" class="modal fade" role="dialog">
@@ -617,48 +635,11 @@ function showPerson() {
 	person();
 }
 
-function person_groupmenu(){
-	$("#persondiv").hide();
-	$("#persondiv1").hide();
-	$("#personul").hide();
-	$("#personul1").hide();
-	
-	
-	$("#Box22").hide();
-	$("#Box22Loading").show();
-	
-	$("#updateDepartment").empty();
-	$("#inputDepartment").empty();
-	$("#Box3").empty();
-	$("#Box4").empty();
-$.ajax({
-	url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Group_STATE",
-	data : {
-		state : 0
-	},
-	type : "POST",
-	dataType : 'json',
 
-	error : function(e) {
-		toastr.error("請重新整理");
-
-	},
-	success : function(data) {
-		console.log("Pgroup",data)
-		for(var i=0; i<data.group.length; i++){
-	        var menu = "<li id='Imgperson"+data.group[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.group[i].dbid+" ><p>"+data.group[i].name+"</p></li>"
-	        document.getElementById("Box22").insertAdjacentHTML("BeforeEnd",menu);
-	        	 }
-		$("#Box22").show();
-		$("#Box22Loading").hide();
-	}
-});
-}
 var dataa;
 var tabledata;
 	function person() {
-		person_groupmenu();
-
+		
 		$("#personLoding").show();
 		$("#personLoding1").show();
 		$("#persondiv").hide();
@@ -739,11 +720,8 @@ var tabledata;
 												      ],
 											lengthChange : false
 										});
-
 						var table = $('#person0Table').DataTable();					
-
 						var flag = true; 
-						
 						$('#person0Table tbody')
 								.on('click',
 										'tr',
@@ -788,10 +766,9 @@ var tabledata;
 											document
 											.getElementById('updateFirstName').value = table
 											.row(this).data().first_name;
-											document
-											.getElementById('updatePassword').value = table
-											.row(this).data().password;
-
+// 											document
+// 											.getElementById('updatePassword').value = table
+// 											.row(this).data().password;
 
 											aa(data,table.row(this).data());
 
@@ -800,11 +777,8 @@ var tabledata;
 
 											if(flag){
 												showEditMember(data,tabledata);
-											}
-			 								
-											
+											}											
 										});
-						
 						
 						$('#person0Table tbody').on('click','td',function() {
 
@@ -930,9 +904,9 @@ var tabledata;
 									document
 									.getElementById('updateFirstName').value = table
 									.row(this).data().first_name;
-									document
-									.getElementById('updatePassword').value = table
-									.row(this).data().password;
+// 									document
+// 									.getElementById('updatePassword').value = table
+// 									.row(this).data().password;
 									
 									aa(data,table.row(this).data());						
 									dataa = data;
@@ -1025,40 +999,59 @@ var tabledata;
 			     });           
 			   }
 			});
-		
-	}
-	
-	
-	function checkbox(){
-		$("#person0All").click(function() {
-			   if($("#person0All").prop("checked")) {
-			     $("input[name='person0']").each(function() {
+		$("#NotHaveGroupAll").click(function() {
+			   if($("#NotHaveGroupAll").prop("checked")) {
+			     $("input[name='NotHaveGroupTitle']").each(function() {
 			         $(this).prop("checked", true);
 			     });
 			   } else {
-			     $("input[name='person0']").each(function() {
+			     $("input[name='NotHaveGroupTitle']").each(function() {
 			         $(this).prop("checked", false);
 			     });           
 			   }
 			});
-		$("#person1All").click(function() {
-			   if($("#person1All").prop("checked")) {
-			     $("input[name='person1']").each(function() {
+		$("#HaveGroupAll").click(function() {
+			   if($("#HaveGroupAll").prop("checked")) {
+			     $("input[name='HaveGroupTitle']").each(function() {
 			         $(this).prop("checked", true);
 			     });
 			   } else {
-			     $("input[name='person1']").each(function() {
+			     $("input[name='HaveGroupTitle']").each(function() {
+			         $(this).prop("checked", false);
+			     });           
+			   }
+			});
+		$("#addHaveGroupAll").click(function() {
+			   if($("#addHaveGroupAll").prop("checked")) {
+			     $("input[name='addHaveGroupTitle']").each(function() {
+			         $(this).prop("checked", true);
+			     });
+			   } else {
+			     $("input[name='addHaveGroupTitle']").each(function() {
+			         $(this).prop("checked", false);
+			     });           
+			   }
+			});
+		$("#addNotHaveGroupAll").click(function() {
+			   if($("#addNotHaveGroupAll").prop("checked")) {
+			     $("input[name='addNotHaveGroupTitle']").each(function() {
+			         $(this).prop("checked", true);
+			     });
+			   } else {
+			     $("input[name='addNotHaveGroupTitle']").each(function() {
 			         $(this).prop("checked", false);
 			     });           
 			   }
 			});
 	}
+
 	
 	function showManage() {
 		closeAllHrContent();
 		$("#person").show();
 		$("#manageContent").show();
-
+		$("#persondiv").show();
+		$("#personul").show();
 		$("button.manage").removeClass("btn-success");
 		$("button.manage").addClass("btn-primary");
 	}
@@ -1067,23 +1060,43 @@ var tabledata;
 		closeAllHrContent();
 		$("#person").show();
 		$("#banContent").show();
-
+		$("#persondiv").show();
+		$("#personul").show();
 		$("button.ban").removeClass("btn-success");
 		$("button.ban").addClass("btn-primary");
 	}
 
 	function showAddMember() {
-		$("#Box22").empty();
-		$("#Box3").empty();
-		person_groupmenu();
 		
+		$("#addHaveGroup").empty();
+
+		$.ajax({
+			url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_Group_STATE",
+			data : {
+				state : 0
+			},
+			type : "POST",
+			dataType : 'json',
+
+			error : function(e) {
+				toastr.error("請重新整理");
+			},
+			success : function(data) {
+				console.log("Pgroup",data)
+				for(var i=0; i<data.group.length; i++){
+			        var addGroup = "<tr id='removeAddHaveGroup"+data.group[i].dbid+"'><td><input type='checkbox' name='addHaveGroupTitle' class='i-checks' value='"+data.group[i].dbid+"'></td><td>"+data.group[i].name+"</td><input type='hidden' id='1addHaveGroup"+data.group[i].dbid+"' value='"+data.group[i].dbid+"'><input type='hidden' id='2addHaveGroup"+data.group[i].dbid+"' value='"+data.group[i].name+"'></tr>"
+			        document.getElementById("addHaveGroup").insertAdjacentHTML("BeforeEnd",addGroup);
+			    }
+				aa();
+			}
+		});
+
 		document.getElementById('inputFirstName').value = "";
 		document.getElementById('inputLastName').value = "";
 		document.getElementById('inputName').value = "";
 		document.getElementById('inputEmail').value = "";
 		document.getElementById('inputPassword').value = "";
 		document.getElementById('inputEmployNumber').value = "";
-// 		document.getElementById('inputDepartment').value = "";
 		document.getElementById('inputAccount').value = "";
 		document.getElementById('inputPhoneNumber').value = "";
 		document.getElementById('inputMaxcount').value = "";
@@ -1091,18 +1104,24 @@ var tabledata;
 		closeAllHrContent();
 		$("#person").show();
 		$("#addMemberContent").show();
-
 		$("button.addMember").show();
 		$("button.addMember").removeClass("btn-success");
 		$("button.addMember").addClass("btn-primary");
 	}
-
+	function backShowAddMember() {
+		closeAllHrContent();
+		$("#person").show();
+		$("#addMemberContent").show();
+		$("button.addMember").show();
+		$("button.addMember").removeClass("btn-success");
+		$("button.addMember").addClass("btn-primary");
+	}
+	//更新畫面
 	function showEditMember(data,tabledata) {
 		$("#HaveGroup").empty();
 		$("#NotHaveGroup").empty();
 		
 		personjump(data,tabledata);
-		
 		closeAllHrContent();
 		$("#person").show();
 		$("#editMemberContent").show();
@@ -1111,64 +1130,98 @@ var tabledata;
 		$("button.editMember").removeClass("btn-success");
 		$("button.editMember").addClass("btn-primary");
 	}
+	//返回更新畫面
+	function backShowEditMember() {
+
+		closeAllHrContent();
+		$("#person").show();
+		$("#editMemberContent").show();
+		$("button.editMember").show();
+		$("button.editMember").removeClass("btn-success");
+		$("button.editMember").addClass("btn-primary");
+	}
 
 	function sendAddMember() {
+		 if (!validateAddMember()) {
+		       return;
+		   }
+		 	var in_first_name = document.getElementById('inputFirstName').value;
+			var in_last_name = document.getElementById('inputLastName').value;
+			var in_user_name = document.getElementById('inputName').value;
+			var in_emailaddress = document.getElementById('inputEmail').value;
+			var in_password = document.getElementById('inputPassword').value;
+			var hash = md5(in_password);
+			var in_employee_id = document.getElementById('inputEmployNumber').value;
+			var in_account = document.getElementById('inputAccount').value;
+			var in_dn = document.getElementById('inputPhoneNumber').value;
+			var in_maxcount = document.getElementById('inputMaxcount').value;
+		 
+		 
+		var HaveGroup=[];
+   		$("[name=addHaveGroupTitle]").each(function(){
+    		HaveGroup.push($(this).val());
+      	});
+	  	var HaveGroupList = HaveGroup.join();
+	  	alert(HaveGroupList);
+	  	if(HaveGroupList==""){
+	  		$
+			.ajax({
+				url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_PersonInfo",
+				data : {
+					first_name : in_first_name,
+					last_name : in_last_name,
+					user_name : in_user_name,
+					emailaddress : in_emailaddress,
+					password : hash,
+					employee_id : in_employee_id,
+					group_dbid :"",
+					account : in_account,
+					state : 0,
+					dn : in_dn,
+					max_count : in_maxcount
 
-		            if (!validateAddMember()) {
-		                return;
-		            }
+				},
+				type : "POST",
+				dataType : 'json',
+				error : function(e) {
+					toastr.error("新增錯誤");
+				},
+				success : function(data) {
+					person();
+					toastr.success("新增成功");
+				}
+			});
+	  	}else{
+	  		$
+			.ajax({
+				url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_PersonInfo",
+				data : {
+					first_name : in_first_name,
+					last_name : in_last_name,
+					user_name : in_user_name,
+					emailaddress : in_emailaddress,
+					password : hash,
+					employee_id : in_employee_id,
+					group_dbid : HaveGroupList,
+					account : in_account,
+					state : 0,
+					dn : in_dn,
+					max_count : in_maxcount
 
-		closeAddMember();
-	
-		var aa = $('#Box3 input');
-		var arr = $.makeArray(aa);
-		
-		for(var i=0;i<arr.length;i++){
-		var hh = arr[i].value;
-		
-		var in_first_name = document.getElementById('inputFirstName').value;
-		var in_last_name = document.getElementById('inputLastName').value;
-		var in_user_name = document.getElementById('inputName').value;
-		var in_emailaddress = document.getElementById('inputEmail').value;
-		var in_password = document.getElementById('inputPassword').value;
-		var hash = md5(in_password);
-
-		var in_employee_id = document.getElementById('inputEmployNumber').value;
-		var in_group_dbid = hh;
-		var in_account = document.getElementById('inputAccount').value;
-		var in_dn = document.getElementById('inputPhoneNumber').value;
-		var in_maxcount = document.getElementById('inputMaxcount').value;
-
-		$
-				.ajax({
-					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Insert_PersonInfo",
-					data : {
-						first_name : in_first_name,
-						last_name : in_last_name,
-						user_name : in_user_name,
-						emailaddress : in_emailaddress,
-						password : hash,
-						employee_id : in_employee_id,
-						group_dbid : in_group_dbid,
-						account : in_account,
-						state : 0,
-						dn : in_dn,
-						max_count : in_maxcount
-
-					},
-					type : "POST",
-					dataType : 'json',
-					error : function(e) {
-						toastr.error("新增錯誤");
-					},
-					success : function(data) {
-						person();
-						
-					}
-				});
-			}
-		toastr.success("新增成功");
+				},
+				type : "POST",
+				dataType : 'json',
+				error : function(e) {
+					toastr.error("新增錯誤");
+				},
+				success : function(data) {
+					person();
+					toastr.success("新增成功");
+				}
+			});
+	  	}
 	}
+	
 	 function validateAddMember() {
          var account = $("#inputAccount").val();
          var name = $("#inputName").val();
@@ -1180,10 +1233,12 @@ var tabledata;
          var PN = $("#inputPhoneNumber").val();
          var MX = $("#inputMaxcount").val();
          
-     	var aa = $('#Box3 input');
-		var arr = $.makeArray(aa);
-         
-         var DT = $("#Box3").val();
+         var HaveGroup=[];
+    		$("[name=addHaveGroupTitle]").each(function(){
+     		HaveGroup.push($(this).val());
+       	});
+ 	  	var HaveGroupList = HaveGroup.join();
+ 	  	
          
          if (!account || account == '' ) {
              toastr.error("請輸入帳號");
@@ -1264,7 +1319,7 @@ var tabledata;
              return false;
          }
          
-         if(arr.length==0){
+         if(HaveGroupList==""){
  			toastr.error("請選擇部門");
  			 return false;
  		}
@@ -1326,30 +1381,86 @@ var tabledata;
 	}
 
 function sendEditMember() {
-		            if (!validatePersonUP()) {
-		                return;
-		            }
-  
-		closeEditMember();
-		
+// 		            if (!validatePersonUP()) {
+// 		                return;
+// 		            }
+ 		
  		var HaveGroup=[];
    		$("[name=HaveGroupTitle]").each(function(){
     		HaveGroup.push($(this).val());
       	});
 	  	var HaveGroupList = HaveGroup.join();
-		if(HaveGroupList.length==0){
-			
-			var up_first_name = $('#updateFirstName').val();
-			var up_last_name = $('#updateLastName').val();
-			var up_user_name = $('#updateName').val();
-			var up_emailaddress = $('#updateEmail').val();
-			var up_password = $('#updatePassword').val();
-			var hash = md5(up_password);
-			var up_employee_id = $('#updateEmployNumber').val();
-			var up_account = $('#updateAccount').val();
-//	 		var up_state = $('#updateState').val();
-			var up_dn = $('#updatePhoneNumber').val();
-			var up_updateMaxcount = $('#updateMaxcount').val();
+	  	
+		var up_first_name = $('#updateFirstName').val();
+		var up_last_name = $('#updateLastName').val();
+		var up_user_name = $('#updateName').val();
+		var up_emailaddress = $('#updateEmail').val();
+		var up_password = $('#updatePassword').val();
+		var hash = md5(up_password);
+		var up_employee_id = $('#updateEmployNumber').val();
+		var up_account = $('#updateAccount').val();
+		var up_dn = $('#updatePhoneNumber').val();
+		var up_updateMaxcount = $('#updateMaxcount').val();
+	  	
+		if(up_password==""&& HaveGroupList==""){
+			$
+			.ajax({
+			url : '${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/updatePersonNotHavePassWordByAccount',
+			data : {
+				max_count :up_updateMaxcount,
+				first_name : up_first_name,
+				last_name : up_last_name,
+				user_name : up_user_name,
+				emailaddress : up_emailaddress,
+				employee_id : up_employee_id,
+				group_dbid : "",
+				account : up_account,
+				state : 0,
+				dn : up_dn,
+				
+			},
+			type : "POST",
+			dataType : 'json',
+
+			error : function(e) {
+				toastr.error("更新失敗");
+			},
+			success : function(data) {
+				person();
+				toastr.success("更新成功");
+			}
+
+		});
+		}else if(up_password==""&& HaveGroupList!=""){
+			$
+			.ajax({
+			url : '${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/updatePersonNotHavePassWordByAccount',
+			data : {
+				max_count :up_updateMaxcount,
+				first_name : up_first_name,
+				last_name : up_last_name,
+				user_name : up_user_name,
+				emailaddress : up_emailaddress,
+				employee_id : up_employee_id,
+				GP_DBID_list: HaveGroupList,
+				account : up_account,
+				state : 0,
+				dn : up_dn,
+				
+			},
+			type : "POST",
+			dataType : 'json',
+
+			error : function(e) {
+				toastr.error("更新失敗");
+			},
+			success : function(data) {
+				person();
+				toastr.success("更新成功");
+			}
+
+		});
+		}else if(up_password!=""&&HaveGroupList==""){
 			$
 				.ajax({
 				url : '${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Update_PersonInfo',
@@ -1380,21 +1491,6 @@ function sendEditMember() {
 
 			});
 		}else{
-			
-		
-		
-		var up_first_name = $('#updateFirstName').val();
-		var up_last_name = $('#updateLastName').val();
-		var up_user_name = $('#updateName').val();
-		var up_emailaddress = $('#updateEmail').val();
-		var up_password = $('#updatePassword').val();
-		var hash = md5(up_password);
-		var up_employee_id = $('#updateEmployNumber').val();
-		var up_account = $('#updateAccount').val();
-// 		var up_state = $('#updateState').val();
-		var up_dn = $('#updatePhoneNumber').val();
-		var up_updateMaxcount = $('#updateMaxcount').val();
-		 
 		$
 			.ajax({
 			url : '${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Update_PersonInfo',
@@ -1525,6 +1621,11 @@ function sendEditMember() {
 
          return true;
      }
+		//新增部門對話視窗
+	 function insertGroupButton() {
+	 	$("#insertGroupButton").trigger("click");
+	 	insertGroup();
+	 }
 	//更新部門對話視窗
 	 function addGroupButton() {
 	 	$("#addGroupButton").trigger("click");
@@ -1754,6 +1855,48 @@ function sendEditMember() {
 				}
 			});
 	
+	
+	function insertGroup() {
+		var addHaveGroup=[];
+	    $("[name=addHaveGroupTitle]:checkbox:checked").each(function(){
+	    	addHaveGroup.push($(this).val());
+	      });
+	 
+		var addHaveGroupList = addHaveGroup.join();
+		var List = addHaveGroupList.split(',');
+		if(addHaveGroupList==""){
+		}else{
+			for (var i in List ) {
+				var arrDbid = document.getElementById("1addHaveGroup"+List[i]).value;
+				var arrName = document.getElementById("2addHaveGroup"+List[i]).value;
+	
+				var addNotHaveGroup = "<tr id='removeAddNotHaveGroup"+arrDbid+"'><td><input type='checkbox' name='addNotHaveGroupTitle' class='i-checks' value='"+arrDbid+"'></td><td>"+arrName+"</td><input type='hidden' id='1addNotHaveGroup"+arrDbid+"' value='"+arrDbid+"'><input type='hidden' id='2addNotHaveGroup"+arrDbid+"' value='"+arrName+"'></tr>"
+
+				document.getElementById("addNotHaveGroup").insertAdjacentHTML("BeforeEnd",addNotHaveGroup);	
+				$('#removeAddHaveGroup'+List[i]).remove();
+			}
+		}
+	}
+	function backInsertGroup() {
+		var addNotHaveGroup=[];
+	    $("[name=addNotHaveGroupTitle]:checkbox:checked").each(function(){
+	    	addNotHaveGroup.push($(this).val());
+	      });
+	 
+		var addNotHaveGroupList = addNotHaveGroup.join();
+		var List = addNotHaveGroupList.split(',');
+		if(addNotHaveGroupList==""){
+		}else{
+			for (var i in List ) {
+				var arrDbid = document.getElementById("1addNotHaveGroup"+List[i]).value;
+				var arrName = document.getElementById("2addNotHaveGroup"+List[i]).value;
+				var addHaveGroup = "<tr id='removeAddHaveGroup"+arrDbid+"'><td><input type='checkbox' name='addHaveGroupTitle' class='i-checks' value='"+arrDbid+"'></td><td>"+arrName+"</td><input type='hidden' id='1addHaveGroup"+arrDbid+"' value='"+arrDbid+"'><input type='hidden' id='2addHaveGroup"+arrDbid+"' value='"+arrName+"'></tr>"	
+				document.getElementById("addHaveGroup").insertAdjacentHTML("BeforeEnd",addHaveGroup);	
+				$('#removeAddNotHaveGroup'+List[i]).remove();
+			}
+		}
+	}
+	
 	function addGroup() {
 		var NotHaveGroup=[];
 	    $("[name=NotHaveGroupTitle]:checkbox:checked").each(function(){
@@ -1762,8 +1905,9 @@ function sendEditMember() {
 	 
 		var NotHaveGroupList = NotHaveGroup.join();
 		var List = NotHaveGroupList.split(',');
-		
-		for (var i in List ) {
+		if(NotHaveGroupList==""){
+		}else{
+			for (var i in List ) {
 				var arrDbid = document.getElementById("1NotHaveGroup"+List[i]).value;
 				var arrName = document.getElementById("2NotHaveGroup"+List[i]).value;
 	
@@ -1772,6 +1916,8 @@ function sendEditMember() {
 				document.getElementById("HaveGroup").insertAdjacentHTML("BeforeEnd",HaveGroup);	
 				$('#removeGroup'+List[i]).remove();
 			}
+		}
+		sendEditMember();
 	}
 	
 	function backGroup() {
@@ -1782,16 +1928,18 @@ function sendEditMember() {
 	 
 		var HaveGroupList = HaveGroup.join();
 		var List = HaveGroupList.split(',');
-		
-		for (var i in List ) {
+		if(HaveGroupList==""){
+		}else{
+			for (var i in List ) {
 				var arrDbid = document.getElementById("1HaveGroup"+List[i]).value;
 				var arrName = document.getElementById("2HaveGroup"+List[i]).value;
-				
-				var NotHaveGroup = "<tr id='removeGroup"+arrDbid+"'><td><input type='checkbox' name='NotHaveGroupTitle' class='i-checks' value='"+arrDbid+"'></td><td>"+arrName+"</td><input type='hidden' id='1NotHaveGroup"+arrDbid+"' value='"+arrDbid+"'><input type='hidden' id='2NotHaveGroup"+arrDbid+"' value='"+arrName+"'></tr>"
-
+				var NotHaveGroup = "<tr id='removeGroup"+arrDbid+"'><td><input type='checkbox' name='NotHaveGroupTitle' class='i-checks' value='"+arrDbid+"'></td><td>"+arrName+"</td><input type='hidden' id='1NotHaveGroup"+arrDbid+"' value='"+arrDbid+"'><input type='hidden' id='2NotHaveGroup"+arrDbid+"' value='"+arrName+"'></tr>"	
 				document.getElementById("NotHaveGroup").insertAdjacentHTML("BeforeEnd",NotHaveGroup);	
 				$('#removeHaveGroup'+List[i]).remove();
 			}
+		}
+		sendEditMember();
+
 	}
 	
 	

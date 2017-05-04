@@ -414,9 +414,6 @@ function selectcomm() {
 	$('#tree').hide();
 	$('#comm').hide();
 	$('#commonlinkul').hide();
-	
-	
-	
 	$('#nodeLINKlist').empty();
 	$('#nodeLINKlistU').empty();
 	$('#insert_color').empty();

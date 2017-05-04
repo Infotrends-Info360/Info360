@@ -63,7 +63,7 @@
 					</button>
 					<button class="btn-sm btn-success editMember"
 						style="display: none;">
-						<span onclick="showEditMembergroup()" id="UPgroup"></span> <i
+						<span onclick="backUpdateView()" id="UPgroup"></span> <i
 							class="fa fa-times" onclick="closeEditMembergroup()"></i>
 					</button>
 				</div>
@@ -138,85 +138,55 @@
 										placeholder="">
 								</div>
 							</div>
-							
-					<div class="tabs-container" style="width: 100%;height: 100%">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">部門人員</a>
-                        </li>
-                        <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">部門權限</a>
-                        </li>
-                    </ul>
-                    		<div class="tab-content" >
-				                        <div id="tab-1" class="tab-pane active" >
-				                            <div class="panel-body">
-				                                		<div class="form-group col-sm-6">
-															<label for="inputEmail" class="col-sm-5 control-label">部門人員</label>
-																<div id="Box5" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
-																</div>
+							<div class="container">
+					                    <div class="tab-content">
+					                    	<ul class="nav nav-pills">
+    											<li class="active"><a data-toggle="pill" href="#tab-1">人員列表</a></li>
+    											<li><a data-toggle="pill" href="#tab-2">權限列表</a></li>
+  											</ul>
+					                        <div id="tab-1" class="tab-pane active">
+					                                <div class="form-group"> 
+														<div style="overflow: auto; width: 100%; height: 450px; border: 1px silver solid">	
+														<table class="table table-striped">
+							                                <thead>
+							                                    <tr>
+							                                        <th class="no-sort" style="width:20px"><input type="checkbox"
+																	id="addPersonCheckBox" ischecked=false ></th>
+							                                        <th>姓名</th>
+							                                        <th>帳號</th>
+							                                        <th>員工編號</th>
+							                                    </tr>
+							                                </thead>
+							                                <tbody id="addPerson">
+							                                </tbody>
+							                            </table>
 														</div>
-				                                
-						                               <div class="form-group col-sm-6"> 
-															<label for="inputEmail" class="col-sm-5 control-label">人員列表</label> 
-																<div id="Box6" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
-															<div class="spiner-example" id="Box66Loading">
-						                            		<div class="sk-spinner sk-spinner-fading-circle">
-						                                		<div class="sk-circle1 sk-circle"></div>
-						                                		<div class="sk-circle2 sk-circle"></div>
-						                                		<div class="sk-circle3 sk-circle"></div>
-						                                		<div class="sk-circle4 sk-circle"></div>
-						                                		<div class="sk-circle5 sk-circle"></div>
-						                                		<div class="sk-circle6 sk-circle"></div>
-						                                		<div class="sk-circle7 sk-circle"></div>
-						                                		<div class="sk-circle8 sk-circle"></div>
-						                                		<div class="sk-circle9 sk-circle"></div>
-						                                		<div class="sk-circle10 sk-circle"></div>
-						                                		<div class="sk-circle11 sk-circle"></div>
-						                                		<div class="sk-circle12 sk-circle"></div>
-						                            		</div>
-						                        			</div>
-															<ul id="Box66"> 
-															</ul>	
-														</div>
-														</div>	
-														<button class="btn btn-primary" onclick="">新增</button>
-														<button class="btn btn-default" onclick="">取消</button>
-				                            </div>
-				                        </div>
-				                        <div id="tab-2" class="tab-pane" >
-				                            <div class="panel-body">
-														<div class="form-group col-sm-6">
-															<label for="inputEmail" class="col-sm-5 control-label">部門權限</label>
-																<div id="Box77" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
+													</div>	
+<!-- 													<button class="btn btn-primary" onclick="">新增</button> -->
+													<button class="btn btn-primary" onclick="InsertPersonButton()">剔除</button>
+					                        </div>
+					                        <div id="tab-2" class="tab-pane">
+					                            	<div class="form-group"> 
+																<div style="overflow: auto; width: 100%; height: 450px; border: 1px silver solid">
+																	<table  class="table table-striped">
+										                                <thead>
+										                                    <tr>
+										                                       <th class="no-sort" style="width:20px"><input type="checkbox"
+																				id="addAuthorityCheckBox" ischecked=false ></th>
+										                                        <th>權限名稱</th>
+										                                        <th>權限描述</th>
+										                                    </tr>
+										                                </thead>
+										                                <tbody id="addAuthority">
+										                                    
+										                                </tbody>
+										                            </table>
 																</div>
-														</div>   
-														<div class="form-group col-sm-6"> 
-															<label for="inputEmail" class="col-sm-5 control-label">權限列表</label> 
-																	<div id="Box8" ondrop="Drop(event)" ondragover="AllowDrop(event)" style="overflow: auto; width: 100%; height: 100px; border: 1px silver solid">
-																			<div class="spiner-example" id="Box88Loading">
-										                            		<div class="sk-spinner sk-spinner-fading-circle">
-										                                		<div class="sk-circle1 sk-circle"></div>
-												                                <div class="sk-circle2 sk-circle"></div>
-												                                <div class="sk-circle3 sk-circle"></div>
-												                                <div class="sk-circle4 sk-circle"></div>
-												                                <div class="sk-circle5 sk-circle"></div>
-												                                <div class="sk-circle6 sk-circle"></div>
-												                                <div class="sk-circle7 sk-circle"></div>
-												                                <div class="sk-circle8 sk-circle"></div>
-												                                <div class="sk-circle9 sk-circle"></div>
-												                                <div class="sk-circle10 sk-circle"></div>
-												                                <div class="sk-circle11 sk-circle"></div>
-												                                <div class="sk-circle12 sk-circle"></div>
-										                            		</div>
-										                        			</div>
-																		<ul id="Box88"> 
-																		</ul>	
-																	</div>
-														</div>	
-													                
-											</div>
-				                        </div>
-                    		</div>
-                	</div>
+													</div>
+													<button class="btn btn-primary" onclick="InsertAuthorityButton()">剔除</button>
+					                        </div>
+					                    </div>
+                				</div>	
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-3">
 									<button class="btn btn-primary" onclick="sendAddMembergroup()">儲存</button>
@@ -240,23 +210,20 @@
 										placeholder="">
 								</div>
 							</div>
-						<div class="tabs-container">
-					                    <ul class="nav nav-tabs">
-					                        <li class="active"><a data-toggle="tab" href="#tab-3" aria-expanded="true">人員列表</a>
-					                        </li>
-					                        <li class=""><a data-toggle="tab" href="#tab-4" aria-expanded="false">部門列表</a>
-					                        </li>
-					                    </ul>
+							<div class="container">
 					                    <div class="tab-content">
+					                    	<ul class="nav nav-pills">
+    											<li class="active"><a data-toggle="pill" href="#tab-3">人員列表</a></li>
+    											<li><a data-toggle="pill" href="#tab-4">權限列表</a></li>
+  											</ul>
 					                        <div id="tab-3" class="tab-pane active">
-					                            <div class="panel-body">
-					                                <div class="form-group col-sm-12"> 
-														<label for="inputEmail" class="col-sm-5 control-label">人員列表</label> 
+					                                <div class="form-group"> 
 														<div style="overflow: auto; width: 100%; height: 450px; border: 1px silver solid">	
 														<table class="table table-striped">
 							                                <thead>
 							                                    <tr>
-							                                        <th></th>
+							                                        <th class="no-sort" style="width:20px"><input type="checkbox"
+																	id="HavePersonCheckBox" ischecked=false ></th>
 							                                        <th>姓名</th>
 							                                        <th>帳號</th>
 							                                        <th>員工編號</th>
@@ -267,21 +234,18 @@
 							                            </table>
 														</div>
 													</div>	
-
 													<button class="btn btn-primary" onclick="addPersonButton()">新增</button>
 													<button class="btn btn-primary" onclick="backPerson()">剔除</button>
-													<button class="btn btn-default" onclick="">取消</button>         
-												</div>
+													<button class="btn btn-default" onclick="closeEditMembergroup()">取消</button>         
 					                        </div>
 					                        <div id="tab-4" class="tab-pane">
-					                            <div class="panel-body">
-					                            	<div class="form-group col-sm-12"> 
-															<label for="inputEmail" class="col-sm-5 control-label">部門權限</label> 
+					                            	<div class="form-group"> 
 																<div style="overflow: auto; width: 100%; height: 450px; border: 1px silver solid">
 																	<table  class="table table-striped">
 										                                <thead>
 										                                    <tr>
-										                                        <th></th>
+										                                        <th class="no-sort" style="width:20px"><input type="checkbox"
+																				id="HaveAuthorityCheckBox" ischecked=false ></th>
 										                                        <th>權限名稱</th>
 										                                        <th>權限描述</th>
 										                                    </tr>
@@ -294,17 +258,16 @@
 													</div>
 													<button class="btn btn-primary" onclick="addAuthorityButton()">新增</button>
 													<button class="btn btn-primary" onclick="backAuthority()">剔除</button>
-													<button class="btn btn-default" onclick="">取消</button>  	
-					                            </div>
+													<button class="btn btn-default" onclick="closeEditMembergroup()">取消</button>  	
 					                        </div>
 					                    </div>
-                		</div>						
-							<div class="form-group">
-								<div class="col-sm-offset-9 col-sm-3">
-									<button class="btn btn-primary" onclick="sendEditMembergroup()">更新</button>
-									<button class="btn btn-default"	onclick="closeEditMembergroup()">取消</button>
-								</div>
-							</div>
+                				</div>						
+<!-- 							<div class="form-group"> -->
+<!-- 								<div class="col-sm-offset-9 col-sm-3"> -->
+<!-- 									<button class="btn btn-primary" onclick="sendEditMembergroup()">更新</button> -->
+<!-- 									<button class="btn btn-default"	onclick="closeEditMembergroup()">取消</button> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 						</div>
 					</div>
 					<!-- 更新END -->
@@ -313,10 +276,83 @@
 				<!-- 設定頁面內容頁 End-->
 		<!-- GROUP 結束 -->
 			</div>
+<!-- InsertPerson -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+	data-target="#InsertPerson" id="InsertPersonButton" style="display: none;" ></button>
+<div id="InsertPerson" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-body">
+			<h3 class="btn btn-w-m btn-primary">人員列表</h3><p>
+					<div>
+					
+						<table class="table table-striped" style="border:3px #cccccc solid;" cellpadding="10" border='1'>
+							    <thead>
+							        <tr>
+										<th class="no-sort" style="width:20px"><input type="checkbox"
+												id="insertPersonCheckBox" ischecked=false ></th>
+							          <th>姓名</th>
+							          <th>帳號</th>
+							          <th>員工編號</th>
+							       </tr>
+							    </thead>
+							      <tbody id="DeletePerson">
+							                                    
+							     </tbody>
+						</table>
+					</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" data-dismiss="modal"
+					onclick="BackInsertPerson()">確定</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+			</div>
+		</div>
+	</div>
+</div>	
+<!-- InsertPersonEND -->
+<!-- InsertAuthority -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+	data-target="#InsertAuthority" id="InsertAuthorityButton" style="display: none;" ></button>
+<div id="InsertAuthority" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-body">
+			<h3 class="btn btn-w-m btn-primary">權限列表</h3><p>
+					<div>
+					
+						<table class="table table-striped" style="border:3px #cccccc solid;" cellpadding="10" border='1'>
+							    <thead>
+							        <tr>
+										<th class="no-sort" style="width:20px"><input type="checkbox"
+												id="insertAuthorityCheckBox" ischecked=false ></th>
+										<th>權限名稱</th>
+										<th>權限描述</th>
+							       </tr>
+							    </thead>
+							      <tbody id="DeleteAuthority">
+							                                    
+							     </tbody>
+						</table>
+					</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" data-dismiss="modal"
+					onclick="BackInsertAuthority()">確定</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+			</div>
+		</div>
+	</div>
+</div>		
+<!-- InsertAuthorityEND -->
+			
+			
 			
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-	data-target="#addPerson" id="addPersonButton" style="display: none;" ></button>
-<div id="addPerson" class="modal fade" role="dialog">
+	data-target="#addPersonView" id="addPersonButton" style="display: none;" ></button>
+<div id="addPersonView" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<!-- Modal content-->
 		<div class="modal-content">
@@ -342,7 +378,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-success" data-dismiss="modal"
-					onclick="addPerson()">確定</button>
+					onclick="addUpdatePerson()">確定</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
 			</div>
 		</div>
@@ -350,8 +386,8 @@
 </div>
 
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-	data-target="#addAuthority" id="addAuthorityButton" style="display: none;" ></button>
-<div id="addAuthority" class="modal fade" role="dialog">
+	data-target="#addAuthorityView" id="addAuthorityButton" style="display: none;" ></button>
+<div id="addAuthorityView" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<!-- Modal content-->
 		<div class="modal-content">
@@ -361,7 +397,8 @@
 						<table  class="table table-striped" style="border:3px #cccccc solid;" cellpadding="10" border='1'>
 							<thead>
 									<tr>
-										<th></th>
+										<th class="no-sort" style="width:20px"><input type="checkbox"
+												id="NotHaveAuthorityAll" ischecked=false ></th>
 										<th>權限名稱</th>
 										<th>權限描述</th>
 									</tr>
@@ -373,7 +410,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-success" data-dismiss="modal"
-					onclick="addAuthority()">確定</button>
+					onclick="addUpdateAuthority()">確定</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
 			</div>
 		</div>
@@ -388,15 +425,16 @@
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
 	data-target="#ChangeGroupName" style="display: none;"
 	id="changeGroupNameButton">banDialog</button>
-
-<!-- 垃圾桶符號BUTTON -->
 <div id="ChangeGroupName" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-body">
-				<h5>編輯名稱</h5>
-				<input type="text" value="" id="changeName">
+				
+				<h3 class="col-sm-4 control-label">編輯名稱</h3>
+				
+				<input class="form-control" type="text" value="" id="changeName">
+
 			</div>
 			<div class="modal-footer">
 				<div class="form-group col-sm-6">
@@ -406,7 +444,7 @@
 					</div>
 				</div>
 				<button type="button" class="btn btn-success" data-dismiss="modal"
-					onclick="GroupDelete('更新成功')">確定</button>
+					onclick="editGroupName('更新成功')">確定</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
 			</div>
 		</div>
@@ -477,6 +515,8 @@
 <script>
 var insertPerson = "";
 var insertAuthority = "";
+var addPerson=""
+var addAuthority=""
 
 
 $(document).ready(function() {
@@ -495,33 +535,13 @@ function showGroup() {
 	select();
 }
 
-function groupperson(){
-
-	$("#Box22").empty();
-	$("#Box3").empty();
-	$("#Box1").empty();
-	$("#Box4").empty();
-	$("#Box5").empty();
-	$("#Box66").empty();
-}
 function select() {
 	$("#groupLoading").show();
 	$("#group0").hide();
 	$("#groupul").hide();
-	$('#Box77').empty();
-	$('#Box5').empty();
-	$('#Box88').empty();
-	$('#Box66').empty();
-	$('#Box0').empty();
-	$('#Box9').empty();
-	$('#Box90').empty();
-	$('#Box09').empty();
-	groupperson();
 	$("#group0All").prop("checked", false);
 
 	
-	$("#Box66").empty();
-	$("#Box88").empty();
 	$("#managegroupTable tbody tr").empty();
 	$("#bangroupTable tboby tr").empty();
 	$
@@ -557,7 +577,7 @@ function select() {
 									         'orderable': false,
 									         'className': 'dt-body-center',
 									         'render': function (data, type, full, meta){
-									             return '<input type="checkbox" name="group0" value='+full.dbid+' ' + $('<div/>').text(data).html() + '">';
+									             return '<input type="checkbox" name="group0" value='+full.dbid+","+full.name+' ' + $('<div/>').text(data).html() + '">';
 									         }
 									      }],
 										lengthChange : false
@@ -571,24 +591,10 @@ function select() {
 													'tr',
 													function() {
 														
-							document
-									.getElementById('deletedbid_GroupDelete').value = table
-									.row(this).data().dbid;
-
-							document
-									.getElementById('up_dbid').value = table
-									.row(this).data().dbid;
-							
-							document
-									.getElementById('UPgroup').innerHTML = table
-									.row(this).data().name;
-							document
-							.getElementById('changeName').innerHTML = table
-							.row(this).data().name;
-							
-							document
-							.getElementById('up_name').value = table
-							.row(this).data().name;
+							document.getElementById('deletedbid_GroupDelete').value = table.row(this).data().dbid;
+							document.getElementById('up_dbid').value = table.row(this).data().dbid;
+							document.getElementById('UPgroup').innerHTML = table.row(this).data().name;
+							document.getElementById('up_name').value = table.row(this).data().name;
 							if(groupflag){
 								showEditMembergroup(data,table.row(this).data());
 							}
@@ -640,17 +646,96 @@ function group2(data,tabledata) {
 		   }
 		});
 	
-// 	$("#NotHavePersonAll").click(function() {
-// 		   if($("#NotHavePersonAll").prop("checked")) {
-// 		     $("input[name='NotHavePerson']").each(function() {
-// 		         $(this).prop("checked", true);
-// 		     });
-// 		   } else {
-// 		     $("input[name='NotHavePerson']").each(function() {
-// 		         $(this).prop("checked", false);
-// 		     });           
-// 		   }
-// 		});
+	$("#insertAuthorityCheckBox").click(function() {
+		   if($("#insertAuthorityCheckBox").prop("checked")) {
+		     $("input[name='deleteAuthorityTitle']").each(function() {
+		         $(this).prop("checked", true);
+		     });
+		   } else {
+		     $("input[name='deleteAuthorityTitle']").each(function() {
+		         $(this).prop("checked", false);
+		     });           
+		   }
+		});
+	$("#insertPersonCheckBox").click(function() {
+		   if($("#insertPersonCheckBox").prop("checked")) {
+		     $("input[name='deletePersonTitle']").each(function() {
+		         $(this).prop("checked", true);
+		     });
+		   } else {
+		     $("input[name='deletePersonTitle']").each(function() {
+		         $(this).prop("checked", false);
+		     });           
+		   }
+		});
+	
+	$("#addAuthorityCheckBox").click(function() {
+		   if($("#addAuthorityCheckBox").prop("checked")) {
+		     $("input[name='addAuthorityTitle']").each(function() {
+		         $(this).prop("checked", true);
+		     });
+		   } else {
+		     $("input[name='addAuthorityTitle']").each(function() {
+		         $(this).prop("checked", false);
+		     });           
+		   }
+		});
+	$("#addPersonCheckBox").click(function() {
+		   if($("#addPersonCheckBox").prop("checked")) {
+		     $("input[name='addPersonTitle']").each(function() {
+		         $(this).prop("checked", true);
+		     });
+		   } else {
+		     $("input[name='addPersonTitle']").each(function() {
+		         $(this).prop("checked", false);
+		     });           
+		   }
+		});
+
+	$("#NotHaveAuthorityAll").click(function() {
+		   if($("#NotHaveAuthorityAll").prop("checked")) {
+		     $("input[name='NotHaveAuthorityTitle']").each(function() {
+		         $(this).prop("checked", true);
+		     });
+		   } else {
+		     $("input[name='NotHaveAuthorityTitle']").each(function() {
+		         $(this).prop("checked", false);
+		     });           
+		   }
+		});
+	$("#NotHavePersonAll").click(function() {
+		   if($("#NotHavePersonAll").prop("checked")) {
+		     $("input[name='NotHavePersonTitle']").each(function() {
+		         $(this).prop("checked", true);
+		     });
+		   } else {
+		     $("input[name='NotHavePersonTitle']").each(function() {
+		         $(this).prop("checked", false);
+		     });           
+		   }
+		});
+	$("#HavePersonCheckBox").click(function() {
+		   if($("#HavePersonCheckBox").prop("checked")) {
+		     $("input[name='HavePersonTitle']").each(function() {
+		         $(this).prop("checked", true);
+		     });
+		   } else {
+		     $("input[name='HavePersonTitle']").each(function() {
+		         $(this).prop("checked", false);
+		     });           
+		   }
+		});
+	$("#HaveAuthorityCheckBox").click(function() {
+		   if($("#HaveAuthorityCheckBox").prop("checked")) {
+		     $("input[name='HaveAuthorityTitle']").each(function() {
+		         $(this).prop("checked", true);
+		     });
+		   } else {
+		     $("input[name='HaveAuthorityTitle']").each(function() {
+		         $(this).prop("checked", false);
+		     });           
+		   }
+		});
 	
 }
 
@@ -677,20 +762,12 @@ function showBan_group() {
 
 //新增畫面
 function showAddMembergroup() {
-	$("#Box88").hide();
-	$("#Box66").hide();
-	$("#Box66Loading").show();
-	$("#Box88Loading").show();
 	
-	$('#Box77').empty();
-	$('#Box5').empty();
-	$('#Box88').empty();
-	$('#Box66').empty();
-	$('#Box0').empty();
-	$('#Box9').empty();
-	$('#Box09').empty();
-	$('#Box90').empty();
-	
+	$("#DeletePerson").empty();
+	$("#DeleteAuthority").empty();
+	$("#addPerson").empty();
+	$("#addAuthority").empty();
+
 	document.getElementById('in_name').value=""
 		$
 		.ajax({
@@ -706,19 +783,14 @@ function showAddMembergroup() {
 			},
 			success : function(data) {
 				for(var i=0; i<data.ALLperson.length; i++){
-					var person = "<td><input type='checkbox' name='group0' value='"+data.ALLperson[i].dbid+"'></td></td>"+data.ALLperson[i].user_name+"</td><p>"
-// 			        var menu1 = "<li id='Imggroup"+data.ALLperson[i].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.ALLperson[i].dbid+" ><p>"+data.ALLperson[i].user_name+"</p></li>"
-			        document.getElementById("Box66").insertAdjacentHTML("BeforeEnd",person);
+					var addPerson = "<tr id='addPerson"+data.ALLperson[i].dbid+"'><td><input type='checkbox' name='addPersonTitle' class='i-checks' value='"+data.ALLperson[i].dbid+"'></td><td>"+data.ALLperson[i].user_name+"</td><td>"+data.ALLperson[i].account+"</td><td>"+data.ALLperson[i].employee_id+"</td><input type='hidden' id='1addPerson"+data.ALLperson[i].dbid+"' value='"+data.ALLperson[i].dbid+"'><input type='hidden' id='2addPerson"+data.ALLperson[i].dbid+"' value='"+data.ALLperson[i].user_name+"'><input type='hidden' id='3addPerson"+data.ALLperson[i].dbid+"' value='"+data.ALLperson[i].account+"'><input type='hidden' id='4addPerson"+data.ALLperson[i].dbid+"' value='"+data.ALLperson[i].employee_id+"'></tr>"
+					document.getElementById("addPerson").insertAdjacentHTML("BeforeEnd",addPerson);
 				}
 				
 				for(var a=0; a<data.ALLfunction.length; a++){
-			        var Function = "<li id='Imggroupf"+data.ALLfunction[a].dbid+"'  draggable='true' ondragstart='Drag(event)'  style='margin-top:5px;padding:5px 15px; background:#d65c5c;color:white; border:0 none; width: 100%; cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;'><input  type='hidden'  value="+data.ALLfunction[a].dbid+" ><p>"+data.ALLfunction[a].name+"</p></li>"
-			        document.getElementById("Box88").insertAdjacentHTML("BeforeEnd",Function);
-				}
-				$("#Box66Loading").hide();
-				$("#Box88Loading").hide();
-				$("#Box66").show();
-				$("#Box88").show();			
+			        var addAuthority = "<tr id='addAuthority"+data.ALLfunction[a].dbid+"'><td><input type='checkbox' name='addAuthorityTitle' value='"+data.ALLfunction[a].dbid+"'></td><td>"+data.ALLfunction[a].name+"</td><td>"+data.ALLfunction[a].description+"</td><input type='hidden' id='1addAuthority"+data.ALLfunction[a].dbid+"' value='"+data.ALLfunction[a].dbid+"'><input type='hidden' id='2addAuthority"+data.ALLfunction[a].dbid+"' value='"+data.ALLfunction[a].name+"'><input type='hidden' id='3addAuthority"+data.ALLfunction[a].dbid+"' value='"+data.ALLfunction[a].description+"'></tr>"
+			        document.getElementById("addAuthority").insertAdjacentHTML("BeforeEnd",addAuthority);
+				}	
 			}
 		});
 	
@@ -736,28 +808,20 @@ function sendAddMembergroup() {
 	   if (!validateGroupN()) {
            return;
        }
-	closeAddMember();
 	
 	var in_name = document.getElementById('in_name').value;
-
-	var groupperson = $('#Box5 input');
-	var arr = $.makeArray(groupperson);
 	
-	var kk = "";
-	for(var i=0;i<arr.length;i++){
-	var hh = arr[i].value;
-	kk += arr[i].value+",";
-	}
-	
-	
-	var groupfunction = $('#Box77 input');
-	var arr = $.makeArray(groupfunction);
-	
-	var ll = "";
-	for(var a=0;a<arr.length;a++){
-	var hh = arr[a].value;
-	ll += arr[a].value+",";
-	}
+	var HavePerson=[];
+		$("[name=addPersonTitle]").each(function(){
+	    HavePerson.push($(this).val());
+  	});
+  	var HavePersonList = HavePerson.join();
+  	
+  	var HaveAuthority=[];
+		$("[name=addAuthorityTitle]").each(function(){
+		HaveAuthority.push($(this).val());
+  	});
+  	var HaveAuthorityList = HaveAuthority.join();
 
 	$
 			.ajax({
@@ -765,8 +829,8 @@ function sendAddMembergroup() {
 				data : {
 					state : 0,
 					name : in_name,
-					person_dbid:kk,
-					function_dbid:ll
+					person_dbid:HavePersonList,
+					function_dbid:HaveAuthorityList
 					
 				},
 				type : "POST",
@@ -788,13 +852,12 @@ function sendAddMembergroup() {
 
 function validateGroupN() {
     var IN = $("#in_name").val();
-    
-	var groupfunction = $('#Box77 input');
-	var arr = $.makeArray(groupfunction);
-	
-    var GF = arr.length; 
-    
-   
+	var HaveAuthority=[];
+	$("[name=addAuthorityTitle]").each(function(){
+	HaveAuthority.push($(this).val());
+	});
+  	var HaveAuthorityList = HaveAuthority.join();
+
     if (!IN || IN == '' ) {
         toastr.error("請輸入部門名稱");
         return false;
@@ -804,7 +867,7 @@ function validateGroupN() {
         return false;
     }
     
-    if (GF==0) {
+    if (HaveAuthorityList=="") {
         toastr.error("請選擇權限");
         return false;
     }
@@ -884,10 +947,6 @@ function showEditMembergroup(data,tabledata) {
 	$('#NotHavePerson').empty();
 	$('#HavePerson').empty();
 	$('#HaveAuthority').empty();
-	$('#Box0').empty();
-	$('#Box9').empty();
-	$('#Box90').empty();
-	$('#Box09').empty();
 
 	jump(data,tabledata);
 
@@ -899,6 +958,20 @@ function showEditMembergroup(data,tabledata) {
 	$("button.editMember").removeClass("btn-success");
 	$("button.editMember").addClass("btn-primary");
 }
+
+
+//更新返回頁面
+function backUpdateView() {
+	closeAllHrContent();
+	$("#groupContent").show();
+	$("#editMembergroupContent").show();
+
+	$("button.editMember").show();
+	$("button.editMember").removeClass("btn-success");
+	$("button.editMember").addClass("btn-primary");
+}
+
+
 //更新頁面關閉
 function closeEditMembergroup() {
 	closeAllHrContent();
@@ -925,10 +998,7 @@ function sendEditMembergroup() {
 				HavePerson.push($(this).val());
 			});
 			var HavePersonList = HavePerson.join();
-			
-// 			alert("Person="+HavePersonList);
-// 			alert("Authority="+HaveAuthorityList)
-				
+
 	var up_dbid = document.getElementById('up_dbid').value;
 	var up_name = document.getElementById('up_name').value;
 
@@ -953,18 +1023,22 @@ function sendEditMembergroup() {
 					toastr.success("更新成功");
 				}
 			});
-	
 	closeAllHrContent();
+
 	$("#groupContent").show();
 	$("#managegroupContent").show();
 }
 
+
+
+
 function validateGroupU() {
     var IN = $("#up_name").val();
-    
-    var groupfunction = $('#Box9 input');
-	var arr = $.makeArray(groupfunction);
-    var GF = arr.length;
+    var HaveAuthority=[];
+	$("[name=addAuthorityTitle]").each(function(){
+	HaveAuthority.push($(this).val());
+	});
+  	var HaveAuthorityList = HaveAuthority.join();
 
     if (!IN || IN == '' ) {
         toastr.error("請輸入部門名稱");
@@ -974,7 +1048,7 @@ function validateGroupU() {
         toastr.error("名稱請輸入中文或英文");
         return false;
     }
-    if (GF==0) {
+    if (HaveAuthorityList=="") {
         toastr.error("請選擇權限");
         return false;
     }
@@ -985,7 +1059,18 @@ function isValidNumber(IN) {
 	return re.test(IN);
 }
 
-//新增人員對話視窗
+//Insert人員對話視窗
+function InsertPersonButton() {
+	$("#InsertPersonButton").trigger("click");
+	InsertPerson();
+
+}
+function InsertAuthorityButton() {
+	$("#InsertAuthorityButton").trigger("click");
+	InsertAuthority();
+}
+
+//Update人員對話視窗
 function addPersonButton() {
 	$("#addPersonButton").trigger("click");
 
@@ -1001,11 +1086,67 @@ function unlockAccountgroup() {
 	$("#unlockButtongroup").trigger("click");
 
 }
-//解鎖對話視窗
+//編輯部門名稱視窗
 function changeGroupNameButton() {
-	$("#changeGroupNameButton").trigger("click");
-
+	var selected=[];
+	  $("[name=group0]:checkbox:checked").each(function(){
+	    selected.push($(this).val());
+	    });
+		  var groupDBID_list = selected.join();
+		  var List = groupDBID_list.split(',');
+		  document.getElementById('changeName').value = List[1];
+		  
+		  var count = List.length/2;
+		  if(count==1){
+			  $("#changeGroupNameButton").trigger("click");
+		  }else if(count==0.5){
+			  toastr.error("請選擇更新名稱的項目");
+		  }else{
+			  toastr.error("只能選擇一項更新名稱");
+		  }
 }
+
+
+//編輯更名
+function editGroupName() {
+	
+	var selected=[];
+  $("[name=group0]:checkbox:checked").each(function(){
+    selected.push($(this).val());
+    });
+	  var groupDBID_list = selected.join();
+	  var List = groupDBID_list.split(',');
+
+	var changeDbid = List[0];
+	var changeName = document.getElementById('changeName').value;
+
+	$
+			.ajax({
+				url :"${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Update_GroupInfoByName",
+				data : {
+					name:changeName,
+					dbid:changeDbid
+				},
+				type : "POST",
+				dataType : 'json',
+
+				error : function(e) {
+					toastr.error("更新錯誤");
+				},
+				success : function(data) {
+					select();
+					toastr.success("更新成功");
+				}
+			});
+	
+	closeAllHrContent();
+	$("#groupContent").show();
+	$("#managegroupContent").show();
+	 
+}
+
+
+
 //停用對話視窗
 function confirmBangroup() {
 	$("#confirmBanButtongroup").trigger("click");
@@ -1013,50 +1154,151 @@ function confirmBangroup() {
 
 function GroupDelete(message) {
 //		var deletedbid = document.getElementById('deletedbid_GroupDelete').value;
-	
+	var DbidList = ""
 	var selected=[];
     $("[name=group0]:checkbox:checked").each(function(){
       selected.push($(this).val());
       });
 	  var groupDBID_list = selected.join();
-	  if(groupDBID_list.length!=0){
-	$
-			.ajax({
-				url :"${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Delete_GroupInfo",
-				data : {
-					groupDBID_list : groupDBID_list
-				},
-				type : "POST",
-				dataType : 'json',
-				error : function(e) {
-					toastr.error("刪除失敗");
+	  var List = groupDBID_list.split(',');
+
+	  alert(List[0]);
+
+
+
+// 	  if(groupDBID_list.length!=0){
+// 	$
+// 			.ajax({
+// 				url :"${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Delete_GroupInfo",
+// 				data : {
+// 					groupDBID_list : groupDBID_list
+// 				},
+// 				type : "POST",
+// 				dataType : 'json',
+// 				error : function(e) {
+// 					toastr.error("刪除失敗");
 					
-				},
-				success : function(data) {
-					select();
-					toastr.success(message);
-				}
-			});
+// 				},
+// 				success : function(data) {
+// 					select();
+// 					toastr.success(message);
+// 				}
+// 			});
 	
-	  }else{
-		  toastr.error("請選擇要刪除的項目");
-	  }
-	closeAllHrContent();
-	$("#groupContent").show();
-	$("#managegroupContent").show();
+// 	  }else{
+// 		  toastr.error("請選擇要刪除的項目");
+// 	  }
+// 	closeAllHrContent();
+// 	$("#groupContent").show();
+// 	$("#managegroupContent").show();
 }
 
-function addPerson() {
+
+
+//新增使用
+function InsertPerson() {
+	var DeletePerson=[];
+    $("[name=addPersonTitle]:checkbox:checked").each(function(){
+    	DeletePerson.push($(this).val());
+      });
+ 
+	var DeletePersonList = DeletePerson.join();
+
+	var List = DeletePersonList.split(',');
+	if(DeletePersonList==""){
+	}else{
+		for (var i in List ) {
+			var arrDbid = document.getElementById("1addPerson"+List[i]).value;
+			var arrName = document.getElementById("2addPerson"+List[i]).value;
+			var arrAccount = document.getElementById("3addPerson"+List[i]).value;
+			var arrEmployeeId = document.getElementById("4addPerson"+List[i]).value;
+			var HavePerson = "<tr id='deleteHavePerson"+arrDbid+"'><td><input type='checkbox' name='deletePersonTitle' class='i-checks' value='"+arrDbid+"'></td><td>"+arrName+"</td><td>"+arrAccount+"</td><td>"+arrEmployeeId+"</td><input type='hidden' id='1deleteHavePerson"+arrDbid+"' value='"+arrDbid+"'><input type='hidden' id='2deleteHavePerson"+arrDbid+"' value='"+arrName+"'><input type='hidden' id='3deleteHavePerson"+arrDbid+"' value='"+arrAccount+"'><input type='hidden' id='4deleteHavePerson"+arrDbid+"' value='"+arrEmployeeId+"'></tr>"
+			document.getElementById("DeletePerson").insertAdjacentHTML("BeforeEnd",HavePerson);	
+			$('#addPerson'+List[i]).remove();
+		}
+	}
+}
+
+function BackInsertPerson() {
+	var BackInsertPerson=[];
+    $("[name=deletePersonTitle]:checkbox:checked").each(function(){
+    	BackInsertPerson.push($(this).val());
+      });
+ 
+	var BackInsertPersonList = BackInsertPerson.join();
+	var List = BackInsertPersonList.split(',');
+	if(BackInsertPersonList==""){
+	}else{
+	for (var i in List ) {
+			var arrDbid = document.getElementById("1deleteHavePerson"+List[i]).value;
+			var arrName = document.getElementById("2deleteHavePerson"+List[i]).value;
+			var arrAccount = document.getElementById("3deleteHavePerson"+List[i]).value;
+			var arrEmployeeId = document.getElementById("4deleteHavePerson"+List[i]).value;
+			var HavePerson = "<tr id='addPerson"+arrDbid+"'><td><input type='checkbox' name='addPersonTitle' class='i-checks' value='"+arrDbid+"'></td><td>"+arrName+"</td><td>"+arrAccount+"</td><td>"+arrEmployeeId+"</td><input type='hidden' id='1addPerson"+arrDbid+"' value='"+arrDbid+"'><input type='hidden' id='2addPerson"+arrDbid+"' value='"+arrName+"'><input type='hidden' id='3addPerson"+arrDbid+"' value='"+arrAccount+"'><input type='hidden' id='4addPerson"+arrDbid+"' value='"+arrEmployeeId+"'></tr>"
+			document.getElementById("addPerson").insertAdjacentHTML("BeforeEnd",HavePerson);	
+			$('#deleteHavePerson'+List[i]).remove();
+		}
+	}
+}
+
+
+function InsertAuthority() {
+	var InsertAuthority=[];
+    $("[name=addAuthorityTitle]:checkbox:checked").each(function(){
+    	InsertAuthority.push($(this).val());
+      });
+ 
+	var InsertAuthorityList = InsertAuthority.join();
+	var List = InsertAuthorityList.split(',');
+	if(InsertAuthorityList==""){
+	}else{
+	for (var i in List ) {
+			var arrDbid = document.getElementById("1addAuthority"+List[i]).value;
+			var arrName = document.getElementById("2addAuthority"+List[i]).value;
+			var arrDescription = document.getElementById("3addAuthority"+List[i]).value;
+			var HaveAuthority = "<tr id='deleteHaveAuthority"+arrDbid+"'><td><input type='checkbox' name='deleteAuthorityTitle' class='i-checks' value='"+arrDbid+"'></td><td>"+arrName+"</td><td>"+arrDescription+"</td><input type='hidden' id='1deleteHaveAuthority"+arrDbid+"' value='"+arrDbid+"'><input type='hidden' id='2deleteHaveAuthority"+arrDbid+"' value='"+arrName+"'><input type='hidden' id='3deleteHaveAuthority"+arrDbid+"' value='"+arrDescription+"'></tr>"
+			document.getElementById("DeleteAuthority").insertAdjacentHTML("BeforeEnd",HaveAuthority);	
+			$('#addAuthority'+List[i]).remove();
+		}
+	}
+}
+
+function BackInsertAuthority() {
+	var BackInsertAuthority=[];
+    $("[name=deleteAuthorityTitle]:checkbox:checked").each(function(){
+    	BackInsertAuthority.push($(this).val());
+      });
+ 
+	var BackInsertAuthorityList = BackInsertAuthority.join();
+	var List = BackInsertAuthorityList.split(',');
+	if(BackInsertAuthorityList==""){
+	}else{
+	for (var i in List ) {
+		var arrDbid = document.getElementById("1deleteHaveAuthority"+List[i]).value;
+		var arrName = document.getElementById("2deleteHaveAuthority"+List[i]).value;
+		var arrDescription = document.getElementById("3deleteHaveAuthority"+List[i]).value;
+		var HaveAuthority = "<tr id='addAuthority"+arrDbid+"'><td><input type='checkbox' name='addAuthorityTitle' class='i-checks' value='"+arrDbid+"'></td><td>"+arrName+"</td><td>"+arrDescription+"</td><input type='hidden' id='1addAuthority"+arrDbid+"' value='"+arrDbid+"'><input type='hidden' id='2addAuthority"+arrDbid+"' value='"+arrName+"'><input type='hidden' id='3addAuthority"+arrDbid+"' value='"+arrDescription+"'></tr>"
+
+		document.getElementById("addAuthority").insertAdjacentHTML("BeforeEnd",HaveAuthority);	
+		$('#deleteHaveAuthority'+List[i]).remove();
+		}
+	}
+}
+
+
+
+
+//更新使用
+function addUpdatePerson() {
 	var NotHavePerson=[];
     $("[name=NotHavePersonTitle]:checkbox:checked").each(function(){
     	NotHavePerson.push($(this).val());
       });
  
 	var NotHavePersonList = NotHavePerson.join();
-	insertPerson=NotHavePersonList;
-
 	var List = NotHavePersonList.split(',');
-	
+	if(NotHavePersonList==""){
+	}else{
 	for (var i in List ) {
 			var arrDbid = document.getElementById("1NotHavePerson"+List[i]).value;
 			var arrName = document.getElementById("2NotHavePerson"+List[i]).value;
@@ -1067,10 +1309,12 @@ function addPerson() {
 			document.getElementById("HavePerson").insertAdjacentHTML("BeforeEnd",HavePerson);	
 			$('#removePerson'+List[i]).remove();
 		}
+	}
 	sendEditMembergroup();
+	
 }
 
-function addAuthority() {
+function addUpdateAuthority() {
 	var NotHaveAuthority=[];
     $("[name=NotHaveAuthorityTitle]:checkbox:checked").each(function(){
     	NotHaveAuthority.push($(this).val());
@@ -1078,7 +1322,8 @@ function addAuthority() {
  
 	var NotHaveAuthorityList = NotHaveAuthority.join();
 	var List = NotHaveAuthorityList.split(',');
-	
+	if(NotHaveAuthorityList==""){
+	}else{
 	for (var i in List ) {
 			var arrDbid = document.getElementById("1NotHaveAuthority"+List[i]).value;
 			var arrName = document.getElementById("2NotHaveAuthority"+List[i]).value;
@@ -1089,6 +1334,7 @@ function addAuthority() {
 			document.getElementById("HaveAuthority").insertAdjacentHTML("BeforeEnd",HaveAuthority);	
 			$('#removeAuthority'+List[i]).remove();
 		}
+	}
 	sendEditMembergroup();
 }
 
@@ -1099,9 +1345,9 @@ function backPerson() {
       });
  
 	var HavePersonList = HavePerson.join();
-	insertPerson=HavePersonList;
 	var List = HavePersonList.split(',');
-	
+	if(HavePersonList==""){
+	}else{
 	for (var i in List ) {
 			var arrDbid = document.getElementById("1HavePerson"+List[i]).value;
 			var arrName = document.getElementById("2HavePerson"+List[i]).value;
@@ -1113,6 +1359,7 @@ function backPerson() {
 			document.getElementById("NotHavePerson").insertAdjacentHTML("BeforeEnd",NotHavePerson);	
 			$('#removeHavePerson'+List[i]).remove();
 		}
+	}
 	sendEditMembergroup();
 }
 
@@ -1125,7 +1372,8 @@ function backAuthority() {
  
 	var HaveAuthorityList = HaveAuthority.join();
 	var List = HaveAuthorityList.split(',');
-	
+	if(HaveAuthorityList==""){
+	}else{
 	for (var i in List ) {
 			var arrDbid = document.getElementById("1HaveAuthority"+List[i]).value;
 			var arrName = document.getElementById("2HaveAuthority"+List[i]).value;
@@ -1135,6 +1383,7 @@ function backAuthority() {
 			document.getElementById("NotHaveAuthority").insertAdjacentHTML("BeforeEnd",NotHaveAuthority);	
 			$('#removeHaveAuthority'+List[i]).remove();
 		}
+	}
 	sendEditMembergroup();
 }
 </script>
