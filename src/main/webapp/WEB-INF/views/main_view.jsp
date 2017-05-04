@@ -1347,21 +1347,36 @@
 						}
 					}
 					// End of20170412 轉接三方回應功能 Billy
+					
+					// 更新登出後頁面 20170504_sam
+					if ("exit" == obj.Event) {
+						$("#statusButton button.status-ready").css("display",
+							"none");
+						$("#statusButton button.status-notready").css(
+								"display", "inline-block");
+						$("#navNickName").html("已登出");
+						window.location.href = 'console';						
+					}
+					// end of 更新登出後頁面 20170504_sam
+					
+					
 				} else if ("{" != e.data.substring(0, 1)) {
 					console.log(e);
 
 					// 非指令訊息
-					if (e.data.indexOf("Offline") > 0
-							&& e.data.indexOf(UserName_g) > 0) { //20170223 Lin
-						$("#statusButton button.status-ready").css("display",
-								"none");
-						$("#statusButton button.status-notready").css(
-								"display", "inline-block");
+// 					// 將此處程式邏輯移至"exit"事件 20170504_sam
+// 					if (e.data.indexOf("Offline") > 0
+// 							&& e.data.indexOf(UserName_g) > 0) { //20170223 Lin
+// 						$("#statusButton button.status-ready").css("display",
+// 								"none");
+// 						$("#statusButton button.status-notready").css(
+// 								"display", "inline-block");
 
-						$("#navNickName").html("已登出");
+// 						$("#navNickName").html("已登出");
 
-						window.location.href = 'console';
-					}
+// 						window.location.href = 'console';
+// 					}
+// 					// end of 將此處程式邏輯移至"exit"事件 20170504_sam
 				}
 			}
 		}
