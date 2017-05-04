@@ -1348,14 +1348,20 @@
 					}
 					// End of20170412 轉接三方回應功能 Billy
 					
-					// 更新登出後頁面 20170504_sam
+					// 更新登出後頁面 20170504_sam 
 					if ("exit" == obj.Event) {
+
+						// 關閉ws連線
+						ws.close();						
+						
 						$("#statusButton button.status-ready").css("display",
 							"none");
 						$("#statusButton button.status-notready").css(
 								"display", "inline-block");
 						$("#navNickName").html("已登出");
-						window.location.href = 'console';						
+						window.location.href = 'console';
+						
+
 					}
 					// end of 更新登出後頁面 20170504_sam
 					
