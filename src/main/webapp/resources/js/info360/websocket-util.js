@@ -70,7 +70,7 @@ function leaveRoomJson(aUserID, aRoomID){
 	this.channel = "chat";
 }
 
-function exitJson(aUserID, aWaittingAgent_g, aWaittingAgentID_g, aWaittingClientIDList, aWaittingAgentIDList){
+function exitJson(aUserID, aWaittingAgent_g, aWaittingAgentID_g){
 	this.type = "exit";
 //	this.id = aUserID;
 	this.userID = aUserID;
@@ -79,11 +79,6 @@ function exitJson(aUserID, aWaittingAgent_g, aWaittingAgentID_g, aWaittingClient
 	this.waittingAgent = aWaittingAgent_g;
 	// Client使用
 	this.waittingAgentID = aWaittingAgentID_g;
-	
-	// Agent使用
-	this.waittingClientIDList = aWaittingClientIDList;
-	// Agent使用
-	this.waittingAgentIDList = aWaittingAgentIDList;
 } 
 
 function sendCommentJson(aUserID, aInteractionid, aActivitydataids, aComment){
@@ -129,6 +124,14 @@ function thirdPartyJson(aRoomID, aUserID, aFromAgentID, aInvitedAgentID, aInvite
 	
 }
 
+function messageJson(aUserID, aMsg, aSendto){
+	this.type = "message";
+	this.userID = aUserID;
+	this.text = aMsg;
+	this.sendto = aSendto;
+	this.channel = "chat";
+}
+
 //function inviteAgentThirdPartyJson(aRoomID, aUserID, aFromAgentID, aInvitedAgentID, aInviteType, aUserdata, aText){
 //	this.type = "inviteAgentThirdParty";
 //	this.roomID = aRoomID;
@@ -171,13 +174,6 @@ function thirdPartyJson(aRoomID, aUserID, aFromAgentID, aInvitedAgentID, aInvite
 //	};
 
 // 尚未使用
-function messageJson(aUserID, aMsg, aSendto){
-	this.type = "message";
-	this.userID = aUserID;
-	this.text = aMsg;
-	this.sendto = aSendto;
-	this.channel = "chat";
-}
 
 // 以上已整理
 
