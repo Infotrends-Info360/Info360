@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html onmouseenter="document.getElementById('InfoFocus').value = 0 "onmouseleave="document.getElementById('InfoFocus').value = 1">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>info360主頁</title>
@@ -21,6 +21,7 @@
 </head>
 
 <body class="full-height-layout gray-bg" style="overflow-x: hidden">
+<input value="" id="InfoFocus" type="hidden"></input>
 	<!--右侧部分開始-->
 	<div id="page-wrapper" class="gray-bg dashbard-1">
 		<!--<div class="border-bottom">-->
@@ -94,13 +95,13 @@
 						style="line-height: 30px;" id="menuButton"><span
 							id="navNickName">未登入</span> <span class="caret"></span>
 							<ul role="menu" class="dropdown-menu" id="menuList">
-								<!-- 																<li><a onclick="doLogin()">登入</a></li> -->
-								<!-- 																<li><a onclick="doTest()">test</a></li> -->
-								<!-- 																<hr> -->
+								<!-- <li><a onclick="doLogin()">登入</a></li> -->
+								<!-- <li><a onclick="doTest()">test</a></li> -->
+								<!-- <hr> -->
 								<li><a onclick="openTab(0)">儀表板</a></li>
 								<li><a onclick="openTab(6)">案件搜尋</a></li>
 								<li><a onclick="openTab(7)">設定</a></li>
-								<!-- 								<li><a onclick="openTab(8)">修改密碼</a></li> -->
+								<!-- <li><a onclick="openTab(8)">修改密碼</a></li> -->
 								<li><a onclick="logout()">登出</a></li>
 								<hr>
 
@@ -247,6 +248,76 @@
 
 	<!-- Trigger the modal with a button -->
 	<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+		data-target="#transferDialog" style="display: none;"
+		id="transferDialogButton">Open Modal</button>
+
+	<div id="transferDialog" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">轉接(三方)</h3>
+				</div>
+				<div class="modal-body">
+					<div style="display: none" id="transferRoomId"></div>
+					<table class="table table-striped table-bordered table-hover"
+						id="transferTable">
+						<thead>
+							<tr>
+								<th class="text-center" colspan="4">客服列表</th>
+							</tr>
+							<tr>
+								<th style="width: 25%;">客服人員</th>
+								<th style="width: 25%;">姓名</th>
+								<th style="width: 25%;">登入狀態</th>
+								<th style="width: 25%;">動作</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Trigger the modal with a button -->
+	<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+		data-target="#inviteThirdPartyDialog" style="display: none;"
+		id="inviteThirdPartyDialogButton">Open Modal</button>
+
+	<div id="inviteThirdPartyDialog" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title" id="inviteThirdPartyNumber"></h3>
+				</div>
+				<div class="modal-body">
+					<h3 id="inviteThirdPartyText">請問你是否要接受此轉接(三方)？</h3>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal"
+						onclick="acceptThirdPartyEvent()">接受</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal"
+						onclick="rejectThirdPartyEvent()"
+						id="inviteThirdPartyRejectButton">拒絕</button>
+					<button type="button" class="btn btn-default"
+						style="visibility: hidden;" data-dismiss="modal"
+						id="inviteThirdPartyCloseButton"></button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Trigger the modal with a button -->
+	<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
 		data-target="#waitingDialog" style="display: none;"
 		id="waitingDialogButton">Open Modal</button>
 
@@ -282,12 +353,18 @@
 	</div>
 
 	<!-- 全局js -->
+		<script src="resources/js/md5.min.js"></script>
+	
 	<script src="resources/js/jquery.min.js?v=2.1.4"></script>
 	<script src="resources/js/jquery-ui-1.10.4.min.js"></script>
 	<script src="resources/js/bootstrap.min.js?v=3.3.6"></script>
 	<script src="resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 	<script src="resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="resources/js/plugins/layer/layer.min.js"></script>
+
+	<!-- Data Tables -->
+	<script src="resources/js/plugins/dataTables/jquery.dataTables.js"></script>
+	<script src="resources/js/plugins/dataTables/dataTables.bootstrap.js"></script>
 
 	<!-- 自定义js -->
 	<script src="resources/js/hplus.js?v=4.1.0"></script>
@@ -315,6 +392,7 @@
 	<!-- 	<script src="resources/js/info360/websocket-agent.js"></script> -->
 
 	<script>
+		
 		var ws; // websocket
 		var UserName_g; // 使用者名稱全域變數
 		var UserID_g; // 使用者ID全域變數
@@ -329,13 +407,18 @@
 		var layim; // Layim
 
 		var userName = '${userName}';
-		var password = '${password}';
+		var password = md5('${password}');
+// 		var password = '${password}';
+
 
 		var waittingClientIDList_g = []; //20170220 Lin
 		var waittingAgentIDList_g = []; //20170223 Lin
 
 		var chatTab = [ "chat1", "chat2", "chat3", "chat4", "chat5" ];
 		var chatList = []; // 20170220 Billy 聊天頁籤控制清單
+
+		var currentAgentList = []; // 20170411 Billy 目前好友名單
+		var currentThirdPartyInvite; // 20170412 Billy 轉接三方專用暫存區
 
 		var maxCount = 0;
 		var currRoomCount_g = 0; //每個Agent現在已接通話數 20170224 Lin
@@ -502,74 +585,75 @@
 		function loginValidate() {
 			$("#waitingDialogButton").trigger("click");
 
-			$.ajax({
-				url :   "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Login",
-						
-				data : {
-					account : userName,
-					password : password
-				},
-				type : "POST",
-				dataType : 'json',
-				error : function(e) {
-					$("#closeWaitingDialogButton").trigger("click");
-					console.log("請重新整理");
-				},
-				success : function(data) {
-					console.log("login", data)
+			$
+					.ajax({
+						url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Login",
 
-					// 測試用必驗證過
-					// 							doConnect();
-					$('#loginDialog').off('hidden.bs.modal');
+						data : {
+							account : userName,
+							password : password
+						},
+						type : "POST",
+						dataType : 'json',
+						error : function(e) {
+							$("#closeWaitingDialogButton").trigger("click");
+							console.log("請重新整理");
+						},
+						success : function(data) {
+							console.log("login", data)
 
-					if (userName == "" || password == "") {
-						// 未輸入帳號與密碼
-						console.log(data.error)
-						$('#loginDialog').on('hidden.bs.modal', function() {
-							window.location.href = 'console';
-						})
+							// 測試用必驗證過
+							// 							doConnect();
+							$('#loginDialog').off('hidden.bs.modal');
 
-						$("#loginDialogButton").trigger("click");
-					} else if (data.error != null) {
-						// 其他可能錯誤
-						console.log(data.error);
-						$('#loginDialog').on('hidden.bs.modal', function() {
-							window.location.href = 'console';
-						})
+							if (userName == "" || password == "") {
+								// 未輸入帳號與密碼
+								console.log(data.error)
+								$('#loginDialog').on('hidden.bs.modal',
+										function() {
+											window.location.href = 'console';
+										})
 
-						$("#loginDialogButton").trigger("click");
-					} else {
-						// 驗證通過
-						// 								console.log(JSON.stringify(data));
-						maxCount = data.person[0].max_count;
-						UserID_g = data.person[0].dbid;
-						UserName_g = data.person[0].user_name;
+								$("#loginDialogButton").trigger("click");
+							} else if (data.error != null) {
+								// 其他可能錯誤
+								console.log(data.error);
+								$('#loginDialog').on('hidden.bs.modal',
+										function() {
+											window.location.href = 'console';
+										})
 
-						$("#dashboardTab").show();
-						$('iframe[name="iframe0"]').show();
-						$("#userNickName").html(UserName_g);
+								$("#loginDialogButton").trigger("click");
+							} else {
+								// 驗證通過
+								// 								console.log(JSON.stringify(data));
+								maxCount = data.person[0].max_count;
+								UserID_g = data.person[0].dbid;
+								UserName_g = data.person[0].user_name;
 
-						// 						$('.J_iframe').attr('src',
-						// 								'/info360/dashboard?userid=' + UserID_g); // 20170222 Lin 刷新dashboard，為了取的UserID
-						// Step-1 載入時連線ws
-						doConnect();
-					}
-					$("#closeWaitingDialogButton").trigger("click");
-				},
-				beforeSend : function() {
-					// 					$('#loading').show();
-				},
-				complete : function() {
-					// 					$('#loading').hide();
+								$("#dashboardTab").show();
+								$('iframe[name="iframe0"]').show();
+								$("#userNickName").html(UserName_g);
 
-				}
-			});
+								// 						$('.J_iframe').attr('src',
+								// 								'/info360/dashboard?userid=' + UserID_g); // 20170222 Lin 刷新dashboard，為了取的UserID
+								// Step-1 載入時連線ws
+								doConnect();
+							}
+							$("#closeWaitingDialogButton").trigger("click");
+						},
+						beforeSend : function() {
+							// 					$('#loading').show();
+						},
+						complete : function() {
+							// 					$('#loading').hide();
+
+						}
+					});
 		}
 
 		function doTest() {
-			//var $f = $("#myIFrame");
-			//$f[0].contentWindow.MyFunction();
-			closeCurrentTab();
+
 		}
 
 		// 連線&&登入
@@ -599,6 +683,7 @@
 
 			// 當收到服務端的消息時
 			ws.onmessage = function(e) {
+
 				// e.data 是服務端發來的資料
 				if ("{" == e.data.substring(0, 1) && e.data.length > 2) {
 					var obj = jQuery.parseJSON(e.data);
@@ -667,7 +752,7 @@
 					if ("findAgentEvent" == obj.Event) {
 						ClientName_g = obj.fromName;
 						ClientID_g = obj.from;
-
+						notifyMe_phone();
 						$("#inviteNumber").html(ClientName_g);
 						$("#inviteDialogButton").trigger("click");
 					}
@@ -726,9 +811,9 @@
 
 						// 建立Layim名單
 						console.log("acceptEvent");
-						console.log(e);
+						//console.log(e);
 
-						addLayimList(ClientName_g, UserName, roomId);
+						addLayimList(ClientName_g + "," + UserName, roomId);
 						// 20170313_sam
 						getclientmessagelayim(chatRoomMsg, myRoomID, "系統通知"); // 更新系統訊息
 
@@ -771,15 +856,6 @@
 						if (currRoomCount_g == maxCount) {
 							console.log("reach max count");
 						}
-
-						//判斷接起對談後的狀態是否要切換為Ready
-						// 						if (obj.EstablishedStatus == StatusEnum.READY.dbid) {
-						// 							agentReady(); //20170224 Lin
-						// 						}
-						//20170223 Lin
-
-						// 取得狀態
-						// getStatus();
 					}
 
 					//20170223 Lin
@@ -797,6 +873,10 @@
 							console.log("sendmessage");
 							getclientmessagelayim(obj.text, obj.roomID,
 									obj.UserName);
+							var Focus = document.getElementById('InfoFocus').value
+							if(Focus == 1){
+								notifyMe(); 
+							}
 						}
 					}
 
@@ -889,8 +969,10 @@
 					//20170223 Lin
 
 					if ("removeUserinroom" == obj.Event) {
+						console.log("removeUserinroom matched");
 						var fromUserID = obj.fromUserID;
 						var roomID = obj.roomID
+						var roomMembers = obj.roomMembers;
 						// 20170313_sam
 						// 只收他人傳來的系統訊息
 						if (fromUserID != UserID_g) {
@@ -898,39 +980,340 @@
 							var leftRoomMsg = chatRoomMsg.leftRoomMsg;
 							var closedRoomMsg = chatRoomMsg.closedRoomMsg;
 
-							getclientmessagelayim(leftRoomMsg, roomID, "系統通知"); // 更新系統訊息	
-							if (closedRoomMsg != undefined)
+							getclientmessagelayim(leftRoomMsg, roomID, "系統通知"); // 更新系統訊息
+
+							if (closedRoomMsg != undefined) {
 								getclientmessagelayim(closedRoomMsg, roomID,
-										"系統通知"); // 更新系統訊息	
+										"系統通知"); // 更新系統訊息
+							}
 						}
+						
+						// 20170418  聊天房間若是所有人皆離開時清除layim群聊並切換至該客資頁籤 Billy
+						if ('[]' == roomMembers) {
+							// 清除layim群聊清單
+							console.log("聊天室已無成員，removeList : " + roomID);
+							var chatRoomMsg = obj.chatRoomMsg; // 接收系統訊息
+							var closedRoomMsg = chatRoomMsg.closedRoomMsg;
 
-						// 清除layim群聊清單
-						layim.removeList({
-							type : 'group',
-							id : roomID
-						//好友或者群组ID
-						});
+							if (closedRoomMsg != undefined) {
+								toastr.error(closedRoomMsg);
+							}
+							
+							layim.removeList({
+								type : 'group',
+								id : roomID
+							//好友或者群组ID
+							});
 
-						// 20170223 Lin
-						// 						currRoomCount_g--;
-						// 						// 20170313_sam
-						// 						if (obj.AfterCallStatus == StatusEnum.READY.dbid) { //如果AfterCallStatus == ready
-						// 							if (StatusEnum.ready_dbid == null) {
-						// 								agentReady(); //20170224 Lin
-						// 							}
-						// 						} else if (obj.AfterCallStatus == StatusEnum.NOTREADY.dbid) { //如果AfterCallStatus == not ready
-						// 							if (StatusEnum.notready_dbid == null) {
-						// 								agentNotReady(); //20170224 Lin
-						// 							}
-						// 						}
-						// end of 20170313_sam
-
+							// 切換至該客戶資訊頁面
+							chatList
+									.forEach(function(entry) {
+										if (roomID == entry.id) {
+											$("#" + entry.chatTab).trigger(
+													"click");
+											var iframeName = entry.chatTab
+													.replace("chat", "iframe");
+											$('[name=' + iframeName + ']')[0].contentWindow
+													.showCaseInfoTab();
+										}
+									});
+						}
 					}
-					
+
 					// 20170331_sam
-					if ("clientServerd" == obj.Event){
+					if ("clientServerd" == obj.Event) {
 						alert("obj.text: " + obj.text);
 					}// end of 20170331_sam
+
+					// 20170411 刷新好友名單 Billy
+					if ("refreshAgentList" == obj.Event) {
+						var agentList = obj.agentList;
+
+						clearAgentList();
+						$("#transferTable").DataTable().destroy();
+						$("#transferTable tbody").html("");
+
+						for (key in agentList) {
+							var userName = agentList[key].username;
+							var userId = agentList[key].userid;
+							var ready = agentList[key].ready;
+
+							if (UserID_g != userId) {
+								layim
+										.addList({
+											type : 'friend',
+											username : userName,
+											avatar : 'resources/layui/css/pc/layim/skin/new_logo.jpg' // 消息來源使用者頭像
+											,
+											groupid : 1,
+											id : userId
+										});
+
+								var currentAgent = {};
+								currentAgent.userId = userId;
+								currentAgent.userName = userName;
+
+								currentAgentList.push(currentAgent);
+
+								// 重整轉接三方名單
+								var $tr = "<tr>";
+
+								$tr += '<td>' + userId + '</td>';
+								$tr += '<td>' + userName + '</td>';
+
+								if (ready) {
+									$tr += '<td>準備就緒</td>';
+								} else {
+									$tr += '<td>未就緒</td>';
+								}
+
+								$tr += '<td><div class="col-xs-6"><button class="btn btn-success" data-dismiss="modal" onclick="inviteAgentThirdParty(\'transfer\',\''
+										+ userId + '\')">轉接</button></div>';
+								$tr += '<div class="col-xs-6"><button class="btn btn-primary" data-dismiss="modal" onclick="inviteAgentThirdParty(\'thirdParty\',\''
+										+ userId
+										+ '\')">三方</button></div></td>';
+								$tr += '</tr>';
+
+								$("#transferTable tbody").append($tr);
+							}
+
+						}
+
+						// default search and initdataTable
+						var opt = {
+							"bLengthChange" : false,
+							"iDisplayLength" : 10
+						};
+
+						$("#transferTable").DataTable(opt);
+
+						console.log("currentAgentList:");
+						console.log(currentAgentList);
+					}
+					// End of 20170411 刷新好友名單 Billy
+
+					// 20170411 私訊功能 Billy
+					if ("privateMsg" == obj.Event) {
+						console.log("privateMessage : ");
+
+						// 判斷是否有開啟layim與是否為發送給自己的訊息
+						if (true == layimswitch && obj.sendto == UserID_g) {
+							getPrivateMessageLayim(obj.text, obj.UserID,
+									obj.UserName)
+						}
+					}
+					// End of 20170411 私訊功能 Billy
+
+					// 20170412 轉接三方回應功能 Billy
+					if ("inviteAgentThirdParty" == obj.Event) {
+						var fromAgentName = obj.fromAgentName;
+						var inviteType = obj.inviteType;
+						var clientId = obj.userdata.Tel1;
+
+						$("#inviteThirdPartyNumber").html(clientId);
+
+						if ("transfer" == inviteType) {
+							$("#inviteThirdPartyText").html(
+									"來自：" + fromAgentName + "的轉接，請問你是否要接受此對話？")
+						} else if ("thirdParty" == inviteType) {
+							$("#inviteThirdPartyText").html(
+									"來自：" + fromAgentName
+											+ "的三方轉接，請問你是否要接受此對話？")
+						}
+
+						//轉接,請問你是否要接受此對話?
+						currentThirdPartyInvite = obj;
+
+						$("#inviteThirdPartyDialogButton").trigger("click");
+					}
+
+					if ("addUserInRoom" == obj.Event) {
+					}
+
+					// 當接收轉接三方後開啟聊天視窗
+					if ("responseThirdParty" == obj.Event) {
+						var response = obj.response;
+						var inviteType = obj.inviteType;
+						var invitedAgentId = obj.invitedAgentID
+						var fromAgentId = obj.fromAgentID;
+						var roomId = obj.roomID;
+						var fromAgentName = currentThirdPartyInvite.fromAgentName;
+
+						// 1.處理邀請者的事件
+						if (UserID_g == fromAgentId) {
+							if ("reject" == response) {
+								if ("transfer" == inviteType) {
+									$("#layim-group" + roomId).trigger("click");
+									toastr.error("轉接失敗-對方拒絕");
+								} else if ("thirdParty" == inviteType) {
+									toastr.error("三方轉接失敗-對方拒絕");
+								}
+							} else if ("timeout" == response) {
+								if ("transfer" == inviteType) {
+									toastr.error("轉接失敗-對方無回應");
+									$("#layim-group" + roomId).trigger("click");
+								} else if ("thirdParty" == inviteType) {
+									toastr.error("三方轉接失敗-對方無回應");
+								}
+							} else if ("accept" == response) {
+								if ("transfer" == inviteType) {
+									// 處理轉接
+									toastr.success("轉接成功");
+								} else if ("thirdParty" == inviteType) {
+									// 處理三方
+									toastr.success("三方轉接成功");
+								}
+							}
+						} else if (UserID_g != fromAgentId) {
+							if ("reject" == response) {
+								if ("transfer" == inviteType) {
+									//toastr.error("轉接失敗-拒絕");
+								} else if ("thirdParty" == inviteType) {
+									//toastr.error("三方轉接失敗-拒絕");
+								}
+							} else if ("timeout" == response) {
+								if ("transfer" == inviteType) {
+									toastr.error("轉接失敗-回應時間過長");
+									$("#inviteThirdPartyCloseButton").trigger(
+											"click");
+								} else if ("thirdParty" == inviteType) {
+									toastr.error("三方轉接失敗-回應時間過長");
+									$("#inviteThirdPartyCloseButton").trigger(
+											"click");
+								}
+							} else if ("accept" == response) {
+								if ("transfer" == inviteType) {
+									// 處理轉接
+									console.log("acceptTransferInvite");
+
+									toastr.success("轉接成功");
+
+									RoomID_g = currentThirdPartyInvite.roomID;
+									var clientId = currentThirdPartyInvite.userdata.Tel1;
+									var chatRoomMsg = obj.chatRoomMsg; // 接收系統訊息
+									currentUserData = currentThirdPartyInvite.userdata;
+
+									// 建立Layim名單
+									addLayimList(clientId + "," + UserName_g,
+											RoomID_g);
+
+									// 更新開啟頁籤  & 組合客戶資料參數至後端
+									var newTab = {};
+									var currentChatTab = chatTab[0]; // 指派目前可用Tab
+									chatTab = chatTab.slice(1);
+
+									newTab.id = RoomID_g;
+									newTab.chatTab = currentChatTab;
+									newTab.currentUserData = currentUserData;
+									chatList.push(newTab);
+
+									$("#" + currentChatTab).html(clientId);
+									var newHref = currentChatTab + "?id="
+											+ clientId;
+									newHref += "&interactionId=" + RoomID_g;
+
+									$("#" + currentChatTab).prop("href",
+											newHref);
+									$("#" + currentChatTab).trigger("click");
+
+									$("#" + currentChatTab + "Tab > a").html(
+											ClientName_g);
+									$("#" + currentChatTab + "Tab").show();
+
+									// 新增上方chatTab與layim連動事件 Billy 20170406
+									$("a.J_menuTab")
+											.on(
+													"click",
+													function() {
+														var id = $(this).attr(
+																"data-id");
+														if ("chat" == id
+																.substr(0, 4)) {
+															$(
+																	"#"
+																			+ id
+																					.substr(
+																							0,
+																							5)
+																			+ "Tab > a")
+																	.trigger(
+																			"click");
+														}
+													});
+
+									// maxCount機制
+									currRoomCount_g++ // here
+									if (currRoomCount_g >= maxCount) {
+										console.log("reach max count");
+									}
+								} else if ("thirdParty" == inviteType) {
+									// 處理三方
+									console.log("acceptThirdPartyInvite");
+									toastr.success("三方轉接成功");
+
+									RoomID_g = currentThirdPartyInvite.roomID;
+									var clientId = currentThirdPartyInvite.userdata.Tel1;
+									var chatRoomMsg = obj.chatRoomMsg; // 接收系統訊息
+									currentUserData = currentThirdPartyInvite.userdata;
+
+									// 建立Layim名單
+									addLayimList(clientId + "," + fromAgentName
+											+ "," + UserName_g, RoomID_g);
+
+									// 更新開啟頁籤  & 組合客戶資料參數至後端
+									var newTab = {};
+									var currentChatTab = chatTab[0]; // 指派目前可用Tab
+									chatTab = chatTab.slice(1);
+
+									newTab.id = RoomID_g;
+									newTab.chatTab = currentChatTab;
+									newTab.currentUserData = currentUserData;
+									chatList.push(newTab);
+
+									$("#" + currentChatTab).html(clientId);
+									var newHref = currentChatTab + "?id="
+											+ clientId;
+									newHref += "&interactionId=" + RoomID_g;
+
+									$("#" + currentChatTab).prop("href",
+											newHref);
+									$("#" + currentChatTab).trigger("click");
+
+									$("#" + currentChatTab + "Tab > a").html(
+											ClientName_g);
+									$("#" + currentChatTab + "Tab").show();
+
+									// 新增上方chatTab與layim連動事件 Billy 20170406
+									$("a.J_menuTab")
+											.on(
+													"click",
+													function() {
+														var id = $(this).attr(
+																"data-id");
+														if ("chat" == id
+																.substr(0, 4)) {
+															$(
+																	"#"
+																			+ id
+																					.substr(
+																							0,
+																							5)
+																			+ "Tab > a")
+																	.trigger(
+																			"click");
+														}
+													});
+
+									// maxCount機制
+									currRoomCount_g++ // here
+									if (currRoomCount_g >= maxCount) {
+										console.log("reach max count");
+									}
+								}
+							}
+						}
+					}
+					// End of20170412 轉接三方回應功能 Billy
 				} else if ("{" != e.data.substring(0, 1)) {
 					console.log(e);
 
@@ -948,6 +1331,18 @@
 					}
 				}
 			}
+		}
+
+		function clearAgentList() {
+			for (key in currentAgentList) {
+				// 清除layim群聊
+				layim.removeList({
+					type : 'friend',
+					id : currentAgentList[key].userId
+				});
+			}
+
+			currentAgentList = [];
 		}
 
 		// 登入
@@ -1133,6 +1528,64 @@
 			//document.getElementById("RejectEvent").disabled = true;
 		}
 
+		// 轉接三方接受、拒絕專區 Start
+		function acceptThirdPartyEvent() {
+			var roomId = currentThirdPartyInvite.roomID;
+			var fromAgentId = currentThirdPartyInvite.fromAgentID;
+			var invitedAgentId = currentThirdPartyInvite.invitedAgentID;
+			var inviteType = currentThirdPartyInvite.inviteType;
+			var userData = currentThirdPartyInvite.userdata;
+			var text = currentThirdPartyInvite.text;
+
+			var msg = {
+				type : "responseThirdParty",
+				ACtype : "Agent",
+				roomID : roomId,
+				fromAgentID : fromAgentId,
+				invitedAgentID : invitedAgentId,
+				response : "accept",
+				inviteType : inviteType,
+				userdata : userData,
+				text : text,
+				channel : "chat",
+			};
+
+			console.log("acceptThirdPartyEvent()");
+			console.log(msg);
+
+			// 發送消息
+			ws.send(JSON.stringify(msg));
+		}
+
+		function rejectThirdPartyEvent() {
+			var roomId = currentThirdPartyInvite.roomID;
+			var fromAgentId = currentThirdPartyInvite.fromAgentID;
+			var invitedAgentId = currentThirdPartyInvite.invitedAgentID;
+			var inviteType = currentThirdPartyInvite.inviteType;
+			var userData = currentThirdPartyInvite.userdata;
+			var text = currentThirdPartyInvite.text;
+
+			var msg = {
+				type : "responseThirdParty",
+				ACtype : "Agent",
+				roomID : roomId,
+				fromAgentID : fromAgentId,
+				invitedAgentID : invitedAgentId,
+				response : "reject",
+				inviteType : inviteType,
+				userdata : userData,
+				text : text,
+				channel : "chat",
+			};
+
+			console.log("rejectThirdPartyEvent()");
+			console.log(msg);
+
+			// 發送消息
+			ws.send(JSON.stringify(msg));
+		}
+		// 轉接三方接受、拒絕專區 End
+
 		// 將多人同時加入房間
 		// aMemberListToJoin船入格式如下:
 		// [{"ID":"c8013217-2b20-46c4-ba2d-848fa430775e"},{"ID":"773bc9f4-3462-4360-8b11-e35be56b820a"}]
@@ -1160,11 +1613,11 @@
 		}
 
 		// 進線時新增此人物至好友清單
-		function addLayimList(ClientName, UserName, roomId) {
+		function addLayimList(name, roomId) {
 			layui.use('layim', function(layim) {
 				layim.addList({
 					type : 'group',
-					username : ClientName + "," + UserName,
+					username : name,
 					avatar : 'resources/layui/css/pc/layim/skin/new_logo.jpg' // 消息來源使用者頭像
 					,
 					groupid : 1,
@@ -1200,9 +1653,32 @@
 
 			// 發送消息給layim
 			layim.getMessage(obj);
-
 			// 取消自動點選新訊息視窗功能
 			//$("#layim-group" + roomId).trigger("click");
+		}
+
+		function getPrivateMessageLayim(text, userId, userName) {
+			// 組成傳送群組訊息至layim視窗上的JSON指令
+			obj = {
+				username : userName // 消息來源用戶名
+				,
+				avatar : 'resources/layui/css/pc/layim/skin/new_logo.jpg' // 消息來源使用者頭像
+				,
+				id : userId // 聊天視窗來源ID（如果是私聊，則是用戶id，如果是群聊，則是群組id）
+				,
+				type : "friend" // 聊天視窗來源類型，從發送消息傳遞的to裡面獲取
+				,
+				content : text // 消息內容
+				// ,cid: 0 //消息id，可不傳。除非你要對消息進行一些操作（如撤回）
+				// ,mine: false //是否我發送的消息，如果為true，則會顯示在右方
+				// ,fromid: 100001 //消息來源者的id，可用於自動解決流覽器多視窗時的一些問題
+				,
+				timestamp : new Date().getTime()
+			// 服務端動態時間戳記
+			}
+
+			// 發送消息給layim
+			layim.getMessage(obj);
 		}
 
 		// 傳送群組訊息至layim視窗上
@@ -1215,10 +1691,12 @@
 			console.log(myMessagetoRoomJson);
 
 			ws.send(JSON.stringify(myMessagetoRoomJson));
+
 		}
 
 		//送出私訊
 		function send(aSendto, aMessage) {
+
 			if (aSendto === undefined)
 				aSendto = document.getElementById('sendto').value;
 			if (aMessage === undefined)
@@ -1240,12 +1718,54 @@
 			ws.send(JSON.stringify(msg));
 		}
 
+		// 轉接(三方)邀請事件 20170412 Billy
+		function inviteAgentThirdParty(type, invitedAgentId) {
+			var roomId = $("#transferRoomId").html();
+			var text = $(".layui-show > .layim-chat-main").html();
+
+			// 轉接後關閉目前視窗
+			if ("transfer" == type) {
+				$('.layim-chatlist-group' + roomId).parent().parent().parent()
+						.find('.layui-layer-setwin>a.layui-layer-close1')
+						.trigger("click");
+			}
+
+			var userData;
+
+			for (key in chatList) {
+				if (chatList[key].id == roomId) {
+					userData = chatList[key].currentUserData;
+				}
+			}
+
+			var msg = {
+				type : "inviteAgentThirdParty",
+				ACtype : "Agent",
+				roomID : RoomID_g,
+				fromAgentID : UserID_g,
+				invitedAgentID : invitedAgentId,
+				fromAgentName : UserName_g,
+				inviteType : type,
+				userdata : userData,
+				text : text,
+				channel : "chat"
+			};
+
+			currentThirdPartyInvite = msg;
+
+			console.log("inviteAgentThirdParty");
+			console.log(msg);
+			// 發送消息
+			ws.send(JSON.stringify(msg));
+		}
+
 		// 離開房間
 		function leaveRoom(aRoomID, aUserID) {
 			if (aUserID === undefined)
 				aUserID = UserID_g;
 			if (aRoomID === undefined)
 				aRoomID = $("#closeRoomId").text();
+
 			// 向websocket送出離開群組指令
 			var now = new Date();
 			var msg = {
@@ -1260,22 +1780,6 @@
 
 			// 發送消息
 			ws.send(JSON.stringify(msg));
-
-			// 清除layim群聊
-			layim.removeList({
-				type : 'group',
-				id : aRoomID
-			});
-
-			// 切換至該客戶資訊頁面
-			chatList.forEach(function(entry) {
-				if (aRoomID == entry.id) {
-					$("#" + entry.chatTab).trigger("click");
-					var iframeName = entry.chatTab.replace("chat", "iframe");
-					$('[name=' + iframeName + ']')[0].contentWindow
-							.showCaseInfoTab();
-				}
-			});
 		}
 
 		function closeCurrentTab(interactionId) {
@@ -1334,6 +1838,17 @@
 			}
 		}
 
+		function showTransferDialog() {
+			console.log(RoomID_g);
+
+			if ("" != RoomID_g) {
+				$("#transferRoomId").html(RoomID_g);
+				$("#transferDialogButton").trigger("click");
+			} else {
+				toastr.error("好友清單不提供轉接(三方功能)");
+			}
+		}
+
 		function showCloseDialog() {
 			console.log(RoomID_g);
 			$("#closeRoomId").html(RoomID_g);
@@ -1345,8 +1860,6 @@
 
 			$("#layim-group" + roomId).trigger("click");
 		}
-
-		//var displayStatus = $("#layui-layer100001").css("display");
 	</script>
 
 	<script>
@@ -1441,11 +1954,23 @@
 								console.log('sendMessage log');
 								console.log(data);
 
-								// 傳送群組訊息至layim視窗上
-								sendtoRoomonlay(data.mine.content);
-
-								if (To.type === 'friend') {
-									//layim.setChatStatus('<span style="color:#FF5722;">对方正在输入。。。</span>');
+								if (To.type === 'group') {
+									// 傳送群組訊息至layim視窗上
+									sendtoRoomonlay(data.mine.content);
+								} else if (To.type === 'friend') {
+									// 向websocket送出私訊指令
+									var now = new Date();
+									var msg = {
+										type : "message",
+										text : data.mine.content,
+										sendto : To.id,
+										channel : "chat",
+										date : now.getHours() + ":"
+												+ now.getMinutes() + ":"
+												+ now.getSeconds()
+									};
+									// 發送消息
+									ws.send(JSON.stringify(msg));
 								}
 
 							});
@@ -1456,28 +1981,42 @@
 							});
 
 							//监听聊天窗口的切换
-							layim.on('chatChange', function(res) {
-								var type = res.data.type;
-								console.log(res);
-								RoomID_g = res.data.id;
+							layim
+									.on(
+											'chatChange',
+											function(res) {
+												var type = res.data.type;
+												console.log(res);
 
-								// 新增layim 訊息切換背景顏色控制，參照layim.js內 "chatChange-color"
-								$(".layim-chatlist-group" + RoomID_g)
-										.removeClass('layui-anim-incoming-chat');
-								chatList
-										.forEach(function(entry) {
-											if (res.data.id == entry.id) {
-												$("#" + entry.chatTab).trigger(
-														"click");
-											}
-										});
+												if (type === 'friend') {
+													RoomID_g = "";
+													$(
+															".layim-chatlist-friend"
+																	+ res.data.id)
+															.removeClass(
+																	'layui-anim-incoming-chat');
+												} else if (type === 'group') {
+													RoomID_g = res.data.id;
 
-								if (type === 'friend') {
-
-								} else if (type === 'group') {
-
-								}
-							});
+													// 新增layim 訊息切換背景顏色控制，參照layim.js內 "chatChange-color"
+													$(
+															".layim-chatlist-group"
+																	+ RoomID_g)
+															.removeClass(
+																	'layui-anim-incoming-chat');
+													chatList
+															.forEach(function(
+																	entry) {
+																if (res.data.id == entry.id) {
+																	$(
+																			"#"
+																					+ entry.chatTab)
+																			.trigger(
+																					"click");
+																}
+															});
+												}
+											});
 
 							$('.site-demo-layim').on('click', function() {
 								var type = $(this).data('type');
@@ -1489,6 +2028,78 @@
 							// 開啟傳送layim參數
 							layimswitch = true;
 						});
+		
+		function notifyMe() {
+			  // Let's check if the browser supports notifications
+			  if (!("Notification" in window)) {
+			    alert("This browser does not support desktop notification");
+			  }
+
+			  // Let's check whether notification permissions have already been granted
+			  else if (Notification.permission === "granted") {
+			    // If it's okay let's create a notification
+			    var notification = new Notification("Hi 您有新訊息!");
+			  }
+
+			  // Otherwise, we need to ask the user for permission
+			  else if (Notification.permission !== "denied") {
+			    Notification.requestPermission(function (permission) {
+			      // If the user accepts, let's create a notification
+			      if (permission === "granted") {
+			        var notification = new Notification("Hi 您有新訊息!!");
+			      }
+			    });
+			  }
+				setTimeout(function() { notification.close() }, "${Info_notification}");
+			  // At last, if the user has denied notifications, and you 
+			  // want to be respectful there is no need to bother them any more.
+			}
+		
+		function notifyMe_phone() {
+			  // Let's check if the browser supports notifications
+			  if (!("Notification" in window)) {
+			    alert("This browser does not support desktop notification");
+			  }
+
+			  // Let's check whether notification permissions have already been granted
+			  else if (Notification.permission === "granted") {
+			    // If it's okay let's create a notification
+			    var notification = new Notification("Hi 您有新的通話!");
+			  }
+
+			  // Otherwise, we need to ask the user for permission
+			  else if (Notification.permission !== "denied") {
+			    Notification.requestPermission(function (permission) {
+			      // If the user accepts, let's create a notification
+			      if (permission === "granted") {
+			        var notification = new Notification("Hi 您有新的通話!!");
+			      }
+			    });
+			  }
+				setTimeout(function() { notification.close() }, "${Info_notification}");
+			}
+		
+
+// 		function InfoFocus(){
+// 			var FocusInfo = 1;
+		
+// 			$(window).on("blur focus", function(e) {
+// 				var InfoFocus = true;	
+// 			    var prevType = $(this).data("prevType");
+// 			    if (prevType != e.type) {   //  reduce double fire issues
+// 			        switch (e.type) {
+// 			            case "blur":
+// 			                break;
+// 			            case "focus":
+// 			            	FocusInfo = 0;
+// 			                break;
+// 			        }
+// 			    }
+// 			    $(this).data("prevType", e.type);
+// 			})
+// 		}
+	
+		        
 	</script>
 
 </body>

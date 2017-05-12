@@ -975,10 +975,10 @@
 
 	function Query_ActivityMenu(level, dbId) {
 		$
-				.ajax({
-					url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_ActivityMenu",
-					data : {
-						dbid : dbId
+		.ajax({
+			url : "${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Query_ActivityMenu",
+			data : {
+				dbid : dbId
 					},
 					type : "POST",
 					dataType : 'json',
