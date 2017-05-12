@@ -353,7 +353,7 @@
         <!-- Peity demo -->
 <!--         <script src="../js/demo/peity-demo.js"></script> -->
 <%-- 		<% --%>
-// 		String userid =  request.getParameter("userid");
+<!-- // 		String userid =  request.getParameter("userid"); -->
 <%-- 		%> --%>
 		<script>
 		function kpiview() {
