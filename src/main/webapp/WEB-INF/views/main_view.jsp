@@ -413,8 +413,6 @@
 		var password = md5('${password}');
 		// 		var password = '${password}';
 
-		var waittingClientIDList_g = []; //20170220 Lin
-		var waittingAgentIDList_g = []; //20170223 Lin
 
 		var chatTab = [ "chat1", "chat2", "chat3", "chat4", "chat5" ];
 		var chatList = []; // 20170220 Billy 聊天頁籤控制清單
@@ -795,13 +793,6 @@
 
 						// 接收到Agent or Client加入列表的訊息
 						currentUserData = obj.userdata;
-
-						//20170220 Lin
-						waittingClientIDList_g.push(new function() {
-							this.clientID = obj.userdata.id
-						});
-						//20170220 Lin
-						
 						
 						// 開啟邀請通話視窗
 						ClientName_g = obj.clientName;
@@ -971,17 +962,6 @@
 						if ($('#inviteDialog').hasClass("in")) {
 							$("#inviteCloseButton").trigger("click");
 						}
-						// 將此clientID從waittingClientIDList_g中去除
-						var index_remove;
-						for ( var index in waittingClientIDList_g) {
-							clientIDJson = waittingClientIDList_g[index];
-							var clientID = clientIDJson.clientID;
-							if (ClientID_g == clientID) {
-								index_remove = index;
-							}
-							//   console.log("clietIDJson.clientID: " + clientIDJson.clientID);
-						}
-						waittingClientIDList_g.splice(index_remove, 1);
 						// end of 20170320_sam
 
 						// 加入逾時自動拒絕機制
@@ -992,7 +972,18 @@
 						// 						}
 					}
 					//20170223 Lin
-
+					
+					// 20170504_sam
+					// 在響鈴過程中,client離開
+					if ("clientleft" == obj.Event) {
+						alert("clientleft matched");
+						// 						// 將請求畫面去掉
+						if ($('#inviteDialog').hasClass("in")) {
+							$("#inviteCloseButton").trigger("click");
+						}						
+					}
+					// end of 20170504_sam
+					
 					if ("removeuserinroom" == obj.Event) {
 						console.log("removeUserinroom matched");
 						
@@ -1160,6 +1151,10 @@
 
 					if ("adduserinroom" == obj.Event) {
 						console.log("addUserInRoom matched");						
+					}
+					
+					if ("agentleftthirdparty" == obj.Event) {
+						alert("agentLeftThirdParty matched");						
 					}
 
 					// 當接收轉接三方後開啟聊天視窗
@@ -1413,13 +1408,9 @@
 		// 登出
 		function logout() {
 			// 向websocket送出登出指令
-			var msg = new exitJson(UserID_g, null, null, waittingClientIDList_g, waittingAgentIDList_g);
+			var msg = new exitJson(UserID_g);
 			// 發送消息
 			ws.send(JSON.stringify(msg));
-
-			// 清空waittingClientIDList_g 20170220 Lin
-			waittingClientIDList_g = [];
-			waittingAgentIDList_g = [];
 		}
 
 		//Agent準備就緒
@@ -1508,19 +1499,6 @@
 			memberListToJoin.push(mem2);
 			acceptEventHelper("none", memberListToJoin); // "none"是一個keyword, 會影響websocket server的邏輯判斷處理
 
-			//20170220 Lin
-			// 將此clientID從waittingClientIDList_g中去除
-			var index_remove;
-			for ( var index in waittingClientIDList_g) {
-				clientIDJson = waittingClientIDList_g[index];
-				var clientID = clientIDJson.clientID;
-				if (currentClientID == clientID) {
-					index_remove = index;
-				}
-				//   console.log("clietIDJson.clientID: " + clientIDJson.clientID);
-			}
-			waittingClientIDList_g.splice(index_remove, 1);
-			//20170220 Lin
 		}
 
 		function rejectEvent() {
@@ -1529,20 +1507,6 @@
 			var msg = new rejectEventJson(UserID_g, Eventfrom);
 			// 發送消息
 			ws.send(JSON.stringify(msg));
-
-			//20170220 Lin
-			// 將此clientID從waittingClientIDList_g中去除
-			var index_remove;
-			for ( var index in waittingClientIDList_g) {
-				clientIDJson = waittingClientIDList_g[index];
-				var clientID = clientIDJson.clientID;
-				if (ClientID_g == clientID) {
-					index_remove = index;
-				}
-				//   console.log("clietIDJson.clientID: " + clientIDJson.clientID);
-			}
-			waittingClientIDList_g.splice(index_remove, 1);
-			//20170220 Lin
 
 			//document.getElementById("AcceptEvent").disabled = true;
 			//document.getElementById("RejectEvent").disabled = true;
