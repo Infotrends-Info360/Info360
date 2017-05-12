@@ -84,17 +84,6 @@ label.required:after {
 						<i class="fa fa-angle-double-right"></i> 設定
 					</h3>
 				</div>
-				
-<!-- 				<div id="div_test"> -->
-<!--             		<a href="personsetting">PersonSetting</a><p> -->
-<!--             		<a href="groupsetting">GroupSetting</a><p> -->
-<!--             		<a href="agentreasonsetting">AgentReasonSetting</a><p> -->
-<!--             		<a href="commonlinksetting">CommonLinkSetting</a><p> -->
-<!--             		<a href="activitymenusetting">ActivityMenuSetting</a><p> -->
-<!--             		<a href="activitygroupsetting">ActivityGroupSetting</a><p> -->
-<!--             		<a href="activitydatasetting">ActivityDataSetting</a><p> -->
-<!--     			</div> -->
-				
 				<div class="panel-body">
 					<div class="ibox">
 						<div class="fa-tree-list" id="AuthorityTree">							

@@ -57,6 +57,18 @@ function closeAllHrContent() {
 
 	$("#addMemberContent").hide();
 	$("#editMemberContent").hide();
+	
+	
+	$("#addActivity").hide();
+	$("#showAddRoot").hide();
+	$('#ActivityView').hide();
+	
+	
+	
+
+	
+	
+	
 
 	$("#hrTabControlButton button").removeClass("btn-primary");
 	$("#hrTabControlButton button").addClass("btn-success");

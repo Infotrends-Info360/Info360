@@ -1153,44 +1153,45 @@ function confirmBangroup() {
 }
 
 function GroupDelete(message) {
-//		var deletedbid = document.getElementById('deletedbid_GroupDelete').value;
-	var DbidList = ""
-	var selected=[];
-    $("[name=group0]:checkbox:checked").each(function(){
-      selected.push($(this).val());
-      });
-	  var groupDBID_list = selected.join();
-	  var List = groupDBID_list.split(',');
+//	var deletedbid = document.getElementById('deletedbid_GroupDelete').value;
+var DbidList = ""
+var selected=[];
+$("[name=group0]:checkbox:checked").each(function(){
+  selected.push($(this).val());
+  });
+  var checkBox_list = selected.join();
+  var List = checkBox_list.split(',');
+  var deleteDbid="";
+  for (var i=0;i< List.length;i++ ) {
+	  if(i%2==0   ){
+		  deleteDbid+=List[i]+",";
+	  }
+  }
+  var groupDBID_list = deleteDbid.slice(0,-1);
+//	  alert(groupDBID_list);
+	  if(groupDBID_list.length!=0){
+	$.ajax({
+				url :"${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Delete_GroupInfo",
+				data : {
+					groupDBID_list : groupDBID_list
+				},
+				type : "POST",
+				dataType : 'json',
+				error : function(e) {
+					toastr.error("刪除失敗");
+				},
+				success : function(data) {
+					select();
+					toastr.success("刪除成功");
+				}
+			});
 
-	  alert(List[0]);
-
-
-
-// 	  if(groupDBID_list.length!=0){
-// 	$
-// 			.ajax({
-// 				url :"${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/Delete_GroupInfo",
-// 				data : {
-// 					groupDBID_list : groupDBID_list
-// 				},
-// 				type : "POST",
-// 				dataType : 'json',
-// 				error : function(e) {
-// 					toastr.error("刪除失敗");
-					
-// 				},
-// 				success : function(data) {
-// 					select();
-// 					toastr.success(message);
-// 				}
-// 			});
-	
-// 	  }else{
-// 		  toastr.error("請選擇要刪除的項目");
-// 	  }
-// 	closeAllHrContent();
-// 	$("#groupContent").show();
-// 	$("#managegroupContent").show();
+	  }else{
+		  toastr.error("請選擇要刪除的項目");
+	  }
+	closeAllHrContent();
+	$("#groupContent").show();
+	$("#managegroupContent").show();
 }
 
 

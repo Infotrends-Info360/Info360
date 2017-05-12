@@ -133,6 +133,41 @@ public class BasicController {
 		
 		return "info360/dashboard";
 	}
+	
+	/**
+	 * 「儀表板」頁面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "Testdashboard")
+	public String showTestDashBoard(Model model) {
+		// 取得設定參數
+		getProperties();
+
+		String RESTful_protocol = properties.getProperty("RESTful.protocol");
+		String RESTful_hostname = properties.getProperty("RESTful.hostname");
+		String RESTful_port = properties.getProperty("RESTful.port");
+		String RESTful_project = properties.getProperty("RESTful.project");
+
+		String BackendService_protocol = properties.getProperty("BackendService.protocol");
+		String BackendService_hostname = properties.getProperty("BackendService.hostname");
+		String BackendService_port = properties.getProperty("BackendService.port");
+		String BackendService_project = properties.getProperty("BackendService.project");
+
+		model.addAttribute("RESTful_protocol", RESTful_protocol);
+		model.addAttribute("RESTful_hostname", RESTful_hostname);
+		model.addAttribute("RESTful_port", RESTful_port);
+		model.addAttribute("RESTful_project", RESTful_project);		
+
+		model.addAttribute("BackendService_protocol", BackendService_protocol);
+		model.addAttribute("BackendService_hostname", BackendService_hostname);
+		model.addAttribute("BackendService_port", BackendService_port);
+		model.addAttribute("BackendService_project", BackendService_project);		
+		
+		return "info360/Testdashboard";
+	}
+	
+	
 
 	/**
 	 * 「案件搜尋」頁面
@@ -220,7 +255,7 @@ public class BasicController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "testsetting")
+	@RequestMapping(value = "activity")
 	public String showTestSetting(Model model) {
 		// 取得設定參數
 		getProperties();
@@ -243,7 +278,7 @@ public class BasicController {
 		model.addAttribute("Info360_Setting_hostname", Info360_Setting_hostname);
 		model.addAttribute("Info360_Setting_port", Info360_Setting_port);
 
-		return "info360/testsetting";
+		return "info360/activity";
 	}
 	
 	/**
