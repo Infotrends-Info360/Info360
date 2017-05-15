@@ -353,50 +353,50 @@
         <!-- Peity demo -->
 <!--         <script src="../js/demo/peity-demo.js"></script> -->
 <%-- 		<% --%>
-// 		String userid =  request.getParameter("userid");
+<!-- // 		String userid =  request.getParameter("userid"); -->
 <%-- 		%> --%>
 		<script>
-		function kpiview() {
-<%-- 			var user = <%= userid%>; --%>
-			var user = parent.UserID_g;
-			if(user!=null && ""!=user){
-				var data = 'user=' + user;
-				var me = this;
-				console.log("call " + "${BackendService_protocol}//${BackendService_hostname}:${BackendService_port}/${BackendService_project}/RESTful/GetKPI");
-				$
-						.ajax({
-							url : "${BackendService_protocol}//${BackendService_hostname}:${BackendService_port}/${BackendService_project}/RESTful/GetKPI",
-							type : "POST",
-							dataType : 'json',
-							data : data,
-							error : function(e) {
-								console.log("error");
-							},
-							success : function(data) {
-								document.getElementById("usercount").innerHTML = data.usercount;
-								document.getElementById("agentcount").innerHTML = data.agentcount;
-								document.getElementById("clientcount").innerHTML = data.clientcount;
-								document.getElementById("roomcount").innerHTML = data.roomcount;
-// 								document.getElementById("leaveclientcount").innerHTML = data.leaveclientcount;
-								if (user != null && "" != user) {
-									//document.getElementById("username").innerHTML = data.username;
-									document.getElementById("userroomcount").innerHTML = data.userroomcount;
-								} else {
-									//document.getElementById("username").innerHTML = 'null';
-									document.getElementById("userroomcount").innerHTML = 0;
-								}
-								document.getElementById("notready_usetime").innerHTML = data.notready_usetime;
-								document.getElementById("ready_usetime").innerHTML = data.ready_usetime;
-								document.getElementById("iestablished_usetime").innerHTML = data.iestablished_usetime;
-								document.getElementById("iestablished_usetime_avg").innerHTML = data.iestablished_usetime_avg;
-							},
-						});
-			}
-			setTimeout(function() {
-				kpiview();
-			}, 3000);
-		}
-		kpiview();
+// 		function kpiview() {
+<%-- 			var user = <%= userid%>;  --%>
+// 			var user = parent.UserID_g;
+// 			if(user!=null && ""!=user){
+// 				var data = 'user=' + user;
+// 				var me = this;
+// 				console.log("call " + "${BackendService_protocol}//${BackendService_hostname}:${BackendService_port}/${BackendService_project}/RESTful/GetKPI");
+// 				$
+// 						.ajax({
+// 							url : "${BackendService_protocol}//${BackendService_hostname}:${BackendService_port}/${BackendService_project}/RESTful/GetKPI",
+// 							type : "POST",
+// 							dataType : 'json',
+// 							data : data,
+// 							error : function(e) {
+// 								console.log("error");
+// 							},
+// 							success : function(data) {
+// 								document.getElementById("usercount").innerHTML = data.usercount;
+// 								document.getElementById("agentcount").innerHTML = data.agentcount;
+// 								document.getElementById("clientcount").innerHTML = data.clientcount;
+// 								document.getElementById("roomcount").innerHTML = data.roomcount;
+// // 								document.getElementById("leaveclientcount").innerHTML = data.leaveclientcount;
+// 								if (user != null && "" != user) {
+// 									//document.getElementById("username").innerHTML = data.username;
+// 									document.getElementById("userroomcount").innerHTML = data.userroomcount;
+// 								} else {
+// 									//document.getElementById("username").innerHTML = 'null';
+// 									document.getElementById("userroomcount").innerHTML = 0;
+// 								}
+// 								document.getElementById("notready_usetime").innerHTML = data.notready_usetime;
+// 								document.getElementById("ready_usetime").innerHTML = data.ready_usetime;
+// 								document.getElementById("iestablished_usetime").innerHTML = data.iestablished_usetime;
+// 								document.getElementById("iestablished_usetime_avg").innerHTML = data.iestablished_usetime_avg;
+// 							},
+// 						});
+// 			}
+// 			setTimeout(function() {
+// 				kpiview();
+// 			}, 3000);
+// 		}
+// 		kpiview();
 		//Get User ID
 		//Get Talk Time
 		//Get User Group Count

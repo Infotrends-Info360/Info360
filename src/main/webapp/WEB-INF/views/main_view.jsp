@@ -661,7 +661,8 @@
 			var hostname = "${websocket_hostname}" || "ws.crm.com.tw";
 			var protocol = "${websocket_protocol}" || "ws:";
 			var port = "${websocket_port}" || "8888";
-			ws = new WebSocket(protocol + '//' + hostname + ':' + port);
+			var project =  "${websocket_project}" || "ChannelForWeb";
+			ws = new WebSocket(protocol + '//' + hostname + ':' + port + project + "/websocket/user");
 
 			var wsTimeout = setTimeout(function() {
 				$("#loginFailedMessage").html("Web Socket連線失敗，請重新登入。");

@@ -246,7 +246,7 @@
 								</div>
 							</div>
 						</div>
-						
+						<!-- 圓餅圖 -->
 						<div class="col-lg-6 col-md-6">
 							<div class="ibox">
 								<div class="ibox-title">
@@ -254,6 +254,7 @@
 								</div>
 							</div>
 						</div>
+						<!-- 條狀圖 -->
 						<div class="col-lg-6 col-md-6">
 							<div class="ibox">
 								<div class="ibox-title">
@@ -261,6 +262,7 @@
 								</div>
 							</div>
 						</div>
+						<!-- 折線圖 -->
 						<div class="col-lg-6 col-md-6">
 							<div class="ibox">
 								<div class="ibox-title">
@@ -269,10 +271,55 @@
 							</div>
 						</div>
 						
-						
-						
-						
 
+							<input type='hidden' id="systemParam" value='${systemParam}' disabled>
+							
+							
+								<div class="col-sm-3">
+			<div class="ibox">
+				<div class="ibox-content">
+					<h5 class="m-b-md">佇列</h5>
+					<h2 class="text-navy">
+						<span id="clientFindAgentSize"> </span>
+					</h2>
+					<!--                         <small>更新时间：12天以前</small> -->
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="ibox">
+				<div class="ibox-content">
+					<h5 class="m-b-md">在線客服人員</h5>
+					<h2 class="text-navy">
+						<span id="onlineAgentListSize"> </span>
+					</h2>
+					<!--                         <small>更新时间：12天以前</small> -->
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="ibox">
+				<div class="ibox-content">
+					<h5 class="m-b-md">最長等待時間</h5>
+					<h2 class="text-navy">
+						<span id="clientWaittingLongestTime"> </span>
+					</h2>
+					<!--                         <small>更新时间：12天以前</small> -->
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="ibox">
+				<div class="ibox-content">
+					<h5 class="m-b-md">未接通數(client已離線且無房間)</h5>
+					<h2 class="text-navy">
+						<span id="notServedCount"> </span>
+					</h2>
+					<!--                         <small>更新时间：12天以前</small> -->
+				</div>
+			</div>
+		</div>
+						
 					</div>
 				</div>
 			</div>
@@ -282,6 +329,57 @@
 
 	</div>
 <script src="resources/js/setting/echarts.js"></script>
+
+<script>
+
+var ws_g; // websocket
+var systemParam_g;
+
+// get systemParam , ex. protocol, hostname, port
+// systemParam_g = JSON.parse( document.getElementById('systemParam').value );
+
+// 連上websocket
+// var url = "DashBoard.protocol" + "//" + DashBoard.hostname + ":" + DashBoard.port +"/"+DashBoard.project+"/websocket/Testdashboard";
+var url = "${DashBoard_protocol}//${DashBoard_hostname}:${DashBoard_port}/${DashBoard_project}/websocket/dashboard";
+// url :"  ${RESTful_protocol}//${RESTful_hostname}:${RESTful_port}/${RESTful_project}/RESTful/moveActivity",
+
+
+console.log("url", url);
+ws_g = new WebSocket(url);
+
+// 當websocket連接建立成功時,送出login請求
+ws_g.onopen = function() {
+	console.log('websocket 打開成功');
+};
+
+
+//當收到服務端的消息時
+ws_g.onmessage = function(e) {
+	// e.data 是服務端發來的資料
+	console.log("onMessage(): " + e.data);
+	var obj = JSON.parse(e.data);
+	obj.Event = obj.Event.toLowerCase();
+	console.log("obj.Event: " , obj.Event);
+	if ("dashboard" == obj.Event) {
+		document.getElementById("onlineAgentListSize").innerHTML = obj.chatMsg.onlineAgentListSize;
+		document.getElementById("clientFindAgentSize").innerHTML = obj.chatMsg.webMsg.clientFindAgentSize;
+		document.getElementById("clientWaittingLongestTime").innerHTML = obj.chatMsg.webMsg.clientWaittingLongestTime;
+		document.getElementById("notServedCount").innerHTML = obj.chatMsg.webMsg.notServedCount;
+	}
+}; 
+
+// 當websocket關閉時
+ws_g.onclose = function() {
+	console.log("websocket 連接關閉");
+}; 
+
+// 當出現錯誤時
+ws_g.onerror = function() {
+	console.log("出現錯誤");
+};
+
+</script>
+
 	
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts图表

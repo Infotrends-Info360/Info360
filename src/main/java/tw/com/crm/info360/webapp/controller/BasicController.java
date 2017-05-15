@@ -69,7 +69,9 @@ public class BasicController {
 		String websocket_hostname = properties.getProperty("websocket.hostname");
 		String websocket_protocol = properties.getProperty("websocket.protocol");
 		String websocket_port = properties.getProperty("websocket.port");
-
+		String websocket_project = properties.getProperty("websocket.project");
+		
+		
 		String Info360_Setting_protocol = properties.getProperty("Info360_Setting.protocol");
 		String Info360_Setting_hostname = properties.getProperty("Info360_Setting.hostname");
 		String Info360_Setting_port = properties.getProperty("Info360_Setting.port");
@@ -89,13 +91,15 @@ public class BasicController {
 		model.addAttribute("websocket_hostname", websocket_hostname);
 		model.addAttribute("websocket_protocol", websocket_protocol);
 		model.addAttribute("websocket_port", websocket_port);
+		model.addAttribute("websocket_project", websocket_project);
+		
 
 		model.addAttribute("Info360_Setting_protocol", Info360_Setting_protocol);
 		model.addAttribute("Info360_Setting_hostname", Info360_Setting_hostname);
 		model.addAttribute("Info360_Setting_port", Info360_Setting_port);
 		
 		model.addAttribute("Info_notification", Info_notification);
-
+		
 		return "main_view"; // 頁面導向 /WEB-INF/views/ 搜索檔案類型.jsp
 	}
 
@@ -153,6 +157,11 @@ public class BasicController {
 		String BackendService_hostname = properties.getProperty("BackendService.hostname");
 		String BackendService_port = properties.getProperty("BackendService.port");
 		String BackendService_project = properties.getProperty("BackendService.project");
+		
+		String DashBoard_protocol = properties.getProperty("DashBoard.protocol");
+		String DashBoard_hostname = properties.getProperty("DashBoard.hostname");
+		String DashBoard_port = properties.getProperty("DashBoard.port");
+		String DashBoard_project = properties.getProperty("DashBoard.project");
 
 		model.addAttribute("RESTful_protocol", RESTful_protocol);
 		model.addAttribute("RESTful_hostname", RESTful_hostname);
@@ -162,8 +171,13 @@ public class BasicController {
 		model.addAttribute("BackendService_protocol", BackendService_protocol);
 		model.addAttribute("BackendService_hostname", BackendService_hostname);
 		model.addAttribute("BackendService_port", BackendService_port);
-		model.addAttribute("BackendService_project", BackendService_project);		
-		
+		model.addAttribute("BackendService_project", BackendService_project);
+
+		model.addAttribute("DashBoard_protocol", DashBoard_protocol);
+		model.addAttribute("DashBoard_hostname", DashBoard_hostname);
+		model.addAttribute("DashBoard_port", DashBoard_port);
+		model.addAttribute("DashBoard_project", DashBoard_project);
+				
 		return "info360/Testdashboard";
 	}
 	
